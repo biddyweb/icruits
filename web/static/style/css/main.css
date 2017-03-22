@@ -167,7 +167,7 @@ section {
   margin-bottom: 30px;
 }
 
-.caption .btn-start {
+.btn-start {
   color: #fff;
   font-size: 14px;
   font-weight: 600;
@@ -177,7 +177,7 @@ section {
   margin-top: 40px;
 }
 
-.caption .btn-start:hover {
+.btn-start:hover {
   color: #fff
 }
 
@@ -1614,7 +1614,6 @@ html.no-touchevents .menu-white:hover span.label {
   line-height: 45px;
   max-width: 260px;
   margin: 0 auto 2em;
-  position: relative;
   text-transform: uppercase;
   vertical-align: middle;
   width: 100%;
@@ -1880,7 +1879,7 @@ LOGIN FORM
 .simform {
   margin-top: 60px;
   padding: 2em 0;
-  max-width: 860px;
+  max-width: 530px;
   width: 100%;
   text-align: left;
   font-size: 2.5em;
@@ -1983,6 +1982,7 @@ LOGIN FORM
   font-size: 1em;
   line-height: 1;
   opacity: 0;
+  left: 10%;
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
 }
@@ -2002,8 +2002,8 @@ LOGIN FORM
   padding-bottom: 20px;
   background-color: #000000;
   width: calc(99% - 2em);
-  -webkit-transition: width 0.4s;
-  transition: width 0.4s;
+  -webkit-transition: width 0.5s;
+  transition: width 0.5s;
 
 }
 
@@ -2091,6 +2091,7 @@ LOGIN FORM
   width: 3em;
   font-weight: 700;
   font-size: 0.4em;
+  color: rgba(30, 135, 209, 0.87);
 }
 
 .simform .number:after {
@@ -2110,7 +2111,7 @@ LOGIN FORM
 
 .simform .number .number-current {
   float: left;
-  color: rgb(0, 188, 25);
+  color: rgb(255, 255, 255);
 }
 
 .simform .number-next {

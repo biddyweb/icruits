@@ -49,8 +49,14 @@
                     </div><!-- / controls -->
                 </div><!-- /simform-inner -->
                 <a type="submit"
-                   class="btn btn-start animated fadeInUpBig hide"
-                   ng-click="login()"><span>Sign in</span></a>
+                   style="position: fixed; left: 20%;" 
+                   class="btn-white btn-white-slide animated fadeInUpBig hide text-center"
+                   ng-click="login()">    
+                    <svg>
+                        <rect x="0" y="0" fill="none" width="100%" height="100%"/>
+                    </svg>
+                    Sign In
+                </a>
             </form><!-- /simform -->
 
         <a class="left-control" href="#home-slider" data-slide="prev"><i class="fa fa-angle-left"></i></a>
@@ -125,7 +131,7 @@
 				*/
 
             // let's just simulate something...
-            var login = theForm.querySelector( '.btn' );
+            var login = theForm.querySelector( '.btn-white' );
             classie.addClass( login, 'show' );
         }
     });
