@@ -1,157 +1,62 @@
 {% load static %}
-<header id="home">
+<header id="home" ng-controller="LoginCtrl">
     <div id="home-slider" class="carousel slide carousel-fade" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="item active" style="background-image: url(/static/img/slider/1.jpg)">
+        <div class="carousel-inner img-responsive">
+            <div class="item active">
                 <div class="caption">
                     <h1 class="animated fadeInLeftBig">Welcome to <span>iCruits</span></h1>
                     <!--a data-scroll class="btn btn-start animated fadeInUpBig" href="#login">Start now</a-->
                 </div>
             </div>
-            <div class="item" style="background-image: url(/static/img/slider/2.jpg)">
+            <div class="item">
                 <div class="caption">
                     <h1 class="animated fadeInLeftBig">Say Hello to <span>Your</span> future</h1>
                     <!--a data-scroll class="btn btn-start animated fadeInUpBig" href="#login">Start now</a-->
                 </div>
             </div>
-            <div class="item" style="background-image: url(/static/img/slider/3.jpg)">
-                <div class="caption">
-                    <h1 class="animated fadeInLeftBig">We are <span>Creative</span></h1>
-                    <!--a data-scroll class="btn btn-start animated fadeInUpBig" href="#login">Start now</a-->
-                </div>
-            </div>
         </div>
+            <form id="theForm"
+                  class="simform"
+                  autocomplete="off"
+                  data-ng-submit="login()"
+                  role="form"
+                  accept-charset="UTF-8">
+                <div class="simform-inner">
+                    <ol class="questions">
+                        <li>
+                            <input id="q1"
+                                   name="q1"
+                                   type="text"
+                                   placeholder="Username"
+                                   data-ng-model="log.username"/>
+                        </li>
+                        <li>
+                            <input id="q2"
+                                   name="q2"
+                                   type="password"
+                                   placeholder="Password"
+                                   data-ng-model="log.password"/>
+                        </li>
+                    </ol><!-- /questions -->
+                    <div class="controls">
+                        <button class="next"></button>
+                        <div class="progress"></div>
+                        <span class="number">
+                            <span class="number-current"> / </span>
+                            <span class="number-total"></span>
+                        </span>
+                        <span class="error-message"></span>
+                    </div><!-- / controls -->
+                </div><!-- /simform-inner -->
+                <a type="submit"
+                   class="btn btn-start animated fadeInUpBig hide"
+                   ng-click="login()"><span>Sign in</span></a>
+            </form><!-- /simform -->
+
         <a class="left-control" href="#home-slider" data-slide="prev"><i class="fa fa-angle-left"></i></a>
         <a class="right-control" href="#home-slider" data-slide="next"><i class="fa fa-angle-right"></i></a>
-
-        <a id="tohash" href="#login"><i class="fa fa-angle-down"></i></a>
     </div>
 </header>
-<section style="padding: 90px; margin-top: 90px" id="login" class="contentLogin" ng-controller="LoginCtrl">
-    <div class="container-fluid">
-        <div class="row">
-        <!--div class="animation-element bounce-up cf center-block">
-            <div class="subject" style="background-color: transparent; background: transparent;">
-                <img class="img-responsive center-block" style="height: 400px;" src="{% static 'img/logo.png' %}">
-            </div>
-        </div-->
-        <div class="login-wrap">
-            <div class="login-html">
-                <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
-                <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
-                <div class="login-form">
-                    <div class="sign-in-htm">
-                        <span class="input input--juro">
-                            <input class="input__field input__field--juro" type="text" id="input-28" ng-model="log.username"/>
-                            <label class="input__label input__label--juro" for="input-28">
-                                <span class="input__label-content input__label-content--juro">Username</span>
-                            </label>
-                            <div class="formError" ng-repeat="error in errors.username">
-                                <p ng-bind="error"></p>
-                            </div>
-                        </span>
-                        <div class="group">
-                            <label for="pass" class="label"></label>
-                        </div>
-                        <span class="input input--juro">
-                            <input class="input__field input__field--juro" type="password" id="input-28" ng-model="log.password" />
-                            <label class="input__label input__label--juro" for="input-28">
-                                <span class="input__label-content input__label-content--juro">Password</span>
-                            </label>
-                            <div class="formError" ng-repeat="error in errors.password">
-                                <p ng-bind="error"></p>
-                            </div>
-                        </span>
-                        <div class="group">
-                            <a type="submit" class="btn-1 btn-slide text-center fadeInUpBig" ng-click="login()">
-                                <svg>
-                                    <rect x="0" y="0" fill="none" width="100%" height="100%"/>
-                                </svg>
-                                Sign In
-                            </a>
-                        </div>
-                        <div class="hr"></div>
-                        <div class="foot-lnk">
-                            <a href="">Forgot Password?</a>
-                        </div>
-                    </div>
-                    <div class="sign-up-htm">
-                        <span class="input input--juro">
-                            <input class="input__field input__field--juro" type="text" id="input-28" ng-model="reg.username" required />
-                            <label class="input__label input__label--juro" for="input-28">
-                                <span class="input__label-content input__label-content--juro">Username</span>
-                            </label>
-                        </span>
-                            <div class="formError" ng-repeat="error in errors.username">
-                                <p ng-bind="error"></p>
-                            </div>
-                        <span class="input input--juro">
-                            <input class="input__field input__field--juro" type="text" id="input-28" ng-model="reg.email" required/>
-                            <label class="input__label input__label--juro" for="input-28">
-                                <span class="input__label-content input__label-content--juro">Email Address</span>
-                            </label>
-                        </span>
-                            <div class="formError" ng-repeat="error in errors.email">
-                                <p ng-bind="error"></p>
-                            </div>
-                        <div class="inputHolder">
-                            <label id="q3">
-                                <input type="radio"
-                                       id="q3"
-                                       name="q3"
-                                       ng-value="JobSeeker"
-                                       ng-model="reg.profile_type"
-                                       />
-                                   JobSeeker
-                            </label>
-                            <label id="q3">
-                                <input type="radio"
-                                       id="q3"
-                                       name="q3"
-                                       ng-value="Employer"
-                                       ng-model="reg.profile_type"
-                                       style="max-width: 30px; max-height: 30px;"/>
-                                   Employer
-                            </label>
-                        </div>
-                        <span class="input input--juro">
-                            <input class="input__field input__field--juro" type="password" id="input-28" ng-model="reg.password" required/>
-                            <label class="input__label input__label--juro" for="input-28">
-                                <span class="input__label-content input__label-content--juro">Password</span>
-                            </label>
-                        </span>
-                            <div class="formError" ng-repeat="error in errors.password">
-                                <p ng-bind="error"></p>
-                            </div>
-                        <span class="input input--juro">
-                            <input class="input__field input__field--juro" type="password" id="input-28" ng-model="reg.confirm_password" required/>
-                            <label class="input__label input__label--juro" for="input-28">
-                                <span class="input__label-content input__label-content--juro">Repeat Password</span>
-                            </label>
-                        </span>
-                            <div class="formError" ng-repeat="error in errors.confirm_password">
-                                <p ng-bind="error"></p>
-                            </div>
-                        <div class="group">
-                            <a type="submit" class="btn-1 btn-slide text-center fadeInUpBig" ng-click="registration()">
-                                <svg>
-                                    <rect x="0" y="0" fill="none" width="100%" height="100%"/>
-                                </svg>
-                                Sign Up
-                            </a>
-                        </div>
-                        <div class="hr"></div>
-                        <div class="foot-lnk">
-                            <label for="tab-1">Already Member?</label>
-                        </div>
-                        <div class="hr"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-        </div>
-</section>
 
     <!--div class="container cf">
         <div class="animation-element bounce-up cf">
@@ -204,9 +109,9 @@
         </a>
     </div-->
 
-<!--script charset="utf-8" type="text/javascript" src="{% static 'js/stepsForm.js' %}"></script>
+<script charset="utf-8" type="text/javascript" src="{% static 'js/stepsForm.js' %}"></script>
 
-<!--script>
+<script>
     var theForm = document.getElementById( 'theForm' );
 
     new stepsForm( theForm, {
@@ -224,7 +129,7 @@
             classie.addClass( login, 'show' );
         }
     });
-</script-->
+</script>
 <script>
     ///* animation
 var $animation_elements = $('.animation-element');
