@@ -1,0 +1,189 @@
+<header>
+    <span class="menu" onclick="openNav()"><span class="label">MENU</span> </span>
+</header>
+
+<section id="jobDetail" class="parallax">
+    <div>
+        <a class="jobDetail-left-control" href="#detail-carousel" role="button" data-slide="prev"><i class="fa fa-angle-left"></i></a>
+        <a class="jobDetail-right-control" href="#detail-carousel" role="button" data-slide="next"><i class="fa fa-angle-right"></i></a>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <div class="twitter-icon text-center">
+                        <i class="fa fa-twitter"></i>
+                        <h4></h4>
+                    </div>
+                    <div id="detail-carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+                                <h1 style="color: #028fcc; display: inline;">Queue </h1><h1 style="color: #028fcc; display: inline;" data-ng-bind="JobFeed.queue"></h1>
+                            </div>
+                            <div class="item">
+                                <h1 style="color: #028fcc;" data-ng-bind="JobFeed.job_name"></h1>
+                            </div>
+                            <div class="item">                                
+                                <h1 style="color: #028fcc;">Company Name</h1>
+                            </div>
+                        </div>                        
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section style="margin-top: 60px;">
+    <div class="tab tab-nav">
+        <a class="myNavtab nav-tab center-block" style="left: 25%;" ng-class="{active: activatedTab == 1}" ng-click="setActivatedTab(1)">
+            <svg>
+                <rect x="0" y="0" fill="none" width="100%" height="100%"/>
+            </svg>
+            Job Details
+        </a>
+        <a class="myNavtab nav-tab center-block" style="right: 25%;" ng-class="{active: activatedTab == 2}" ng-click="setActivatedTab(2)">
+            <svg>
+                <rect x="0" y="0" fill="none" width="100%" height="100%"/>
+            </svg>
+            Company Details
+        </a>
+    </div>
+        <div class="tab-content">
+            <div class="tab" ng-class="{active: activatedTab == 1}">
+                            
+                <h2 class="notify-info" style="margin-top: 42px;">
+                    Details 
+                    <span class="text-muted"> about job.</span>
+                </h2>
+
+            </div>
+            
+            <div class="tab tab-content" ng-class="{active: activatedTab == 2}">
+
+                <h2 class="notify-info" style="margin-top: 42px;">
+                    Details 
+                    <span class="text-muted"> about company.</span>
+                </h2>
+
+            </div>
+        </div>
+
+</section>
+<!--section id="pages">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="col-lg-12 col-md-12">
+                    <h1 data-ng-bind="JobFeed.job_name"></h1>
+                    <div data-ng-bind="JobFeed.job_description"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section-->
+
+<!--div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="row" id="gradient">
+                <div class="col-md-4">
+                    <img class="img-responsive">
+                </div>
+                <div class="col-md-8" id="overview">
+                    <div class="row">
+                        <div class="col-md-6 text-center">
+                            <!--span class="fa fa-bar-chart">&nbsp;24%</span->
+                            <h1 data-ng-bind="JobFeed.job_name"></h1>
+                            <h1><strong>QUEUE</strong></h1>
+                            <p>
+                                <h1 class="text-center" data-ng-bind="JobFeed.queue"></h1>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="tabs_div">
+                    <ul>
+                        <li>Job Info</li>
+                        <li>Employeer Info</li>
+                    </ul>
+                    <div>
+                        <table class="table">
+                            <tbody>
+                                <h2 class="text-center" data-ng-bind="JobFeed.job_description"></h2>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <table class="table">
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <a class="btn filter-btn btn-2 bottom-right-btn">
+                    iCruit
+                </a>
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(function ($) {
+        $(".tabs_div").shieldTabs();
+    });
+</script>
+
+<style>
+    .pb-product-details-ul {
+        list-style-type: none;
+        padding-left: 0;
+        color: black;
+    }
+
+        .pb-product-details-ul > li {
+            padding-bottom: 5px;
+            font-size: 15px;
+        }
+
+    #gradient {
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#feffff+0,ddf1f9+31,a0d8ef+62 */
+        background: #feffff; /* Old browsers */
+        background: -moz-linear-gradient(left, #feffff 0%, #f9dddf 31%, #e89b5a 62%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left, #feffff 0%, #f9dddf 31%, #e89b5a 62%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right, #feffff 0%, #f9dddf 31%, #e89b5a 62%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', endColorstr='#a0d8ef',GradientType=1 ); /* IE6-9 */
+        border: 1px solid #f2f2f2;
+        padding: 20px;
+    }
+
+    #hits {
+        border-right: 1px solid white;
+        border-left: 1px solid white;
+        vertical-align: middle;
+        padding-top: 15px;
+        font-size: 17px;
+        color: white;
+    }
+
+    #fan {
+        vertical-align: middle;
+        padding-top: 15px;
+        font-size: 17px;
+        color: white;
+    }
+
+    .pb-product-details-fa > span {
+        padding-top: 20px;
+    }
+</style>
+
+
+<!-- SMALL CANVAS MENU -->
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a data-ui-sref="root.dashboard">Dashboard</a>
+    <a data-ui-sref="root.help">Help</a>
+    <a href="#">Logout</a>
+</div>

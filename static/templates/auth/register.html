@@ -1,0 +1,102 @@
+<section id="pages">
+    <div class="container">
+        <img class="img-responsive center-block" style="margin-top: 50px; height: 250px;" src="static/img/logo.png">
+        <form id="RegisterForm"
+              class="simform"
+              autocomplete="off"
+              data-ng-submit="registration()"
+              role="form"
+              accept-charset="UTF-8">
+            <div class="simform-inner">
+                <ol class="questions">
+                    <li>
+                        <span><label for="q1" class="text-center">Register</label></span>
+                        <input id="q1"
+                               name="q1"
+                               type="text"
+                               placeholder="Username"
+                               data-ng-model="reg.username"/>
+                    </li>
+                    <li>
+                        <span><label for="q2" class="text-center">Register</label></span>
+                        <input id="q2"
+                               name="q2"
+                               type="text"
+                               placeholder="Email"
+                               data-ng-model="reg.email"/>
+                    </li>
+                    <li>
+                        <div class="inputHolder" ng-repeat="accType in profile_types">
+                        <label id="q3">
+                            <input type="radio"
+                                   id="q3"
+                                   name="q3"
+                                   ng-value="accType.profile_type"
+                                   ng-model="reg.profile_type"
+                                   checked/>
+                               {{ accType.label }}
+                        </label>
+                        </div>
+                    </li>
+                    <li>
+                        <span><label for="q4" class="text-center">Register</label></span>
+                        <input id="q4"
+                               name="q4"
+                               type="text"
+                               placeholder="Mobile Number"
+                               ng-model="reg.mobile_number"/>
+                    </li>
+                    <li>
+                        <span><label for="q5" class="text-center">Register</label></span>
+                        <input id="q5"
+                               name="q5"
+                               type="password"
+                               placeholder="Password"
+                               ng-model="reg.password"/>
+                    </li>
+                    <li>
+                        <span><label for="q6" class="text-center">Register</label></span>
+                        <input id="q6"
+                               name="q6"
+                               type="password"
+                               placeholder="Confirm Password"
+                               ng-model="reg.confirm_password"/>
+                    </li>
+                </ol><!-- /questions -->
+                <div class="controls">
+                    <button class="next"></button>
+                    <div class="progress"></div>
+                    <span class="number">
+                        <span class="number-current"></span>
+                        <span class="number-total"></span>
+                    </span>
+                    <span class="error-message"></span>
+                </div><!-- / controls -->
+            </div><!-- /simform-inner -->
+            <a type="submit"
+               class="btn password-btn btn-2 hide"
+               style="position: absolute; max-width: 100%;"
+               ng-click="registration()"><span>Register</span></a>
+        </form><!-- /simform -->
+    </div>
+</section>
+
+<script>
+    var Form = document.getElementById( 'RegisterForm' );
+
+    new stepsForm( Form, {
+        onSubmit : function( form ) {
+            // hide form
+            classie.addClass( Form.querySelector( '.simform-inner' ), 'hide' );
+            /*
+				form.submit()
+				or
+				AJAX request (maybe show loading indicator while we don't have an answer..)
+				*/
+
+            // let's just simulate something...
+            var register = Form.querySelector( '.btn' );
+            classie.addClass( register, 'show' );
+        }
+    });
+</script>
