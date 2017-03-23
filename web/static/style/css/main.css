@@ -317,15 +317,40 @@ VERY IMPORTANT!!!!
     opacity: 0;
     color: #1D1D1F;
     transition: all 750ms cubic-bezier(.25,.46,.45,.94);
-    bottom: 100%;
     position: absolute;
-    font-size: 0.725em;
+    font-size: 0.825em;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    bottom: 0;
+}
+.job-item span.nohover{
+    display: block;
+    font-family: ‘Courier New’, Courier, monospace;
+    text-shadow: 1px 1px grey;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: .2875rem;
+    text-indent: 0;
+    text-shadow: 0 0 white;
+    text-rendering: auto;
+    -webkit-font-smoothing: initial;
+    height: 52px;
+    line-height: 52px;
+    padding: 0;
+    margin: 0;
+    background: rgba(0,0,0,0);
+    color: #1D1D1F;
+    transition: all 750ms cubic-bezier(.25,.46,.45,.94);
+    bottom: 20px;
+    position: absolute;
+    font-size: 0.825em;
     left: 0;
     right: 0;
     margin: 0 auto;
 }
+
 .job-item:hover span.hover.name {
-    bottom: 20px;
     opacity: 1;
     visibility: visible;
     transition: all 750ms cubic-bezier(.55,.085,.68,.53);
@@ -333,47 +358,17 @@ VERY IMPORTANT!!!!
 }
 
 .job-item:hover span.hover.company {
-    bottom: 0px;
     opacity: 1;
     visibility: visible;
     transition: all 750ms cubic-bezier(.55,.085,.68,.53);
     z-index: 999999999;
+    color: rgb(90, 90, 90);
+    letter-spacing: .1875rem;
 }
 /*
    MENU BUTTON FOR SMALL OFFCANVAS SCREEN
  */
-.menu:hover span.label {
-  opacity: 1;
-    visibility: visible;
-    transition: all 250ms cubic-bezier(.55,.085,.68,.53);
-    z-index: 999999999;
-}
-html.no-touchevents .menu:hover span.label {
-    left: 56px
-}
 
-.menu-white:hover span.label {
-  opacity: 1;
-    visibility: visible;
-    transition: all 250ms cubic-bezier(.55,.085,.68,.53);
-    z-index: 999999999;
-}
-html.no-touchevents .menu-white:hover span.label {
-    left: 56px
-}
-.menu {
-    display: block;
-    position: absolute;
-    text-decoration: none;
-    background: center center no-repeat rgba(255,255,255,0);
-    padding: 0;
-    outline: 0;
-    text-indent:-9999px;
-    cursor: pointer;
-    top: 10px;
-    left: 10px;
-    z-index: 21213213212321;
-}
 .menu-white {
     display: block;
     position: absolute;
@@ -385,7 +380,7 @@ html.no-touchevents .menu-white:hover span.label {
     cursor: pointer;
     top: 10px;
     left: 10px;
-    z-index: 12414124124124;
+    z-index: 100;
 }
 
 .menu span.label{
@@ -433,6 +428,11 @@ html.no-touchevents .menu-white:hover span.label {
     transition: all 250ms cubic-bezier(.25,.46,.45,.94)
 }
 
+.menu-white:hover span.label {
+    opacity: 1;
+    visibility: visible;
+}
+
 .menu-white {
     background-image:url(../../img/menu-white.png);
     width:72px;
@@ -475,10 +475,10 @@ html.no-touchevents .menu-white:hover span.label {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 30;
+    z-index: 124141241241241;
     top: 0;
     left: 0;
-    background-color: rgba(0,0,0, 0.1);
+    background-color: rgb(40, 40, 40);
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
@@ -1330,8 +1330,9 @@ input, textarea, select, button, meter, progress {
     left: 0;
     width: 100%;
     height: 75px;
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(40, 40, 40);
     color: rgb(255, 255, 255);
+    margin: 0 auto;
 }
 
 .dashHeader span {
@@ -1545,3 +1546,164 @@ input, textarea, select, button, meter, progress {
     font-size: 30px;
 }
 
+body,
+.container-wrap, 
+.content-wrap {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+
+.menu-wrap a {
+  color: #b8b7ad;
+}
+
+.menu-wrap a:hover,
+.menu-wrap a:focus {
+  color: #c94e50;
+}
+
+.content-wrap {
+  -webkit-overflow-scrolling: touch;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+}
+
+/* Menu Button */
+.menu-button {
+  position: fixed;
+  z-index: 1000;
+  margin: 1em;
+  padding: 0;
+  width: 2.5em;
+  height: 2.25em;
+  border: none;
+  text-indent: 2.5em;
+  font-size: 1.5em;
+  color: transparent;
+  background: transparent;
+}
+
+.menu-button::before {
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  bottom: 0.5em;
+  left: 0.5em;
+  background: linear-gradient(#373a47 20%, transparent 20%, transparent 40%, #373a47 40%, #373a47 60%, transparent 60%, transparent 80%, #373a47 80%);
+  content: '';
+}
+
+.menu-button:hover {
+  opacity: 0.6;
+}
+
+/* Close Button */
+.close-button {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  overflow: hidden;
+  text-indent: 16px;
+  border: none;
+  z-index: 1001;
+  background: transparent;
+  color: transparent;
+}
+
+.close-button::before,
+.close-button::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  background: #95a5a6;
+}
+
+.close-button::before {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.close-button::after {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+/* Menu */
+.menu-wrap {
+  position: absolute;
+  z-index: 1001;
+  width: 300px;
+  height: 100%;
+  font-size: 1.15em;
+  -webkit-transform: translate3d(-300px,0,0);
+  transform: translate3d(-300px,0,0);
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+}
+
+.menu {
+  background: #373a47;
+  width: calc(100% - 120px);
+  height: 100%;
+  padding: 2em 1em;
+}
+
+.icon-list {
+  width: 280px;
+}
+
+.icon-list a {
+  display: block;
+  padding: 0.8em;
+}
+
+.icon-list a i {
+  opacity: 0.5;
+}
+
+.icon-list a span {
+  margin-left: 10px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 0.75em;
+}
+
+/* Morph Shape */
+.morph-shape {
+  position: absolute;
+  width: 120px;
+  height: 100%;
+  top: 0;
+  right: 0;
+  fill: #373a47;
+  z-index: 1000;
+}
+
+/* Shown menu */
+.show-menu .menu-wrap {
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+.show-menu .content-wrap {
+  -webkit-transition-delay: 0.1s;
+  transition-delay: 0.1s;
+  -webkit-transform: translate3d(100px,0,0);
+  transform: translate3d(100px,0,0);
+}
+
+.show-menu .content::before {
+  opacity: 1;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
