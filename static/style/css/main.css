@@ -27,11 +27,12 @@ html {
     -webkit-text-size-adjust:100%
     text-shadow: 1px 1px grey;
 }
-
 h1, h2, h3, h4, h5, h6 {
   color: #333;
 }
-
+body {
+    background-color: rgb(240, 240, 240);
+}
 h2 {
   font-size: 30px;
   margin-bottom: 20px;
@@ -371,7 +372,6 @@ VERY IMPORTANT!!!!
 
 .menu-white {
     display: block;
-    position: absolute;
     text-decoration: none;
     background: center center no-repeat rgba(0,0,0,0);
     padding: 0;
@@ -381,6 +381,7 @@ VERY IMPORTANT!!!!
     top: 10px;
     left: 10px;
     z-index: 100;
+    position: fixed;
 }
 
 .menu span.label{
@@ -1325,7 +1326,7 @@ input, textarea, select, button, meter, progress {
 }
 
 .dashHeader {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -1419,7 +1420,7 @@ input, textarea, select, button, meter, progress {
 
 .subject {
     width: 100%;
-    background: #ffffff;
+    /*background: #ffffff;*/
 }
 .subject .content {
     margin-bottom: 8px;
@@ -1713,9 +1714,80 @@ body,
     padding-left: 1.6em;
 }
 
-
-@media only screen and (min-width: 43.75em) {
-    h3 {
-        font-size: 1.6875rem;
+#filter-btn {
+    background: rgba(243,243,245,.56);
+    border-top: 1px solid #FFF;
+    border-left: 1px solid #FFF;
+    width: 150px;
+    height: 50px;
+    text-decoration: none;
+    letter-spacing: .25rem;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    text-align: center;
+    z-index: 10000000000000;
+    visibility: visible;
+    opacity: 1;
+    cursor: pointer;
+    transition: all .35s cubic-bezier(.455,.03,.515,.955);
+}
+#filter-btn:hover {
+    background-color:#FFF;
+    letter-spacing:.25rem
+}
+#filter-btn span { 
+    pointer-events: none;
+    display: block;
+    position: absolute;
+    width: 100%; 
+    height: 100%;
+    transition: all .35s cubic-bezier(.455,.03,.515,.955);
+    top: 2.150em;
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    font-family: inherit;
+    font-size: 0.66em;
+    visibility: visible;
+    opacity: 1;
+}
+#filter-btn span.hover {
+    top: 100%;
+    visibility: hidden;
+    opacity: 0;
+}
+#filter-btn:not(.disabled):not([disabled]):not(.active):hover>span {
+    top: -1.150em;
+    visibility: hidden;
+    opacity: 0;
+}
+#filter-btn:not(.disabled):not([disabled]):not(.active):hover>span.hover{ 
+    top: 2.150em;
+    visibility: visible;
+    opacity: 1;
+    letter-spacing: .35rem;
+}
+@media only screen and (max-width:43.688em) {
+    #filter-btn{ 
+        font-size: .625rem;
+        border-top: none;
+        width: 120px;
+        text-align: center;
+        right: 0;
+        position: fixed;
+        float: none;
+        bottom: 0;
+        height: 44px!important;
+        display: block;
+        padding: 0;
+        margin: 0;
+        text-indent: 0;
+        background:0 0
     }
+}
+
+.hide {
+    visibility: hidden;
+    opacity: 0;
+    transition: all .35s cubic-bezier(.455,.03,.515,.955);
 }
