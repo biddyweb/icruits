@@ -49,6 +49,18 @@
 (function () {
     'use strict';
 
+    angular.module('app').factory('CheckUserRes', CheckUserRes);
+
+    CheckUserRes.$inject = ['$resource'];
+
+    function CheckUserRes($resource) {
+        return $resource('/api/auth/check-user/ ');
+    }
+})();
+
+(function () {
+    'use strict';
+
     angular.module('app').factory('LoginRes', LoginRes);
 
     LoginRes.$inject = ['$cookies', '$http'];
@@ -125,9 +137,9 @@
 
     angular.module('app').factory('LogoutRes', LogoutRes);
 
-    LogoutRes.$inject = ['$cookies', '$http'];
+    LogoutRes.$inject = ['$cookies', '$http', '$state'];
 
-    function LogoutRes($cookies, $http) {
+    function LogoutRes($cookies, $http, $state) {
 
         var LogoutRes = {
             logout: logout
@@ -151,6 +163,7 @@
                 $cookies.remove('authenticatedAccount');
                 $cookies.remove('token');
                 $http.defaults.headers.common.Authorization = '';
+                $state.go('root.home', { reload: true });
             }
         }
     }
@@ -161,9 +174,9 @@
 
     angular.module('app').factory('JWTTokenRes', JWTTokenRes);
 
-    JWTTokenRes.$inject = ['$http', '$cookies', '$timeout', '$state'];
+    JWTTokenRes.$inject = ['$http', '$cookies', '$timeout', '$window', '$state'];
 
-    function JWTTokenRes($http, $cookies, $timeout, $state) {
+    function JWTTokenRes($http, $cookies, $timeout, $window, $state) {
         var JWTTokenRes = {
             jwt: jwt,
             isAuthorized: isAuthorized
@@ -187,7 +200,7 @@
            }
 
             function FailFn(response) {
-                return response
+                $window.location.reload();
             }
         }
 

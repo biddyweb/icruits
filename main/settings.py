@@ -26,8 +26,7 @@ SECRET_KEY = '_y9$^um+y-yc!rxj8t@%2v%zk1#@fw=b&deutl4tr+r9*3oqgj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['polar-wave-49918.herokuapp.com']
-
+ALLOWED_HOSTS = ['polar-wave-49918.herokuapp.com', '127.0.0.1']
 
 # Application definition
 

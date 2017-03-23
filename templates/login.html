@@ -1,16 +1,16 @@
 {% load static %}
 <header id="home" ng-controller="LoginCtrl">
-    <div id="home-slider" class="carousel slide carousel-fade" data-ride="carousel">
+    <div id="home-slider" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner img-responsive">
             <div class="item active">
-                <div class="caption">
-                    <h1 class="animated fadeInLeftBig">Welcome to <span>iCruits</span></h1>
+                <div class="registerWrapper">
+                    <span class="animated fadeInLeftBig">Welcome to iCruits</span>
                     <!--a data-scroll class="btn btn-start animated fadeInUpBig" href="#login">Start now</a-->
                 </div>
             </div>
             <div class="item">
-                <div class="caption">
-                    <h1 class="animated fadeInLeftBig">Say Hello to <span>Your</span> future</h1>
+                <div class="registerWrapper">
+                    <span class="animated fadeInLeftBig">Say Hello to Your future</span>
                     <!--a data-scroll class="btn btn-start animated fadeInUpBig" href="#login">Start now</a-->
                 </div>
             </div>
@@ -24,7 +24,8 @@
                 <div class="simform-inner">
                     <ol class="questions">
                         <li>
-                            <input id="q1"
+                            <input id="username"
+                                   class="cleaninput" 
                                    name="q1"
                                    type="text"
                                    placeholder="Username"
@@ -33,19 +34,21 @@
                         <li>
                             <input id="q2"
                                    name="q2"
+                                   class="cleaninput" 
                                    type="password"
+                                   onfocus="checkUser()" 
                                    placeholder="Password"
                                    data-ng-model="log.password"/>
                         </li>
                     </ol><!-- /questions -->
                     <div class="controls">
-                        <button class="next"></button>
+                        <button class="next show"></button>
                         <div class="progress"></div>
                         <span class="number">
                             <span class="number-current"> / </span>
                             <span class="number-total"></span>
                         </span>
-                        <span class="error-message"></span>
+                        <span id="show-error" class="error-message"></span>
                     </div><!-- / controls -->
                 </div><!-- /simform-inner -->
                 <a type="submit"
@@ -59,63 +62,20 @@
                 </a>
             </form><!-- /simform -->
 
-        <a class="left-control" href="#home-slider" data-slide="prev"><i class="fa fa-angle-left"></i></a>
-        <a class="right-control" href="#home-slider" data-slide="next"><i class="fa fa-angle-right"></i></a>
+        <!--a class="left-control" href="#home-slider" data-slide="prev"><i class="fa fa-angle-left"></i></a>
+        <a class="right-control" href="#home-slider" data-slide="next"><i class="fa fa-angle-right"></i></a-->
     </div>
 </header>
 
-    <!--div class="container cf">
-        <div class="animation-element bounce-up cf">
-            <div class="subject">
-                <img class="img-responsive center-block" style="margin-top: 50px; height: 250px;" src="{% static 'img/logo.png' %}">
-            </div>
-        </div>
-            <form id="theForm"
-                  class="simform"
-                  autocomplete="off"
-                  data-ng-submit="login()"
-                  role="form"
-                  accept-charset="UTF-8">
-                <div class="simform-inner">
-                    <ol class="questions">
-                        <li>
-                            <span><label for="q1" class="text-center">Login</label></span>
-                            <input id="q1"
-                                   name="q1"
-                                   type="text"
-                                   placeholder="Username"
-                                   data-ng-model="log.username"/>
-                        </li>
-                        <li>
-                            <span><label for="q2" class="text-center">Login</label></span>
-                            <input id="q2"
-                                   name="q2"
-                                   type="password"
-                                   placeholder="Password"
-                                   data-ng-model="log.password"/>
-                        </li>
-                    </ol><!-- /questions -->
-                    <!--div class="controls">
-                        <button class="next"></button>
-                        <div class="progress"></div>
-                        <span class="number">
-                            <span class="number-current"></span>
-                            <span class="number-total"></span>
-                        </span>
-                        <span class="error-message"></span>
-                    </div><!-- / controls -->
-                <!--/div><!-- /simform-inner -->
-                <!--a type="submit"
-                   class="btn password-btn btn-2 hide"
-                   style="position: absolute; max-width: 100%;"
-                   ng-click="login()"><span>Sign in</span></a>
-            </form><!-- /simform -->
-        <!--a class="btn password-btn btn-2 bottom-left-btn">
-            Forgot Password
-        </a>
-    </div-->
-
 <script charset="utf-8" type="text/javascript" src="{% static 'js/stepsForm.js' %}"></script>
+
+<script type="text/javascript">
+
+    function checkUser() {
+        // body...
+        angular.element(document.getElementById('username')).scope().checkuser(document.getElementById('username').value);
+    }
+</script>
 
 <script>
     var theForm = document.getElementById( 'theForm' );
@@ -131,8 +91,9 @@
 				*/
 
             // let's just simulate something...
-            var login = theForm.querySelector( '.btn-white' );
-            classie.addClass( login, 'show' );
+            /*var login = theForm.querySelector( '.btn-white' );
+            classie.addClass( login, 'show' );*/
+            angular.element(document.getElementById('username')).scope().login();
         }
     });
 </script>

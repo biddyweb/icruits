@@ -10,6 +10,7 @@ from web.viewsets import (
     LoginViewSet,
     LogoutViewSet,
     UserViewSet,
+    CheckUserViewSet,
 )
 from libs.djoser.views import (
     RegistrationView,
@@ -42,7 +43,8 @@ base_urlpatterns = (
     url(r'^auth/logout/$', LogoutViewSet.as_view(), name='logout_'),
     url(r'^auth/whoami/', UserViewSet.as_view(), name='whoami'),
     url(r'^auth/get-jtw-token/', obtain_jwt_token, name='get-jwt'),
-    url(r'^auth/check-jwt-token/', verify_jwt_token, name='check-jwt-token')
+    url(r'^auth/check-jwt-token/', verify_jwt_token, name='check-jwt-token'),
+    url(r'^auth/check-user/', CheckUserViewSet.as_view(), name='check-user'),
 )
 
 urlpatterns = base_urlpatterns + (

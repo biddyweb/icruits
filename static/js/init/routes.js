@@ -63,6 +63,17 @@
                     }).$promise;
                 }
             }
+        }).state('root.register', {
+            url: '/register/',
+            controller: 'RegisterCtrl',
+            templateUrl: '/static/templates/auth/register.html',
+            resolve: {
+                metaTags: function (metaTagsRes) {
+                    return metaTagsRes.get({
+                        page_name: 'register'
+                    }).$promise;
+                }
+            }
         });
     }
 })();

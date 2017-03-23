@@ -135,7 +135,6 @@
 
         if ($cookies.get('token')) {
             var user_logged;
-            console.log('found');
         } else {
             console.log('not found');
             setTimeout(function() {
@@ -173,11 +172,13 @@
 (function () {
     "use strict";
 
-    angular.module('app').controller('LoginCtrl', LoginCtrl);
+    angular.module('app').controller('RegisterCtrl', RegisterCtrl);
 
-    LoginCtrl.$inject = ['$scope', '$rootScope', '$state', '$timeout', 'LoginRes', 'JWTTokenRes', 'AuthRes'];
+    RegisterCtrl.$inject = ['$scope', '$rootScope', '$state', 'AuthRes', 'metaTags'];
 
-    function LoginCtrl($scope, $rootScope, $state, $timeout, LoginRes, JWTTokenRes, AuthRes) {
+    function RegisterCtrl($scope, $rootScope, $state, AuthRes, metaTags) {
+
+        $scope.$emit('metaTagsChanged', metaTags);
 
         $scope.reg = {};
 
@@ -186,11 +187,34 @@
         $scope.registration = function () {
             AuthRes.save($scope.reg, function (resource) {
                 $scope.sent_activation = true;
-                return $timeout(function () {
-                    $state.go('root.home', { reload: true });
-                }, 500);
+                $state.go('root.home', { reload: true });
             }, function (response) {
                 $scope.errors = response.data;
+            });
+        };
+        
+    }
+})();
+
+(function () {
+    "use strict";
+
+    angular.module('app').controller('LoginCtrl', LoginCtrl);
+
+    LoginCtrl.$inject = ['$scope', '$rootScope', '$state', '$timeout', 'LoginRes', 'JWTTokenRes', 'CheckUserRes'];
+
+    function LoginCtrl($scope, $rootScope, $state, $timeout, LoginRes, JWTTokenRes, CheckUserRes) {
+
+
+        $scope.checkuser = function (data) {
+            // body...
+            CheckUserRes.save(data, function (response) {
+                // body...
+            }, function (response) {
+                // body...
+                setTimeout(function() {
+                    $state.go('root.register', { reload: true });
+                }, 100);
             });
         };
 
@@ -210,5 +234,42 @@
         };
 
         $rootScope.image = '';
+    }
+})();
+
+(function () {
+    "use strict";
+
+    angular.module('app').controller('LogoutCtrl', LogoutCtrl);
+
+    LogoutCtrl.$inject = ['$scope', '$state', '$window', 'LogoutRes', 'UserInfoRes'];
+
+    function LogoutCtrl($scope, $state, $window, LogoutRes, UserInfoRes) {
+        $scope.user = UserInfoRes.query();
+
+        $scope.user.user_company = false;
+
+        console.log($scope.user.email);
+
+        if($scope.user.is_superuser){
+            $scope.user.user_company = true;
+            console.log('');
+        } else {
+            console.log('');
+        };
+
+        $scope.logoutNow = function () {
+            // body...
+            LogoutRes.logout().then(logoutSuccess, logoutFail);
+
+            function logoutSuccess(response) {
+                $state.go('root.home');
+                $window.location.reload();
+            }
+
+            function logoutFail(response) {
+                return response
+            }
+        }
     }
 })();
