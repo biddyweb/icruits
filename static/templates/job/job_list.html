@@ -18,41 +18,39 @@
                     </div>
                 </nav>
             </div>
-            <span id="open-button" class="menu-white"><span class="label" style="color: rgb(255,255,255);">MENU</span> </span>
+            <span id="open-button" class="menu-white"><span class="label" style="color: rgb(0,0,0);">MENU</span> </span>
             <div class="content-wrap">
                 <div class="content">
                     <nav class="dashHeader text-center navbar navbar-default fixed top"><span>ICRUITS</span></nav>
-
-            <section id="dashboard" style="margin-top: 75px;" ng-controller="JobFeedListCtrl">
-                <div class="containerSub cf">
-                    <div class="row">
-                        <div class="col-sm-3" data-ng-repeat="JobFeed in JobFeeds">
-                            <div class="animation-element cf">
-                                <div class="subject">
-                                    <div class="job-item text-center">
-                                        <div class="hover-bg hover-bg-articles">
-                                            <a data-ui-sref="root.job({job_name_slug: JobFeed.job_name_slug})">
-                                                    <!--img class="img-responsive"
-                                                            data-ng-src="{{ JobFeed.image }}" alt=""-->
-                                                <div class="hover-text">
-                                                    <span class="lead" data-ng-bind="JobFeed.queue"></span>
+                    <section id="dashboard" style="margin-top: 75px;" ng-controller="JobFeedListCtrl">
+                        <div class="containerSub cf">
+                            <div class="row">
+                                <div class="col-sm-3" data-ng-repeat="JobFeed in JobFeeds">
+                                    <div class="animation-element cf">
+                                        <div class="subject">
+                                            <div class="job-item text-center">
+                                                <div class="hover-bg hover-bg-articles">
+                                                    <a data-ui-sref="root.job({job_name_slug: JobFeed.job_name_slug})">
+                                                            <!--img class="img-responsive"
+                                                                    data-ng-src="{{ JobFeed.image }}" alt=""-->
+                                                        <div class="hover-text">
+                                                            <span class="lead" data-ng-bind="JobFeed.queue"></span>
+                                                        </div>
+                                                        <img class="img-circle img-thumbnail" src="">
+                                                    </a>
                                                 </div>
-                                                <img class="img-circle img-thumbnail" src="">
-                                            </a>
+                                                <span class="nohover center-block" data-ng-bind="JobFeed.job_name"></span>
+                                                <span class="hover company center-block">Input company name</span>
+                                            </div>
                                         </div>
-                                        <span class="nohover center-block" data-ng-bind="JobFeed.job_name"></span>
-                                        <span class="hover company center-block">Input company name</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </section>
                 </div>
-
-            </section>
             </div>
-            </div>
-            </div>
+        </div>
 
 <!-- FULLSCREEN NAV -->
 <div id="myNav" class="overlay-offcanvas">
