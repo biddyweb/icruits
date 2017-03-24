@@ -1,10 +1,12 @@
 from web.models import (
-    JobFeed,
+    Blueprint,
     Help,
+    Queue,
 )
 from web.serializers import (
-    JobFeedSerializer,
+    BlueprintSerializer,
     HelpSerializer,
+    QueueSerializer,
 )
 from rest_framework import (
     viewsets,
@@ -36,32 +38,41 @@ class CreateListRetrieveViewSet(mixins.CreateModelMixin,
     pass
 
 
-class JobFeedViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = JobFeed.objects.all()
-    serializer_class = JobFeedSerializer
+class JobFeedViewSet(viewsets.ModelViewSet):
+    queryset = Blueprint.objects.all()
+    serializer_class = BlueprintSerializer
     permission_classes = [
         permissions.IsAuthenticated,
+        #permissions.AllowAny,
     ]
-    lookup_field = 'job_name_slug'
+    lookup_field = 'name_slug'
 
 
-class QueueViewSet(views.APIView):
-    queryset = JobFeed.objects.all()
-    renderer_classes = [
-        renderers.JSONRenderer,
-    ]
+class QueueViewSet(viewsets.ModelViewSet):
+    queryset = Queue.objects.all()
+    serializer_class = QueueSerializer
     permission_classes = [
         permissions.IsAuthenticated,
+        #permissions.AllowAny,
     ]
 
-    def get(self, request, format=None):
-        queues = JobFeed.objects.all()
-        job_queue = request.query_params.get('queue')
-        if job_queue:
-            queues = queues.filter(queue=job_queue)
-        content = {'job_queue': queues}
+#class QueueViewSet(views.APIView):
+    #queryset = Blueprint.objects.all()
+    #renderer_classes = [
+    #    renderers.JSONRenderer,
+    #]
+    #permission_classes = [
+    #    permissions.IsAuthenticated,
+    #]
+
+    #def get(self, request, format=None):
+    #    queues = Blueprint.objects.all()
+    #    job_queue = request.query_params.get('queue')
+    #    if job_queue:
+    #        queues = queues.filter(queue=job_queue)
+    #    content = {'job_queue': queues}
         # za django 1.10 koristiti json dumps
-        return response.Response(json.dumps(content), content_type='application/json; charset=utf-8')
+    #    return response.Response(json.dumps(content), content_type='application/json; charset=utf-8')
         #return response.Response(content, content_type='application/json; charset=utf-8')
 
 
@@ -127,9 +138,9 @@ class UserViewSet(generics.RetrieveUpdateDestroyAPIView):
     """
     model = User
     serializer_class = serializers.serializers_manager.get('user')
-    permission_classes = (
+    permission_classes = [
         permissions.IsAuthenticated,
-    )
+    ]
 
     def get_object(self, *args, **kwargs):
         return self.request.user
@@ -139,9 +150,9 @@ class CheckUserViewSet(views.APIView):
     """
     Use this endpoint to check user.
     """
-    permission_classes = (
+    permission_classes = [
         permissions.AllowAny,
-    )
+    ]
 
     def post(self, request, format=None):
         try:

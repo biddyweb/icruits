@@ -24,78 +24,147 @@ number_validator = RegexValidator(r'^[0-9+]*$', 'Must be numbers only')
 # Create your models here.
 #
 # This part is serving as choices for our model
-
-INDUSTRY_SOFTWARE = 0
-INDUSTRY_ACCOUNTING = 1
-INDUSTRY_HEALTHCARE = 2
-
-INDUSTRY_TYPE = ((INDUSTRY_SOFTWARE, 'Software'),
-                 (INDUSTRY_ACCOUNTING, 'Accounting'),
-                 (INDUSTRY_HEALTHCARE, 'HealthCare'))
+EXPERIENCE_LEVEL = (('Any', 'Any'),
+                    ('Fresher', 'Fresher'),
+                    ('Intern', 'Intern'),
+                    ('Experienced', 'Experienced'),
+                    ('Trainee', 'Trainee'))
 
 
-TYPE_STARTUP = 0
-TYPE_NATIONAL = 1
-TYPE_MNCS = 2
-
-COMPANY_TYPE = ((TYPE_STARTUP, 'StartUp'),
-                (TYPE_NATIONAL, 'National'),
-                (TYPE_MNCS, 'MNCs'))
-
-EXPERIENCE_LOW = 0
-EXPERIENCE_MEDIUM = 1
-EXPERIENCE_HIGH = 2
-EXPERIENCE_TRAINEE = 3
-
-EXPERIENCE_TYPE = ((EXPERIENCE_LOW, 'Fresher'),
-                   (EXPERIENCE_MEDIUM, 'Intern'),
-                   (EXPERIENCE_HIGH, 'Experienced'),
-                   (EXPERIENCE_TRAINEE, 'Trainee'))
-
-JOB_PART = 0
-JOB_FULL = 1
-
-JOB_TYPE = ((JOB_PART, 'Part Time'),
-            (JOB_FULL, 'Full Time'))
-
-WEEK_DURATION = 0
-TWO_WEEKS_DURATION = 1
-MONTH_DURATION = 2
-
-JOB_DURATION = ((WEEK_DURATION, '7 Days'),
-                (TWO_WEEKS_DURATION, '15 Days'),
-                (MONTH_DURATION, '1 Month'))
-
-
-class JobFeed(models.Model):
-    job_name = models.CharField(_('Job Name'), max_length=255)
-    job_name_slug = models.SlugField(_('Job Name Slug'), max_length=30, unique=True)
-    job_description = models.TextField(_('Job Description'))
-    industry = models.IntegerField(_('Industry Type'), choices=INDUSTRY_TYPE, default=INDUSTRY_SOFTWARE)
-    company_type = models.IntegerField(_('Company Type'), choices=COMPANY_TYPE)
-    location = models.CharField(_('Location'), max_length=255)
-    function = models.CharField(_('Job Function'), max_length=255)
-    experience = models.IntegerField(_('Experience Level'), choices=EXPERIENCE_TYPE)
-    salary = models.CharField(_('Job Salary'), max_length=255)
-    job_type = models.IntegerField(_('Join Type'), choices=JOB_TYPE)
-    duration = models.IntegerField(_('Job Duration'), choices=JOB_DURATION)
-    queue = models.PositiveIntegerField(default=1)
+class ExperienceLevel(models.Model):
+    experience_level = models.CharField(choices=EXPERIENCE_LEVEL, max_length=255)
 
     def __unicode__(self):
-        return self.job_name
-
-    def get_absolute_url(self):
-        return '/job/' + str(self.job_name_slug)
+        return self.experience_level
 
     class Meta:
-        verbose_name = 'Job Feed'
-        verbose_name_plural = 'Job Feeds'
+        verbose_name = "Experience Level"
+
+
+PROFILE_TYPE = (('JobSeeker', 'JobSeeker'),
+                ('Employer', 'Employer'))
+
+
+class ProfileType(models.Model):
+    account_type = models.CharField(choices=PROFILE_TYPE, max_length=122)
+
+    def __unicode__(self):
+        return self.account_type
+
+    class Meta:
+        verbose_name = 'Profile Type'
+
+
+COMPANY_TYPE = (('StartUp', 'StartUp'),
+                ('National', 'National'),
+                ('MNCs', 'MNCs'))
+
+
+class CompanyType(models.Model):
+    types_of_company = models.CharField(choices=COMPANY_TYPE, max_length=100)
+
+    def __unicode__(self):
+        return self.types_of_company
+
+    class Meta:
+        verbose_name = "Company Types"
+
+
+SALARY_RANGE = (('$10K-$50K', '$10K-$50K'),
+                ('$50K-$100K', '$50K-$100K'),
+                ('$100K-$200K', '$100K-$200K'),
+                ('$200K-$500K', '$200K-$500K'))
+
+
+class SalaryRange(models.Model):
+    sal_range = models.CharField(choices=SALARY_RANGE, max_length=100)
+
+    def __unicode__(self):
+        return self.sal_range
+
+    class Meta:
+        verbose_name = "Salary Range"
+
+
+WAIT_TIME = (('Any', 'Any'),
+             ('Within 7 Days', 'Within 7 Days'),
+             ('Within Month', 'Within Month'))
+
+
+class WaitInterval(models.Model):
+    response_time = models.CharField(choices=WAIT_TIME, max_length=150)
+
+    def __unicode__(self):
+        return self.response_time
+
+    class Meta:
+        verbose_name = "Wait Interval"
+
+
+ON_JOB_SUCCESS = (('Any', 'Any'),
+                  ('Contract', 'Contract'))
+
+
+class OnJobSuccess(models.Model):
+    success = models.CharField(choices=ON_JOB_SUCCESS, max_length=100)
+
+    def __unicode__(self):
+        return self.success
+
+    class Meta:
+        verbose_name = 'On Success'
+
+
+JOB_TYPE = (('Part Time', 'Part Time'),
+            ('Full Time', 'Full Time'))
+
+
+class JobType(models.Model):
+    employment = models.CharField(choices=JOB_TYPE, max_length=255)
+
+    def __unicode__(self):
+        return self.employment
+
+    class Meta:
+        verbose_name = "Job Type"
+
+
+JOB_DURATION = (('7 Days', '7 Days'),
+                ('15 Days', '15 Days'),
+                ('1 Month', '1 Month'))
+
+
+class JobDuration(models.Model):
+    job_duration = models.CharField(choices=JOB_DURATION, max_length=125)
+
+    def __unicode__(self):
+        return self.job_duration
+
+    class Meta:
+        verbose_name = "Job Duration" 
+
+
+INDUSTRY_TYPE = (('Software', 'Software'),
+                 ('Accounting', 'Accounting'),
+                 ('HealthCare', 'HealthCare'))
+
+
+class Industry(models.Model):
+    type_industry = models.CharField(choices=INDUSTRY_TYPE, max_length=100)
+
+    def __unicode__(self):
+        return self.type_industry
+
+    class Meta:
+        verbose_name = "Industry Type"
 
 
 class Help(models.Model):
     title = models.CharField(_('Help'), max_length=255)
     description = models.CharField(_('Description'), max_length=255)
     content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return self.title
@@ -108,6 +177,8 @@ class QuestionAnswer(models.Model):
     question = models.CharField(_('Question'), max_length=255)
     answer = models.TextField()
     qa = models.ForeignKey(Help, related_name='questionAnswer')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
         return 'Q&A'
@@ -183,8 +254,10 @@ class user(AbstractUser):
     )
     address = models.CharField(max_length=255, blank=True)
     mobile_number = models.CharField(max_length=255, blank=True, validators=[number_validator])
+    location = models.CharField(max_length=255, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    related_profile_type = models.ForeignKey(ProfileType, related_name='profile_type', null=True, blank=True)
 
     objects = UserManager()
 
@@ -216,13 +289,77 @@ class user(AbstractUser):
         verbose_name_plural = "Users"
 
 
-PROFILE_TYPE = (('JobSeeker', 'JobSeeker'),
-                ('Employer', 'Employer'))
+TASK_STATUS = (('Active', 'Active'),
+               ('Finished', 'Finished'),
+               ('Canceled', 'Canceled'),
+               ('Prolonged', 'Prolonged'))
 
 
-class ProfileType(models.Model):
-    account_type = models.CharField(choices=PROFILE_TYPE, max_length=122)
-    acc_type = models.ForeignKey(user, related_name='profile_type')
+class BlueprintTasks(models.Model):
+    name = models.CharField(_('Task Name'), max_length=255)
+    expert = models.CharField(_('Expert'), max_length=255)
+    expert_email = models.CharField(_('Expert Email'), max_length=255)
+    tast_status = models.CharField(choices=TASK_STATUS, max_length=255)
+    created_at = models.DateTimeField(_('Created At'), auto_now_add=True)
+    updated_at = models.DateTimeField(_('Updated_At'), auto_now=True)
+
+    def __unicode__(self):
+        return self.name
 
     class Meta:
-        verbose_name = 'Profile Type'
+        verbose_name = "Tasks"
+
+
+class Blueprint(models.Model):
+    name = models.CharField(_('Blueprint Name'), max_length=255)
+    name_slug = models.SlugField(_('Blueprint Name Slug'), max_length=30, unique=True)
+    description = models.TextField(_('Blueprint Description'), blank=True)
+    url = models.CharField(_('Blueprint Url'), blank=True, max_length=255)
+    location = models.CharField(_('Location'), max_length=255)
+    function = models.CharField(_('Job Function'), max_length=255)
+    professional_qualifications = models.CharField(_('Professional Qualifications'), max_length=255)
+    legal_status = models.CharField(_('Legal Status'), max_length=255)
+    team_id = models.CharField(_('Team ID'), max_length=255)
+    practice_limit = models.IntegerField(default=0)
+    created_at = models.DateTimeField(_('Created At'), auto_now_add=True)
+    updated_at = models.DateTimeField(_('Updated_At'), auto_now=True)
+    related_industry = models.ForeignKey(Industry, related_name="industry")
+    related_company_type = models.ForeignKey(CompanyType, related_name="company_type")
+    related_salary = models.ForeignKey(SalaryRange, related_name="salary_range")
+    related_wait_interval = models.ForeignKey(WaitInterval, related_name="wait_interval")
+    related_on_success = models.ForeignKey(OnJobSuccess, related_name="on_success")
+    related_job_type = models.ForeignKey(JobType, related_name="job_type")
+    related_job_duration = models.ForeignKey(JobDuration, related_name="duration")
+    related_experience = models.ForeignKey(ExperienceLevel, related_name="experience")
+    related_user = models.ForeignKey(user, related_name="blueprint_user")
+    related_tasks = models.ForeignKey(BlueprintTasks, related_name="blueprint_tasks")
+
+    def __unicode__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return '/job/' + str(self.name_slug)
+
+    class Meta:
+        verbose_name = 'Blueprint'
+        verbose_name_plural = 'Blueprints'
+
+
+CANDIDATE_STATUS = (('Active', 'Active'),
+                    ('Hired', 'Hired'),
+                    ('Available', 'Available'))
+
+
+class Queue(models.Model):
+    blueprint = models.ForeignKey(Blueprint, related_name="blueprint_name")
+    candidate = models.ForeignKey(user, related_name="candidate_name")
+    candidate_status = models.CharField(choices=CANDIDATE_STATUS, max_length=255)
+    candidate_position = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return self.candidate_position
+
+    class Meta:
+        verbose_name = "Queue"

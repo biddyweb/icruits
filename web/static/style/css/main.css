@@ -44,36 +44,6 @@ h3 {
 header {
   margin: 0;
 }
-.parallax {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-}
-
-.parallax,
-.parallax h1,
-.parallax h2,
-.parallax h3,
-.parallax h4,
-.parallax h5,
-.parallax h6 {
-  color: #fff;
-}
-
-.parallax input[type="text"],
-.parallax input[type="text"]:hover,
-.parallax input[type="email"],
-.parallax input[type="email"]:hover,
-.parallax input[type="url"],
-.parallax input[type="url"]:hover,
-.parallax input[type="password"],
-.parallax input[type="password"]:hover,
-.parallax textarea,
-.parallax textarea:hover {
-  font-weight: 300;
-  color: #fff;
-}
 
 .btn {
   border: 0;
@@ -512,16 +482,15 @@ VERY IMPORTANT!!!!
 }
 
 .overlay-offcanvas {
-    height: 100%;
-    width: 0;
+    height: 0;
+    width: 100%;
     position: fixed;
     z-index: 99999999999999;
-    top: 0;
+    bottom: 0;
     right: 0;
     background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0, 0.9);
     overflow-x: hidden;
-    transition: 0.5s;
+    -webkit-transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .overlay-offcanvas-content {
@@ -530,7 +499,7 @@ VERY IMPORTANT!!!!
     width: 100%;
     text-align: center;
     margin-top: 30px;
-  display: inline;
+    display: inline;
 }
 
 .overlay-offcanvas a {
@@ -548,9 +517,41 @@ VERY IMPORTANT!!!!
 
 .overlay-offcanvas .closebtn {
     position: absolute;
-    top: 20px;
-    right: 45px;
-    font-size: 60px;
+    top: 10px;
+    right: 20px;
+    font-size: 1.5em;
+    font-weight: 900;
+    color: rgb(255,255,255);
+}
+
+.label-close {
+    top: 2.365em;
+    right: 46px;
+    display: block;
+    position: absolute;
+    font-size: 0.8em;
+    font-family: ‘Courier New’, Courier, monospace;
+    text-shadow: 1px 1px grey;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: .1875rem;
+    text-indent: 0;
+    text-rendering: auto;
+    -webkit-font-smoothing: initial;
+    /* height: 52px; */
+    /* line-height: 52px; */
+    /* padding: 0; */
+    margin: 0;
+    background: rgba(0,0,0,0);
+    opacity: 0;
+    visibility: hidden;
+    color: #1D1D1F;
+    transition: all 250ms cubic-bezier(.25,.46,.45,.94);
+}
+
+.closebtn:hover + .label-close {
+    opacity: 1;
+    visibility: visible;
 }
 
 .myMenu {
@@ -908,7 +909,7 @@ LOGIN FORM
 .simform {
   margin-top: 60px;
   padding: 2em 0;
-  max-width: 450px;
+  max-width: 400px;
   width: 100%;
   text-align: left;
   font-size: 2.5em;
@@ -1000,7 +1001,7 @@ LOGIN FORM
 
 /* Input field */
 .questions input {
-    display: block;
+    display: inline-block;
     position: relative;
     font-family: ‘Courier New’, Courier, monospace;
     text-shadow: 1px 1px grey;
@@ -1011,7 +1012,7 @@ LOGIN FORM
     outline: 0;
     border: 1px solid;
     box-shadow: none;
-    max-width: 80%;
+    max-width: 100%;
     color: #000;
     text-transform: uppercase;
     -webkit-appearance: textfield;
@@ -1033,6 +1034,16 @@ LOGIN FORM
     transition: all 0.8s ease;
 }
 
+.questions input:focus > .simform .controls .number {
+    visibility: visible;
+    opacity: 1;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
 .simform button:focus {
   outline: none;
 }
@@ -1040,7 +1051,7 @@ LOGIN FORM
 /* Next question button */
 .next {
     position: absolute;
-    right: 5em;
+    right: 2.1em;
     top: 4.905em;
     display: block;
     padding: 0;
@@ -1118,14 +1129,16 @@ LOGIN FORM
 
 /* Number indicator */
 .simform .number {
-  position: absolute;
-  right: 0;
-  overflow: hidden;
-  margin: 0.4em 0;
-  width: 3em;
-  font-weight: 700;
-  font-size: 0.4em;
-  color: rgb(0, 0, 0);
+    position: absolute;
+    right: 0;
+    overflow: hidden;
+    margin: 0.4em 0;
+    width: 3em;
+    font-weight: 700;
+    font-size: 0.3em;
+    color: rgb(0, 0, 0);
+    /*visibility: hidden;
+    opacity: 0;*/
 }
 
 .simform .number:after {
@@ -1180,8 +1193,9 @@ LOGIN FORM
     width: 100%;
     color: rgb(0, 0, 0);
     font-style: italic;
-    font-size: 0.37em;
-    font-family: ‘Courier New’, Courier, monospace;
+    font-size: 0.3em;
+    font-family: ‘Courier New’, Courier, monospace, Roboto;
+    left: 1.45em;
     text-shadow: 1px 1px grey;
 }
 
@@ -1235,6 +1249,29 @@ LOGIN FORM
 .no-js .simform .controls {
   display: none;
 }
+
+.inputHolder {
+    /* padding: 0.4em 3.5em 0 0; */
+    width: 50%;
+    /* font-style: italic; */
+    font-size: 12px;
+    font-family: ‘Courier New’, Courier, monospace;
+    /* left: 1.45em; */
+    display: inline-block;
+    text-transform: uppercase;
+    bottom: 1em;
+    position: relative;
+}
+
+input[type=radio] {
+    height: 12px;
+    width: 12px;
+    top: 0.25em;
+    display: inline-block;
+    margin: 1em 1em -0.2em;
+    -webkit-appearance: radio;
+}
+
 input[type=text], 
 input[type=password], 
 input[type=date], 
@@ -1246,9 +1283,9 @@ input[type=email],
 input[type=tel], 
 input[type=time], 
 input[type=url],
- input[type=color], 
- input[type=number], 
- input[type=search], textarea {
+input[type=color], 
+input[type=number], 
+input[type=search], textarea {
     -webkit-appearance: none;
     -webkit-border-radius: 0;
     background-color: #FFF;
@@ -1261,16 +1298,14 @@ input[type=url],
     display: block;
     font-size: .875rem;
     margin: 0 0 1rem;
-    padding: .5rem;
+    /*padding: .5rem;*/
     height: 3.3525rem;
     width: 100%;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     transition: box-shadow .45s,border-color .45s ease-in-out;
 }
-input:not([type]), input[type="email" i], input[type="number" i], input[type="password" i], input[type="tel" i], input[type="url" i], input[type="text" i] {
-    padding: 1px 0px;
-}
+
 input[type="password" i] {
     -webkit-text-security: disc;
 }
@@ -1643,16 +1678,16 @@ body,
 }
 
 .show-menu .content-wrap {
-  -webkit-transition-delay: 0.1s;
-  transition-delay: 0.1s;
-  -webkit-transform: translate3d(100px,0,0);
-  transform: translate3d(100px,0,0);
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+  -webkit-transform: translate3d(300px,0,0);
+  transform: translate3d(300px,0,0);
 }
 
 .show-menu .content::before {
   opacity: 1;
-  -webkit-transition: opacity 0.3s;
-  transition: opacity 0.3s;
+  -webkit-transition: opacity 0.7s;
+  transition: opacity 0.7s;
   -webkit-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
 }
@@ -1727,8 +1762,6 @@ body,
     bottom: 0px;
     text-align: center;
     z-index: 10000000000000;
-    visibility: visible;
-    opacity: 1;
     cursor: pointer;
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
 }
@@ -1748,8 +1781,6 @@ body,
     text-transform: uppercase;
     font-family: inherit;
     font-size: 0.66em;
-    visibility: visible;
-    opacity: 1;
 }
 #filter-btn span.hover {
     top: 100%;
@@ -1786,8 +1817,66 @@ body,
     }
 }
 
-.hide {
+.hide-button {
     visibility: hidden;
     opacity: 0;
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
+}
+.show-button {
+    visibility: visible;
+    opacity: 1;
+    transition: all .35s cubic-bezier(.455,.03,.515,.955);
+}
+
+.filter-box-alignment {
+    width: 250px;
+    max-width: 250px;
+    display: inline-block;
+    font-family: Courier;
+    font-size: x-small;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.filter-label {
+    font-family: Courier;
+    color: white;
+    text-transform: uppercase;
+    /* text-align: center; */
+    position: relative;
+    letter-spacing: 0.21em;
+    font-size: 1.33em;
+}
+
+.inline-fix {
+    position: absolute;
+    width: 100%;
+    padding: 0px;
+    top: 10%;
+}
+
+.filter-item-1 {
+    position: absolute;
+    top: 200px;
+    left: 10%;
+    width: 10%;
+}
+.filter-item-2 {
+    position: absolute;
+    top: 200px;
+    left: 30%;
+    width: 10%;
+}
+.filter-item-3 {
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    width: 10%;
+}
+.filter-item-4 {
+    position: absolute;
+    top: 200px;
+    left: 60%;
+    width: 10%;
 }

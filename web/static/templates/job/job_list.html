@@ -5,14 +5,6 @@
     Filter
 </a-->
 <!--span id="open-button" class="menu-white" onclick="openNav()"><span class="label" style="color: rgb(255,255,255);">MENU</span> </span-->
-        <a id="filter-btn" onclick="openBigNav()">
-            <span>
-                Filter
-            </span>
-            <span class="hover">
-                Filter
-            </span>
-        </a>
         <div class="container-wrap">
             <div class="menu-wrap">
                 <nav id="sidemenu" class="menu"  ng-controller='LogoutCtrl'>
@@ -27,6 +19,16 @@
                 </nav>
             </div>
             <span id="open-button" class="menu-white"><span class="label" style="color: rgb(0,0,0);">MENU</span> </span>
+
+            <a id="filter-btn" onclick="openBigNav()">
+                <span>
+                    Filter
+                </span>
+                <span class="hover">
+                    Filter
+                </span>
+            </a>
+
             <div class="content-wrap">
                 <div class="content">
                     <nav class="dashHeader text-center navbar navbar-default fixed top"><span>ICRUITS</span></nav>
@@ -61,9 +63,92 @@
         </div>
 
 <!-- FULLSCREEN NAV -->
-<div id="myNav" class="overlay-offcanvas">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeBigNav()">&times;</a>
-    <div class="overlay-offcanvas-content">
+<div id="myNav" class="overlay-offcanvas" ng-controller="JobFeedListCtrl">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeBigNav()">&times; </a>
+    <span class="label-close" style="color: rgb(255,255,255);">CLOSE</span>
+    <div class="form-group center-block">
+        <ul class="inline center-block inline-fix">
+            <div class="filter-box-alignment">
+                <label class="control-label filter-label text-center">Industry</label>
+                <select class="selectpicker form-control" 
+                        multiple data-actions-box="true">
+                        <option>Software</option>
+                        <option>Accounting</option>
+                        <option>HealthCare</option>
+                </select>
+            </div>
+            <div class="filter-box-alignment">
+                <label class="control-label filter-label text-center">Job Location</label>
+                <select class="selectpicker form-control" 
+                        multiple data-actions-box="true">
+                        <option>USA</option>
+                        <option>Canada</option>
+                        <option>France</option>
+                </select>
+            </div>
+            <div class="filter-box-alignment">
+                <label class="control-label filter-label text-center">Job Role</label>
+                <select ng-options="Iindustry.industry as Iindustry.industry for Iindustry in JobFeeds[0]"
+                        ng-model="JobFeeds.industry" 
+                        class="selectpicker form-control" 
+                        multiple data-actions-box="true">
+                        <option>Role</option>
+                </select>
+            </div>
+            <div class="filter-box-alignment">
+                <label class="control-label filter-label text-center">Salary</label>
+                <select class="selectpicker form-control" 
+                        multiple data-actions-box="true">
+                        <option>$10K-$50K</option>
+                        <option>$50K-$100K</option>
+                        <option>$100K-$200K</option>
+                        <option>$200K-$500K</option>
+                </select>
+            </div>
+        </ul>
+        <!--ul class="inline">
+            <div class="filter-box-alignment">
+                <label class="control-label">Industry</label>
+                <select ng-options="Iindustry.industry as Iindustry.industry for Iindustry in JobFeeds[0]"
+                        ng-model="JobFeeds.industry" 
+                        class="selectpicker form-control" 
+                        multiple data-actions-box="true">
+                        <option>{{feed.industry}}</option>
+                </select>
+            </div>
+            <div class="filter-box-alignment">
+                <label class="control-label">Job Location</label>
+                <select ng-options="Iindustry.industry as Iindustry.industry for Iindustry in JobFeeds[0]"
+                        ng-model="JobFeeds.industry" 
+                        class="selectpicker form-control" 
+                        multiple data-actions-box="true">
+                        <option>{{feed.industry}}</option>
+                </select>
+            </div>
+            <div class="filter-box-alignment">
+                <label class="control-label">Job Role</label>
+                <select ng-options="Iindustry.industry as Iindustry.industry for Iindustry in JobFeeds[0]"
+                        ng-model="JobFeeds.industry" 
+                        class="selectpicker form-control" 
+                        multiple data-actions-box="true">
+                        <option>{{feed.industry}}</option>
+                </select>
+            </div>
+            <div class="filter-box-alignment">
+                <label class="control-label">Salary</label>
+                <select ng-options="Iindustry.industry as Iindustry.industry for Iindustry in JobFeeds[0]"
+                        ng-model="JobFeeds.industry" 
+                        class="selectpicker form-control" 
+                        multiple data-actions-box="true">
+                        <option>{{feed.industry}}</option>
+                </select>
+            </div>
+        </ul-->
+    </div>
+</div>
+
+
+    <!--div class="overlay-offcanvas-content">
         <ul class="inline" style="margin-top: 200px;">
             <li>
                 <div class="btn-group btn-group-merge" data-ng-class="{open: CT.open}">
@@ -100,8 +185,7 @@
                 </div>
             </li>
         </ul>
-    </div>
-</div>
+    </div-->
 
 
 <!--div role="main">
@@ -172,6 +256,8 @@ $(window).on('load scroll resize', check_if_in_view);
         closebtn = document.getElementById( 'close-button' ),
         isOpen = false;
 
+    var filterBtn = document.getElementById('filter-btn');
+
 
     function init() {
         initEvents();
@@ -195,10 +281,12 @@ $(window).on('load scroll resize', check_if_in_view);
     function toggleMenu() {
         if( isOpen ) {
             classie.remove( bodyEl, 'show-menu' );
+            classie.remove(filterBtn, 'hide-button');
             // animate path
         }
         else {
             classie.add( bodyEl, 'show-menu' );
+            classie.add(filterBtn, 'hide-button');
             // animate path
         }
         isOpen = !isOpen;

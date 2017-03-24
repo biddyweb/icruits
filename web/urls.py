@@ -32,6 +32,7 @@ User = get_user_model()
 router = routers.DefaultRouter()
 router.register(r'job', JobFeedViewSet, base_name='job')
 router.register(r'help', HelpViewSet, base_name='help')
+router.register(r'queue', QueueViewSet, base_name='queue')
 
 base_urlpatterns = (
     url(r'^auth/register/$', RegistrationView.as_view(), name='register'),
@@ -53,5 +54,5 @@ urlpatterns = base_urlpatterns + (
                             'get-jtw-token': 'get-jtw-token', 'check-jwt-token': 'check-jwt-token', }
     ), name='root'),
     url(r'^', include(router.urls)),
-    url(r'^queue', QueueViewSet.as_view(), name='queue'),
+    #url(r'^queue', QueueViewSet.as_view(), name='queue'),
 )

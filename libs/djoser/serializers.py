@@ -21,7 +21,7 @@ class ProfileTypeSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    profile_type = ProfileTypeSerializer(many=True, read_only=True)
+    profile_type = ProfileTypeSerializer(many=True, read_only=True, required=False)
 
     class Meta:
         model = User

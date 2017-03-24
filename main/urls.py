@@ -24,13 +24,13 @@ from django.views.generic.base import TemplateView
 from django.contrib.sitemaps.views import sitemap
 from main.sitemaps import (
     HomeSitemap,
-    JobsSitemap,
+    BlueprintSitemap,
     HelpSitemap,
 )
 
 sitemaps = {
     'home': HomeSitemap,
-    'jobs': JobsSitemap,
+    'jobs': BlueprintSitemap,
     'help': HelpSitemap,
 }
 

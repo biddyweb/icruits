@@ -1,5 +1,5 @@
 from django.contrib.sitemaps import Sitemap
-from web.models import JobFeed
+from web.models import Blueprint
 from django.urls import reverse
 
 full = 1
@@ -17,12 +17,12 @@ class HomeSitemap(Sitemap):
         return reverse(page)
 
 
-class JobsSitemap(Sitemap):
+class BlueprintSitemap(Sitemap):
     priority = full
     changefreq = 'never'
 
     def items(self):
-        return JobFeed.objects.all()
+        return Blueprint.objects.all()
 
 
 class HelpSitemap(Sitemap):
