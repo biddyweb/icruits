@@ -1,10 +1,13 @@
 (function () {
-    angular.module('app').controller('JobCtrl', JobCtrl);
+    "use strict";
 
-    JobCtrl.$inject = ['$scope', '$rootScope', '$cookies', '$state', 'JobFeed'];
+    angular.module('app').controller('BluprintDetailsCtrl', BluprintDetailsCtrl);
 
-    function JobCtrl ($scope, $rootScope, $cookies, $state, JobFeed) {
-        "use strict";
+    BluprintDetailsCtrl.$inject = ['$scope', '$rootScope', '$cookies', '$state', 'JobFeed'];
+
+    function BluprintDetailsCtrl ($scope, $rootScope, $cookies, $state, JobFeed) {
+
+        $scope.blueprint = JobFeed;
 
         if ($cookies.get('token')) {
             var user_logged;
@@ -24,44 +27,6 @@
             title: JobFeed.title,
             description: JobFeed.description
         });
-        $rootScope.image = '';
-    }
-})();
-
-(function () {
-    "use strict";
-
-    angular.module('app').controller('JobFeedListCtrl', JobFeedListCtrl);
-
-    JobFeedListCtrl.$inject = ['$scope', '$rootScope', '$sce', 'JobFeedsRes'];
-
-    function JobFeedListCtrl ($scope, $rootScope, $sce, JobFeedsRes) {
-        var data = JobFeedsRes.query();
-        $scope.JobFeeds = data;
-
-        $scope.selectedDuration = [];
-
-        $scope.setSelectedDuration = function () {
-            var dur = this.duration;
-            if (_.contains($scope.selectedDuration, dur)) {
-                $scope.selectedDuration = _.without($scope.selectedDuration, dur);
-            } else {
-                $scope.selectedDuration.push(dur)
-            }
-            return false;
-        };
-
-        $scope.isDurChecked = function (dur) {
-            if (_.contains($scope.selectedDuration, dur)) {
-                return 'icon-ok pull-right';
-            }
-            return false;
-        };
-
-        $scope.checkAllDur = function () {
-            $scope.selectedDuration = _.pluck($scope.JobFeeds.duration);
-        };
-
         $rootScope.image = '';
     }
 })();
@@ -128,10 +93,11 @@
 
     angular.module('app').controller('DashboardCtrl', DashboardCtrl);
 
-    DashboardCtrl.$inject = ['$scope', '$rootScope', '$state', '$cookies', 'metaTags'];
+    DashboardCtrl.$inject = ['$scope', '$rootScope', '$state', '$cookies', 'metaTags', 'BluePrints'];
 
-    function DashboardCtrl ($scope, $rootScope, $state, $cookies, metaTags) {
-        "use strict";
+    function DashboardCtrl ($scope, $rootScope, $state, $cookies, metaTags, BluePrints) {
+        
+        $scope.blueprints = BluePrints;
 
         if ($cookies.get('token')) {
             var user_logged;

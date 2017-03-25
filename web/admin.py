@@ -14,6 +14,8 @@ from web.models import (
     ExperienceLevel,
     Queue,
     BlueprintTasks,
+    ProfileType,
+    Location,
 )
 
 
@@ -73,6 +75,13 @@ class HelpAdmin(admin.ModelAdmin):
 class UserAdmin(admin.ModelAdmin):
     pass
 
+class ProfileTypeAdmin(admin.ModelAdmin):
+    pass
+
+
+class LocationAdmin(admin.ModelAdmin):
+    pass
+
 
 admin.site.register(user, UserAdmin)
 admin.site.register(Help, HelpAdmin)
@@ -87,3 +96,5 @@ admin.site.register(ExperienceLevel, ExperienceLevelAdmin)
 admin.site.register(Queue, QueueAdmin)
 admin.site.register(BlueprintTasks, BlueprintTasksAdmin)
 admin.site.register(Blueprint, BlueprintAdmin)
+admin.site.register(ProfileType, ProfileTypeAdmin)
+admin.site.register(Location, LocationAdmin)

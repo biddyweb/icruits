@@ -190,7 +190,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
     # Fixes basic auth bug for UAT.
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-    ],
+    #'DEFAULT_AUTHENTICATION_CLASSES': [
+    #    'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    #],
 }

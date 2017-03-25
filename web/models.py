@@ -17,6 +17,7 @@ from rest_framework.authtoken.models import Token
 from django.utils import six
 from django.core.mail import send_mail
 from django.conf import settings
+from libs.random_id import get_random_id
 
 number_validator = RegexValidator(r'^[0-9+]*$', 'Must be numbers only')
 
@@ -24,6 +25,23 @@ number_validator = RegexValidator(r'^[0-9+]*$', 'Must be numbers only')
 # Create your models here.
 #
 # This part is serving as choices for our model
+LOCATION = (('USA', 'USA'),
+            ('Canada', 'Canada'),
+            ('Mexico', 'Mexico'),
+            ('France', 'France'),
+            ('Germany', 'Germany'))
+
+
+class Location(models.Model):
+    location = models.CharField(choices=LOCATION, max_length=255)
+
+    def __unicode__(self):
+        return self.location
+
+    class Meta:
+        verbose_name = "Location"
+
+
 EXPERIENCE_LEVEL = (('Any', 'Any'),
                     ('Fresher', 'Fresher'),
                     ('Intern', 'Intern'),
@@ -67,7 +85,7 @@ class CompanyType(models.Model):
         return self.types_of_company
 
     class Meta:
-        verbose_name = "Company Types"
+        verbose_name = "Company Type"
 
 
 SALARY_RANGE = (('$10K-$50K', '$10K-$50K'),
@@ -113,6 +131,7 @@ class OnJobSuccess(models.Model):
 
     class Meta:
         verbose_name = 'On Success'
+        verbose_name_plural = "On Success"
 
 
 JOB_TYPE = (('Part Time', 'Part Time'),
@@ -307,15 +326,15 @@ class BlueprintTasks(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = "Tasks"
+        verbose_name = "Task"
+        verbose_name_plural = "Tasks"
 
 
 class Blueprint(models.Model):
     name = models.CharField(_('Blueprint Name'), max_length=255)
-    name_slug = models.SlugField(_('Blueprint Name Slug'), max_length=30, unique=True)
+    name_slug = models.SlugField(_('Blueprint Name Slug'), max_length=30, unique=True, blank=True)
     description = models.TextField(_('Blueprint Description'), blank=True)
     url = models.CharField(_('Blueprint Url'), blank=True, max_length=255)
-    location = models.CharField(_('Location'), max_length=255)
     function = models.CharField(_('Job Function'), max_length=255)
     professional_qualifications = models.CharField(_('Professional Qualifications'), max_length=255)
     legal_status = models.CharField(_('Legal Status'), max_length=255)
@@ -323,6 +342,11 @@ class Blueprint(models.Model):
     practice_limit = models.IntegerField(default=0)
     created_at = models.DateTimeField(_('Created At'), auto_now_add=True)
     updated_at = models.DateTimeField(_('Updated_At'), auto_now=True)
+    is_published = models.BooleanField(_('Blueprint Published'), default=False)
+    remote_work = models.CharField(_('Remote Work'), max_length=255)
+    max_queue = models.IntegerField(_('Max Queue'), default=10)
+    company_name = models.CharField(_('Company Name'), max_length=255)
+    related_location = models.ForeignKey(Location, related_name="job_location")
     related_industry = models.ForeignKey(Industry, related_name="industry")
     related_company_type = models.ForeignKey(CompanyType, related_name="company_type")
     related_salary = models.ForeignKey(SalaryRange, related_name="salary_range")
@@ -331,14 +355,22 @@ class Blueprint(models.Model):
     related_job_type = models.ForeignKey(JobType, related_name="job_type")
     related_job_duration = models.ForeignKey(JobDuration, related_name="duration")
     related_experience = models.ForeignKey(ExperienceLevel, related_name="experience")
-    related_user = models.ForeignKey(user, related_name="blueprint_user")
-    related_tasks = models.ForeignKey(BlueprintTasks, related_name="blueprint_tasks")
+    related_user = models.ForeignKey(user, related_name="blueprint_user", null=True, blank=True)
+    related_tasks = models.ForeignKey(BlueprintTasks, related_name="blueprint_tasks", null=True, blank=True)
 
     def __unicode__(self):
         return self.name
 
     def get_absolute_url(self):
         return '/job/' + str(self.name_slug)
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        blueprint_id = get_random_id()
+        name_trim = ''.join(e for e in self.name if e.isalnum())
+        company_trim = ''.join(e for e in self.company_name if e.isalnum())
+        self.name_slug = str(name_trim).lower() + '?' + str(company_trim).lower() + '?' + str(blueprint_id)
+        super(Blueprint, self).save(force_insert, force_update, using, update_fields)
 
     class Meta:
         verbose_name = 'Blueprint'

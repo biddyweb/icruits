@@ -227,3 +227,37 @@
 	}
 }
 
+@media only screen and (max-width:43.688em) {
+    #filter-btn{ 
+        font-size: .625rem;
+        border-top: none;
+        width: 120px;
+        text-align: center;
+        right: 0;
+        position: fixed;
+        float: none;
+        bottom: 0;
+        height: 44px!important;
+        display: block;
+        padding: 0;
+        margin: 0;
+        text-indent: 0;
+        background:0 0
+    }
+    #apply-btn{ 
+        font-size: .625rem;
+        border-top: none;
+        width: 120px;
+        text-align: center;
+        right: 0;
+        position: fixed;
+        float: none;
+        bottom: 0;
+        height: 44px!important;
+        display: block;
+        padding: 0;
+        margin: 0;
+        text-indent: 0;
+        background:0 0
+    }
+}

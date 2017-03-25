@@ -7,7 +7,7 @@
 <!--span id="open-button" class="menu-white" onclick="openNav()"><span class="label" style="color: rgb(255,255,255);">MENU</span> </span-->
         <div class="container-wrap">
             <div class="menu-wrap">
-                <nav id="sidemenu" class="menu"  ng-controller='LogoutCtrl'>
+                <nav id="sidemenu" class="menu" ng-controller='LogoutCtrl'>
                     <div class="icon-list">
                         <h3>Menu</h3>
                         <a data-ui-sref="root.dashboard" class="menu-item-dashboard">Dashboard</a>
@@ -32,24 +32,24 @@
             <div class="content-wrap">
                 <div class="content">
                     <nav class="dashHeader text-center navbar navbar-default fixed top"><span>ICRUITS</span></nav>
-                    <section id="dashboard" style="margin-top: 75px;" ng-controller="JobFeedListCtrl">
+                    <section id="dashboard" style="margin-top: 75px;">
                         <div class="containerSub cf">
                             <div class="row">
-                                <div class="col-sm-3" data-ng-repeat="JobFeed in JobFeeds">
+                                <div class="col-sm-3" data-ng-repeat="JobFeed in blueprints">
                                     <div class="animation-element cf">
                                         <div class="subject">
                                             <div class="job-item text-center">
                                                 <div class="hover-bg hover-bg-articles">
-                                                    <a data-ui-sref="root.job({job_name_slug: JobFeed.job_name_slug})">
+                                                    <a data-ui-sref="root.blueprint({name_slug: JobFeed.name_slug})">
                                                             <!--img class="img-responsive"
                                                                     data-ng-src="{{ JobFeed.image }}" alt=""-->
                                                         <div class="hover-text">
-                                                            <span class="lead" data-ng-bind="JobFeed.queue"></span>
+                                                            <span class="lead" data-ng-bind="JobFeed.max_queue"></span>
                                                         </div>
                                                         <img class="img-circle img-thumbnail" src="">
                                                     </a>
                                                 </div>
-                                                <span class="nohover center-block" data-ng-bind="JobFeed.job_name"></span>
+                                                <span class="nohover center-block" data-ng-bind="JobFeed.name"></span>
                                                 <span class="hover company center-block">Input company name</span>
                                             </div>
                                         </div>
@@ -63,11 +63,27 @@
         </div>
 
 <!-- FULLSCREEN NAV -->
-<div id="myNav" class="overlay-offcanvas" ng-controller="JobFeedListCtrl">
+<div id="myNav" class="overlay-offcanvas">
     <a href="javascript:void(0)" class="closebtn" onclick="closeBigNav()">&times; </a>
     <span class="label-close" style="color: rgb(255,255,255);">CLOSE</span>
+    <a id="apply-btn" class="hide-button">
+        <span id="apply-span" class="hide-button">
+            Apply
+        </span>
+        <span id="apply-span-2" class="hover hide-button">
+            Apply
+        </span>
+    </a>
+    <a id="advanced-btn" class="hide-button">
+        <span id="advanced-span" class="hide-button">
+            Advanced
+        </span>
+        <span id="advanced-span-2" class="hover hide-button">
+            Advanced
+        </span>
+    </a>
     <div class="form-group center-block">
-        <ul class="inline center-block inline-fix">
+        <ul class="inline center-block inline-fix" style="top: 10%;">
             <div class="filter-box-alignment">
                 <label class="control-label filter-label text-center">Industry</label>
                 <select class="selectpicker form-control" 
@@ -79,13 +95,39 @@
             </div>
             <div class="filter-box-alignment">
                 <label class="control-label filter-label text-center">Job Location</label>
-                <select class="selectpicker form-control" 
+                <select class="selectpicker form-control select-fix" data-size="5" 
                         multiple data-actions-box="true">
+                        <option>USA</option>
+                        <option>Canada</option>
+                        <option>France</option>
+                        <option>USA</option>
+                        <option>Canada</option>
+                        <option>France</option>
+                        <option>USA</option>
+                        <option>Canada</option>
+                        <option>France</option>
+                        <option>USA</option>
+                        <option>Canada</option>
+                        <option>France</option>
+                        <option>USA</option>
+                        <option>Canada</option>
+                        <option>France</option>
+                        <option>USA</option>
+                        <option>Canada</option>
+                        <option>France</option>
+                        <option>USA</option>
+                        <option>Canada</option>
+                        <option>France</option>
+                        <option>USA</option>
+                        <option>Canada</option>
+                        <option>France</option>
                         <option>USA</option>
                         <option>Canada</option>
                         <option>France</option>
                 </select>
             </div>
+            </ul>
+        <ul class="inline center-block inline-fix" style="top: 30%;">
             <div class="filter-box-alignment">
                 <label class="control-label filter-label text-center">Job Role</label>
                 <select ng-options="Iindustry.industry as Iindustry.industry for Iindustry in JobFeeds[0]"

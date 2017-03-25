@@ -12,9 +12,17 @@ from web.models import (
     ExperienceLevel,
     Queue,
     BlueprintTasks,
+    Location,
 )
 from rest_framework import serializers
 from libs.djoser.serializers import UserSerializer
+
+
+class LocationSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Location
+        fields = '__all__'
 
 
 class IndustrySerializer(serializers.HyperlinkedModelSerializer):
@@ -92,6 +100,7 @@ class BlueprintSerializer(serializers.ModelSerializer):
     experience = ExperienceLevelSerializer(many=False, read_only=True)
     blueprint_user = UserSerializer(many=False, read_only=True)
     blueprint_tasks = BlueprintTasksSerializer(many=False, read_only=True)
+    job_location = LocationSerializer(many=False, read_only=True)
 
     class Meta:
         model = Blueprint

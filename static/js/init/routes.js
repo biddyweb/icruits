@@ -31,6 +31,10 @@
             controller: 'DashboardCtrl',
             templateUrl: '/static/templates/job/job_list.html',
             resolve: {
+                BluePrints: function (JobFeedsRes) {
+                    // body...
+                    return JobFeedsRes.query().$promise;
+                },
                 metaTags: function (metaTagsRes) {
                     return metaTagsRes.get({
                         page_name: 'dashboard'
@@ -38,14 +42,14 @@
                 }
             }
         })
-        .state('root.job', {
-            url: '/job/:job_name_slug/',
-            controller: 'JobCtrl',
+        .state('root.blueprint', {
+            url: '/blueprint/:name_slug/',
+            controller: 'BluprintDetailsCtrl',
             templateUrl: '/static/templates/job/job_detail.html',
             resolve: {
                 JobFeed: function (JobFeedsRes, $stateParams) {
                     return JobFeedsRes.get({
-                        job_name_slug: $stateParams.job_name_slug
+                        name_slug: $stateParams.name_slug
                     }).$promise;
                 }
             }

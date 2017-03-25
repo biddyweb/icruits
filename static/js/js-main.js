@@ -18,11 +18,35 @@ function closeNav() {
 }
 
 function openBigNav() {
+    var btn = document.getElementById("apply-btn"),
+        btn_span = document.getElementById("apply-span"),
+        btn_span_2 = document.getElementById("apply-span-2"),
+        adv_btn = document.getElementById("advanced-btn"),
+        adv_btn_span = document.getElementById("advanced-span"),
+        adv_btn_span_2 = document.getElementById("advanced-span-2");
     document.getElementById("myNav").style.height = "100%";
+    classie.addClass( btn, 'show-button');
+    classie.addClass( btn_span, 'show-button');
+    classie.addClass( btn_span_2, 'show-button');
+    classie.addClass( adv_btn, 'show-button');
+    classie.addClass( adv_btn_span, 'show-button');
+    classie.addClass( adv_btn_span_2, 'show-button');
 }
 
 function closeBigNav() {
+    var btn = document.getElementById("apply-btn"),
+        btn_span = document.getElementById("apply-span"),
+        btn_span_2 = document.getElementById("apply-span-2"),
+        adv_btn = document.getElementById("advanced-btn"),
+        adv_btn_span = document.getElementById("advanced-span"),
+        adv_btn_span_2 = document.getElementById("advanced-span-2");
     document.getElementById("myNav").style.height = "0%";
+    classie.removeClass( btn, 'show-button');
+    classie.removeClass( btn_span, 'show-button');
+    classie.removeClass( btn_span_2, 'show-button');
+    classie.removeClass( adv_btn, 'show-button');
+    classie.removeClass( adv_btn_span, 'show-button');
+    classie.removeClass( adv_btn_span_2, 'show-button');
 }
 
 function forms() {

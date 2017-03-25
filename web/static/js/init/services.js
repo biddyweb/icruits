@@ -18,7 +18,18 @@
     JobFeedsRes.$inject = ['$resource'];
 
     function JobFeedsRes($resource) {
-        return $resource('/api/job/:job_name_slug/ ');
+        return $resource('/api/job/:name_slug/', {}, {
+            'query': {
+                method: 'GET',
+                isArray: true,
+                cache: true
+            },
+            'get': {
+                method: 'GET',
+                isArray: false,
+                cache: true
+            }
+        });
     }
 })();
 
