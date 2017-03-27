@@ -100,14 +100,3 @@ function check_if_in_view() {
 }
 
 $(window).on('scroll resize', check_if_in_view);
-
-$(function() {
-  var master = $('[data-name="master"]'),
-      side = $('[data-name="side"]');
-  
-  $('.menu-white',master).on('click', function() {
-      master.toggleClass('slide');
-      side.toggleClass('pop');
-  });
-});
-

@@ -5,7 +5,6 @@
     Routes.$inject = ['$resourceProvider', '$routeProvider', '$locationProvider', '$stateProvider'];
 
     function Routes($resourceProvider, $routeProvider, $locationProvider, $stateProvider) {
-        'use strict';
         $routeProvider.otherwise('/');
         $locationProvider.html5Mode({
             enabled: true,

@@ -1,68 +1,151 @@
     <div class="container-wrap">
-        <div class="menu-wrap">
+        <!--div class="menu-wrap">
             <nav id="sidemenu" class="menu" ng-controller='LogoutCtrl'>
                 <div class="icon-list">
                     <h3>Menu</h3>
                     <a data-ui-sref="root.dashboard" class="menu-item-dashboard">Dashboard</a>
                     <a data-ui-sref="root.help" class="menu-item-help">Help</a>
                     <!--a href="#" ng-show="user.profile_type.account_type == 'Employer'" class="menu-item-blueprint">Blueprint</a-->
-                    <a href="" class="menu-item-blueprint">Blueprint</a>
+                    <!--a href="" class="menu-item-blueprint">Blueprint</a>
                     <a href="" ng-click="logoutNow()" class="menu-item-logout">Logout</a>
                 </div>
             </nav>
         </div>
-        <span id="open-button" class="menu-white"><span class="label" style="color: rgb(0,0,0);">MENU</span> </span>
+        <span id="open-button" class="menu-white"><span class="label" style="color: rgb(0,0,0);">MENU</span> </span-->
 
         <div class="content-wrap">
             <div class="content">
                 <nav class="dashHeader text-center navbar navbar-default fixed top"><span>ICRUITS</span></nav>
                 <section id="dashboard" style="margin-top: 75px;">
-                    <div class="containerSub cf">
-                        <div class="col-md-6">
+                  <div class="containerDetails">
+                    <img class="img-responsive" src="{{ blueprint.work_enviorment }}">
                             <div class="details">
-                                <img class="img-responsive details-logo" src="http://placehold.it/200x200" alt="company-logo">
+                                <div class="details-description">
+                                  <div class="blueprint-name" data-ng-bind="blueprint.name"></div>
+                                </div>
                                 <div class="details-description">
                                     <div data-ng-bind="blueprint.description"></div>
                                     <p>description description description description description descri
                                     description description description description description des description description
                                     description description descriptiondescription description</p>
                                 </div>
+                                <div class="practice-info" style="margin-top: 2em;">
+                                    <span><strong>Practice limit :  </strong></span>
+                                    <div class="square-info">
+                                        <span>10</span>
+                                    </div>
+                                </div>
                                 <div class="practice-info">
+                                    <span><strong>Max Queue :  </strong></span>
+                                    <div class="square-info">
+                                        <span>10</span>
+                                    </div>
+                                </div>
+                                <div class="practice-info">
+                                    <span><strong>Current Queue :  </strong></span>
+                                    <div class="square-info">
+                                        <span>10</span>
+                                    </div>
+                                </div>
+                                <div class="practice-info">
+                                    <span><strong>Visa Status :  </strong></span>
+                                    <div class="square-info">
+                                        <span>10</span>
+                                    </div>
+                                </div>
+                                <div class="practice-info">
+                                    <span><strong>Minimum Education :  </strong></span>
+                                    <div class="square-info">
+                                        <span>10</span>
+                                    </div>
+                                </div>
+                                <div class="practice-info">                                
+                                    <span><strong>Remote Work :  </strong></span>
+                                    <div class="square-info">
+                                        <span>10</span>
+                                    </div>
+                                </div>
+                                <div class="practice-info">
+                                    <span><strong>Salary Range :  </strong></span>
+                                    <div class="square-info">
+                                        <span>10</span>
+                                    </div>
+                                </div>
+                                <div class="practice-info">
+                                    <span><strong>Job Type :  </strong></span>
+                                    <div class="square-info">
+                                        <span>10</span>
+                                    </div>
+                                </div>
+                                <a id="back-btn" data-ui-sref="root.dashboard">                                    
+                                    <span id="advanced-span" class="show-button">
+                                        Back
+                                    </span>
+                                    <span id="advanced-span-2" class="hover show-button">
+                                        Back
+                                    </span>
+                                </a>
+                                <a id="blueprint-btn" ng-show="user.profile_type">
+                                    <span id="advanced-span" class="show-button">
+                                        Apply
+                                    </span>
+                                    <span id="advanced-span-2" class="hover show-button">
+                                        Apply
+                                    </span>
+                                </a>
+                                <a id="blueprint-btn" ng-show="!user.profile_type">
+                                    <span id="advanced-span" class="show-button">
+                                        Apply Company
+                                    </span>
+                                    <span id="advanced-span-2" class="hover show-button">
+                                        Apply Company
+                                    </span>
+                                </a>
+                                </div>
+
+                                <!--div class="practice-info-row-1">
                                     <span>Practice limit  </span>
-                                    <div class="square-left">
+                                    <div class="square-info">
                                         <span>10</span>
                                     </div>
-                                </div>
-                                <div class="max-queue-info">
                                     <span>Max Queue  </span>
-                                    <div class="square-left">
+                                    <div class="square-info">
                                         <span>10</span>
                                     </div>
-                                </div>
-                                <div class="current-queue-info">
                                     <span>Current Queue  </span>
-                                    <div class="circle-left">
+                                    <div class="circle-info">
+                                        <span>10</span>
+                                    </div>
+                                    <span>Visa Status  </span>
+                                    <div class="square-info">
                                         <span>10</span>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div id="company-enviorment">                                
-                                <img class="img-responsive company-small" src="http://placehold.it/450x600" alt="company-logo">
-                                <img class="img-responsive company-small" src="http://placehold.it/450x600" alt="company-logo">
-                                <img class="img-responsive company-small" src="http://placehold.it/450x600" alt="company-logo">
-                                <img class="img-responsive company-small" src="http://placehold.it/450x600" alt="company-logo">
-                            </div>
-                        </div>
-                        <span class="clearfix">
+                                <div class="practice-info-row-2">
+                                    <span>Minimum Education  </span>
+                                    <div class="square-info">
+                                        <span>10</span>
+                                    </div>
+                                    <span>Remote Work  </span>
+                                    <div class="square-info">
+                                        <span>10</span>
+                                    </div>
+                                    <span>Salary Range  </span>
+                                    <div class="square-info">
+                                        <span>10</span>
+                                    </div>
+                                    <span>Job Type  </span>
+                                    <div class="square-info">
+                                        <span>10</span>
+                                    </div>
+                                </div-->
                     </div>
                 </section>
             </div>
         </div>
     </div>
 
-<script type="text/javascript">
+<!--script type="text/javascript">
 (function() {
 
     var bodyEl = document.body,
@@ -107,7 +190,17 @@
         isOpen = !isOpen;
     }
 
+    function fixMenu() {
+        classie.remove(bodyEl, 'show-menu');
+        /* classie.remove(filterBtn, 'hide-button'); */
+    }
+
     init();
+    var fixer = true;
+    if(fixer) {
+        $(window.location).trigger("change", fixMenu());
+        fixer = false;
+    }
 
 })();    
-</script>
+</script-->

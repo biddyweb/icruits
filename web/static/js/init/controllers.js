@@ -3,11 +3,13 @@
 
     angular.module('app').controller('BluprintDetailsCtrl', BluprintDetailsCtrl);
 
-    BluprintDetailsCtrl.$inject = ['$scope', '$rootScope', '$cookies', '$state', 'JobFeed'];
+    BluprintDetailsCtrl.$inject = ['$scope', '$rootScope', '$cookies', '$state', 'JobFeed', 'UserInfoRes'];
 
-    function BluprintDetailsCtrl ($scope, $rootScope, $cookies, $state, JobFeed) {
+    function BluprintDetailsCtrl ($scope, $rootScope, $cookies, $state, JobFeed, UserInfoRes) {
 
         $scope.blueprint = JobFeed;
+
+        $scope.user = UserInfoRes.query();
 
         if ($cookies.get('token')) {
             var user_logged;
@@ -93,11 +95,17 @@
 
     angular.module('app').controller('DashboardCtrl', DashboardCtrl);
 
-    DashboardCtrl.$inject = ['$scope', '$rootScope', '$state', '$cookies', 'metaTags', 'BluePrints'];
+    DashboardCtrl.$inject = ['$scope', '$rootScope', '$state', '$cookies', 'metaTags', 'BluePrints', 'UserInfoRes',
+    'IndustryRes'];
 
-    function DashboardCtrl ($scope, $rootScope, $state, $cookies, metaTags, BluePrints) {
+    function DashboardCtrl ($scope, $rootScope, $state, $cookies, metaTags, BluePrints, UserInfoRes,
+    IndustryRes) {
         
         $scope.blueprints = BluePrints;
+
+        $scope.user = UserInfoRes.query();
+
+        $scope.industry = IndustryRes.query();
 
         if ($cookies.get('token')) {
             var user_logged;
@@ -138,6 +146,20 @@
 (function () {
     "use strict";
 
+    angular.module('app').controller('HomeCtrl', HomeCtrl);
+
+    HomeCtrl.$inject = ['$scope', '$rootScope', 'metaTags'];
+
+    function HomeCtrl($scope, $rootScope, metaTags) {
+
+        $scope.$emit('metaTagsChanged', metaTags);
+        $rootScope.image = '';
+    }
+})();
+
+(function () {
+    "use strict";
+
     angular.module('app').controller('RegisterCtrl', RegisterCtrl);
 
     RegisterCtrl.$inject = ['$scope', '$rootScope', '$state', 'AuthRes', 'metaTags'];
@@ -148,7 +170,7 @@
 
         $scope.reg = {};
 
-        $scope.profile_types = [{profile_type: 'JobSeeker', label: 'JobSeeker'}, {profile_type: 'Employer', label: 'Employer'}];
+        $scope.profile_types = [{profile_type: true, label: 'JobSeeker'}, {profile_type: false, label: 'Employer'}];
 
         $scope.registration = function () {
             AuthRes.save($scope.reg, function (resource) {

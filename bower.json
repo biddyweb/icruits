@@ -21,6 +21,7 @@
     "angular-cookies": "1.5.8",
     "angular-route": "1.5.8",
     "angular-touch": "1.5.8",
+    "angular-carousel": "1.0.1",
     "angular-ui-router": "0.2.11",
     "jquery": "1.12.1"
   },

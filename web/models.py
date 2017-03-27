@@ -66,12 +66,6 @@ PROFILE_TYPE = (('JobSeeker', 'JobSeeker'),
 class ProfileType(models.Model):
     account_type = models.CharField(choices=PROFILE_TYPE, max_length=122)
 
-    def __unicode__(self):
-        return self.account_type
-
-    class Meta:
-        verbose_name = 'Profile Type'
-
 
 COMPANY_TYPE = (('StartUp', 'StartUp'),
                 ('National', 'National'),
@@ -276,7 +270,8 @@ class user(AbstractUser):
     location = models.CharField(max_length=255, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    related_profile_type = models.ForeignKey(ProfileType, related_name='profile_type', null=True, blank=True)
+    # false profile type is employeer and true is jobseeker
+    profile_type = models.BooleanField(default=False)
 
     objects = UserManager()
 
@@ -332,7 +327,7 @@ class BlueprintTasks(models.Model):
 
 class Blueprint(models.Model):
     name = models.CharField(_('Blueprint Name'), max_length=255)
-    name_slug = models.SlugField(_('Blueprint Name Slug'), max_length=30, unique=True, blank=True)
+    name_slug = models.SlugField(_('Blueprint Name Slug'), max_length=255, unique=True, blank=True)
     description = models.TextField(_('Blueprint Description'), blank=True)
     url = models.CharField(_('Blueprint Url'), blank=True, max_length=255)
     function = models.CharField(_('Job Function'), max_length=255)
@@ -346,6 +341,7 @@ class Blueprint(models.Model):
     remote_work = models.CharField(_('Remote Work'), max_length=255)
     max_queue = models.IntegerField(_('Max Queue'), default=10)
     company_name = models.CharField(_('Company Name'), max_length=255)
+    work_enviorment = models.ImageField(upload_to="img/work-enviorment/")
     related_location = models.ForeignKey(Location, related_name="job_location")
     related_industry = models.ForeignKey(Industry, related_name="industry")
     related_company_type = models.ForeignKey(CompanyType, related_name="company_type")
@@ -365,12 +361,16 @@ class Blueprint(models.Model):
         return '/job/' + str(self.name_slug)
 
     def save(self, force_insert=False, force_update=False, using=None,
-             update_fields=None):
+             update_fields=None, **kwargs):
         blueprint_id = get_random_id()
         name_trim = ''.join(e for e in self.name if e.isalnum())
         company_trim = ''.join(e for e in self.company_name if e.isalnum())
-        self.name_slug = str(name_trim).lower() + '?' + str(company_trim).lower() + '?' + str(blueprint_id)
-        super(Blueprint, self).save(force_insert, force_update, using, update_fields)
+        self.name_slug = str(name_trim).lower() + '-' + str(company_trim).lower() + '-' + str(blueprint_id)
+        request = None
+        if kwargs.has_key('request'):
+            request = kwargs.pop('request')
+            self.user= request.user
+        super(Blueprint, self).save(force_insert, force_update, using, update_fields, **kwargs)
 
     class Meta:
         verbose_name = 'Blueprint'

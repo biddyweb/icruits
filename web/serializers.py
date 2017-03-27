@@ -16,65 +16,66 @@ from web.models import (
 )
 from rest_framework import serializers
 from libs.djoser.serializers import UserSerializer
+from libs.image_thumbnailer import get_responsive_image_url
 
 
-class LocationSerializer(serializers.HyperlinkedModelSerializer):
+class LocationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Location
         fields = '__all__'
 
 
-class IndustrySerializer(serializers.HyperlinkedModelSerializer):
+class IndustrySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Industry
         fields = '__all__'
 
 
-class CompanyTypeSerializer(serializers.HyperlinkedModelSerializer):
+class CompanyTypeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CompanyType
         fields = '__all__'
 
 
-class SalaryRangeSerializer(serializers.HyperlinkedModelSerializer):
+class SalaryRangeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SalaryRange
         fields = '__all__'
 
 
-class WaitIntervalSerializer(serializers.HyperlinkedModelSerializer):
+class WaitIntervalSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WaitInterval
         fields = '__all__'
 
 
-class OnJobSuccessSerializer(serializers.HyperlinkedModelSerializer):
+class OnJobSuccessSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OnJobSuccess
         fields = '__all__'
 
 
-class JobTypeSerializer(serializers.HyperlinkedModelSerializer):
+class JobTypeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = JobType
         fields = '__all__'
 
 
-class JobDurationSerializer(serializers.HyperlinkedModelSerializer):
+class JobDurationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = JobDuration
         fields = '__all__'
 
 
-class ExperienceLevelSerializer(serializers.HyperlinkedModelSerializer):
+class ExperienceLevelSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ExperienceLevel
@@ -86,6 +87,21 @@ class BlueprintTasksSerializer(serializers.ModelSerializer):
     class Meta:
         model = BlueprintTasks
         fields = '__all__'
+
+
+class CustomImageField(serializers.ImageField):
+    read_only = True
+
+    def to_representation(self, value):
+        try:
+            data = get_responsive_image_url(value, self.context['request'].GET.get('image_size', ''))
+            #data = data.replace('/media/media/', '/media/')
+            return data
+        except:
+            pass
+
+    def to_internal_value(self, data):
+        return data
 
 
 class BlueprintSerializer(serializers.ModelSerializer):
@@ -101,6 +117,7 @@ class BlueprintSerializer(serializers.ModelSerializer):
     blueprint_user = UserSerializer(many=False, read_only=True)
     blueprint_tasks = BlueprintTasksSerializer(many=False, read_only=True)
     job_location = LocationSerializer(many=False, read_only=True)
+    work_enviorment = CustomImageField()
 
     class Meta:
         model = Blueprint
@@ -108,6 +125,16 @@ class BlueprintSerializer(serializers.ModelSerializer):
         #extra_kwargs = {
         #    'url': {'lookup_field': 'name_slug'}
         #}
+
+    def save(self,*args, **kwargs):
+            request = None
+            if kwargs.has_key('request'):
+                request = kwargs.pop('request')
+                print request.user.id
+            m = super(BlueprintSerializer, self).save(*args, **kwargs)
+            if request is not None:
+                m.related_user = request.user
+                m.save()
 
 
 class QuestionAnswerSerializer(serializers.ModelSerializer):

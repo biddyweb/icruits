@@ -226,3 +226,233 @@
         return JWTTokenRes;
     }
 })();
+
+(function () {
+    'use strict';
+
+    angular.module('app').factory('LocationRes', LocationRes);
+
+    LocationRes.$inject = ['$resource'];
+
+    function LocationRes($resource) {
+        return $resource('/api/location/', {}, {
+            'query': {
+                method: 'GET',
+                isArray: true,
+                cache: true
+            },
+            'get': {
+                method: 'GET',
+                isArray: false,
+                cache: true
+            }
+        });
+    }
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('app').factory('IndustryRes', IndustryRes);
+
+    IndustryRes.$inject = ['$resource'];
+
+    function IndustryRes($resource) {
+        return $resource('/api/industry/', {}, {
+            'query': {
+                method: 'GET',
+                isArray: true,
+                cache: true
+            },
+            'get': {
+                method: 'GET',
+                isArray: false,
+                cache: true
+            }
+        });
+    }
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('app').factory('CompanyTypeRes', CompanyTypeRes);
+
+    CompanyTypeRes.$inject = ['$resource'];
+
+    function CompanyTypeRes($resource) {
+        return $resource('/api/company-type/', {}, {
+            'query': {
+                method: 'GET',
+                isArray: true,
+                cache: true
+            },
+            'get': {
+                method: 'GET',
+                isArray: false,
+                cache: true
+            }
+        });
+    }
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('app').factory('SalaryRangeRes', SalaryRangeRes);
+
+    SalaryRangeRes.$inject = ['$resource'];
+
+    function SalaryRangeRes($resource) {
+        return $resource('/api/salary-range/', {}, {
+            'query': {
+                method: 'GET',
+                isArray: true,
+                cache: true
+            },
+            'get': {
+                method: 'GET',
+                isArray: false,
+                cache: true
+            }
+        });
+    }
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('app').factory('WaitIntervalRes', WaitIntervalRes);
+
+    WaitIntervalRes.$inject = ['$resource'];
+
+    function WaitIntervalRes($resource) {
+        return $resource('/api/wait-interval/', {}, {
+            'query': {
+                method: 'GET',
+                isArray: true,
+                cache: true
+            },
+            'get': {
+                method: 'GET',
+                isArray: false,
+                cache: true
+            }
+        });
+    }
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('app').factory('OnJobSuccessRes', OnJobSuccessRes);
+
+    OnJobSuccessRes.$inject = ['$resource'];
+
+    function OnJobSuccessRes($resource) {
+        return $resource('/api/on-job-success/', {}, {
+            'query': {
+                method: 'GET',
+                isArray: true,
+                cache: true
+            },
+            'get': {
+                method: 'GET',
+                isArray: false,
+                cache: true
+            }
+        });
+    }
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('app').factory('JobTypeRes', JobTypeRes);
+
+    JobTypeRes.$inject = ['$resource'];
+
+    function JobTypeRes($resource) {
+        return $resource('/api/job-type/', {}, {
+            'query': {
+                method: 'GET',
+                isArray: true,
+                cache: true
+            },
+            'get': {
+                method: 'GET',
+                isArray: false,
+                cache: true
+            }
+        });
+    }
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('app').factory('JobDurationRes', JobDurationRes);
+
+    JobDurationRes.$inject = ['$resource'];
+
+    function JobDurationRes($resource) {
+        return $resource('/api/job-duration/', {}, {
+            'query': {
+                method: 'GET',
+                isArray: true,
+                cache: true
+            },
+            'get': {
+                method: 'GET',
+                isArray: false,
+                cache: true
+            }
+        });
+    }
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('app').factory('ExperienceLevelRes', ExperienceLevelRes);
+
+    ExperienceLevelRes.$inject = ['$resource'];
+
+    function ExperienceLevelRes($resource) {
+        return $resource('/api/experience-level/', {}, {
+            'query': {
+                method: 'GET',
+                isArray: true,
+                cache: true
+            },
+            'get': {
+                method: 'GET',
+                isArray: false,
+                cache: true
+            }
+        });
+    }
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('app').factory('BlueprintTasksRes', BlueprintTasksRes);
+
+    BlueprintTasksRes.$inject = ['$resource'];
+
+    function BlueprintTasksRes($resource) {
+        return $resource('/api/blueprint-tasks/', {}, {
+            'query': {
+                method: 'GET',
+                isArray: true,
+                cache: true
+            },
+            'get': {
+                method: 'GET',
+                isArray: false,
+                cache: true
+            }
+        });
+    }
+})();

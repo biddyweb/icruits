@@ -11,6 +11,16 @@ from web.viewsets import (
     LogoutViewSet,
     UserViewSet,
     CheckUserViewSet,
+    LocationViewSet,
+    IndustryViewSet,
+    CompanyTypeViewSet,
+    SalaryRangeViewSet,
+    WaitIntervalViewSet,
+    OnJobSuccessViewSet,
+    JobTypeViewSet,
+    JobDurationViewSet,
+    ExperienceLevelViewSet,
+    BlueprintTasksViewSet,
 )
 from libs.djoser.views import (
     RegistrationView,
@@ -33,6 +43,16 @@ router = routers.DefaultRouter()
 router.register(r'job', JobFeedViewSet, base_name='job')
 router.register(r'help', HelpViewSet, base_name='help')
 router.register(r'queue', QueueViewSet, base_name='queue')
+router.register(r'location', LocationViewSet, base_name='location')
+router.register(r'industry', IndustryViewSet, base_name='industry')
+router.register(r'company-type', CompanyTypeViewSet, base_name='company-type')
+router.register(r'salary-range', SalaryRangeViewSet, base_name='salary-range')
+router.register(r'wait-interval', WaitIntervalViewSet, base_name='wait-interval')
+router.register(r'on-job-success', OnJobSuccessViewSet, base_name='on-job-success')
+router.register(r'job-type', JobTypeViewSet, base_name='job-type')
+router.register(r'job-duration', JobDurationViewSet, base_name='job-duration')
+router.register(r'experience-level', ExperienceLevelViewSet, base_name='experience-level')
+router.register(r'blueprint-tasks', BlueprintTasksViewSet, base_name='blueprint-tasks')
 
 base_urlpatterns = (
     url(r'^auth/register/$', RegistrationView.as_view(), name='register'),

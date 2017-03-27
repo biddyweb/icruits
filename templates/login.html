@@ -73,7 +73,8 @@
 
     function checkUser() {
         // body...
-        angular.element(document.getElementById('username')).scope().checkuser(document.getElementById('username').value);
+        var req = {user: document.getElementById('username').value};
+        angular.element(document.getElementById('username')).scope().checkuser(req);
     }
 </script>
 

@@ -21,7 +21,7 @@ class ProfileTypeSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    profile_type = ProfileTypeSerializer(many=True, read_only=True, required=False)
+    related_profile_type = ProfileTypeSerializer(many=True, read_only=False, required=False)
 
     class Meta:
         model = User
@@ -36,8 +36,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = '__all__'
-        exclude_fields = ('is_active', 'is_staff', )
+        exclude = ('is_active', 'is_staff', )
 
     def create(self, validated_data):
         if settings.get('SEND_ACTIVATION_EMAIL'):
