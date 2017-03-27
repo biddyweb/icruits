@@ -38,6 +38,10 @@
                     return metaTagsRes.get({
                         page_name: 'dashboard'
                     }).$promise;
+                },
+                IndustryInfo: function (IndustryRes) {
+                    // body...
+                    return IndustryRes.query().$promise;
                 }
             }
         })
@@ -54,6 +58,10 @@
                 SalaryInfo: function (SalaryRangeRes) {
                     // body...
                     return SalaryRangeRes.query().$promise;
+                },
+                JobType: function (JobTypeRes) {
+                    // body...
+                    return JobTypeRes.query().$promise;
                 }
             }
         }).state('root.help', {

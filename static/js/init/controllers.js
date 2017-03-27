@@ -3,13 +3,22 @@
 
     angular.module('app').controller('BluprintDetailsCtrl', BluprintDetailsCtrl);
 
-    BluprintDetailsCtrl.$inject = ['$scope', '$rootScope', '$cookies', '$state', 'JobFeed', 'UserInfoRes', 'SalaryInfo'];
+    BluprintDetailsCtrl.$inject = ['$scope', '$rootScope', '$cookies', '$state', 'JobFeed', 'UserInfoRes', 'SalaryInfo', 'JobType'];
 
-    function BluprintDetailsCtrl ($scope, $rootScope, $cookies, $state, JobFeed, UserInfoRes, SalaryInfo) {
+    function BluprintDetailsCtrl ($scope, $rootScope, $cookies, $state, JobFeed, UserInfoRes, SalaryInfo, JobType) {
 
         $scope.blueprint = JobFeed;
 
         $scope.salary = SalaryInfo;
+
+        $scope.type = JobType;
+
+        angular.forEach($scope.type, function (value, key) {
+            // body...
+            if(value.id == $scope.blueprint.related_job_type){
+                $scope.job_type = value;
+            }
+        });
 
         angular.forEach($scope.salary, function(value, key){
             if(value.id == $scope.blueprint.related_salary){
@@ -100,16 +109,16 @@
     angular.module('app').controller('DashboardCtrl', DashboardCtrl);
 
     DashboardCtrl.$inject = ['$scope', '$rootScope', '$state', '$cookies', 'metaTags', 'BluePrints', 'UserInfoRes',
-    'IndustryRes'];
+    'IndustryInfo'];
 
     function DashboardCtrl ($scope, $rootScope, $state, $cookies, metaTags, BluePrints, UserInfoRes,
-    IndustryRes) {
+    IndustryInfo) {
         
         $scope.blueprints = BluePrints;
 
         $scope.user = UserInfoRes.query();
 
-        $scope.industry = IndustryRes.query();
+        $scope.industry = IndustryInfo;
 
         if ($cookies.get('token')) {
             var user_logged;

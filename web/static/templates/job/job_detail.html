@@ -1,20 +1,3 @@
-    <div class="container-wrap">
-        <!--div class="menu-wrap">
-            <nav id="sidemenu" class="menu" ng-controller='LogoutCtrl'>
-                <div class="icon-list">
-                    <h3>Menu</h3>
-                    <a data-ui-sref="root.dashboard" class="menu-item-dashboard">Dashboard</a>
-                    <a data-ui-sref="root.help" class="menu-item-help">Help</a>
-                    <!--a href="#" ng-show="user.profile_type.account_type == 'Employer'" class="menu-item-blueprint">Blueprint</a-->
-                    <!--a href="" class="menu-item-blueprint">Blueprint</a>
-                    <a href="" ng-click="logoutNow()" class="menu-item-logout">Logout</a>
-                </div>
-            </nav>
-        </div>
-        <span id="open-button" class="menu-white"><span class="label" style="color: rgb(0,0,0);">MENU</span> </span-->
-
-        <div class="content-wrap">
-            <div class="content">
                 <nav class="dashHeader text-center navbar navbar-default fixed top"><span>ICRUITS</span></nav>
                 <section id="dashboard" style="margin-top: 75px;">
                   <div class="containerDetails">
@@ -22,9 +5,9 @@
                           <img src="{{ blueprint.work_enviorment }}">
                       </div>
                       <div class="half-container">
-                                <div>
-                                  <div class="blueprint-name" data-ng-bind="blueprint.name" style="display: inline;"></div>
-                                </div>
+                            <div>
+                                <div class="blueprint-name" data-ng-bind="blueprint.name"></div>
+                            </div>
                                 <div class="details-description">
                                     <div data-ng-bind="blueprint.description"></div>
                                     <p>description description description description description descri
@@ -34,13 +17,13 @@
                                 <div class="practice-info" style="margin-top: 2em;">
                                     <span><strong>Practice limit :  </strong></span>
                                     <div class="square-info">
-                                        <span>10</span>
+                                        <span data-ng-bind="blueprint.practice_limit"></span>
                                     </div>
                                 </div>
                                 <div class="practice-info">
                                     <span><strong>Max Queue :  </strong></span>
                                     <div class="square-info">
-                                        <span>10</span>
+                                        <span data-ng-bind="blueprint.max_queue"></span>
                                     </div>
                                 </div>
                                 <div class="practice-info">
@@ -58,13 +41,13 @@
                                 <div class="practice-info">
                                     <span><strong>Minimum Education :  </strong></span>
                                     <div class="square-info">
-                                        <span>10</span>
+                                        <span data-ng-bind="blueprint.professional_qualifications"></span>
                                     </div>
                                 </div>
                                 <div class="practice-info">                                
                                     <span><strong>Remote Work :  </strong></span>
                                     <div class="square-info">
-                                        <span>10</span>
+                                        <span data-ng-bind="blueprint.remote_work"></span>
                                     </div>
                                 </div>
                                 <div class="practice-info">
@@ -76,10 +59,10 @@
                                 <div class="practice-info">
                                     <span><strong>Job Type :  </strong></span>
                                     <div class="square-info">
-                                        <span>10</span>
+                                        <span data-ng-bind="job_type.employment"></span>
                                     </div>
                                 </div>
-                                </div>
+                            </div>
                                 <a id="back-btn" data-ui-sref="root.dashboard">                                    
                                     <span id="advanced-span" class="show-button">
                                         Back
@@ -143,9 +126,6 @@
                                 </div-->
                     </div>
                 </section>
-            </div>
-        </div>
-    </div>
 
 <!--script type="text/javascript">
 (function() {

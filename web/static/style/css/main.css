@@ -297,6 +297,7 @@ VERY IMPORTANT!!!!
     margin: 0 auto;
     bottom: 0;
 }
+
 .job-item span.nohover{
     display: block;
     font-family: Roboto Condensed;
@@ -1431,6 +1432,9 @@ input, textarea, select, button, meter, progress {
     width: 100%;
     /*background: #ffffff;*/
 }
+.animation-element:hover {
+    border: 1px solid rgb(0, 0, 0);
+}
 .subject .content {
     margin-bottom: 8px;
     color: #0f0f0f;
@@ -1468,16 +1472,6 @@ input, textarea, select, button, meter, progress {
     padding: 15px;
 }
 
-.animation-element.slide-left.welcome:nth-of-type(odd) {
-    width: 98.5%;
-    margin: 0% 1.5% 3.0% 0%;
-}
-
-.animation-element.slide-left.welcome:nth-of-type(even) {
-    width: 98.5%;
-    margin: 0% 0% 3.0% 1.5%;
-}
-
 .animation-element.slide-left.welcome .header{
     width: 100%;
     margin-top: 25px;
@@ -1495,17 +1489,25 @@ input, textarea, select, button, meter, progress {
   position: relative;
 }
 .job-item .hover-bg-articles {
-    margin: 0 auto;
-  height: 200px;
-  width: 200px;
-    -webkit-border-radius: 200px;
-    border-radius: 200px;
-    background-clip: padding-box;
-  /* stops bg color from leaking outside the border: */
-    background-size: cover;
-    background-repeat: no-repeat;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;    
+    height: 200px;
+    width: 100%;
+    transition: all 750ms cubic-bezier(.25,.46,.45,.94);
+    border: 1px solid rgb(255,255,255);
+}
+.job-item .hover-bg-articles:hover {
+    background-color: rgb(255,255,255);
+    border: 1px solid rgb(255,255,255);
     opacity: 1;
     visibility: visible;
+    transition: all 750ms cubic-bezier(.25,.46,.45,.94);
+}
+.lead {
+    font-family: Roboto Condensed;
+    color: rgb(0,0,0);
+    font-size: 2em;
 }
 .hover-bg .hover-text {
   position: absolute;
@@ -1516,44 +1518,8 @@ input, textarea, select, button, meter, progress {
   padding: 5.3em 0;
   height: 100%;
   width: 100%;
-  opacity: 1;
-}
-.hover-bg .circle-hover {
-  opacity: 0;
-}
-.hover-bg .hover-text>h5 {
-  opacity: 0;
-  -webkit-transform: translateY(100%);
-            transform: translateY(100%);
-            transition: all 0.3s;
-}
-.hover-bg:hover .hover-text>h5 {
-  opacity: 1;
-    -webkit-backface-visibility:hidden;
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
-}
-.hover-bg .hover-text>.hline {
-  opacity: 0;
-  -webkit-transform: translateY(0);
-            transform: translateY(0);
-            transition: all 0.3s;
-}
-.hover-bg:hover .hover-text>.hline {
-  opacity: 1;
-    -webkit-backface-visibility:hidden;
-    -webkit-transform: translateY(100%);
-            transform: translateY(100%);
-}
-.hover-bg:hover .hover-text {
-  opacity: 1;
-}
-.hover-bg:hover .circle-hover {
-  opacity: 1;
-}
-.hover-text span.lead {
-    color: rgb(0, 0, 0);
-    font-size: 30px;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 body,
@@ -1993,7 +1959,7 @@ div .details {
 
 .square-info {
     margin-top: -1.4em;
-    width: 30px;
+    /* width: 30px;*/
     height: 30px;
     margin-left: 150px;
     display: block;

@@ -5,28 +5,36 @@
     Filter
 </a-->
 <!--span id="open-button" class="menu-white" onclick="openNav()"><span class="label" style="color: rgb(255,255,255);">MENU</span> </span-->
-    <div class="container-wrap">
-        <div class="menu-wrap">
-            <nav id="sidemenu" class="menu" ng-controller='LogoutCtrl'>
-                <div class="icon-list">
-                    <h3>Menu</h3>
-                    <a data-ui-sref="root.dashboard" class="menu-item-dashboard">Dashboard</a>
+                    <!--a data-ui-sref="root.dashboard" class="menu-item-dashboard">Dashboard</a>
                     <a data-ui-sref="root.help" class="menu-item-help">Help</a>
                     <a href="#" ng-show="!user.profile_type" class="menu-item-blueprint">Blueprint</a>
-                    <a href="" ng-click="logoutNow()" class="menu-item-logout">Logout</a>
+                    <a href="" ng-click="logoutNow()" class="menu-item-logout">Logout</a-->
+    <div class="container-wrap">
+        <div class="menu-wrap">
+            <nav id="sidemenu" class="menu">
+                <div class="icon-list">
+                    <h3>Filter</h3>
+                    <a type="button" class="btn" data-toggle="collapse" data-target="#industry">Industry Type</a>
+                    <div id="industry" class="collapse">
+                        {{blueprints[0].name}}
+                    </div>
+                    <a type="button" class="btn" data-toggle="collapse" data-target="#location">Job Location</a>
+                    <div id="location" class="collapse">
+                        {{blueprints[0].name}}
+                    </div>
                 </div>
             </nav>
         </div>
-        <span id="open-button" class="menu-white"><span class="label" style="color: rgb(0,0,0);">MENU</span> </span>
+        <span id="open-button" class="menu-white"><span class="label" style="color: rgb(0,0,0);">FILTER</span> </span>
 
-        <a id="filter-btn" onclick="openBigNav()">
+        <!--a id="filter-btn" onclick="openBigNav()">
             <span>
                 Filter
             </span>
             <span class="hover">
                 Filter
             </span>
-        </a>
+        </a-->
 
         <div class="content-wrap">
             <div class="content">
@@ -35,24 +43,20 @@
                     <div class="containerSub cf">
                         <div class="row">
                             <div class="col-sm-3" data-ng-repeat="JobFeed in blueprints">
-                                <div class="animation-element cf">
-                                    <div class="subject">
-                                        <div class="job-item text-center">
-                                            <div class="hover-bg hover-bg-articles">
-                                                <a data-ui-sref="root.blueprint({name_slug: JobFeed.name_slug})">
+                                <div class="job-item text-center">
+                                    <div class="hover-bg hover-bg-articles">
+                                        <a data-ui-sref="root.blueprint({name_slug: JobFeed.name_slug})">
                                                         <!--img class="img-responsive"
                                                                 data-ng-src="{{ JobFeed.image }}" alt=""-->
-                                                    <div class="hover-text">
-                                                        <span class="lead" data-ng-bind="JobFeed.max_queue"></span>
-                                                    </div>
-                                                    <img class="img-circle img-thumbnail" src="">
-                                                </a>
+                                            <div class="hover-text">
+                                                <span class="lead" data-ng-bind="JobFeed.max_queue"></span>
                                             </div>
-                                            <span class="nohover center-block" data-ng-bind="JobFeed.name"></span>
-                                            <span class="nohover center-block" data-ng-bind="user.related_profile_type"></span>
-                                            <span class="hover company center-block" data-ng-bind="JobFeed.company_name"></span>
-                                        </div>
+                                            <img class="img-circle img-thumbnail" src="">
+                                        </a>
                                     </div>
+                                    <span class="nohover center-block" data-ng-bind="JobFeed.name"></span>
+                                    <span class="nohover center-block" data-ng-bind="user.related_profile_type"></span>
+                                    <span class="hover company center-block" data-ng-bind="JobFeed.company_name"></span>
                                 </div>
                             </div>
                         </div>
@@ -266,36 +270,6 @@
     <a href='' ng-click="logoutNow()">Logout</a>
 </aside-->
 
-<script>
-    ///* animation
-var $animation_elements = $('.animation-element');
-var $window = $(window);
-
-function check_if_in_view() {
-    var window_height = $window.height();
-    var window_top_position = $window.scrollTop();
-    var window_bottom_position = (window_top_position + window_height);
-
-    $.each($animation_elements, function() {
-        var $element = $(this);
-        var element_height = $element.outerHeight();
-        var element_top_position = $element.offset().top;
-        var element_bottom_position = (element_top_position + element_height);
-
-        //check to see if this current container is within viewport
-        if ((element_bottom_position >= window_top_position) &&
-            (element_top_position <= window_bottom_position)) {
-            $element.addClass('in-view');
-        } else {
-            $element.removeClass('in-view');
-        }
-    });
-}
-
-$(window).on('load scroll resize', check_if_in_view);
-
-</script>
-
 <script type="text/javascript">
 (function() {
 
@@ -330,12 +304,12 @@ $(window).on('load scroll resize', check_if_in_view);
     function toggleMenu() {
         if( isOpen ) {
             classie.remove( bodyEl, 'show-menu' );
-            classie.remove(filterBtn, 'hide-button');
+            /*classie.remove(filterBtn, 'hide-button');*/
             // animate path
         }
         else {
             classie.add( bodyEl, 'show-menu' );
-            classie.add(filterBtn, 'hide-button');
+            /*classie.add(filterBtn, 'hide-button');*/
             // animate path
         }
         isOpen = !isOpen;
@@ -343,7 +317,7 @@ $(window).on('load scroll resize', check_if_in_view);
 
     function fixMenu() {
         classie.remove(bodyEl, 'show-menu');
-        classie.remove(filterBtn, 'hide-button');
+        /*classie.remove(filterBtn, 'hide-button');*/
     }
 
     init();
