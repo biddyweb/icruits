@@ -3,11 +3,22 @@
 
     angular.module('app').controller('BluprintDetailsCtrl', BluprintDetailsCtrl);
 
-    BluprintDetailsCtrl.$inject = ['$scope', '$rootScope', '$cookies', '$state', 'JobFeed', 'UserInfoRes'];
+    BluprintDetailsCtrl.$inject = ['$scope', '$rootScope', '$cookies', '$state', 'JobFeed', 'UserInfoRes', 'SalaryRangeRes'];
 
-    function BluprintDetailsCtrl ($scope, $rootScope, $cookies, $state, JobFeed, UserInfoRes) {
+    function BluprintDetailsCtrl ($scope, $rootScope, $cookies, $state, JobFeed, UserInfoRes, SalaryRangeRes) {
 
         $scope.blueprint = JobFeed;
+
+        $scope.salary = SalaryRangeRes.query();
+
+        $scope.test = []
+
+        angular.forEach($scope.salary, function(value, key){
+            console.log(value, ": ", key);
+            $scope.test.push(value);
+            // body...
+
+        });
 
         $scope.user = UserInfoRes.query();
 
@@ -19,11 +30,6 @@
             }, 100);
         }
         
-        $scope.activatedTab = 1;
-        $scope.setActivatedTab = function (setTab) {
-            $scope.activatedTab = setTab;
-        };
-
         $scope.JobFeed = JobFeed;
         $scope.$emit('metaTagsChanged', {
             title: JobFeed.title,
@@ -32,7 +38,7 @@
         $rootScope.image = '';
     }
 })();
-
+/*
 (function () {
     'use strict';
     
@@ -58,7 +64,7 @@
         };
     }
 })();
-
+*/
 (function () {
     "use strict";
 

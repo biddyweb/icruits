@@ -126,16 +126,6 @@ class BlueprintSerializer(serializers.ModelSerializer):
         #    'url': {'lookup_field': 'name_slug'}
         #}
 
-    def save(self,*args, **kwargs):
-            request = None
-            if kwargs.has_key('request'):
-                request = kwargs.pop('request')
-                print request.user.id
-            m = super(BlueprintSerializer, self).save(*args, **kwargs)
-            if request is not None:
-                m.related_user = request.user
-                m.save()
-
 
 class QuestionAnswerSerializer(serializers.ModelSerializer):
 

@@ -366,10 +366,6 @@ class Blueprint(models.Model):
         name_trim = ''.join(e for e in self.name if e.isalnum())
         company_trim = ''.join(e for e in self.company_name if e.isalnum())
         self.name_slug = str(name_trim).lower() + '-' + str(company_trim).lower() + '-' + str(blueprint_id)
-        request = None
-        if kwargs.has_key('request'):
-            request = kwargs.pop('request')
-            self.user= request.user
         super(Blueprint, self).save(force_insert, force_update, using, update_fields, **kwargs)
 
     class Meta:

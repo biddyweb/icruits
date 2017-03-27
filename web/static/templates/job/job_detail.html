@@ -18,10 +18,11 @@
                 <nav class="dashHeader text-center navbar navbar-default fixed top"><span>ICRUITS</span></nav>
                 <section id="dashboard" style="margin-top: 75px;">
                   <div class="containerDetails">
-                    <img class="img-responsive" src="{{ blueprint.work_enviorment }}">
                             <div class="details">
-                                <div class="details-description">
-                                  <div class="blueprint-name" data-ng-bind="blueprint.name"></div>
+                                <div>
+                                  <img class="details-img" src="{{ blueprint.work_enviorment }}">
+
+                                  <div class="blueprint-name" data-ng-bind="blueprint.name" style="display: inline;"></div>
                                 </div>
                                 <div class="details-description">
                                     <div data-ng-bind="blueprint.description"></div>
@@ -68,7 +69,7 @@
                                 <div class="practice-info">
                                     <span><strong>Salary Range :  </strong></span>
                                     <div class="square-info">
-                                        <span>10</span>
+                                        <span data-ng-bind="job_salary.sal_range"></span>
                                     </div>
                                 </div>
                                 <div class="practice-info">
