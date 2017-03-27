@@ -3,21 +3,19 @@
 
     angular.module('app').controller('BluprintDetailsCtrl', BluprintDetailsCtrl);
 
-    BluprintDetailsCtrl.$inject = ['$scope', '$rootScope', '$cookies', '$state', 'JobFeed', 'UserInfoRes', 'SalaryRangeRes'];
+    BluprintDetailsCtrl.$inject = ['$scope', '$rootScope', '$cookies', '$state', 'JobFeed', 'UserInfoRes', 'SalaryInfo'];
 
-    function BluprintDetailsCtrl ($scope, $rootScope, $cookies, $state, JobFeed, UserInfoRes, SalaryRangeRes) {
+    function BluprintDetailsCtrl ($scope, $rootScope, $cookies, $state, JobFeed, UserInfoRes, SalaryInfo) {
 
         $scope.blueprint = JobFeed;
 
-        $scope.salary = SalaryRangeRes.query();
-
-        $scope.test = []
+        $scope.salary = SalaryInfo;
 
         angular.forEach($scope.salary, function(value, key){
-            console.log(value, ": ", key);
-            $scope.test.push(value);
-            // body...
-
+            if(value.id == $scope.blueprint.related_salary){
+                $scope.job_salary = value;
+                // body...
+            }
         });
 
         $scope.user = UserInfoRes.query();

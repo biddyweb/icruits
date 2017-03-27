@@ -50,6 +50,10 @@
                     return JobFeedsRes.get({
                         name_slug: $stateParams.name_slug
                     }).$promise;
+                },
+                SalaryInfo: function (SalaryRangeRes) {
+                    // body...
+                    return SalaryRangeRes.query().$promise;
                 }
             }
         }).state('root.help', {

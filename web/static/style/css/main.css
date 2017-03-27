@@ -1933,6 +1933,11 @@ div .details {
     position: inherit;
 }
 
+.half-container {
+    width: 49.7%;
+    display: inline-table;
+}
+
 .details-logo {
     max-width: 200px;
     position: inherit;
@@ -1945,7 +1950,7 @@ div .details {
 .details-description {
     margin-top: 2em;
     margin-left: 2em;
-    width: 50%;
+    /* width: 50%; */
     /* text-align: center; */
     /* margin-right: auto; */
     max-height: 150px;
@@ -2104,7 +2109,7 @@ div .details {
 
 .details-img {
     display: inline;
-    max-width: 50%;
+    max-width: 100%;
     height: auto;
 }
 
