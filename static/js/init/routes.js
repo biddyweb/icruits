@@ -42,6 +42,18 @@
                 IndustryInfo: function (IndustryRes) {
                     // body...
                     return IndustryRes.query().$promise;
+                },
+                LocationInfo: function (LocationRes) {
+                    // body...
+                    return LocationRes.query().$promise;
+                },
+                SalaryInfo: function (SalaryRangeRes) {
+                    // body...
+                    return SalaryRangeRes.query().$promise;
+                },
+                ExperienceInfo: function (ExperienceLevelRes) {
+                    // body...
+                    return ExperienceLevelRes.query().$promise;
                 }
             }
         })
@@ -62,6 +74,32 @@
                 JobType: function (JobTypeRes) {
                     // body...
                     return JobTypeRes.query().$promise;
+                }
+            }
+        }).state('root.make_blueprint', {
+            url: '/make-blueprint/',
+            controller: 'MakeBlueprintCtrl',
+            templateUrl: '/static/templates/job/make_blueprint.html',
+            resolve: {
+                BluePrints: function (JobFeedsRes) {
+                    // body...
+                    return JobFeedsRes.query().$promise;
+                },
+                IndustryInfo: function (IndustryRes) {
+                    // body...
+                    return IndustryRes.query().$promise;
+                },
+                LocationInfo: function (LocationRes) {
+                    // body...
+                    return LocationRes.query().$promise;
+                },
+                SalaryInfo: function (SalaryRangeRes) {
+                    // body...
+                    return SalaryRangeRes.query().$promise;
+                },
+                ExperienceInfo: function (ExperienceLevelRes) {
+                    // body...
+                    return ExperienceLevelRes.query().$promise;
                 }
             }
         }).state('root.help', {

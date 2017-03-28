@@ -14,18 +14,47 @@
             <nav id="sidemenu" class="menu">
                 <div class="icon-list">
                     <h3>Filter</h3>
-                    <a type="button" class="btn" data-toggle="collapse" data-target="#industry">Industry Type</a>
-                    <div id="industry" class="collapse">
-                        {{blueprints[0].name}}
+                    <a type="button" class="menu-item" data-toggle="collapse" data-target="#industry">Industry Type</a>
+                    <div id="industry" class="collapse dropdown-fix">
+                        <div ng-repeat="ind in industry_info">
+                            <label>
+                                <input type="checkbox" class="faChkRnd" ng-click="FilterIndustry(ind.id)"/><span class="checkbox-label">{{ ind.type_industry }}</span></br/>
+                            </label>
+                        </div>
                     </div>
-                    <a type="button" class="btn" data-toggle="collapse" data-target="#location">Job Location</a>
-                    <div id="location" class="collapse">
-                        {{blueprints[0].name}}
+                    <a type="button" class="menu-item" data-toggle="collapse" data-target="#location">Job Location</a>
+                    <div id="location" class="collapse dropdown-fix">
+                        <div ng-repeat="loc in location_info">
+                            <label>
+                                <input type="checkbox" class="faChkRnd" ng-click="FilterLocation(loc.id)"/><span class="checkbox-label">{{ loc.location }}</span></br/>
+                            </label>
+                        </div>
+                    </div>
+                    <a type="button" class="menu-item" data-toggle="collapse" data-target="#Salary">Salary Range</a>
+                    <div id="Salary" class="collapse dropdown-fix">
+                        <div ng-repeat="sal in salary_info">
+                            <label>
+                                <input type="checkbox" class="faChkRnd" ng-click="FilterSalary(sal.id)"/><span class="checkbox-label">{{ sal.sal_range }}</span></br/>
+                            </label>
+                        </div>
+                    </div>
+                    <a type="button" class="menu-item" data-toggle="collapse" data-target="#Experience">Experience Level</a>
+                    <div id="Experience" class="collapse dropdown-fix">
+                        <div ng-repeat="exp in experience_info">
+                            <label>
+                                <input type="checkbox" class="faChkRnd" ng-click="FilterExperience(exp.id)"/><span class="checkbox-label">{{ exp.experience_level }}</span></br/>
+                            </label>
+                        </div>
                     </div>
                 </div>
             </nav>
         </div>
         <span id="open-button" class="menu-white"><span class="label" style="color: rgb(0,0,0);">FILTER</span> </span>
+        <a id="user-nav" class="userNav" onclick="openUserCont()"><i class="fa fa-user"></i></a>
+        <div id="userContent" class="userContainer" ng-controller='LogoutCtrl'>
+            <a id="btn-1" href="#" ng-show="!user.profile_type" class="userNavBtn">Blueprint</a>
+            <a id="btn-2" ng-click="logoutNow()" class="userNavBtn">Logout</a>
+        </div>
 
         <!--a id="filter-btn" onclick="openBigNav()">
             <span>
@@ -42,7 +71,7 @@
                 <section id="dashboard" style="margin-top: 75px;">
                     <div class="containerSub cf">
                         <div class="row">
-                            <div class="col-sm-3" data-ng-repeat="JobFeed in blueprints">
+                            <div class="col-sm-3" data-ng-repeat="JobFeed in blueprints | filter:industryFilter | filter:locationFilter | filter:salaryFilter | filter:experienceFilter">
                                 <div class="job-item text-center">
                                     <div class="hover-bg hover-bg-articles">
                                         <a data-ui-sref="root.blueprint({name_slug: JobFeed.name_slug})">

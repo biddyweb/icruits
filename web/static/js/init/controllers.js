@@ -13,6 +13,8 @@
 
         $scope.type = JobType;
 
+        $scope.sent_mail = false;
+
         angular.forEach($scope.type, function (value, key) {
             // body...
             if(value.id == $scope.blueprint.related_job_type){
@@ -36,6 +38,11 @@
                 $state.go('root.home', { reload: true });
             }, 100);
         }
+
+        $scope.SendMail = function () {
+            // body...
+            $scope.sent_mail = true;
+        }
         
         $scope.JobFeed = JobFeed;
         $scope.$emit('metaTagsChanged', {
@@ -45,33 +52,7 @@
         $rootScope.image = '';
     }
 })();
-/*
-(function () {
-    'use strict';
-    
-    angular.module('app').filter('durationFilter', durationFilter);
-    
-    durationFilter.$inject = [];
-    
-    function durationFilter() {
-        return function (clients, selectedDuration) {
-            if (!angular.isUndefined(clients) && !angular.isUndefined(selectedDuration) && selectedDuration.length > 0) {
-                var tempDuration = [];
-                angular.forEach(selectedDuration, function (id) {
-                    angular.forEach(clients, function (client) {
-                        if (angular.equals(client.company.id, id)) {
-                            tempDuration.push(client);
-                        }
-                    });
-                });
-                return tempDuration;
-            } else {
-                return clients;
-            }
-        };
-    }
-})();
-*/
+
 (function () {
     "use strict";
 
@@ -93,12 +74,12 @@
 
     angular.module('app').controller('HomeAbstractCtrl', HomeAbstractCtrl);
 
-    HomeAbstractCtrl.$inject = ['$scope', '$location'];
+    HomeAbstractCtrl.$inject = ['$scope', '$location', '$window'];
 
-    function HomeAbstractCtrl ($scope, $location) {
+    function HomeAbstractCtrl ($scope, $location, $window) {
         $scope.home = $location.path() == '/';
         $scope.$on('$stateChangeSuccess', function () {
-            $scope.home = $location.path() == '/';
+                $scope.home = $location.path() == '/';
         });
     }
 })();
@@ -109,16 +90,109 @@
     angular.module('app').controller('DashboardCtrl', DashboardCtrl);
 
     DashboardCtrl.$inject = ['$scope', '$rootScope', '$state', '$cookies', 'metaTags', 'BluePrints', 'UserInfoRes',
-    'IndustryInfo'];
+    'IndustryInfo', 'LocationInfo', 'SalaryInfo', 'ExperienceInfo'];
 
     function DashboardCtrl ($scope, $rootScope, $state, $cookies, metaTags, BluePrints, UserInfoRes,
-    IndustryInfo) {
+    IndustryInfo, LocationInfo, SalaryInfo, ExperienceInfo) {
         
         $scope.blueprints = BluePrints;
 
         $scope.user = UserInfoRes.query();
 
-        $scope.industry = IndustryInfo;
+        $scope.industry_info = IndustryInfo;
+
+        $scope.location_info = LocationInfo;
+
+        $scope.salary_info = SalaryInfo;
+
+        $scope.experience_info = ExperienceInfo;
+
+        $scope.industryIncludes = [];
+
+        $scope.locationIncludes = [];
+
+        $scope.salaryIncludes = [];
+
+        $scope.experienceIncludes = [];
+
+        $scope.FilterIndustry = function (filter) {
+            // body...
+            var i = $.inArray(filter, $scope.industryIncludes);
+            if(i > -1 ){
+                $scope.industryIncludes.splice(i, 1);
+            } else {
+                $scope.industryIncludes.push(filter);
+            }
+        }
+
+        $scope.industryFilter = function (blueprints) {
+            // body...
+            if($scope.industryIncludes.length > 0){
+                if ($.inArray(blueprints.related_industry, $scope.industryIncludes) < 0)
+                    return;
+            }
+            return blueprints;
+        }
+
+        $scope.FilterLocation = function (filter) {
+            // body...
+            var i = $.inArray(filter, $scope.locationIncludes);
+            if(i > -1 ){
+                $scope.locationIncludes.splice(i, 1);
+            } else {
+                $scope.locationIncludes.push(filter);
+            }
+        }
+
+        $scope.locationFilter = function (blueprints) {
+            // body...
+            if($scope.locationIncludes.length > 0){
+                if ($.inArray(blueprints.related_location, $scope.locationIncludes) < 0)
+                    return;
+            }
+            return blueprints;
+            console.log(blueprints);
+        }
+
+        $scope.FilterSalary = function (filter) {
+            // body...
+            var i = $.inArray(filter, $scope.salaryIncludes);
+            if(i > -1 ){
+                $scope.salaryIncludes.splice(i, 1);
+            } else {
+                $scope.salaryIncludes.push(filter);
+            }
+        }
+
+        $scope.salaryFilter = function (blueprints) {
+            // body...
+            if($scope.salaryIncludes.length > 0){
+                if ($.inArray(blueprints.related_salary, $scope.salaryIncludes) < 0)
+                    return;
+            }
+            return blueprints;
+            console.log(blueprints);
+        }
+
+        $scope.FilterExperience = function (filter) {
+            // body...
+            var i = $.inArray(filter, $scope.experienceIncludes);
+            if(i > -1 ){
+                $scope.experienceIncludes.splice(i, 1);
+            } else {
+                $scope.experienceIncludes.push(filter);
+            }
+        }
+
+        $scope.experienceFilter = function (blueprints) {
+            // body...
+            if($scope.experienceIncludes.length > 0){
+                if ($.inArray(blueprints.related_experience, $scope.experienceIncludes) < 0)
+                    return;
+            }
+            return blueprints;
+            console.log(blueprints);
+        }
 
         if ($cookies.get('token')) {
             var user_logged;
@@ -132,6 +206,7 @@
         $scope.$emit('metaTagsChanged', metaTags);
 
         $rootScope.image = '';
+
     }
 })();
 
@@ -175,9 +250,9 @@
 
     angular.module('app').controller('RegisterCtrl', RegisterCtrl);
 
-    RegisterCtrl.$inject = ['$scope', '$rootScope', '$state', 'AuthRes', 'metaTags'];
+    RegisterCtrl.$inject = ['$scope', '$rootScope', '$state', '$window', 'AuthRes', 'metaTags'];
 
-    function RegisterCtrl($scope, $rootScope, $state, AuthRes, metaTags) {
+    function RegisterCtrl($scope, $rootScope, $state, $window, AuthRes, metaTags) {
 
         $scope.$emit('metaTagsChanged', metaTags);
 
@@ -187,8 +262,10 @@
 
         $scope.registration = function () {
             AuthRes.save($scope.reg, function (resource) {
-                $scope.sent_activation = true;
                 $state.go('root.home', { reload: true });
+                setTimeout(function() {
+                    $window.location.reload();
+                }, 600);
             }, function (response) {
                 $scope.errors = response.data;
             });
@@ -265,12 +342,28 @@
 
             function logoutSuccess(response) {
                 $state.go('root.home');
-                $window.location.reload();
+                setTimeout(function() {
+                    $window.location.reload();
+                }, 600);
             }
 
             function logoutFail(response) {
                 return response
             }
         }
+    }
+})();
+
+(function () {
+    // body...
+    "use strict";
+
+    angular.module('app').controller('MakeBlueprintCtrl', MakeBlueprintCtrl);
+
+    MakeBlueprintCtrl.$inject = ['$scope', 'BluePrints', 'IndustryInfo', 'LocationInfo', 'SalaryInfo', 'ExperienceInfo'];
+
+    function MakeBlueprintCtrl($scope, BluePrints, IndustryInfo, LocationInfo, SalaryInfo, ExperienceInfo) {
+        // body...
+        
     }
 })();

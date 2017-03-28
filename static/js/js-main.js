@@ -49,6 +49,26 @@ function closeBigNav() {
     classie.removeClass( adv_btn_span_2, 'show-button');
 }
 
+function openUserCont() {
+    // body...
+    var userIcon = document.getElementById('user-nav'),
+        content = document.getElementById('userContent'),
+        btn = document.getElementById('btn-1'),
+        btn2 = document.getElementById('btn-2');
+
+    if(content.style.width === '280px') {
+        content.style.width = '0';
+        userIcon.style.color = 'rgb(0, 0, 0)';
+        btn.style.display = 'none';
+        btn2.style.display = 'none';
+    } else {
+        content.style.width = '280px';
+        userIcon.style.color = 'rgb(255, 255, 255)';
+        btn.style.display = 'inline';
+        btn2.style.display = 'inline';
+    }
+}
+
 function forms() {
 
     if(document.getElementById('RegisterForm')){
