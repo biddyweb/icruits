@@ -54,7 +54,7 @@
 		classie.addClass( this.questions[0], 'current' );
 		
 		// next question control
-		this.ctrlNext = this.el.querySelector( 'button.next' );
+		this.ctrlNext = this.el.querySelector( 'button.next-login' );
 
 		// progress bar
 		this.progress = this.el.querySelector( 'div.progress' );

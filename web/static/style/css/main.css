@@ -595,13 +595,16 @@ div .userContainer {
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
+    z-index: 202020202;
 }
 
 #main {
     transition: margin-left .5s;
     padding: 16px;
 }
-
+/***********************************************************************
+                          BLUEPRINTS OFFCANVAS
+***********************************************************************/
 .overlay-offcanvas {
     height: 0;
     width: 100%;
@@ -629,6 +632,7 @@ div .userContainer {
     right: 20px;
     font-size: 1.5em;
     color: rgb(255,255,255);
+    z-index: 20;
 }
 
 .label-close {
@@ -1149,7 +1153,7 @@ LOGIN FORM
 }
 
 /* Next question button */
-.next {
+.next-login {
     position: absolute;
     right: 2.1em;
     top: 4.905em;
@@ -1175,7 +1179,7 @@ LOGIN FORM
     transition: all 0.5s ease;
 }
 
-.next:hover {
+.next-login:hover {
     color: #ccc;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -1184,7 +1188,7 @@ LOGIN FORM
     transition: all 0.5s ease;
 }
 
-.next::after {
+.next-login::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -1201,7 +1205,7 @@ LOGIN FORM
   -moz-osx-font-smoothing: grayscale;
 }
 
-.next.show {
+.next-login.show {
   opacity: 1;
   -webkit-transform: translateX(0);
   transform: translateX(0);
@@ -1359,6 +1363,7 @@ LOGIN FORM
     text-transform: uppercase;
     bottom: 1em;
     position: relative;
+    background-color: rgb(255, 255, 255);
 }
 
 input[type=radio] {
@@ -1493,6 +1498,8 @@ input, textarea, select, button, meter, progress {
 .containerSub {
     position: relative;
     width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .containerSub:last-of-type {
@@ -1719,7 +1726,9 @@ body,
 }
 
 .icon-list {
-  width: 280px;
+    width: 280px;
+    max-height: calc(100% - 10%);
+    overflow-y: auto;
 }
 
 /* Morph Shape */
@@ -1999,21 +2008,34 @@ body,
                 DETAILS PAGE
 ************************************************/
 div .containerDetails {
-    width: 80%;
-    margin-left: 10%;
-    /*background-color: rgb(255, 255, 255);*/
+    /* width: 80%; */
+    /* margin-left: 10%; */
+    background-color: rgb(255, 255, 255);
     font-size: small;
-    display: inline-flex;
+    /* display: inline-flex; */
+    height: 100%;
+    /* position: fixed; */
 }
 
-.half-container {
-    width: 100%;
+.half-container-left {
+    width: 60%;
+    position: absolute;
+    left: 10%;
+    top: 25%;
+    padding-right: 10%;
+}
+.half-container-right {
+    width: 35%;
+    position: fixed;
+    /* display: inline; */
+    left: 70%;
+    top: 20%;
 }
 
 .details-description {
     margin-top: 2em;
-    margin-left: 2em;
-    /* width: 50%; */
+    /* margin-left: 2em; */
+    width: 85%;
     /* text-align: center; */
     /* margin-right: auto; */
     max-height: 150px;
@@ -2025,18 +2047,20 @@ div .containerDetails {
 .blueprint-name {
     font-family: Roboto Condensed;
     font-size: 2em;
-    text-transform: capitalize;
+    text-transform: uppercase;
+    color: rgb(0, 0, 0);
     /* font-weight: normal; */
-    color: #1b93d1;
+    /* color: #1b93d1; */
     letter-spacing: 2px;
     margin-top: 1em;
 }
 
 .practice-info {
-    margin-left: 2em;
+    /* margin-left: 2em; */
     /* max-width: 400px; */
     /* text-align: center; */
     /* margin-right: auto; */
+    text-transform: uppercase;
     font-family: Roboto Condensed;
     font-size: 1.0em;
     /* padding-left: 19em; */
@@ -2046,28 +2070,25 @@ div .containerDetails {
     margin-top: -1.4em;
     /* width: 30px;*/
     height: 30px;
-    margin-left: 150px;
+    margin-left: 180px;/* 150px; */
     display: block;
     /* margin-right: auto; */
     /* padding-right: 0px; */
 }
 #blueprint-btn {
     background: #1b93d1;
-    /*border-top: 1px solid #FFF;
-    border-left: 1px solid #FFF;*/
-    width: 50%;
+    border-top: 1px solid #FFF;
+    border-left: 1px solid #FFF;
+    width: 180px;
     height: 50px;
     text-decoration: none;
     letter-spacing: .25rem;
-    position: relative;
-    left: 48%;
-    /* margin-left: auto; */
-    /* margin-right: 0px; */
-    /* bottom: -50%; */
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
     text-align: center;
     cursor: pointer;
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
-    display: inline-block;
 }
 #blueprint-btn:hover {
     background-color: rgb(0,0,0);
@@ -2081,7 +2102,7 @@ div .containerDetails {
     width: 100%; 
     height: 100%;
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
-    top: 2.150em;
+    top: 2.5em;
     color: rgb(0, 0, 0);
     text-transform: uppercase;
     font-family: Roboto Condensed;
@@ -2094,53 +2115,67 @@ div .containerDetails {
     color: rgb(255,255,255);
 }
 #blueprint-btn:not(.disabled):not([disabled]):not(.active):hover>span {
-    top: -1.150em;
+    top: -1.5em;
     visibility: hidden;
     opacity: 0;
 }
 #blueprint-btn:not(.disabled):not([disabled]):not(.active):hover>span.hover { 
-    top: 2.150em;
+    top: 2.5em;
     visibility: visible;
     opacity: 1;
     letter-spacing: .35rem;
 }
 
 #back-btn {
+    background: rgb(240,240,240);
+    border-top: 1px solid #FFF;
+    border-right: 1px solid #FFF;
+    width: 50px;
+    height: 50px;
+    text-decoration: none;
+    letter-spacing: .25rem;
     position: fixed;
-    top: 75px;
-    right: 12%;
-    font-size: 36px;
-    margin-left: 50px;
+    left: 0px;
+    bottom: 0px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .35s cubic-bezier(.455,.03,.515,.955);
+}
+#back-btn:hover {
+    background-color: rgb(255,255,255);
+    letter-spacing:.25rem
     color: rgb(0,0,0);
 }
-.label-back {
-    top: 93px;
-    right: 14.5%;
+#back-btn span { 
+    pointer-events: none;
     display: block;
-    position: fixed;
-    font-weight: 600;
-    font-size: 0.9em;
-    font-family: Roboto Condensed;
-    /* text-shadow: 1px 1px grey; */
+    position: absolute;
+    width: 100%; 
+    height: 100%;
+    transition: all .35s cubic-bezier(.455,.03,.515,.955);
+    color: rgb(0, 0, 0);
     text-transform: uppercase;
-    letter-spacing: .1875rem;
-    text-indent: 0;
-    text-rendering: auto;
-    -webkit-font-smoothing: initial;
-    /* height: 52px; */
-    /* line-height: 52px; */
-    /* padding: 0; */
-    margin: 0;
-    background: rgba(0,0,0,0);
-    opacity: 0;
-    visibility: hidden;
-    color: #1D1D1F;
-    transition: all 250ms cubic-bezier(.25,.46,.45,.94);
+    font-family: Roboto Condensed;
+    font-size: 1.4em;
+    top: 0.6em;
 }
-
-#back-btn:hover + .label-back {
-    opacity: 1;
+#back-btn span.hover {
+    top: 100%;
+    visibility: hidden;
+    opacity: 0;
+    color: rgb(0,0,0);
+}
+#back-btn:not(.disabled):not([disabled]):not(.active):hover>span {
+    visibility: hidden;
+    opacity: 0;
+    top: -0.5em;
+}
+#back-btn:not(.disabled):not([disabled]):not(.active):hover>span.hover { 
+    top: 0.6em;
     visibility: visible;
+    opacity: 1;
+    letter-spacing: .35rem;
+    font-size: 1.4em;
 }
 
 .details-img {
@@ -2162,56 +2197,15 @@ div .containerDetails {
     padding-left: 18.4em;
 }
 
-#dashBoardBack-btn {
-    background: #1b93d1;
-    width: 15%;
-    height: 50px;
-    text-decoration: none;
-    letter-spacing: .25rem;
+.sentEmail {
     position: absolute;
-    left: 42%;
-    /* right: auto; */
+    left: 0;
+    right: 0;
     margin-left: auto;
     margin-right: auto;
-    /* bottom: -50%; */
-    text-align: center;
-    cursor: pointer;
-    transition: all .35s cubic-bezier(.455,.03,.515,.955);
-    /* display: inline-block; */
-}
-
-#dashBoardBack-btn:hover {
-    background-color: rgb(0,0,0);
-    letter-spacing:.25rem
-    color: rgb(255,255,255);
-}
-#dashBoardBack-btn span { 
-    pointer-events: none;
-    display: block;
-    position: absolute;
-    width: 100%; 
-    height: 100%;
-    transition: all .35s cubic-bezier(.455,.03,.515,.955);
-    top: 2.150em;
-    color: rgb(0, 0, 0);
-    text-transform: uppercase;
     font-family: Roboto Condensed;
-    font-size: 0.66em;
-}
-#dashBoardBack-btn span.hover {
-    top: 100%;
-    visibility: hidden;
-    opacity: 0;
-    color: rgb(255,255,255);
-}
-#dashBoardBack-btn:not(.disabled):not([disabled]):not(.active):hover>span {
-    top: -1.150em;
-    visibility: hidden;
-    opacity: 0;
-}
-#dashBoardBack-btn:not(.disabled):not([disabled]):not(.active):hover>span.hover { 
-    top: 2.150em;
-    visibility: visible;
-    opacity: 1;
-    letter-spacing: .35rem;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    width: 480px;
+    top: 50%;
 }

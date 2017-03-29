@@ -12,6 +12,7 @@ from web.models import (
     Queue,
     BlueprintTasks,
     Location,
+    Visa,
 )
 from web.serializers import (
     BlueprintSerializer,
@@ -27,6 +28,7 @@ from web.serializers import (
     ExperienceLevelSerializer,
     BlueprintTasksSerializer,
     LocationSerializer,
+    VisaSerializer,
 )
 from rest_framework import (
     viewsets,
@@ -307,6 +309,17 @@ class BlueprintTasksViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset = BlueprintTasks.objects.all()
     serializer_class = BlueprintTasksSerializer
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+
+
+class VisaStatusViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    Visa Status viewset endpoint
+    """
+    queryset = Visa.objects.all()
+    serializer_class = VisaSerializer
     permission_classes = [
         permissions.IsAuthenticated,
     ]

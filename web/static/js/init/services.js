@@ -456,3 +456,26 @@
         });
     }
 })();
+
+(function () {
+    'use strict';
+
+    angular.module('app').factory('VisaStatusRes', VisaStatusRes);
+
+    VisaStatusRes.$inject = ['$resource'];
+
+    function VisaStatusRes($resource) {
+        return $resource('/api/visa-status/', {}, {
+            'query': {
+                method: 'GET',
+                isArray: true,
+                cache: true
+            },
+            'get': {
+                method: 'GET',
+                isArray: false,
+                cache: true
+            }
+        });
+    }
+})();

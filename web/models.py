@@ -25,6 +25,19 @@ number_validator = RegexValidator(r'^[0-9+]*$', 'Must be numbers only')
 # Create your models here.
 #
 # This part is serving as choices for our model
+VISA_STATUS = (('H1B Visa', 'H1B Visa'),
+               ('Work Visa', 'Work Visa'))
+
+class Visa(models.Model):
+    visa = models.CharField(choices=VISA_STATUS, max_length=255)
+
+    def __unicode__(self):
+        return self.visa
+
+    class Meta:
+        verbose_name = 'Visa Statu'
+
+
 LOCATION = (('USA', 'USA'),
             ('Canada', 'Canada'),
             ('Mexico', 'Mexico'),
@@ -42,8 +55,7 @@ class Location(models.Model):
         verbose_name = "Location"
 
 
-EXPERIENCE_LEVEL = (('Any', 'Any'),
-                    ('Fresher', 'Fresher'),
+EXPERIENCE_LEVEL = (('Fresher', 'Fresher'),
                     ('Intern', 'Intern'),
                     ('Experienced', 'Experienced'),
                     ('Trainee', 'Trainee'))
@@ -65,6 +77,12 @@ PROFILE_TYPE = (('JobSeeker', 'JobSeeker'),
 
 class ProfileType(models.Model):
     account_type = models.CharField(choices=PROFILE_TYPE, max_length=122)
+
+    def __unicode__(self):
+        return self.account_type
+
+    class Meta:
+        verbose_name = 'Profile Type'
 
 
 COMPANY_TYPE = (('StartUp', 'StartUp'),
@@ -98,8 +116,8 @@ class SalaryRange(models.Model):
         verbose_name = "Salary Range"
 
 
-WAIT_TIME = (('Any', 'Any'),
-             ('Within 7 Days', 'Within 7 Days'),
+WAIT_TIME = (('Within 7 Days', 'Within 7 Days'),
+             ('Within 15 Days', 'Within 15 Days'),
              ('Within Month', 'Within Month'))
 
 
@@ -113,7 +131,7 @@ class WaitInterval(models.Model):
         verbose_name = "Wait Interval"
 
 
-ON_JOB_SUCCESS = (('Any', 'Any'),
+ON_JOB_SUCCESS = (('Direct Hiring', 'Direct Hiring'),
                   ('Contract', 'Contract'))
 
 
@@ -332,7 +350,6 @@ class Blueprint(models.Model):
     url = models.CharField(_('Blueprint Url'), blank=True, max_length=255)
     function = models.CharField(_('Job Function'), max_length=255)
     professional_qualifications = models.CharField(_('Professional Qualifications'), max_length=255)
-    legal_status = models.CharField(_('Legal Status'), max_length=255)
     team_id = models.CharField(_('Team ID'), max_length=255)
     practice_limit = models.IntegerField(default=0)
     created_at = models.DateTimeField(_('Created At'), auto_now_add=True)
@@ -353,6 +370,7 @@ class Blueprint(models.Model):
     related_experience = models.ForeignKey(ExperienceLevel, related_name="experience")
     related_user = models.ForeignKey(user, related_name="blueprint_user", null=True, blank=True)
     related_tasks = models.ForeignKey(BlueprintTasks, related_name="blueprint_tasks", null=True, blank=True)
+    related_visa_status = models.ForeignKey(Visa, related_name="visa_status")
 
     def __unicode__(self):
         return self.name

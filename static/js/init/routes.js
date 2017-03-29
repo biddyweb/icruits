@@ -54,6 +54,42 @@
                 ExperienceInfo: function (ExperienceLevelRes) {
                     // body...
                     return ExperienceLevelRes.query().$promise;
+                },
+                LocationInfo: function (LocationRes) {
+                    // body...
+                    return LocationRes.query().$promise;
+                },
+                CompanyTypeInfo: function (CompanyTypeRes) {
+                    // body...
+                    return CompanyTypeRes.query().$promise;
+                },
+                WaitIntervalInfo: function (WaitIntervalRes) {
+                    // body...
+                    return WaitIntervalRes.query().$promise;
+                },
+                OnJobSuccessInfo: function (OnJobSuccessRes) {
+                    // body...
+                    return OnJobSuccessRes.query().$promise;
+                },
+                JobTypeInfo: function (JobTypeRes) {
+                    // body...
+                    return JobTypeRes.query().$promise;
+                },
+                JobDurationInfo: function (JobDurationRes) {
+                    // body...
+                    return JobDurationRes.query().$promise;
+                },
+                ExperienceLevelInfo: function (ExperienceLevelRes) {
+                    // body...
+                    return ExperienceLevelRes.query().$promise;
+                },
+                BlueprintTasksInfo: function (BlueprintTasksRes) {
+                    // body...
+                    return BlueprintTasksRes.query().$promise;
+                },
+                VisaStatusInfo: function (VisaStatusRes) {
+                    // body...
+                    return VisaStatusRes.query().$promise;
                 }
             }
         })
@@ -74,32 +110,10 @@
                 JobType: function (JobTypeRes) {
                     // body...
                     return JobTypeRes.query().$promise;
-                }
-            }
-        }).state('root.make_blueprint', {
-            url: '/make-blueprint/',
-            controller: 'MakeBlueprintCtrl',
-            templateUrl: '/static/templates/job/make_blueprint.html',
-            resolve: {
-                BluePrints: function (JobFeedsRes) {
-                    // body...
-                    return JobFeedsRes.query().$promise;
                 },
-                IndustryInfo: function (IndustryRes) {
+                VisaStatusInfo: function (VisaStatusRes) {
                     // body...
-                    return IndustryRes.query().$promise;
-                },
-                LocationInfo: function (LocationRes) {
-                    // body...
-                    return LocationRes.query().$promise;
-                },
-                SalaryInfo: function (SalaryRangeRes) {
-                    // body...
-                    return SalaryRangeRes.query().$promise;
-                },
-                ExperienceInfo: function (ExperienceLevelRes) {
-                    // body...
-                    return ExperienceLevelRes.query().$promise;
+                    return VisaStatusRes.query().$promise;
                 }
             }
         }).state('root.help', {

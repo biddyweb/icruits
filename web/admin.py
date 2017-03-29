@@ -16,10 +16,15 @@ from web.models import (
     BlueprintTasks,
     ProfileType,
     Location,
+    Visa,
 )
 
 
 # Register your models here.
+class VisaAdmin(admin.ModelAdmin):
+    pass
+
+
 class IndustryAdmin(admin.ModelAdmin):
 	pass
 
@@ -98,3 +103,4 @@ admin.site.register(BlueprintTasks, BlueprintTasksAdmin)
 admin.site.register(Blueprint, BlueprintAdmin)
 admin.site.register(ProfileType, ProfileTypeAdmin)
 admin.site.register(Location, LocationAdmin)
+admin.site.register(Visa, VisaAdmin)

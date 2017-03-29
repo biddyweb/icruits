@@ -13,10 +13,18 @@ from web.models import (
     Queue,
     BlueprintTasks,
     Location,
+    Visa,
 )
 from rest_framework import serializers
 from libs.djoser.serializers import UserSerializer
 from libs.image_thumbnailer import get_responsive_image_url
+
+
+class VisaSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Visa
+        fields = '__all__'
 
 
 class LocationSerializer(serializers.ModelSerializer):
@@ -118,6 +126,7 @@ class BlueprintSerializer(serializers.ModelSerializer):
     blueprint_tasks = BlueprintTasksSerializer(many=False, read_only=True)
     job_location = LocationSerializer(many=False, read_only=True)
     work_enviorment = CustomImageField()
+    visa_status = VisaSerializer(many=False, read_only=True)
 
     class Meta:
         model = Blueprint

@@ -1,99 +1,88 @@
-<!--a class="btn-white btn-white-slide text-center top-right-btn" onclick="openBigNav()">
-    <svg>
-        <rect x="0" y="0" fill="none" width="100%" height="100%"/>
-    </svg>
-    Filter
-</a-->
-<!--span id="open-button" class="menu-white" onclick="openNav()"><span class="label" style="color: rgb(255,255,255);">MENU</span> </span-->
-                    <!--a data-ui-sref="root.dashboard" class="menu-item-dashboard">Dashboard</a>
-                    <a data-ui-sref="root.help" class="menu-item-help">Help</a>
-                    <a href="#" ng-show="!user.profile_type" class="menu-item-blueprint">Blueprint</a>
-                    <a href="" ng-click="logoutNow()" class="menu-item-logout">Logout</a-->
-    <div class="container-wrap">
-        <div class="menu-wrap">
-            <nav id="sidemenu" class="menu">
-                <div class="icon-list">
-                    <h3>Filter</h3>
-                    <a type="button" class="menu-item" data-toggle="collapse" data-target="#industry">Industry Type</a>
-                    <div id="industry" class="collapse dropdown-fix">
-                        <div ng-repeat="ind in industry_info">
-                            <label>
-                                <input type="checkbox" class="faChkRnd" ng-click="FilterIndustry(ind.id)"/><span class="checkbox-label">{{ ind.type_industry }}</span></br/>
-                            </label>
-                        </div>
-                    </div>
-                    <a type="button" class="menu-item" data-toggle="collapse" data-target="#location">Job Location</a>
-                    <div id="location" class="collapse dropdown-fix">
-                        <div ng-repeat="loc in location_info">
-                            <label>
-                                <input type="checkbox" class="faChkRnd" ng-click="FilterLocation(loc.id)"/><span class="checkbox-label">{{ loc.location }}</span></br/>
-                            </label>
-                        </div>
-                    </div>
-                    <a type="button" class="menu-item" data-toggle="collapse" data-target="#Salary">Salary Range</a>
-                    <div id="Salary" class="collapse dropdown-fix">
-                        <div ng-repeat="sal in salary_info">
-                            <label>
-                                <input type="checkbox" class="faChkRnd" ng-click="FilterSalary(sal.id)"/><span class="checkbox-label">{{ sal.sal_range }}</span></br/>
-                            </label>
-                        </div>
-                    </div>
-                    <a type="button" class="menu-item" data-toggle="collapse" data-target="#Experience">Experience Level</a>
-                    <div id="Experience" class="collapse dropdown-fix">
-                        <div ng-repeat="exp in experience_info">
-                            <label>
-                                <input type="checkbox" class="faChkRnd" ng-click="FilterExperience(exp.id)"/><span class="checkbox-label">{{ exp.experience_level }}</span></br/>
-                            </label>
-                        </div>
+
+<div class="container-wrap">
+    <div class="menu-wrap">
+        <nav id="sidemenu" class="menu">
+            <div class="icon-list">
+                <h3>Filter</h3>
+                <a type="button" class="menu-item" data-toggle="collapse" data-target="#industry">Industry Type</a>
+                <div id="industry" class="collapse dropdown-fix">
+                    <div ng-repeat="ind in industry_info">
+                        <label>
+                            <input type="checkbox" class="faChkRnd" ng-click="FilterIndustry(ind.id)"/><span class="checkbox-label">{{ ind.type_industry }}</span></br/>
+                        </label>
                     </div>
                 </div>
-            </nav>
-        </div>
-        <span id="open-button" class="menu-white"><span class="label" style="color: rgb(0,0,0);">FILTER</span> </span>
-        <a id="user-nav" class="userNav" onclick="openUserCont()"><i class="fa fa-user"></i></a>
-        <div id="userContent" class="userContainer" ng-controller='LogoutCtrl'>
-            <a id="btn-1" href="#" ng-show="!user.profile_type" class="userNavBtn">Blueprint</a>
-            <a id="btn-2" ng-click="logoutNow()" class="userNavBtn">Logout</a>
-        </div>
+                <a type="button" class="menu-item" data-toggle="collapse" data-target="#location">Job Location</a>
+                <div id="location" class="collapse dropdown-fix">
+                    <div ng-repeat="loc in location_info">
+                        <label>
+                            <input type="checkbox" class="faChkRnd" ng-click="FilterLocation(loc.id)"/><span class="checkbox-label">{{ loc.location }}</span></br/>
+                        </label>
+                    </div>
+                </div>
+                <a type="button" class="menu-item" data-toggle="collapse" data-target="#Salary">Salary Range</a>
+                <div id="Salary" class="collapse dropdown-fix">
+                    <div ng-repeat="sal in salary_info">
+                        <label>
+                            <input type="checkbox" class="faChkRnd" ng-click="FilterSalary(sal.id)"/><span class="checkbox-label">{{ sal.sal_range }}</span></br/>
+                        </label>
+                    </div>
+                </div>
+                <a type="button" class="menu-item" data-toggle="collapse" data-target="#Experience">Experience Level</a>
+                <div id="Experience" class="collapse dropdown-fix">
+                    <div ng-repeat="exp in experience_info">
+                        <label>
+                            <input type="checkbox" class="faChkRnd" ng-click="FilterExperience(exp.id)"/><span class="checkbox-label">{{ exp.experience_level }}</span></br/>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <span id="open-button" class="menu-white"><span class="label" style="color: rgb(0,0,0);">FILTER</span> </span>
+    <a id="user-nav" class="userNav" onclick="openUserCont()"><i class="fa fa-user"></i></a>
+    <div id="userContent" class="userContainer" ng-controller='LogoutCtrl'>
+        <a id="btn-2" ng-click="logoutNow()" class="userNavBtn">Logout</a>
+    </div>
 
-        <!--a id="filter-btn" onclick="openBigNav()">
-            <span>
-                Filter
-            </span>
-            <span class="hover">
-                Filter
-            </span>
-        </a-->
-
-        <div class="content-wrap">
-            <div class="content">
-                <nav class="dashHeader text-center navbar navbar-default fixed top"><span>ICRUITS</span></nav>
-                <section id="dashboard" style="margin-top: 75px;">
-                    <div class="containerSub cf">
-                        <div class="row">
-                            <div class="col-sm-3" data-ng-repeat="JobFeed in blueprints | filter:industryFilter | filter:locationFilter | filter:salaryFilter | filter:experienceFilter">
-                                <div class="job-item text-center">
-                                    <div class="hover-bg hover-bg-articles">
-                                        <a data-ui-sref="root.blueprint({name_slug: JobFeed.name_slug})">
+    <div class="content-wrap">
+        <div class="content">
+            <nav class="dashHeader text-center navbar navbar-default fixed top"><span>ICRUITS</span></nav>
+            <section id="dashboard" style="margin-top: 75px;">
+                <div class="containerSub cf">
+                    <div class="row">
+                        <div class="col-sm-3" 
+                             data-ng-repeat="JobFeed in blueprints | filter:industryFilter | filter:locationFilter | filter:salaryFilter | filter:experienceFilter">
+                            <div class="job-item text-center">
+                                <div class="hover-bg hover-bg-articles">
+                                    <a data-ui-sref="root.blueprint({name_slug: JobFeed.name_slug})">
                                                         <!--img class="img-responsive"
                                                                 data-ng-src="{{ JobFeed.image }}" alt=""-->
-                                            <div class="hover-text">
-                                                <span class="lead" data-ng-bind="JobFeed.max_queue"></span>
-                                            </div>
-                                            <img class="img-circle img-thumbnail" src="">
-                                        </a>
-                                    </div>
-                                    <span class="nohover center-block" data-ng-bind="JobFeed.name"></span>
-                                    <span class="nohover center-block" data-ng-bind="user.related_profile_type"></span>
-                                    <span class="hover company center-block" data-ng-bind="JobFeed.company_name"></span>
+                                        <div class="hover-text">
+                                            <span class="lead" data-ng-bind="JobFeed.max_queue"></span>
+                                        </div>
+                                        <img class="img-circle img-thumbnail" src="">
+                                        <span class="nohover center-block" data-ng-bind="JobFeed.name"></span>
+                                        <span class="nohover center-block" data-ng-bind="user.related_profile_type"></span>
+                                        <span class="hover company center-block" data-ng-bind="JobFeed.company_name"></span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
-            </div>
+                </div>
+                <a id="filter-btn" onclick="openBigNav()" ng-show="!user.profile_type">
+                    <span>
+                        Blueprint
+                    </span>
+                    <span class="hover">
+                        Blueprint
+                    </span>
+                </a>
+            </section>
         </div>
     </div>
+</div>
 
 <!-- FULLSCREEN NAV -->
 <div id="myNav" class="overlay-offcanvas">
@@ -115,177 +104,241 @@
             Advanced
         </span>
     </a>
-    <div class="form-group center-block">
-        <ul class="inline center-block inline-fix" style="top: 10%;">
-            <div class="filter-box-alignment">
-                <label class="control-label filter-label text-center">Industry</label>
-                <select ng-options="Iindustry.type_industry as Iindustry.type_industry for Iindustry in industry"
-                        ng-model="blueprints.industry"
-                        class="selectpicker form-control"
-                        multiple data-actions-box="true">
-                </select>
+    <div class="col-md-12 col-sm-12" id="div1">
+        <form method="post" action="" id="formSubmit">
+            <div id="rootwizard">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="container">
+                            <ul style="visibility: hidden;">
+                                <li><a href="#tab1" data-toggle="tab">First</a></li>
+                                <li><a href="#tab2" data-toggle="tab">Second</a></li>
+                                <li><a href="#tab3" data-toggle="tab">Third</a></li>
+                                <li><a href="#tab4" data-toggle="tab">Forth</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="bar" class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;background:darkgrey;"></div>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane" id="tab1">
+                        <center>
+                            Blueprint Name
+                            <input type="text" class="form-control" name="name" placeholder=" Job Blueprint name" style="display:inline;width:50%;margin:4%;"  required />
+                        </center>
+                    </div>
+                <div class="tab-pane" id="tab2">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td class="new"> Industry </td>
+                                <td>
+                                    <select class="form-control" name="job_industry">
+                                        <option value="any"> Any</option>
+                                        <option value="softwares" > Softwares</option>
+                                        <option value="accounting" > Accounting</option>
+                                        <option value="helth" > Health & care</option>
+                                    </select>
+                                </td>
+                                <td class="new"> Employer Size </td>
+                                <td>
+                                    <select class="form-control" name="employer_size">
+                                        <option value="any"> Any</option>
+                                        <option value="startup" > Startup</option>
+                                        <option value="national" > National</option>
+                                        <option value="mnc" > MNCs</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="new"> Job Function </td>
+                                <td>
+                                    <select class="form-control"  name="job_function">
+                                        <option value="any" > Any</option>
+                                        <option value="accounting" > Accounting</option>
+                                        <option value="management" > Management</option>
+                                        <option value="others" > Others</option>
+                                    </select>
+                                </td>
+                                <td class="new"> Experience </td>
+                                <td>
+                                    <select class="form-control"  name="experience_level">
+                                        <option value="any"> Any</option>
+                                        <option value="fresher" > Fresher</option>
+                                        <option value="intern" > Intern</option>
+                                        <option value="expereinced" > Expereinced</option>
+                                        <option value="trainee" > Trainee</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="new"> Location </td>
+                                <td>
+                                    <input class="form-control"  type="text"name="job_locaton"  placeholder="Any" id="address" >
+                                    <input type="hidden" id="lat"  name="lat">
+                                    <input type="hidden" id="lon"  name="lon">
+                                </td>
+                                <td class="new"> Job Type </td>
+                                <td>
+                                    <select class="form-control" name="job_type">
+                                        <option value="any"> Any</option>
+                                        <option value="part-time" > Part-Time</option>
+                                        <option value="full-time" > Full-Time</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="new"> Wait Interval </td>
+                                <td>
+                                    <select class="form-control" name="wait_interval">
+                                        <option value="any"> Any</option>
+                                        <option value="within_7_days" > Within 7 days</option>
+                                        <option value="within_15_days" > Within 15 days</option>
+                                        <option value="1_Month" > 1 Month</option>
+                                    </select>
+                                </td>
+                                <td class="new"> On Success </td>
+                                <td>
+                                    <select class="form-control" name="on_success">
+                                        <option value="any"> Any</option>
+                                        <option value="contract" > Contract</option>
+                                        <option value="direct-hiring" > Direct-Hiring</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="tab3">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td class="new"> Job Code </td>
+                                <td>
+                                    <select class="form-control" name="job_code">
+                                        <option value="any"> Any</option>
+                                        <option value="support_l-1" > Support L-1</option>
+                                        <option value="support_l-2" > Support L-2</option>
+                                        <option value="support_l-3" > Support L-3</option>
+                                    </select>
+                                </td>
+                                <td class="new"> Team ID </td>
+                                <td>
+                                    <select class="form-control" name="team_id">
+                                        <option value="any"> Any</option>
+                                        <option value="g4-10"> G4-10</option>
+                                        <option value="g5-12" > G5-12</option>
+                                        <option value="g5-8" > G5-8</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="new">Salary Range : </td>
+                                <td>
+                                    <select class="form-control" name="salary_range">
+                                        <option value="any"> Any</option>
+                                        <option value="$10K-$50K" >$10K-$50K</option>
+                                        <option value="$50K-$100K" >$50K-$100K</option>
+                                        <option value="$100K-$200K" >$100K-$200K</option>
+                                        <option value="$200K-$500K" >$200K-$500K</option>
+                                    </select>
+                                </td>
+                                <td class="new">Practice Limit : </td>
+                                <td>
+                                    <input type="text" class="form-control" name="practice_limit" style="margin:2% 0%;" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="new">Description : </td>
+                                <td>
+                                    <input type="textarea" class="form-control" name="description" style="margin:2% 0%;" />
+                                </td>
+                                <td class="new"> Legal Status </td>
+                                <td>
+                                    <input type="text" class="form-control" name="legal_status" style="margin:2% 0%;"  />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="new"> Professional Qualification </td>
+                                <td>
+                                    <input type="text" class="form-control" name="professional_qualification" style="margin:2% 0%;" >
+                                </td>
+                                <td class="new">Download Url : </td>
+                                <td>
+                                    <input type="text" class="form-control" name="blueprint_url" style="margin:2% 0%;" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="tab4">
+                    <table class="table">
+                        <tbody>
+                            <center>
+                                <div class="col-md-6 col-sm-6"> Tasks</br>
+                                    <select class="form-control" style="width:50%;" id="selectTask">
+                                        <option value="1">Closing the sales for a client</option>
+                                        <option value="2">Making a cold call to the client</option>
+                                        <option value="3">Addressing a customer with bad product experience</option>
+                                        <option value="4">Escalating the issue to the manager</option>
+                                        <option value="5">Explaining the product</option>
+                                        <option value="6">Handling the branding question</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 col-sm-6"> Expert Ref</br>
+                                    <input type="email" class="form-control"  style="width:50%;margin:2% 0%;" id="expId"/>
+                                    <span class="btn btn-info" style="font-size:20px;margin-left:3%;" id="addNewRow">
+                                        <b class="fa fa-plus-circle"></b>
+                                    </span>
+                                </div>
+                                <table class="table" id="hiddenTable">
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </center>
+                        </tbody>
+                    </table>
+                </div>
+                <ul class="pager wizard">
+                    <li class="previous first" >
+                        <a href="javascript:;" id="bform">First</a>
+                    </li>
+                    <li class="previous" >
+                        <a href="javascript:;" id="bform" >Previous</a>
+                    </li>
+                    <li class="next last">
+                        <a href="javascript:;" id="bform" >Last</a>
+                    </li>
+                    <li class="next">
+                        <a href="javascript:;" id="bform">Next</a>
+                    </li>
+                    <li class="finish">
+                        <a href="javascript:;" id="bform" onclick="savedata();"  style="margin-left:66%;">Finish</a>
+                    </li>
+                </ul>
+                <input type="submit" name="btnsubmit" style="visibility:hidden">
             </div>
-            <div class="filter-box-alignment">
-                <label class="control-label filter-label text-center">Job Location</label>
-                <select class="selectpicker form-control select-fix" data-size="5" 
-                        multiple data-actions-box="true">
-                        <option>USA</option>
-                        <option>Canada</option>
-                        <option>France</option>
-                        <option>USA</option>
-                        <option>Canada</option>
-                        <option>France</option>
-                        <option>USA</option>
-                        <option>Canada</option>
-                        <option>France</option>
-                        <option>USA</option>
-                        <option>Canada</option>
-                        <option>France</option>
-                        <option>USA</option>
-                        <option>Canada</option>
-                        <option>France</option>
-                        <option>USA</option>
-                        <option>Canada</option>
-                        <option>France</option>
-                        <option>USA</option>
-                        <option>Canada</option>
-                        <option>France</option>
-                        <option>USA</option>
-                        <option>Canada</option>
-                        <option>France</option>
-                        <option>USA</option>
-                        <option>Canada</option>
-                        <option>France</option>
-                </select>
+        </form>
+    </div>
+    <div class="col-md-12 col-sm-12" id="div2" style="display:none;">
+        <div class="col-md-2 col-sm-2"></div>
+        <form method="post" action="#">
+            <div class="col-md-8 col-sm-8">
+                <textarea class="form-control" style="min-height:200px;"></textarea>
             </div>
-            </ul>
-        <ul class="inline center-block inline-fix" style="top: 30%;">
-            <div class="filter-box-alignment">
-                <label class="control-label filter-label text-center">Job Role</label>
-                <select class="selectpicker form-control"
-                        multiple data-actions-box="true">
-                        <option>Role</option>
-                </select>
-            </div>
-            <div class="filter-box-alignment">
-                <label class="control-label filter-label text-center">Salary</label>
-                <select class="selectpicker form-control" 
-                        multiple data-actions-box="true">
-                        <option>$10K-$50K</option>
-                        <option>$50K-$100K</option>
-                        <option>$100K-$200K</option>
-                        <option>$200K-$500K</option>
-                </select>
-            </div>
-        </ul>
-        <ul class="inline center-block inline-fix" style="top: 30%;">
-            <div class="filter-box-alignment">
-                <label class="control-label filter-label text-center">Job Role</label>
-                        <select ng-options="Iindustry.type_industry as Iindustry.type_industry for Iindustry in industry"
-                                ng-model="blueprints.related_industry"
-                                class="form-control">
-                            <option value="">Select Predefined Testimonial</option>
-                        </select>
-            </div>
-        </ul>
-                <!--ul class="inline">
-            <div class="filter-box-alignment">
-                <label class="control-label">Industry</label>
-                <select ng-options="Iindustry.industry as Iindustry.industry for Iindustry in JobFeeds[0]"
-                        ng-model="JobFeeds.industry" 
-                        class="selectpicker form-control" 
-                        multiple data-actions-box="true">
-                        <option>{{feed.industry}}</option>
-                </select>
-            </div>
-            <div class="filter-box-alignment">
-                <label class="control-label">Job Location</label>
-                <select ng-options="Iindustry.industry as Iindustry.industry for Iindustry in JobFeeds[0]"
-                        ng-model="JobFeeds.industry" 
-                        class="selectpicker form-control" 
-                        multiple data-actions-box="true">
-                        <option>{{feed.industry}}</option>
-                </select>
-            </div>
-            <div class="filter-box-alignment">
-                <label class="control-label">Job Role</label>
-                <select ng-options="Iindustry.industry as Iindustry.industry for Iindustry in JobFeeds[0]"
-                        ng-model="JobFeeds.industry" 
-                        class="selectpicker form-control" 
-                        multiple data-actions-box="true">
-                        <option>{{feed.industry}}</option>
-                </select>
-            </div>
-            <div class="filter-box-alignment">
-                <label class="control-label">Salary</label>
-                <select ng-options="Iindustry.industry as Iindustry.industry for Iindustry in JobFeeds[0]"
-                        ng-model="JobFeeds.industry" 
-                        class="selectpicker form-control" 
-                        multiple data-actions-box="true">
-                        <option>{{feed.industry}}</option>
-                </select>
-            </div>
-        </ul-->
+            <center>
+                <button class="btn btn-success form-control" style="width:40%;margin-top:4%;">Tell me about your dream job</button>
+            </center>
+        </form>
+        <div class="col-md-2 col-sm-2"></div>
     </div>
 </div>
-
-
-    <!--div class="overlay-offcanvas-content">
-        <ul class="inline" style="margin-top: 200px;">
-            <li>
-                <div class="btn-group btn-group-merge" data-ng-class="{open: CT.open}">
-                    <a class="btn dropdown-toggle" data-ng-click="CT.open=!CT.open">
-                        Filter by Company Type
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a data-ng-click="checkAllCT()"><i class="glyphicon-ok"></i>  Check All</a>
-                        </li>
-                        <li><a data-ng-click="selectedCompanyType=[];"><i class="glyphicon-remove-sign"></i>  Uncheck All</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li data-ng-repeat="companyType in companyTypeList"> <a data-ng-click="setSelectedCompanyType()">{{companyType.name}}<span data-ng-class="isCheckedCT(companyType.id)"></span></a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <div class="btn-group btn-group-merge" data-ng-class="{open: open}">
-                    <a class="btn dropdown-toggle" data-ng-click="open=!open">
-                        Filter by Industry Type
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a data-ng-click="checkAll()"><i class="glyphicon-ok"></i>  Check All</a>
-                        </li>
-                        <li><a data-ng-click="selectedCompany=[];"><i class="glyphicon-remove-sign"></i>  Uncheck All</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li data-ng-repeat="company in companyList"> <a data-ng-click="setSelectedClient()">{{company.name}}<span data-ng-class="isChecked(company.id)"></span></a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </div-->
-
-
-<!--div role="main">
-    <aside data-name="side"> 
-        <ul>
-            <li>Menu Item</li>
-            <li>Additional</li>
-            <li>Here's Another</li>
-            <li>More Here</li>
-            <li>One Final</li>            
-        </ul>
-    </aside>
-    <section data-name="master">
-        <span class="menu-white"><span class="label" style="color: rgb(255,255,255);">MENU</span> </span></span>
-        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-    </section>
-</div-->
-
 
 <!-- SMALL CANVAS MENU -->
 <!--aside id="sidenav" class="sidenav" ng-controller='LogoutCtrl'>
@@ -357,4 +410,28 @@
     }
 
 })();    
+</script>
+<script>
+$("#addNewRow").click(function(){
+    var taskId = $('#selectTask').val();
+    var taskName = $('#selectTask option:selected').text();
+    var expertEmail = $('#expId').val();
+    $('#selectTask').find('option[value='+taskId+']').attr('disabled','disabled');
+    $('#hiddenTable tr:last').after("<tr><td><span class='btn btn-small btn-danger rembtn'><i class='fa fa-minus'></i></span></td><td><input type='text' value='"+taskName+"' class='form-control' readonly /><input type='hidden' name='task[]' value='"+taskId+"' class='form-control' readonly /></td><td><input type='email' name='expert_ref[]' value='"+expertEmail+"' class='form-control' readonly /></td></tr>");
+    $('#expId').val('');
+});
+$("#hiddenTable").on('click','.rembtn',function(){
+    var taskId = $(this).parent().parent('tr').find('td:eq(1)').find('input[type=hidden]').val();
+    $('#selectTask').find('option[value='+taskId+']').attr('disabled',false);
+    $(this).parent().parent('tr').remove();
+});
+    
+$(document).ready(function() {
+    $('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
+        var $total = navigation.find('li').length;
+        var $current = index+1;
+        var $percent = ($current/$total) * 100;
+        $('#rootwizard .progress-bar').css({width:$percent+'%'});
+    }});    
+});
 </script>

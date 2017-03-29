@@ -3,15 +3,17 @@
 
     angular.module('app').controller('BluprintDetailsCtrl', BluprintDetailsCtrl);
 
-    BluprintDetailsCtrl.$inject = ['$scope', '$rootScope', '$cookies', '$state', 'JobFeed', 'UserInfoRes', 'SalaryInfo', 'JobType'];
+    BluprintDetailsCtrl.$inject = ['$scope', '$rootScope', '$cookies', '$state', 'JobFeed', 'UserInfoRes', 'SalaryInfo', 'JobType', 'VisaStatusInfo'];
 
-    function BluprintDetailsCtrl ($scope, $rootScope, $cookies, $state, JobFeed, UserInfoRes, SalaryInfo, JobType) {
+    function BluprintDetailsCtrl ($scope, $rootScope, $cookies, $state, JobFeed, UserInfoRes, SalaryInfo, JobType, VisaStatusInfo) {
 
         $scope.blueprint = JobFeed;
 
         $scope.salary = SalaryInfo;
 
         $scope.type = JobType;
+
+        $scope.visa_status = VisaStatusInfo;
 
         $scope.sent_mail = false;
 
@@ -26,6 +28,13 @@
             if(value.id == $scope.blueprint.related_salary){
                 $scope.job_salary = value;
                 // body...
+            }
+        });
+
+        angular.forEach($scope.visa_status, function (value, key) {
+            // body...
+            if(value.id == $scope.blueprint.related_visa_status){
+                $scope.visa_status_info = value;
             }
         });
 
@@ -44,10 +53,9 @@
             $scope.sent_mail = true;
         }
         
-        $scope.JobFeed = JobFeed;
         $scope.$emit('metaTagsChanged', {
-            title: JobFeed.title,
-            description: JobFeed.description
+            title: $scope.blueprint.title,
+            description: $scope.blueprint.description
         });
         $rootScope.image = '';
     }
@@ -90,10 +98,12 @@
     angular.module('app').controller('DashboardCtrl', DashboardCtrl);
 
     DashboardCtrl.$inject = ['$scope', '$rootScope', '$state', '$cookies', 'metaTags', 'BluePrints', 'UserInfoRes',
-    'IndustryInfo', 'LocationInfo', 'SalaryInfo', 'ExperienceInfo'];
+    'IndustryInfo', 'LocationInfo', 'SalaryInfo', 'ExperienceInfo', 'CompanyTypeInfo', 'WaitIntervalInfo', 'OnJobSuccessInfo',
+    'JobTypeInfo', 'JobDurationInfo', 'ExperienceLevelInfo', 'BlueprintTasksInfo', 'VisaStatusInfo'];
 
     function DashboardCtrl ($scope, $rootScope, $state, $cookies, metaTags, BluePrints, UserInfoRes,
-    IndustryInfo, LocationInfo, SalaryInfo, ExperienceInfo) {
+    IndustryInfo, LocationInfo, SalaryInfo, ExperienceInfo, CompanyTypeInfo, WaitIntervalInfo, OnJobSuccessInfo,
+    JobTypeInfo, JobDurationInfo, ExperienceLevelInfo, BlueprintTasksInfo, VisaStatusInfo) {
         
         $scope.blueprints = BluePrints;
 
@@ -106,6 +116,25 @@
         $scope.salary_info = SalaryInfo;
 
         $scope.experience_info = ExperienceInfo;
+
+        $scope.company_type_info = CompanyTypeInfo;
+
+        $scope.wait_interval_info = WaitIntervalInfo;
+
+        $scope.on_job_success_info = OnJobSuccessInfo;
+
+        $scope.job_type_info = JobTypeInfo;
+
+        $scope.job_duration_info = JobDurationInfo;
+
+        $scope.experience_level_info = ExperienceLevelInfo;
+
+        $scope.blueprint_tasks = BlueprintTasksInfo;
+
+        $scope.visa_status_info = VisaStatusInfo;
+
+
+        /* FILTER PART */
 
         $scope.industryIncludes = [];
 
@@ -194,13 +223,15 @@
             console.log(blueprints);
         }
 
+        /* END OF FILTER PART */
+
         if ($cookies.get('token')) {
             var user_logged;
         } else {
             console.log('not found');
             setTimeout(function() {
                 $state.go('root.home', { reload: true });
-            }, 100);
+            }, 600);
         }
 
         $scope.$emit('metaTagsChanged', metaTags);
@@ -351,19 +382,5 @@
                 return response
             }
         }
-    }
-})();
-
-(function () {
-    // body...
-    "use strict";
-
-    angular.module('app').controller('MakeBlueprintCtrl', MakeBlueprintCtrl);
-
-    MakeBlueprintCtrl.$inject = ['$scope', 'BluePrints', 'IndustryInfo', 'LocationInfo', 'SalaryInfo', 'ExperienceInfo'];
-
-    function MakeBlueprintCtrl($scope, BluePrints, IndustryInfo, LocationInfo, SalaryInfo, ExperienceInfo) {
-        // body...
-        
     }
 })();
