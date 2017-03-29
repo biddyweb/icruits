@@ -2148,7 +2148,7 @@ div .containerDetails {
     /* padding-right: 0px; */
 }
 #blueprint-btn {
-    background: #1b93d1;
+    background: #ccc;
     border-top: 1px solid #FFF;
     border-left: 1px solid #FFF;
     width: 180px;
@@ -2199,7 +2199,7 @@ div .containerDetails {
 }
 
 #back-btn {
-    background: rgb(240,240,240);
+    background: #ccc;
     border-top: 1px solid #FFF;
     border-right: 1px solid #FFF;
     width: 50px;

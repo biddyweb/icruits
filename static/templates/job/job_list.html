@@ -86,8 +86,14 @@
 
 <!-- FULLSCREEN NAV -->
 <div id="myNav" class="overlay-offcanvas">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeBigNav()">&times; </a>
-    <span class="label-close">CLOSE</span>
+    <a id="back-btn" class="hide-button" onclick="closeBigNav()">
+        <span id="advanced-span" class="show-button">
+            x
+        </span>
+        <span id="advanced-span-2" class="hover show-button">
+            x
+        </span>            
+    </a>
     <a id="apply-btn" class="hide-button">
         <span id="apply-span" class="hide-button">
             Finish
@@ -269,7 +275,7 @@
                 <img ngf-thumbnail="preview || '/static/img/logo.png'">
             </div>
         </div>
-        <hr>
+        <!--hr>
         <div class="row">
             <span class="new blueprintLabel"> Publish Blueprint </span>
             <label class="blueprintRadioLabel">
@@ -291,7 +297,7 @@
                        checked/>
                 No
             </label>
-        </div>
+        </div-->
     </div>
 </div>
 
