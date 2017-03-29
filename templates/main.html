@@ -58,11 +58,11 @@
    </head>
 
     <body ng-controller="SeoCtrl">
-      <!--.preloader-->
-  <div class="preloader"> <i class="fa fa-circle-o-notch fa-spin"></i></div>
-  <!--/.preloader-->    
-  <div ng-controller="HomeAbstractCtrl">
-            <div>
+        <!--.preloader-->
+        <div class="preloader"> <i class="fa fa-circle-o-notch fa-spin"></i></div>
+        <!--/.preloader-->    
+        <div ng-controller="HomeAbstractCtrl">
+            <div ng-if='home'>
                 <div ng-class="{hide_index: !home}"
                      class="intro-container">
                     {% include "login.html" %}

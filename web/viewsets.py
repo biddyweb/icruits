@@ -194,14 +194,17 @@ class CheckUserViewSet(views.APIView):
     def post(self, request, format=None):
         data = request.read().replace('"', '').replace('{', '').replace('}', '')
 
-        user = data.split(':')[1]
+        try:
+            user = data.split(':')[1]
 
-        checkUser = User.objects.filter(username=user)
+            checkUser = User.objects.filter(username=user)
 
-        if checkUser:
-            return response.Response(status=status.HTTP_200_OK)
-        else:
-            return response.Response(status=status.HTTP_400_BAD_REQUEST)
+            if checkUser:
+                return response.Response(status=status.HTTP_200_OK)
+            else:
+                return response.Response(status=status.HTTP_400_BAD_REQUEST)
+        except:
+            return response.Response(status=status.HTTP_201_CREATED)
 
 
 class LocationViewSet(viewsets.ReadOnlyModelViewSet):

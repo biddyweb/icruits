@@ -319,11 +319,21 @@
             // body...
             CheckUserRes.save(data, function (response) {
                 // body...
+                console.log(response);
             }, function (response) {
                 // body...
-                setTimeout(function() {
-                    $state.go('root.register', { reload: true });
-                }, 100);
+                console.log(response);
+                console.log(response.status);
+                if(response.status === 400){
+                    setTimeout(function() {
+                        $state.go('root.register', { reload: true });
+                    }, 600);
+                } else {
+                    setTimeout(function () {
+                        // body...
+                        $state.go('root.dashboard', { reload: true });
+                    }, 600)
+                }
             });
         };
 

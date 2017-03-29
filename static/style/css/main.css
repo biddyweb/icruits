@@ -569,7 +569,7 @@ div .userContainer {
     position: fixed;
     z-index: 124141241241241;
     top: 0;
-    left: 0;
+    right: 0;
     background-color: rgb(40, 40, 40);
     overflow-x: hidden;
     transition: 0.5s;
@@ -577,16 +577,23 @@ div .userContainer {
 }
 
 .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #ffffff;
-    display: block;
-    transition: 0.3s
+    font-family: Roboto Condensed;
+    text-transform: uppercase;
+    position: relative;
+    color: rgb(90, 90, 90);
+    /*width: 200px;*/
+    height: 40px;
+    line-height: 40px;
+    font-size: 0.725em;
+    transition: all 750ms cubic-bezier(.25,.46,.45,.94);
+    letter-spacing: .33rem;
 }
 
-.sidenav a:hover, .offcanvas a:focus{
-    color: #028fcc;
+.sidenav a:hover,
+.sidenav a:focus {
+    color: rgb(255, 255, 255);
+    transition: all 750ms cubic-bezier(.25,.46,.45,.94);
+    margin-left: 24px;
 }
 
 .sidenav .closebtn {
@@ -596,6 +603,16 @@ div .userContainer {
     font-size: 36px;
     margin-left: 50px;
     z-index: 202020202;
+}
+
+#sidenav h3 {
+    font-family: Roboto Condensed;
+    text-transform: uppercase;
+    font-size: 1.6125rem;
+    color: rgb(255, 255, 255);
+    letter-spacing: .43rem;
+    margin: 90px 0 30px 30px;
+    padding: 0;
 }
 
 #main {

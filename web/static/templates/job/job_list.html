@@ -40,7 +40,7 @@
         </nav>
     </div>
     <span id="open-button" class="menu-white"><span class="label" style="color: rgb(0,0,0);">FILTER</span> </span>
-    <a id="user-nav" class="userNav" onclick="openUserCont()"><i class="fa fa-user"></i></a>
+    <a id="user-nav" class="userNav" onclick="openNav()"><i class="fa fa-user"></i></a>
     <div id="userContent" class="userContainer" ng-controller='LogoutCtrl'>
         <a id="btn-2" ng-click="logoutNow()" class="userNavBtn">Logout</a>
     </div>
@@ -341,16 +341,16 @@
 </div>
 
 <!-- SMALL CANVAS MENU -->
-<!--aside id="sidenav" class="sidenav" ng-controller='LogoutCtrl'>
+<aside id="sidenav" class="sidenav" ng-controller='LogoutCtrl'>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <span class="label-close" style="color: rgb(255,255,255); margin-top: 3.4px;">CLOSE</span>
     <div class="">
-        <h3>Menu</h3>
+        <h3>USER</h3>
     </div>
-    <a data-ui-sref="root.dashboard">Dashboard</a>
-    <a data-ui-sref="root.help">Help</a>
-    <a href="#" ng-show="user.profile_type.account_type == 'Employer'">Blueprint</a>
-    <a href='' ng-click="logoutNow()">Logout</a>
-</aside-->
+    <!--a data-ui-sref="root.dashboard">Dashboard</a-->
+    <a class="menu-item">Profile</a>
+    <a href='' class="menu-item" ng-click="logoutNow()">Logout</a>
+</aside>
 
 <script type="text/javascript">
 (function() {
