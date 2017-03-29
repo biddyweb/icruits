@@ -97,17 +97,19 @@
 
     angular.module('app').controller('DashboardCtrl', DashboardCtrl);
 
-    DashboardCtrl.$inject = ['$scope', '$rootScope', '$state', '$cookies', 'metaTags', 'BluePrints', 'UserInfoRes',
+    DashboardCtrl.$inject = ['$scope', '$rootScope', '$state', '$cookies', 'metaTags', 'BluePrints', 'UserInfo',
     'IndustryInfo', 'LocationInfo', 'SalaryInfo', 'ExperienceInfo', 'CompanyTypeInfo', 'WaitIntervalInfo', 'OnJobSuccessInfo',
     'JobTypeInfo', 'JobDurationInfo', 'ExperienceLevelInfo', 'BlueprintTasksInfo', 'VisaStatusInfo'];
 
-    function DashboardCtrl ($scope, $rootScope, $state, $cookies, metaTags, BluePrints, UserInfoRes,
+    function DashboardCtrl ($scope, $rootScope, $state, $cookies, metaTags, BluePrints, UserInfo,
     IndustryInfo, LocationInfo, SalaryInfo, ExperienceInfo, CompanyTypeInfo, WaitIntervalInfo, OnJobSuccessInfo,
     JobTypeInfo, JobDurationInfo, ExperienceLevelInfo, BlueprintTasksInfo, VisaStatusInfo) {
         
         $scope.blueprints = BluePrints;
 
-        $scope.user = UserInfoRes.query();
+        $scope.make_blueprint = {};
+
+        $scope.user = UserInfo;
 
         $scope.industry_info = IndustryInfo;
 
@@ -133,6 +135,7 @@
 
         $scope.visa_status_info = VisaStatusInfo;
 
+        $scope.make_blueprint = {related_user: $scope.user.id};
 
         /* FILTER PART */
 
@@ -367,8 +370,6 @@
         $scope.user = UserInfoRes.query();
 
         $scope.user.user_company = false;
-
-        console.log($scope.user.email);
 
         if($scope.user.is_superuser){
             $scope.user.user_company = true;

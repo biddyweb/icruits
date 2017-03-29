@@ -56,8 +56,8 @@
                             <div class="job-item text-center">
                                 <div class="hover-bg hover-bg-articles">
                                     <a data-ui-sref="root.blueprint({name_slug: JobFeed.name_slug})">
-                                                        <!--img class="img-responsive"
-                                                                data-ng-src="{{ JobFeed.image }}" alt=""-->
+                                        <!--img class="img-responsive"
+                                                data-ng-src="{{ JobFeed.image }}" alt=""-->
                                         <div class="hover-text">
                                             <span class="lead" data-ng-bind="JobFeed.max_queue"></span>
                                         </div>
@@ -87,7 +87,7 @@
 <!-- FULLSCREEN NAV -->
 <div id="myNav" class="overlay-offcanvas">
     <a href="javascript:void(0)" class="closebtn" onclick="closeBigNav()">&times; </a>
-    <span class="label-close" style="color: rgb(255,255,255);">CLOSE</span>
+    <span class="label-close">CLOSE</span>
     <a id="apply-btn" class="hide-button">
         <span id="apply-span" class="hide-button">
             Apply
@@ -104,30 +104,188 @@
             Advanced
         </span>
     </a>
-    <div class="col-md-12 col-sm-12" id="div1">
-        <form method="post" action="" id="formSubmit">
-            <div id="rootwizard">
-                <div class="navbar">
-                    <div class="navbar-inner">
-                        <div class="container">
-                            <ul style="visibility: hidden;">
-                                <li><a href="#tab1" data-toggle="tab">First</a></li>
-                                <li><a href="#tab2" data-toggle="tab">Second</a></li>
-                                <li><a href="#tab3" data-toggle="tab">Third</a></li>
-                                <li><a href="#tab4" data-toggle="tab">Forth</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div id="bar" class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;background:darkgrey;"></div>
-                </div>
-                <div class="tab-content">
-                    <div class="tab-pane" id="tab1">
-                        <center>
-                            Blueprint Name
-                            <input type="text" class="form-control" name="name" placeholder=" Job Blueprint name" style="display:inline;width:50%;margin:4%;"  required />
-                        </center>
+    <center>
+        <div class="blueprintContainer">
+            <h1>Make Blueprint</h1>
+            <div class="row">
+                                <span class="new"> Blueprint Name </span>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           name="name"
+                                           ng-model="make_blueprint.name"
+                                           required>
+                                <span class="new"> Company Name </span>
+                                    <input type="text" 
+                                           name="company name"
+                                           class="form-control"
+                                           ng-model="make_blueprint.company_name"
+                                           required>
+
+                                <span class="new"> Description </span>
+                                    <textarea type="text"
+                                              rows="4" 
+                                           class="form-control"
+                                           name="description"
+                                           ng-model="make_blueprint.description"
+                                           required>
+                                    </textarea>
+                                <span class="new"> Qualification </span>
+                                    <input type="text" 
+                                           class="form-control"
+                                           name="professional qualifications"
+                                           ng-model="make_blueprint.professional_qualifications"
+                                           required>
+                                <span class="new"> Industry </span>
+                                    <select class="form-control" 
+                                            name="job_industry"
+                                            ng-model="make_blueprint.related_industry"
+                                            ng-options="option.id*1 as option.type_industry for option in industry_info">
+                                            <option value="" ng-show="false"></option>
+                                    </select>
+                                <span class="new"> Employer Size </span>
+                                    <select class="form-control" 
+                                            name="employer_size"
+                                            ng-model="make_blueprint.related_company_type"
+                                            ng-options="option.id*1 as option.types_of_company for option in company_type_info">
+                                            <option value="" ng-show="false"></option>
+                                    </select>
+                                <span class="new"> Job Function </span>
+                                    <input type="text" 
+                                           name="job function"
+                                           class="form-control"
+                                           ng-model="make_blueprint.function" 
+                                           required>
+                                <span class="new"> Experience </span>
+                                    <select class="form-control" 
+                                            name="experience info"
+                                            ng-model="make_blueprint.related_experience"
+                                            ng-options="option.id*1 as option.experience_level for option in experience_info">
+                                            <option value="" ng-show="false"></option>
+                                    </select>
+                                <span class="new"> Location </span>
+                                    <select class="form-control" 
+                                            name="location info"
+                                            ng-model="make_blueprint.related_location"
+                                            ng-options="option.id*1 as option.location for option in location_info">
+                                            <option value="" ng-show="false"></option>
+                                    </select>
+                                <span class="new"> Job Type </span>
+                                    <select class="form-control" 
+                                            name="job type"
+                                            ng-model="make_blueprint.related_job_type"
+                                            ng-options="option.id*1 as option.employment for option in job_type_info">
+                                            <option value="" ng-show="false"></option>
+                                    </select>
+                                <span class="new"> Job Duration </span>
+                                    <select class="form-control" 
+                                            name="job duration"
+                                            ng-model="make_blueprint.related_job_duration"
+                                            ng-options="option.id*1 as option.job_duration for option in job_duration_info">
+                                            <option value="" ng-show="false"></option>
+                                    </select>
+                                <span class="new"> On Success </span>
+                                    <select class="form-control" 
+                                            name="On success"
+                                            ng-model="make_blueprint.related_on_success"
+                                            ng-options="option.id*1 as option.success for option in on_job_success_info">
+                                            <option value="" ng-show="false"></option>
+                                    </select>
+                                <span class="new"> Team ID </span>
+                                    <input type="text" 
+                                           name="team id"
+                                           class="form-control"
+                                           ng-model="make_blueprint.team_id" 
+                                           required>
+                                <span class="new"> Wait Interval </span>
+                                    <select class="form-control" 
+                                            name="wait interval"
+                                            ng-model="make_blueprint.related_wait_interval"
+                                            ng-options="option.id*1 as option.response_time for option in wait_interval_info">
+                                            <option value="" ng-show="false"></option>
+                                    </select>
+                                <span class="new"> Salary Range </span>
+                                    <select class="form-control" 
+                                            name="salary range"
+                                            ng-model="make_blueprint.related_salary"
+                                            ng-options="option.id*1 as option.sal_range for option in salary_info">
+                                            <option value="" ng-show="false"></option>
+                                    </select>
+                                <span class="new"> Practice Limit </span>
+                                    <input type="number" 
+                                           name="practice limit"
+                                           class="form-control"
+                                           ng-model="make_blueprint.practice_limit" 
+                                           required>
+                                <span class="new"> Remote Work </span>
+                                    <input type="text" 
+                                           name="remote work"
+                                           class="form-control"
+                                           ng-model="make_blueprint.remote_work" 
+                                           required>
+                                <span class="new"> Visa Status </span>
+                                    <select class="form-control" 
+                                            name="visa status"
+                                            ng-model="make_blueprint.related_visa_status"
+                                            ng-options="option.id*1 as option.visa for option in visa_status_info">
+                                            <option value="" ng-show="false"></option>
+                                    </select>
+                                <span class="new"> Max Queue </span>
+                                    <input type="number" 
+                                           name="max queue"
+                                           class="form-control"
+                                           ng-model="make_blueprint.max_queue" 
+                                           required>
+                                <span class="new"> Download Url </span>
+                                    <input type="text" 
+                                           name="download url"
+                                           class="form-control"
+                                           ng-model="make_blueprint.url" 
+                                           required>
+            </div>
+        </div>
+    </center>
+    <!--div class="col-md-12 col-sm-12" id="div1">
+                <div class="tab-pane" id="tab2">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td class="new"> Blueprint Name </td>
+                                <td>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           name="name"
+                                           ng-model="make_blueprint.name"
+                                           required>
+                                </td>
+                                <td class="new"> Company Name </td>
+                                <td>
+                                    <input type="text" 
+                                           name="company name"
+                                           class="form-control"
+                                           ng-model="make_blueprint.company_name"
+                                           required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="new"> Description </td>
+                                <td>
+                                    <input type="text" 
+                                           class="form-control"
+                                           name="description"
+                                           ng-model="make_blueprint.description"
+                                           required>
+                                </td>
+                                <td class="new"> Qualification </td>
+                                <td>
+                                    <input type="text" 
+                                           class="form-control"
+                                           name="professional qualifications"
+                                           ng-model="make_blueprint.professional_qualifications"
+                                           required>
+                                </td>
+                            </tr>
+                            </tbody>
+                            </table>
                     </div>
                 <div class="tab-pane" id="tab2">
                     <table class="table">
@@ -135,76 +293,79 @@
                             <tr>
                                 <td class="new"> Industry </td>
                                 <td>
-                                    <select class="form-control" name="job_industry">
-                                        <option value="any"> Any</option>
-                                        <option value="softwares" > Softwares</option>
-                                        <option value="accounting" > Accounting</option>
-                                        <option value="helth" > Health & care</option>
+                                    <select class="form-control" 
+                                            name="job_industry"
+                                            ng-model="make_blueprint.related_industry"
+                                            ng-options="option.id*1 as option.type_industry for option in industry_info">
+                                            <option value="" ng-show="false"></option>
                                     </select>
                                 </td>
                                 <td class="new"> Employer Size </td>
                                 <td>
-                                    <select class="form-control" name="employer_size">
-                                        <option value="any"> Any</option>
-                                        <option value="startup" > Startup</option>
-                                        <option value="national" > National</option>
-                                        <option value="mnc" > MNCs</option>
+                                    <select class="form-control" 
+                                            name="employer_size"
+                                            ng-model="make_blueprint.related_company_type"
+                                            ng-options="option.id*1 as option.types_of_company for option in company_type_info">
+                                            <option value="" ng-show="false"></option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="new"> Job Function </td>
                                 <td>
-                                    <select class="form-control"  name="job_function">
-                                        <option value="any" > Any</option>
-                                        <option value="accounting" > Accounting</option>
-                                        <option value="management" > Management</option>
-                                        <option value="others" > Others</option>
-                                    </select>
+                                    <input type="text" 
+                                           name="job function"
+                                           class="form-control"
+                                           ng-model="make_blueprint.function" 
+                                           required>
                                 </td>
                                 <td class="new"> Experience </td>
                                 <td>
-                                    <select class="form-control"  name="experience_level">
-                                        <option value="any"> Any</option>
-                                        <option value="fresher" > Fresher</option>
-                                        <option value="intern" > Intern</option>
-                                        <option value="expereinced" > Expereinced</option>
-                                        <option value="trainee" > Trainee</option>
+                                    <select class="form-control" 
+                                            name="experience info"
+                                            ng-model="make_blueprint.related_experience"
+                                            ng-options="option.id*1 as option.experience_level for option in experience_info">
+                                            <option value="" ng-show="false"></option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="new"> Location </td>
                                 <td>
-                                    <input class="form-control"  type="text"name="job_locaton"  placeholder="Any" id="address" >
-                                    <input type="hidden" id="lat"  name="lat">
-                                    <input type="hidden" id="lon"  name="lon">
+                                    <select class="form-control" 
+                                            name="location info"
+                                            ng-model="make_blueprint.related_location"
+                                            ng-options="option.id*1 as option.location for option in location_info">
+                                            <option value="" ng-show="false"></option>
+                                    </select>
                                 </td>
                                 <td class="new"> Job Type </td>
                                 <td>
-                                    <select class="form-control" name="job_type">
-                                        <option value="any"> Any</option>
-                                        <option value="part-time" > Part-Time</option>
-                                        <option value="full-time" > Full-Time</option>
+                                    <select class="form-control" 
+                                            name="job type"
+                                            ng-model="make_blueprint.related_job_type"
+                                            ng-options="option.id*1 as option.employment for option in job_type_info">
+                                            <option value="" ng-show="false"></option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="new"> Wait Interval </td>
+                                <td class="new"> Job Duration </td>
                                 <td>
-                                    <select class="form-control" name="wait_interval">
-                                        <option value="any"> Any</option>
-                                        <option value="within_7_days" > Within 7 days</option>
-                                        <option value="within_15_days" > Within 15 days</option>
-                                        <option value="1_Month" > 1 Month</option>
+                                    <select class="form-control" 
+                                            name="job duration"
+                                            ng-model="make_blueprint.related_job_duration"
+                                            ng-options="option.id*1 as option.job_duration for option in job_duration_info">
+                                            <option value="" ng-show="false"></option>
                                     </select>
                                 </td>
                                 <td class="new"> On Success </td>
                                 <td>
-                                    <select class="form-control" name="on_success">
-                                        <option value="any"> Any</option>
-                                        <option value="contract" > Contract</option>
-                                        <option value="direct-hiring" > Direct-Hiring</option>
+                                    <select class="form-control" 
+                                            name="On success"
+                                            ng-model="make_blueprint.related_on_success"
+                                            ng-options="option.id*1 as option.success for option in on_job_success_info">
+                                            <option value="" ng-show="false"></option>
                                     </select>
                                 </td>
                             </tr>
@@ -215,59 +376,78 @@
                     <table class="table">
                         <tbody>
                             <tr>
-                                <td class="new"> Job Code </td>
-                                <td>
-                                    <select class="form-control" name="job_code">
-                                        <option value="any"> Any</option>
-                                        <option value="support_l-1" > Support L-1</option>
-                                        <option value="support_l-2" > Support L-2</option>
-                                        <option value="support_l-3" > Support L-3</option>
-                                    </select>
-                                </td>
                                 <td class="new"> Team ID </td>
                                 <td>
-                                    <select class="form-control" name="team_id">
-                                        <option value="any"> Any</option>
-                                        <option value="g4-10"> G4-10</option>
-                                        <option value="g5-12" > G5-12</option>
-                                        <option value="g5-8" > G5-8</option>
+                                    <input type="text" 
+                                           name="team id"
+                                           class="form-control"
+                                           ng-model="make_blueprint.team_id" 
+                                           required>
+                                </td>
+                                <td class="new"> Wait Interval </td>
+                                <td>
+                                    <select class="form-control" 
+                                            name="wait interval"
+                                            ng-model="make_blueprint.related_wait_interval"
+                                            ng-options="option.id*1 as option.response_time for option in wait_interval_info">
+                                            <option value="" ng-show="false"></option>
                                     </select>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="new">Salary Range : </td>
+                                <td class="new"> Salary Range </td>
                                 <td>
-                                    <select class="form-control" name="salary_range">
-                                        <option value="any"> Any</option>
-                                        <option value="$10K-$50K" >$10K-$50K</option>
-                                        <option value="$50K-$100K" >$50K-$100K</option>
-                                        <option value="$100K-$200K" >$100K-$200K</option>
-                                        <option value="$200K-$500K" >$200K-$500K</option>
+                                    <select class="form-control" 
+                                            name="salary range"
+                                            ng-model="make_blueprint.related_salary"
+                                            ng-options="option.id*1 as option.sal_range for option in salary_info">
+                                            <option value="" ng-show="false"></option>
                                     </select>
                                 </td>
-                                <td class="new">Practice Limit : </td>
+                                <td class="new"> Practice Limit </td>
                                 <td>
-                                    <input type="text" class="form-control" name="practice_limit" style="margin:2% 0%;" />
+                                    <input type="number" 
+                                           name="practice limit"
+                                           class="form-control"
+                                           ng-model="make_blueprint.practice_limit" 
+                                           required>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="new">Description : </td>
+                                <td class="new"> Remote Work </td>
                                 <td>
-                                    <input type="textarea" class="form-control" name="description" style="margin:2% 0%;" />
+                                    <input type="text" 
+                                           name="remote work"
+                                           class="form-control"
+                                           ng-model="make_blueprint.remote_work" 
+                                           required>
                                 </td>
-                                <td class="new"> Legal Status </td>
+                                <td class="new"> Visa Status </td>
                                 <td>
-                                    <input type="text" class="form-control" name="legal_status" style="margin:2% 0%;"  />
+                                    <select class="form-control" 
+                                            name="visa status"
+                                            ng-model="make_blueprint.related_visa_status"
+                                            ng-options="option.id*1 as option.visa for option in visa_status_info">
+                                            <option value="" ng-show="false"></option>
+                                    </select>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="new"> Professional Qualification </td>
+                                <td class="new"> Max Queue </td>
                                 <td>
-                                    <input type="text" class="form-control" name="professional_qualification" style="margin:2% 0%;" >
+                                    <input type="number" 
+                                           name="max queue"
+                                           class="form-control"
+                                           ng-model="make_blueprint.max_queue" 
+                                           required>
                                 </td>
-                                <td class="new">Download Url : </td>
+                                <td class="new"> Download Url </td>
                                 <td>
-                                    <input type="text" class="form-control" name="blueprint_url" style="margin:2% 0%;" />
+                                    <input type="text" 
+                                           name="download url"
+                                           class="form-control"
+                                           ng-model="make_blueprint.url" 
+                                           required>
                                 </td>
                             </tr>
                         </tbody>
@@ -305,39 +485,7 @@
                         </tbody>
                     </table>
                 </div>
-                <ul class="pager wizard">
-                    <li class="previous first" >
-                        <a href="javascript:;" id="bform">First</a>
-                    </li>
-                    <li class="previous" >
-                        <a href="javascript:;" id="bform" >Previous</a>
-                    </li>
-                    <li class="next last">
-                        <a href="javascript:;" id="bform" >Last</a>
-                    </li>
-                    <li class="next">
-                        <a href="javascript:;" id="bform">Next</a>
-                    </li>
-                    <li class="finish">
-                        <a href="javascript:;" id="bform" onclick="savedata();"  style="margin-left:66%;">Finish</a>
-                    </li>
-                </ul>
-                <input type="submit" name="btnsubmit" style="visibility:hidden">
-            </div>
-        </form>
-    </div>
-    <div class="col-md-12 col-sm-12" id="div2" style="display:none;">
-        <div class="col-md-2 col-sm-2"></div>
-        <form method="post" action="#">
-            <div class="col-md-8 col-sm-8">
-                <textarea class="form-control" style="min-height:200px;"></textarea>
-            </div>
-            <center>
-                <button class="btn btn-success form-control" style="width:40%;margin-top:4%;">Tell me about your dream job</button>
-            </center>
-        </form>
-        <div class="col-md-2 col-sm-2"></div>
-    </div>
+    </div-->
 </div>
 
 <!-- SMALL CANVAS MENU -->

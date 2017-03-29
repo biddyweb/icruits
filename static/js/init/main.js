@@ -19,7 +19,7 @@
         } else {
             $http.defaults.headers.common.Authorization = '';
         }
-       $rootScope.$on("$locationChangeSuccess", function(){
+        $rootScope.$on("$locationChangeSuccess", function(){
             $timeout(function() {
                 $anchorScroll();
             });

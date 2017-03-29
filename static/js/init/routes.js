@@ -90,6 +90,10 @@
                 VisaStatusInfo: function (VisaStatusRes) {
                     // body...
                     return VisaStatusRes.query().$promise;
+                },
+                UserInfo: function (UserInfoRes) {
+                    // body...
+                    return UserInfoRes.query().$promise;
                 }
             }
         })

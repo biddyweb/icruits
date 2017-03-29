@@ -123,7 +123,7 @@ class BlueprintSerializer(serializers.ModelSerializer):
     duration = JobDurationSerializer(many=False, read_only=True)
     experience = ExperienceLevelSerializer(many=False, read_only=True)
     blueprint_user = UserSerializer(many=False, read_only=True)
-    blueprint_tasks = BlueprintTasksSerializer(many=False, read_only=True)
+    blueprint_tasks = BlueprintTasksSerializer(many=True, read_only=True)
     job_location = LocationSerializer(many=False, read_only=True)
     work_enviorment = CustomImageField()
     visa_status = VisaSerializer(many=False, read_only=True)
