@@ -1888,6 +1888,7 @@ body,
     margin-left: auto;
     margin-right: auto;
 }
+
 .blueprintLabel {
     display: inline-block;
     margin-left: 20px;
@@ -1897,6 +1898,7 @@ body,
     width: 150px;
     position: relative;
 }
+
 .blueprintDescription {
     display: inline-block;
     margin-left: 20px;
@@ -1906,16 +1908,24 @@ body,
     width: 150px;
     position: relative;
 }
+
 .blueprintInput {
     display: inline;
     width: 150px;
     font-family: Roboto Condensed;
     text-transform: uppercase;
 }
+
+.blueprintRadioLabel {
+    font-weight: normal;
+    font-family: Roboto Condensed;
+    text-transform: uppercase;
+}
+
 #apply-btn {
     background: rgb(255,255,255);
     border-top: 1px solid #ccc;
-    border-left: 1px solid #FFF;
+    border-left: 1px solid #ccc;
     width: 180px;
     height: 50px;
     text-decoration: none;
@@ -1927,10 +1937,12 @@ body,
     cursor: pointer;
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
 }
+
 #apply-btn:hover {
     background-color:#FFF;
     letter-spacing:.25rem
 }
+
 #apply-btn span { 
     pointer-events: none;
     display: block;
@@ -1944,16 +1956,19 @@ body,
     font-family: Roboto Condensed;
     font-size: 0.66em;
 }
+
 #apply-btn span.hover {
     top: 100%;
     visibility: hidden;
     opacity: 0;
 }
+
 #apply-btn:not(.disabled):not([disabled]):not(.active):hover>span {
     top: -1.150em;
     visibility: hidden;
     opacity: 0;
 }
+
 #apply-btn:not(.disabled):not([disabled]):not(.active):hover>span.hover{ 
     top: 2.150em;
     visibility: visible;

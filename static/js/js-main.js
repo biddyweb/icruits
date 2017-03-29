@@ -28,9 +28,9 @@ function openBigNav() {
     classie.addClass( btn, 'show-button');
     classie.addClass( btn_span, 'show-button');
     classie.addClass( btn_span_2, 'show-button');
-    classie.addClass( adv_btn, 'show-button');
+    /*classie.addClass( adv_btn, 'show-button');
     classie.addClass( adv_btn_span, 'show-button');
-    classie.addClass( adv_btn_span_2, 'show-button');
+    classie.addClass( adv_btn_span_2, 'show-button');*/
 }
 
 function closeBigNav() {
@@ -44,9 +44,9 @@ function closeBigNav() {
     classie.removeClass( btn, 'show-button');
     classie.removeClass( btn_span, 'show-button');
     classie.removeClass( btn_span_2, 'show-button');
-    classie.removeClass( adv_btn, 'show-button');
+    /*classie.removeClass( adv_btn, 'show-button');
     classie.removeClass( adv_btn_span, 'show-button');
-    classie.removeClass( adv_btn_span_2, 'show-button');
+    classie.removeClass( adv_btn_span_2, 'show-button');*/
 }
 
 function openUserCont() {
