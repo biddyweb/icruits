@@ -1882,9 +1882,35 @@ body,
                         BLUEPRINT CONTAINER
 ******************************************************************/
 .blueprintContainer {
-    width: 33%;
+    width: 650px;
     margin-top: 10%;
     margin-bottom: 60px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.blueprintLabel {
+    display: inline-block;
+    margin-left: 20px;
+    /* margin-right: 20px; */
+    font-family: Roboto Condensed;
+    text-transform: uppercase;
+    width: 150px;
+    position: relative;
+}
+.blueprintDescription {
+    display: inline-block;
+    margin-left: 20px;
+    /* margin-right: 20px; */
+    font-family: Roboto Condensed;
+    text-transform: uppercase;
+    width: 150px;
+    position: relative;
+}
+.blueprintInput {
+    display: inline;
+    width: 150px;
+    font-family: Roboto Condensed;
+    text-transform: uppercase;
 }
 #apply-btn {
     background: rgb(255,255,255);
@@ -2048,18 +2074,19 @@ div .containerDetails {
 }
 
 .half-container-left {
-    width: 60%;
+    width: 50%;
     position: absolute;
     left: 10%;
     top: 25%;
     padding-right: 10%;
 }
 .half-container-right {
-    width: 35%;
+    width: 45%;
     position: fixed;
     /* display: inline; */
-    left: 70%;
+    left: 60%;
     top: 20%;
+    padding-right: 10%;
 }
 
 .details-description {
