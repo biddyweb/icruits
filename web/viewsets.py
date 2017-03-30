@@ -195,9 +195,9 @@ class CheckUserViewSet(views.APIView):
         data = request.read().replace('"', '').replace('{', '').replace('}', '')
 
         try:
-            user = data.split(':')[1].lower()
+            user = data.split(':')[1]
 
-            checkUser = User.objects.filter(username=user)
+            checkUser = User.objects.filter(username=user.lower())
 
             if checkUser:
                 return response.Response(status=status.HTTP_200_OK)
