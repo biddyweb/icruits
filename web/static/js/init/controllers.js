@@ -226,7 +226,7 @@
             console.log(blueprints);
         }
 
-        /* END OF FILTER PART */
+        /* END OF FILTER PART 
 
         if ($cookies.get('token')) {
             var user_logged;
@@ -235,7 +235,7 @@
             setTimeout(function() {
                 $state.go('root.home', { reload: true });
             }, 600);
-        }
+        }*/
 
         $scope.$emit('metaTagsChanged', metaTags);
 
