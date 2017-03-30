@@ -153,7 +153,7 @@ class LoginViewSet(views.APIView):
         username_ = data.get('username')
         password_ = data.get('password')
 
-        account = authenticate(username=username_, password=password_)
+        account = authenticate(username=username_.lower(), password=password_)
 
         if account is not None:
             login(request, account)
@@ -195,7 +195,7 @@ class CheckUserViewSet(views.APIView):
         data = request.read().replace('"', '').replace('{', '').replace('}', '')
 
         try:
-            user = data.split(':')[1]
+            user = data.split(':')[1].lower()
 
             checkUser = User.objects.filter(username=user)
 
