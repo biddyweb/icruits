@@ -29,6 +29,7 @@
                                    name="q1"
                                    type="text"
                                    placeholder="Username"
+                                   onkeypress="this.value = this.value.toLowerCase();"
                                    data-ng-model="log.username"/>
                         </li>
                         <li>
@@ -38,6 +39,7 @@
                                    type="password"
                                    onfocus="checkUser()" 
                                    placeholder="Password"
+                                   onkeypress="this.value = this.value.toLowerCase();"
                                    data-ng-model="log.password"/>
                         </li>
                     </ol><!-- /questions -->
