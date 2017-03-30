@@ -211,7 +211,7 @@
            }
 
             function FailFn(response) {
-                $window.location.reload();
+                //$window.location.reload();
             }
         }
 

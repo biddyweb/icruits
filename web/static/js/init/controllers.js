@@ -42,11 +42,11 @@
 
         if ($cookies.get('token')) {
             var user_logged;
-        } else {
-            setTimeout(function() {
-                $state.go('root.home', { reload: true });
-            }, 100);
-        }
+        } //else {
+        //    setTimeout(function() {
+        //        $state.go('root.home', { reload: true });
+        //    }, 100);
+        //}
 
         $scope.SendMail = function () {
             // body...
