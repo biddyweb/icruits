@@ -30,6 +30,12 @@
 	.btn-signup {
 		padding: 10px 20px;
 	}
+	#blueprint-btn {
+	    background-color: rgb(240,240,240);
+	}
+	#apply-btn {
+	    background-color: rgb(240,240,240);
+	}
 }
 
 /* xs */
@@ -213,11 +219,72 @@
 	.footer-bottom p.pull-right {
 		float: none !important;
 	}
+    .half-container-right {
+		width: 90%;
+	    position: inherit;
+	    margin-left: 20%;
+	    margin-right: auto;
+	    padding-right: 20%;
+   	}
+	.details-description {
+		width: 100%;
+	}
+	.half-container-left {
+	    width: 90%;
+	    position: inherit;
+	    /* left: 10%; */
+	    /* top: 25%; */
+	    margin-top: 50px;
+	    padding-right: 0;
+	    margin-left: auto;
+	    margin-right: auto;
+	}
+	.blueprint-name {
+    	font-size: 2em;
+	}
+	#apply-btn {
+	    background-color: rgb(240,240,240);
+	}
+	#back-btn {
+	    background-color: rgb(240,240,240);
+	}
+	#blueprint-btn {
+	    background-color: rgb(240,240,240);
+	}
+	.containerSub {
+		margin-top: -40px;
+	}
+	.simform {
+		max-width: 350px;
+	}
 }
 
-/* XS Portrait */
-@media (max-width: 479px) {
-  
+@media only screen and (max-width: 950px) {
+	.blueprint-name {
+		font-size: 1.5em;
+	}
+}
+
+@media only screen and (max-width: 640px) {
+	.blueprintContainer {
+		width: 350px;
+	}
+	.blueprintName {
+    	width: 200px!important;
+    }
+    .blueprintInput {
+    	width: 170px;
+    }
+    .inputSizeFix {
+    	width: 170px;
+    }
+    .sentEmail {
+    	font-size: 1.4em;
+    	width: 444px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
 	.team-members .col-sm-3, 
 	.pricing-table .col-sm-3, 
 	#portfolio .col-sm-3, 
@@ -225,8 +292,155 @@
 		width:100%;
 		float: none;
 	}
-}
 
+    h3 {
+        font-size: 12px;
+    }
+    nav#menu span.fa.fa-bars {
+        padding-top: 0px;
+        left: 30px;
+    }
+
+    .registerWrapper {
+    	top: 6.1em;
+    }
+    .registerWrapper span {
+    	font-size: 20px;
+    }
+    .simform {
+    	max-width: 300px;
+    	top: 6.50em;
+    }
+    .job-item .hover-bg-articles {
+    	margin-top: 0;
+    }
+    .containerSub {
+    	margin-top: -20px;
+    }
+    /*.half-container-right {
+    	width: 90%;
+    	position: inherit;
+    	margin-left: auto;
+    	margin-right: auto;
+    	padding-right: 0;
+	}*/
+	.details-description {
+		width: 100%;
+	}
+	.half-container-left {
+	    width: 90%;
+	    position: inherit;
+	    /* left: 10%; */
+	    /* top: 25%; */
+	    padding-right: 0;
+	    margin-left: auto;
+	    margin-right: auto;
+	}
+	.sentEmail {
+		font-size: 1em;
+		width: 320px;
+	}
+	.icon-list {
+		width: 254px;
+	}
+	.menu-wrap {
+		width: 270px;
+	    -webkit-transform: translate3d(-270px,0,0);
+	    transform: translate3d(-270px,0,0);
+	}
+	.show-menu .content-wrap {
+        -webkit-transform: translate3d(270px,0,0);
+    	transform: translate3d(270px,0,0);
+	}
+    #nav-bar {
+        height: 200px;
+    }
+    .content {
+        padding-top: 0;
+    }
+    .hover-bg .hover-text {
+        padding: 13% 0;
+    }
+    #overview-video .overlay {
+        padding: 30% 0px;
+    }
+    .content-heading {
+        font-size: 35px;
+    }
+    .container {
+        padding: 0;
+        margin-left: 0px;
+    }
+    .animation-element,
+    .animation-element:nth-of-type(3n-1),
+    .animation-element:nth-of-type(3n-2),
+    .animation-element:nth-of-type(3n-0) {
+        width: 100%;
+        margin: 0px 0px 0px 0px;
+    }
+    #nav-bar div.masDev {
+        display: none;
+    }
+}
+@media only screen and (max-width: 360px){
+    h1 {
+        font-size: 36px;
+    }
+    h3 {
+        font-size: 11px;
+    }
+    hover-bg .hover-text {
+        padding: 25% 0px;
+    }
+    .pull-left,
+    .pull-right {
+        float: none !important;
+        text-align: center;
+    }
+    .simform {
+    	max-width: 200px;
+    }
+    .inputHolder {
+    	width: 100%;
+    	display: inherit;
+    }
+    .blueprintContainer {
+    	width: 300px;
+    	font-size: 12px;
+    }
+    .blueprintName {
+    	width: 150px!important;
+    }
+    .blueprintCompany {
+    	width: 150px!important;
+    }
+    .blueprintInput {
+    	width: 150px;
+    }
+    .menu-white {
+    	left: 0;
+    	margin-left: -10px;
+    }
+    .label {
+    	font-size: 66%;
+    }
+    .half-container-right {
+    	width: 90%;
+    	position: inherit;
+    	margin-left: 13%;
+    	margin-right: auto;
+    	padding-right: 15%;
+	}
+}
+@media only screen and (max-width: 320px){
+    h1 {
+        font-size: 30px;
+    }
+    hover-bg .hover-text {
+        padding: 30% 0px;
+    }
+}
+/*
 @media only screen and (max-width:43.688em) {
     #filter-btn{ 
         font-size: .625rem;
@@ -260,4 +474,36 @@
         text-indent: 0;
         background:0 0
     }
-}
+    #blueprint-btn{ 
+        font-size: .625rem;
+        border-top: none;
+        width: 120px;
+        text-align: center;
+        right: 0;
+        position: fixed;
+        float: none;
+        bottom: 0;
+        height: 44px!important;
+        display: block;
+        padding: 0;
+        margin: 0;
+        text-indent: 0;
+        background:0 0
+    }
+    #back-btn{ 
+        font-size: .625rem;
+        border-top: none;
+        width: 120px;
+        text-align: center;
+        right: 0;
+        position: fixed;
+        float: none;
+        bottom: 0;
+        height: 44px!important;
+        display: block;
+        padding: 0;
+        margin: 0;
+        text-indent: 0;
+        background:0 0
+    }
+}*/

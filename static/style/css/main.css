@@ -30,15 +30,23 @@ body {
     background-color: rgb(240, 240, 240);
 }
 h2 {
-  font-size: 30px;
-  margin-bottom: 20px;
+    font-size: 30px;
+    margin-bottom: 20px;
 }
 
 h3 {
-  font-size: 18px;
+    font-size: 18px;
 }
 header {
   margin: 0;
+}
+
+.hrTopTen {
+    margin-top: 10px;
+}
+
+.hrBotTen {
+    margin-bottom: 10px;
 }
 
 .btn {
@@ -1884,9 +1892,21 @@ body,
 .blueprintContainer {
     width: 650px;
     margin-top: 10%;
-    margin-bottom: 60px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.blueprintTasksContainer {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.blueprintTasksInput {
+    display: inline;
+    width: 60%;
+    font-family: Roboto Condensed;
+    text-transform: uppercase; 
 }
 
 .blueprintLabel {
@@ -1897,6 +1917,35 @@ body,
     text-transform: uppercase;
     width: 150px;
     position: relative;
+}
+
+.blueprintExpert {
+    width: 200px!important; 
+    display: inline!important;
+}
+
+.blueprintRefFix {
+    width: 39%!important;
+    display: inline!important;
+}
+
+.blueprintCompany {
+    width: 200px!important; 
+    display: inline!important;
+}
+
+.blueprintTeamID {
+    width: 100px!important; 
+    display: inline!important;
+}
+
+.marginBlueprint {
+    margin-top: 20px;
+}
+
+.inputSizeFix {
+    width: 150px!important; 
+    display: inline!important;
 }
 
 .blueprintDescription {
@@ -1920,6 +1969,11 @@ body,
     font-weight: normal;
     font-family: Roboto Condensed;
     text-transform: uppercase;
+}
+
+.blueprintName {
+    width: 330px!important; 
+    display: inline!important;
 }
 
 #apply-btn {
@@ -2080,7 +2134,7 @@ body,
 div .containerDetails {
     /* width: 80%; */
     /* margin-left: 10%; */
-    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(255, 255, 255); */
     font-size: small;
     /* display: inline-flex; */
     height: 100%;
@@ -2146,6 +2200,7 @@ div .containerDetails {
     /* margin-right: auto; */
     /* padding-right: 0px; */
 }
+
 #blueprint-btn {
     border-top: 1px solid #FFF;
     border-left: 1px solid #FFF;
@@ -2160,11 +2215,13 @@ div .containerDetails {
     cursor: pointer;
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
 }
+
 #blueprint-btn:hover {
     background-color: rgb(0,0,0);
     letter-spacing:.25rem
     color: rgb(255,255,255);
 }
+
 #blueprint-btn span { 
     pointer-events: none;
     display: block;
@@ -2178,17 +2235,20 @@ div .containerDetails {
     font-family: Roboto Condensed;
     font-size: 0.66em;
 }
+
 #blueprint-btn span.hover {
     top: 100%;
     visibility: hidden;
     opacity: 0;
     color: rgb(255,255,255);
 }
+
 #blueprint-btn:not(.disabled):not([disabled]):not(.active):hover>span {
     top: -1.5em;
     visibility: hidden;
     opacity: 0;
 }
+
 #blueprint-btn:not(.disabled):not([disabled]):not(.active):hover>span.hover { 
     top: 2.5em;
     visibility: visible;
@@ -2210,11 +2270,13 @@ div .containerDetails {
     cursor: pointer;
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
 }
+
 #back-btn:hover {
     background-color: rgb(255,255,255);
     letter-spacing:.25rem
     color: rgb(0,0,0);
 }
+
 #back-btn span { 
     pointer-events: none;
     display: block;
@@ -2225,26 +2287,29 @@ div .containerDetails {
     color: rgb(0, 0, 0);
     text-transform: uppercase;
     font-family: Roboto Condensed;
-    font-size: 1.4em;
-    top: 0.6em;
+    font-size: 1em;
+    top: 1.2em;
 }
+
 #back-btn span.hover {
     top: 100%;
     visibility: hidden;
     opacity: 0;
     color: rgb(0,0,0);
 }
+
 #back-btn:not(.disabled):not([disabled]):not(.active):hover>span {
     visibility: hidden;
     opacity: 0;
     top: -0.5em;
 }
+
 #back-btn:not(.disabled):not([disabled]):not(.active):hover>span.hover { 
-    top: 0.6em;
+    top: 1.2em;
     visibility: visible;
     opacity: 1;
     letter-spacing: .35rem;
-    font-size: 1.4em;
+    font-size: 1em;
 }
 
 .details-img {

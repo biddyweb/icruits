@@ -114,19 +114,17 @@
         <div class="row">
             <span class="new blueprintLabel"> Blueprint Name </span>
             <input type="text" 
-                   class="form-control blueprintInput" 
+                   class="form-control blueprintInput blueprintName" 
                    name="name"
-                   style="width: 330px; display: inline;" 
                    ng-model="make_blueprint.name"
                    required>
         </div>
-        <hr style="margin-top: 10px;">
+        <hr class="hrTopTen">
         <div class="row">
             <span class="new blueprintLabel"> Company Name </span>
             <input type="text" 
                    name="company name"
-                   class="form-control blueprintInput"
-                   style="width: 200px; display: inline;" 
+                   class="form-control blueprintInput blueprintCompany"
                    ng-model="make_blueprint.company_name"
                    required>
         </div>
@@ -134,12 +132,11 @@
             <span class="new blueprintLabel"> Team ID </span>
             <input type="text" 
                    name="team id"
-                   style="width: 100px; display: inline;" 
-                   class="form-control"
+                   class="form-control blueprintTeamID"
                    ng-model="make_blueprint.team_id" 
                    required>
         </div>
-        <hr style="margin-top: 10px;">
+        <hr class="hrTopTen">
         <div class="row">
             <span class="new blueprintLabel"> Industry </span>
             <select class="form-control blueprintInput" 
@@ -155,11 +152,10 @@
                     ng-options="option.id*1 as option.types_of_company for option in company_type_info">
                 <option value="" ng-show="false"></option>
             </select>
-            <span class="new blueprintLabel" style="margin-top: 20px;"> Job Function </span>
+            <span class="new blueprintLabel marginBlueprint"> Job Function </span>
             <input type="text" 
                    name="job function"
-                   class="form-control"
-                   style="width: 150px; display: inline;" 
+                   class="form-control inputSizeFix"
                    ng-model="make_blueprint.function" 
                    required>
             <span class="new blueprintLabel"> Experience </span>
@@ -190,14 +186,14 @@
                     ng-options="option.id*1 as option.response_time for option in wait_interval_info">
                 <option value="" ng-show="false"></option>
             </select>
-            <span class="new blueprintLabel" style="margin-top: 20px;"> On Success </span>
+            <span class="new blueprintLabel marginBlueprint"> On Success </span>
             <select class="form-control blueprintInput" 
                     name="On success"
                     ng-model="make_blueprint.related_on_success"
                     ng-options="option.id*1 as option.success for option in on_job_success_info">
             <option value="" ng-show="false"></option>
             </select>
-            <span class="new blueprintLabel" style="margin-top: 20px;"> Job Duration </span>
+            <span class="new blueprintLabel marginBlueprint"> Job Duration </span>
             <select class="form-control blueprintInput" 
                     name="job duration"
                     ng-model="make_blueprint.related_job_duration"
@@ -216,23 +212,20 @@
         <div class="row">
             <span class="new blueprintLabel"> Qualification </span>
             <input type="text" 
-                   class="form-control blueprintInput"
+                   class="form-control blueprintInput inputSizeFix"
                    name="professional qualifications"
-                   style="width: 150px; display: inline;" 
                    ng-model="make_blueprint.professional_qualifications"
                    required>
             <span class="new blueprintLabel"> Practice Limit </span>
             <input type="number" 
                    name="practice limit"
-                   style="width: 150px; display: inline;" 
-                   class="form-control"
+                   class="form-control inputSizeFix"
                    ng-model="make_blueprint.practice_limit" 
                    required>
             <span class="new blueprintLabel"> Remote Work </span>
             <input type="text" 
                    name="remote work"
-                   style="width: 150px; display: inline;" 
-                   class="form-control"
+                   class="form-control inputSizeFix"
                    ng-model="make_blueprint.remote_work" 
                    required>
             <span class="new blueprintLabel"> Visa Status </span>
@@ -245,29 +238,59 @@
             <span class="new blueprintLabel"> Max Queue </span>
             <input type="number" 
                    name="max queue"
-                   style="width: 150px; display: inline;" 
-                   class="form-control"
+                   class="form-control inputSizeFix"
                    ng-model="make_blueprint.max_queue" 
                    required>
             <span class="new blueprintLabel"> Download Url </span>
             <input type="text" 
                    name="download url"
-                   style="width: 150px; display: inline;" 
-                   class="form-control"
+                   class="form-control inputSizeFix"
                    ng-model="make_blueprint.url" 
                    required>
         </div>
-        <hr style="margin-top: 10px;">
-        <div class="row">
-            <span class="new blueprintLabel"> Blueprint Tasks </span>
-            <select class="form-control blueprintInput" 
-                    name="blueprint tasks"
-                    ng-model="make_blueprint.related_tasks"
-                    ng-options="option.id*1 as option.name for option in blueprint_tasks">
-                <option value="" ng-show="false"></option>
-            </select>
+    </div>
+    <div class="blueprintTasksContainer">
+        <hr class="hrTopTen">
+        <div class="tasks-select">
+            
+            <div class="row">
+                <span class="new blueprintLabel"> Blueprint Tasks </span>
+                <span class="new blueprintLabel"> Expert Ref </span>
+            </div>
+
+            <div class="row">
+                <select class="form-control blueprintTasksInput"
+                        id="selectTask" 
+                        name="blueprint tasks"
+                        ng-model="make_blueprint.related_tasks"
+                        ng-options="option.id*1 as option.name for option in blueprint_tasks">
+                    <option value="" ng-show="false"></option>
+                </select>
+                <input type="email" 
+                       class="form-control blueprintExpert blueprintRefFix"  
+                       id="expId">
+            </div>
+            <span class="btn btn-info" 
+                  style="font-size:20px;margin-left:3%;" 
+                  id="addNewRow">
+                <b class="fa fa-plus-circle"></b>
+            </span>
+
         </div>
-        <hr style="margin-bottom: 10px;">
+
+        <table class="table" id="hiddenTable">
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="blueprintContainer">
+        <hr class="hrBotTen">
         <div class="row">
             <span class="new blueprintLabel"> Work Environment </span>
             <a class="btn" ngf-select="upload($file)">Browse</a>
@@ -275,6 +298,9 @@
                 <img ngf-thumbnail="preview || '/static/img/logo.png'">
             </div>
         </div>
+    </div>
+</div>        
+
         <!--hr>
         <div class="row">
             <span class="new blueprintLabel"> Publish Blueprint </span>
@@ -298,8 +324,7 @@
                 No
             </label>
         </div-->
-    </div>
-</div>
+
 
 <!-- SMALL CANVAS MENU -->
 <aside id="sidenav" class="sidenav" ng-controller='LogoutCtrl'>
