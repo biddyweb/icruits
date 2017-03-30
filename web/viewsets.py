@@ -13,6 +13,7 @@ from web.models import (
     BlueprintTasks,
     Location,
     Visa,
+    user,
 )
 from web.serializers import (
     BlueprintSerializer,
@@ -153,7 +154,7 @@ class LoginViewSet(views.APIView):
         username_ = data.get('username')
         password_ = data.get('password')
 
-        account = authenticate(username=username_.lower(), password=password_)
+        account = authenticate(username=username_, password=password_)
 
         if account is not None:
             login(request, account)
@@ -197,7 +198,7 @@ class CheckUserViewSet(views.APIView):
         try:
             user = data.split(':')[1]
 
-            checkUser = User.objects.filter(username=user.lower())
+            checkUser = User.objects.filter(username=user)
 
             if checkUser:
                 return response.Response(status=status.HTTP_200_OK)
@@ -323,6 +324,17 @@ class VisaStatusViewSet(viewsets.ReadOnlyModelViewSet):
     """
     queryset = Visa.objects.all()
     serializer_class = VisaSerializer
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+
+
+class UserListViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    User list viewset
+    """
+    queryset = user.objects.all()
+    serializer_class = serializers.serializers_manager.get('user')
     permission_classes = [
         permissions.IsAuthenticated,
     ]

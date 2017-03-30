@@ -18,7 +18,8 @@
                                type="text"
                                class="cleaninput" 
                                placeholder="Username"
-                               data-ng-model="reg.username"/>
+                               data-ng-model="reg.username"
+                               ng-trim="false" custom-validation>
                     </li>
                     <li>
                         <span><label for="q2" class="text-center"></label></span>
@@ -27,7 +28,8 @@
                                type="text"
                                class="cleaninput" 
                                placeholder="Email"
-                               data-ng-model="reg.email"/>
+                               data-ng-model="reg.email"
+                               ng-trim="false" custom-validation>
                     </li>
                     <li>
                         <div class="inputHolder" ng-repeat="accType in profile_types">
@@ -58,7 +60,8 @@
                                type="password"
                                class="cleaninput" 
                                placeholder="Password"
-                               ng-model="reg.password"/>
+                               ng-model="reg.password" 
+                               ng-trim="false" custom-validation>
                     </li>
                     <li>
                         <span><label for="q6" class="text-center"></label></span>
@@ -67,7 +70,8 @@
                                type="password"
                                class="cleaninput" 
                                placeholder="Confirm Password"
-                               ng-model="reg.confirm_password"/>
+                               ng-model="reg.confirm_password"
+                               ng-trim="false" custom-validation>
                     </li>
                 </ol><!-- /questions -->
                 <div class="controls">

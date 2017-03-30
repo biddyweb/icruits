@@ -42,11 +42,11 @@
 
         if ($cookies.get('token')) {
             var user_logged;
-        } //else {
-        //    setTimeout(function() {
-        //        $state.go('root.home', { reload: true });
-        //    }, 100);
-        //}
+        } else {
+            setTimeout(function() {
+                $state.go('root.home', { reload: true });
+            }, 100);
+        }
 
         $scope.SendMail = function () {
             // body...
@@ -99,11 +99,11 @@
 
     DashboardCtrl.$inject = ['$scope', '$rootScope', '$state', '$cookies', 'metaTags', 'BluePrints', 'UserInfo',
     'IndustryInfo', 'LocationInfo', 'SalaryInfo', 'ExperienceInfo', 'CompanyTypeInfo', 'WaitIntervalInfo', 'OnJobSuccessInfo',
-    'JobTypeInfo', 'JobDurationInfo', 'ExperienceLevelInfo', 'BlueprintTasksInfo', 'VisaStatusInfo'];
+    'JobTypeInfo', 'JobDurationInfo', 'ExperienceLevelInfo', 'BlueprintTasksInfo', 'VisaStatusInfo', 'UserListInfo'];
 
     function DashboardCtrl ($scope, $rootScope, $state, $cookies, metaTags, BluePrints, UserInfo,
     IndustryInfo, LocationInfo, SalaryInfo, ExperienceInfo, CompanyTypeInfo, WaitIntervalInfo, OnJobSuccessInfo,
-    JobTypeInfo, JobDurationInfo, ExperienceLevelInfo, BlueprintTasksInfo, VisaStatusInfo) {
+    JobTypeInfo, JobDurationInfo, ExperienceLevelInfo, BlueprintTasksInfo, VisaStatusInfo, UserListInfo) {
         
         $scope.blueprints = BluePrints;
 
@@ -135,7 +135,18 @@
 
         $scope.visa_status_info = VisaStatusInfo;
 
+        $scope.user_list_info = UserListInfo;
+
         $scope.make_blueprint = {related_user: $scope.user.id};
+
+        $scope.user_list = [];
+
+        angular.forEach($scope.user_list_info, function (value, key) {
+            // body...
+            if(value.profile_type){
+                $scope.user_list.push(value);
+            }
+        });
 
         /* FILTER PART */
 
@@ -226,7 +237,7 @@
             console.log(blueprints);
         }
 
-        /* END OF FILTER PART 
+        /* END OF FILTER PART */
 
         if ($cookies.get('token')) {
             var user_logged;
@@ -235,7 +246,7 @@
             setTimeout(function() {
                 $state.go('root.home', { reload: true });
             }, 600);
-        }*/
+        }
 
         $scope.$emit('metaTagsChanged', metaTags);
 
@@ -394,4 +405,27 @@
             }
         }
     }
+})();
+
+(function () {
+    // body...
+    angular.module('app').directive('customValidation', function(){
+       return {
+         require: 'ngModel',
+         link: function(scope, element, attrs, modelCtrl) {
+
+           modelCtrl.$parsers.push(function (inputValue) {
+
+             var transformedInput = inputValue.toLowerCase().replace(/ /g, ''); 
+
+             if (transformedInput!=inputValue) {
+               modelCtrl.$setViewValue(transformedInput);
+               modelCtrl.$render();
+             }         
+
+             return transformedInput;         
+           });
+         }
+       };
+    });    
 })();

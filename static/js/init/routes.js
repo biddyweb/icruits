@@ -94,6 +94,10 @@
                 UserInfo: function (UserInfoRes) {
                     // body...
                     return UserInfoRes.query().$promise;
+                },
+                UserListInfo: function (UserListRes) {
+                    // body...
+                    return UserListRes.query().$promise;
                 }
             }
         })

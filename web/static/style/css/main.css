@@ -1898,15 +1898,25 @@ body,
 
 .blueprintTasksContainer {
     width: 80%;
+    margin-left: 15%;
+    /* margin-right: auto; */
+}
+
+.blueprint-tast-label {
+    display: block;
     margin-left: auto;
     margin-right: auto;
+    font-family: Roboto Condensed;
+    text-transform: uppercase;
+    width: 150px;
+    position: relative;
 }
 
 .blueprintTasksInput {
-    display: inline;
-    width: 60%;
+    display: block;
+    width: 750px;
     font-family: Roboto Condensed;
-    text-transform: uppercase; 
+    text-transform: uppercase;
 }
 
 .blueprintLabel {
@@ -1925,8 +1935,26 @@ body,
 }
 
 .blueprintRefFix {
-    width: 39%!important;
-    display: inline!important;
+    /* width: 39%!important; */
+    /* display: inline!important; */
+    display: block;
+    width: 300px;
+    font-family: Roboto Condensed;
+    text-transform: uppercase;
+}
+
+/*.expert-label {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Roboto Condensed;
+    text-transform: uppercase;
+    width: 150px;
+    position: relative;    
+}*/
+
+.expert-select {
+    display: inline-block;
 }
 
 .blueprintCompany {

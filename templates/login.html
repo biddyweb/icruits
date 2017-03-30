@@ -29,8 +29,8 @@
                                    name="q1"
                                    type="text"
                                    placeholder="Username"
-                                   onkeypress="this.value = this.value.toLowerCase();"
-                                   data-ng-model="log.username"/>
+                                   data-ng-model="log.username"
+                                   ng-trim="false" custom-validation>
                         </li>
                         <li>
                             <input id="q2"
@@ -39,8 +39,8 @@
                                    type="password"
                                    onfocus="checkUser()" 
                                    placeholder="Password"
-                                   onkeypress="this.value = this.value.toLowerCase();"
-                                   data-ng-model="log.password"/>
+                                   data-ng-model="log.password"
+                                   ng-trim="false" custom-validation>
                         </li>
                     </ol><!-- /questions -->
                     <div class="controls">

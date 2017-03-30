@@ -479,3 +479,17 @@
         });
     }
 })();
+
+(function () {
+    // body...
+    "use strict";
+
+    angular.module('app').factory('UserListRes', UserListRes);
+
+    UserListRes.$inject = ['$resource'];
+
+    function UserListRes($resource) {
+        // body...
+        return $resource('/api/user-list/ ');
+    }
+})();

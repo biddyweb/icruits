@@ -5,7 +5,12 @@
 
 /* md */
 @media (min-width: 992px) and (max-width: 1199px) {
-
+	.blueprintTasksInput {
+		width: 550px;
+	}
+	.blueprintRefFix {
+		width: 250px;
+	}
 }
 
 /* sm */
@@ -35,6 +40,12 @@
 	}
 	#apply-btn {
 	    background-color: rgb(240,240,240);
+	}
+	.blueprintTasksInput {
+		width: 420px;
+	}
+	.blueprintRefFix {
+		width: 200px;
 	}
 }
 
@@ -257,6 +268,29 @@
 	.simform {
 		max-width: 350px;
 	}
+	.blueprintTasksContainer {
+		width: 100%;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.blueprintTasksInput {
+		width: 420px;
+		margin-left: auto;
+    	margin-right: auto;
+	}
+	.blueprintRefFix {
+		width: 200px;
+		margin-left: auto;
+    	margin-right: auto;
+	}
+	.expert-select {
+    	display: block;
+	}
+	.blueprint-tast-label {
+    	display: block;
+    	margin-left: auto;
+    	margin-right: auto;
+	}
 }
 
 @media only screen and (max-width: 950px) {
@@ -430,6 +464,12 @@
     	margin-left: 13%;
     	margin-right: auto;
     	padding-right: 15%;
+	}
+	.blueprintTasksInput {
+    	width: 340px;
+	}
+	.blueprint-tast-label {
+		font-size: 12px;
 	}
 }
 @media only screen and (max-width: 320px){

@@ -251,7 +251,37 @@
     </div>
     <div class="blueprintTasksContainer">
         <hr class="hrTopTen">
-        <div class="tasks-select">
+
+        <div class="row">
+            <div class="expert-select">
+                <span class="new blueprint-tast-label"> Blueprint Tasks </span>
+                 <select class="form-control blueprintTasksInput"
+                        id="selectTask" 
+                        name="blueprint tasks"
+                        ng-model="make_blueprint.related_tasks"
+                        ng-options="option.id*1 as option.name for option in blueprint_tasks">
+                    <option value="" ng-show="false"></option>
+                </select>
+            </div>
+            <div class="expert-select">
+                <span class="new blueprint-tast-label"> Expert Ref </span>
+                <select class="form-control blueprintRefFix"
+                        id="expId"
+                        ng-model="make_blueprint.related_ref"
+                        ng-options="option.id*1 as option.username for option in user_list">
+                    <option value="" ng-show="false"></option>
+                </select>
+            </div>
+        </div>
+
+            <span class="btn btn-info" 
+                  style="font-size:20px;margin-left:3%;" 
+                  id="addNewRow">
+                <b class="fa fa-plus-circle"></b>
+            </span>
+
+
+        <!--div class="tasks-select">
             
             <div class="row">
                 <span class="new blueprintLabel"> Blueprint Tasks </span>
@@ -266,17 +296,23 @@
                         ng-options="option.id*1 as option.name for option in blueprint_tasks">
                     <option value="" ng-show="false"></option>
                 </select>
-                <input type="email" 
+                <select class="form-control blueprintInput blueprintRefFix"
+                        id="expId"
+                        ng-model="make_blueprint.related_ref"
+                        ng-options="option.id*1 as option.username for option in user_list">
+                    <option value="" ng-show="false"></option>
+                </select>
+                <!--input type="email" 
                        class="form-control blueprintExpert blueprintRefFix"  
-                       id="expId">
-            </div>
+                       id="expId"-->
+            <!--/div>
             <span class="btn btn-info" 
                   style="font-size:20px;margin-left:3%;" 
                   id="addNewRow">
                 <b class="fa fa-plus-circle"></b>
             </span>
 
-        </div>
+        </div-->
 
         <table class="table" id="hiddenTable">
             <tbody>
