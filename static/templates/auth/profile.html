@@ -1,27 +1,21 @@
-<header>
-    <span class="menu" onclick="openNav()"><span class="label">MENU</span> </span>
-</header>
-
-<section id="pages">
+<nav class="dashHeader text-center navbar navbar-default fixed top"><span>ICRUITS</span></nav>
+<section id="pages" style="margin-top: 75px;">
     <div class="container pb-artist-wrap">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
-                <div class="panel panel-warning">
+                <div class="panel">
                     <div class="panel-heading">
-                        <h3><strong>A</strong>lan Walker™</h3>
-                        <small>Musician</small>
+                        <h3 data-ng-bind="user_info.username"></h3>
+                        <small ng-if="user_info.profile_type">jobseeker</small>
+                        <small ng-if="!user_info.profile_type">employer</small>
                     </div>
                     <div class="panel-body" style="padding: 0;">
-                        <div>
-                            <img src="http://www.billboard.com/files/media/alan-walker-press-cr-Rikkard-Haggbom-2016-billboard-1548.jpg" class="img-responsive">
-                        </div>
-                        <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>Top 10 songs</th>
+                                    <th>Personal Informations</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <!--tbody>
                                 <tr>
                                     <td><strong>Faded</strong></td>
                                     <td><a href="#">4:31</a></td>
@@ -42,25 +36,26 @@
                                     <td><strong>Ipsum Lorem</strong></td>
                                     <td><a href="#">3:29</a></td>
                                 </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="panel-footer">
-                        <button class="btn btn-warning pb-artist-albums">Popular Albums</button>
+                            </tbody-->
                     </div>
                 </div>
             </div>
         </div>
+        <a id="filter-btn">
+            <span>
+                Update
+            </span>
+            <span class="hover">
+                Update
+            </span>
+        </a>
+        <a id="back-btn" data-ui-sref="root.dashboard">
+            <span id="advanced-span" class="show-button">
+                x
+            </span>
+            <span id="advanced-span-2" class="hover show-button">
+                x
+            </span>            
+        </a>
     </div>
 </section>
-
-<!-- SMALL CANVAS MENU -->
-<div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <img class="img-responsive center-block" style="height: 200px;" src="/static/img/logo.png">
-    <hr>
-    <a data-ui-sref="root.dashboard">Dashboard</a>
-    <a data-ui-sref="root.help">Help</a>
-    <a href="#">Blueprint</a>
-    <a href="#">Logout</a>
-</div>

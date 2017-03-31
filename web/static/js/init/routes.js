@@ -149,6 +149,22 @@
                     }).$promise;
                 }
             }
+        }).state('root.profile', {
+            url: '/profile/',
+            controller: 'ProfileCtrl',
+            templateUrl: '/static/templates/auth/profile.html',
+            resolve: {
+                metaTags: function (metaTagsRes) {
+                    // body...
+                    return metaTagsRes.get({
+                        page_name: 'profile'
+                    }).$promise;
+                },
+                UserInfo: function (UserInfoRes) {
+                    // body...
+                    return UserInfoRes.query().$promise;
+                }
+            }
         });
     }
 })();

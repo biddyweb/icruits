@@ -106,12 +106,12 @@ input.faChkSqr:after {
 
 .checkbox-label {
     font-family: Roboto Condensed;
-    font-size: 0.8em;
+    font-size: 0.85em;
     bottom: 0.5em;
     text-transform: uppercase;
     left: 1.2em;
     cursor: pointer;
-    color: rgb(90, 90, 90);
+    color: rgb(180, 180, 180);
     position: relative;
     transition: all 750ms cubic-bezier(.25,.46,.45,.94);
 }
@@ -592,7 +592,7 @@ div .userContainer {
     font-family: Roboto Condensed;
     text-transform: uppercase;
     position: relative;
-    color: rgb(90, 90, 90);
+    color: rgb(180, 180, 180);
     /*width: 200px;*/
     height: 40px;
     line-height: 40px;
@@ -610,7 +610,7 @@ div .userContainer {
 
 .sidenav .closebtn {
     position: absolute;
-    top: 0;
+    top: 10px;
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
@@ -1807,7 +1807,7 @@ body,
     font-family: Roboto Condensed;
     text-transform: uppercase;
     position: relative;
-    color: rgb(90, 90, 90);
+    color: rgb(180, 180, 180);
     /*width: 200px;*/
     height: 40px;
     line-height: 40px;
@@ -1953,6 +1953,11 @@ body,
     height: 60px;
 }
 
+.blueprintDesc:focus {
+    border-color: rgb(0,0,0);
+    transition: box-shadow .45s,border-color .45s ease-in-out;
+}
+
 .blueprintExpert {
     width: 200px!important; 
     display: inline!important;
@@ -1966,6 +1971,21 @@ body,
     font-family: Roboto Condensed;
     text-transform: uppercase;
     font-size: 0.8em!important;
+}
+
+.blueprintHiddenFix {
+    /* width: 39%!important; */
+    /* display: inline!important; */
+    /* display: inline; */
+    /* width: 240px; */
+    font-family: Roboto Condensed;
+    text-transform: uppercase;
+    font-size: 0.8em!important;
+}
+
+.blueprintHiddenFix:focus {
+    border-color: rgb(0,0,0);
+    transition: box-shadow .45s,border-color .45s ease-in-out;
 }
 
 .blueprintRefFix:focus {
@@ -2204,9 +2224,9 @@ body,
     text-align: center;
     cursor: pointer;
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
-    margin-left: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    /* margin-left: 20px; */
+    /* margin-top: 10px; */
+    /* margin-bottom: 10px; */
 }
 
 .rem-btn:hover {

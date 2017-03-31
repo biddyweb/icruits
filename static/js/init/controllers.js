@@ -474,22 +474,41 @@
 (function () {
     // body...
     angular.module('app').directive('customValidation', function(){
-       return {
-         require: 'ngModel',
-         link: function(scope, element, attrs, modelCtrl) {
+        return {
+            require: 'ngModel',
+            link: function(scope, element, attrs, modelCtrl) {
 
-           modelCtrl.$parsers.push(function (inputValue) {
+                modelCtrl.$parsers.push(function (inputValue) {
 
-             var transformedInput = inputValue.toLowerCase().replace(/ /g, ''); 
+                    var transformedInput = inputValue.toLowerCase().replace(/ /g, ''); 
 
-             if (transformedInput!=inputValue) {
-               modelCtrl.$setViewValue(transformedInput);
-               modelCtrl.$render();
-             }         
+                    if (transformedInput!=inputValue) {
+                        modelCtrl.$setViewValue(transformedInput);
+                        modelCtrl.$render();
+                    }         
 
-             return transformedInput;         
-           });
-         }
-       };
+                    return transformedInput;         
+                });
+            }
+        };
     });    
+})();
+
+(function () {
+    // body...
+    "use strict";
+
+    angular.module('app').controller('ProfileCtrl', ProfileCtrl);
+
+    ProfileCtrl.$inject = ['$rootScope', '$scope', 'metaTags', 'UserInfo'];
+
+    function ProfileCtrl($rootScope, $scope, metaTags, UserInfo) {
+        // body...
+
+        $scope.$on('metaTagsChanged', metaTags);
+
+        $scope.user_info = UserInfo;
+
+        $rootScope.image = '';
+    }
 })();
