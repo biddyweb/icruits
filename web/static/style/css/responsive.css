@@ -5,12 +5,13 @@
 
 /* md */
 @media (min-width: 992px) and (max-width: 1199px) {
-	.blueprintTasksInput {
+/*	.blueprintTasksInput {
 		width: 550px;
 	}
 	.blueprintRefFix {
 		width: 250px;
 	}
+*/
 }
 
 /* sm */
@@ -41,9 +42,9 @@
 	#apply-btn {
 	    background-color: rgb(240,240,240);
 	}
-	.blueprintTasksInput {
+	/*.blueprintTasksInput {
 		width: 420px;
-	}
+	}*/
 	.blueprintRefFix {
 		width: 200px;
 	}
@@ -269,7 +270,6 @@
 		max-width: 350px;
 	}
 	.blueprintTasksContainer {
-		width: 100%;
 		margin-left: auto;
 		margin-right: auto;
 	}
@@ -315,6 +315,16 @@
     .sentEmail {
     	font-size: 1.4em;
     	width: 444px;
+    }
+    .blueprintTasksInput {
+    	width: 50%;
+    }
+    .blueprintRefFix {
+    	width: 150px;
+    }
+    .advanced-btn {
+    	width: 160px;
+    	left: 50px;
     }
 }
 
@@ -415,6 +425,16 @@
     #nav-bar div.masDev {
         display: none;
     }
+    .blueprintTasksInput {
+    	width: 50%;
+    }
+    .blueprintRefFix {
+    	width: 150px;
+    }
+    .advanced-btn {
+    	width: 130px;
+    	left: 60px;
+    }
 }
 @media only screen and (max-width: 360px){
     h1 {
@@ -466,10 +486,13 @@
     	padding-right: 15%;
 	}
 	.blueprintTasksInput {
-    	width: 340px;
+    	width: 45%;
 	}
-	.blueprint-tast-label {
-		font-size: 12px;
+	.blueprintRefFix {
+    	width: 150px;
+	}
+	.advanced-btn {
+		left: 0;
 	}
 }
 @media only screen and (max-width: 320px){

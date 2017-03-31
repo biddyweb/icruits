@@ -7,7 +7,7 @@ from seo.viewsets import MetaTagsViewSet
 
 
 router = DefaultRouter()
-router.register(r'metaTags', MetaTagsViewSet, base_name='metaTags')
+router.register(r'meta_tags', MetaTagsViewSet, base_name='meta_tags')
 
 urlpatterns = [
     url(r'^', include(router.urls)),

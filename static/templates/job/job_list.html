@@ -121,6 +121,13 @@
         </div>
         <hr class="hrTopTen">
         <div class="row">
+            <span class="new blueprintLabel"> Description </span>
+            <textarea name="description" 
+                   ng-model="make_blueprint.description"
+                   class="blueprintDesc" rows="4" cols="50"></textarea>
+        </div>
+        <hr class="hrTopTen">
+        <div class="row">
             <span class="new blueprintLabel"> Company Name </span>
             <input type="text" 
                    name="company name"
@@ -248,13 +255,10 @@
                    ng-model="make_blueprint.url" 
                    required>
         </div>
-    </div>
-    <div class="blueprintTasksContainer">
         <hr class="hrTopTen">
 
-        <div class="row">
-            <div class="expert-select">
-                <span class="new blueprint-tast-label"> Blueprint Tasks </span>
+        <div class="row" style="background-color: rgb(250,250,250);">
+                <span class="new blueprintLabel"> Blueprint Tasks </span>
                  <select class="form-control blueprintTasksInput"
                         id="selectTask" 
                         name="blueprint tasks"
@@ -262,22 +266,27 @@
                         ng-options="option.id*1 as option.name for option in blueprint_tasks">
                     <option value="" ng-show="false"></option>
                 </select>
-            </div>
-            <div class="expert-select">
-                <span class="new blueprint-tast-label"> Expert Ref </span>
+        </div>
+        <div class="row" style="background-color: rgb(250,250,250);">
+                <span class="new blueprintLabel" style="margin-top: 20px;"> Expert Ref </span>
                 <select class="form-control blueprintRefFix"
                         id="expId"
                         ng-model="make_blueprint.related_ref"
                         ng-options="option.id*1 as option.username for option in user_list">
                     <option value="" ng-show="false"></option>
                 </select>
-            </div>
         </div>
-        <span class="btn btn-info" 
-              style="font-size:20px;margin-left:3%;" 
-              id="addNewRow">
-            <b class="fa fa-plus-circle"></b>
-        </span>
+        <div class="row" style="background-color: rgb(250,250,250);">
+            <span class="btn add-btn" 
+                  id="addNewRow">
+                    <span id="apply-span">
+                        Add
+                    </span>
+                    <span id="apply-span-2" class="hover hide-button">
+                        Add
+                    </span>
+            </span>
+        </div>
         <table class="table" id="hiddenTable">
             <tbody>
                 <tr>
@@ -290,16 +299,17 @@
     </div>
 
     <div class="blueprintContainer" style="margin-top: 0;">
-        <div class="row">
-            <span class="new blueprintLabel"> Description </span>
-            <textarea name="description" 
-                   ng-model="make_blueprint.description"
-                   class="blueprintDesc" rows="4" cols="50"></textarea>
-        </div>
         <center>
             <div class="row">
                 <span class="new blueprintLabel"> Work Environment </span>
-                <a class="btn" ngf-select="upload($file)">Browse</a>
+                <a class="btn advanced-btn" ngf-select="upload($file)">
+                    <span id="apply-span">
+                        Browse
+                    </span>
+                    <span id="apply-span-2" class="hover hide-button">
+                        Browse
+                    </span>
+                </a>
                 <div class="previewImage">
                     <img ngf-thumbnail="preview || '/static/img/logo.png'">
                 </div>
@@ -348,7 +358,6 @@
 </aside>
 
 <script type="text/javascript">
-(function() {
 
     var bodyEl = document.body,
         content = document.querySelector( '.content-wrap' ),
@@ -404,7 +413,6 @@
         fixer = false;
     }
 
-})();    
 </script>
 <script>
 $("#addNewRow").click(function(){
@@ -413,7 +421,7 @@ $("#addNewRow").click(function(){
     var expertEmail = $('#expId').text();
     $('#selectTask').find('option[value='+taskId+']').attr('disabled','disabled');
     //$('#hiddenTable tr:last').after("<tr><td><span class='btn btn-small btn-danger rembtn'><i class='fa fa-minus'></i></span></td><td><input type='text' value='"+taskName+"' class='form-control' readonly /><input type='hidden' name='task[]' value='"+taskId+"' class='form-control' readonly /></td><td><input type='email' name='expert_ref[]' value='"+expertEmail+"' class='form-control' readonly /></td></tr>");
-    $('#hiddenTable tr:last').after("<tr><td><span class='btn btn-small btn-danger rembtn'><i class='fa fa-minus'></i></span></td><td><input type='text' value='"+taskName+"' class='form-control' readonly /><input type='hidden' name='task[]' value='"+taskName+"' class='form-control' readonly /></td><td><input type='email' name='expert_ref[]' value='"+expertEmail+"' class='form-control' readonly /></td></tr>");
+    $('#hiddenTable tr:last').after("<tr><td><span class='btn rem-btn'><span id='apply-span' class='apply-span'>Remove</span><span id='apply-span-2' class='hover hide-button'>Remove</span></span></td><td><input type='text' value='"+taskName+"' class='form-control' readonly /><input type='hidden' name='task[]' value='"+taskName+"' class='form-control' readonly /></td><td><input type='email' name='expert_ref[]' value='"+expertEmail+"' class='form-control' readonly /></td></tr>");
 
     // method to push objects into make_blueprint_tasks
     // call angular addTask
@@ -425,7 +433,7 @@ $("#addNewRow").click(function(){
     }
     addSelectedTask();
 });
-$("#hiddenTable").on('click','.rembtn',function(){
+$("#hiddenTable").on('click','.rem-btn',function(){
     var taskId = $(this).parent().parent('tr').find('td:eq(1)').find('input[type=hidden]').val();
     //$('#selectTask').find('option[value='+taskId+']').attr('disabled',false);//*[@id="hiddenTable"]/tbody/tr[2]/td[2]/input[1]
 
@@ -437,7 +445,7 @@ $("#hiddenTable").on('click','.rembtn',function(){
     removeSelectedTask(taskId);
     $(this).parent().parent('tr').remove();
 });
-    
+/* 
 $(document).ready(function() {
     $('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
         var $total = navigation.find('li').length;
@@ -446,4 +454,16 @@ $(document).ready(function() {
         $('#rootwizard .progress-bar').css({width:$percent+'%'});
     }});    
 });
+*/
+</script>
+
+<script type="text/javascript">
+    function expandMenu() {
+        // body...
+        var size = $('.content-wrap').height();
+        $('.menu-wrap').css({
+            'height': size + 'px'
+        });
+    }
+    $(window).on('scroll resize', expandMenu);
 </script>

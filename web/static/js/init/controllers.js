@@ -54,7 +54,7 @@
         }
         
         $scope.$emit('metaTagsChanged', {
-            title: $scope.blueprint.title,
+            title: $scope.blueprint.name,
             description: $scope.blueprint.description
         });
         $rootScope.image = '';
