@@ -18,6 +18,7 @@ from django.utils import six
 from django.core.mail import send_mail
 from django.conf import settings
 from libs.random_id import get_random_id
+from django_resized import ResizedImageField
 
 number_validator = RegexValidator(r'^[0-9+]*$', 'Must be numbers only')
 
@@ -329,9 +330,9 @@ TASK_STATUS = (('Active', 'Active'),
 
 class BlueprintTasks(models.Model):
     name = models.CharField(_('Task Name'), max_length=255)
-    expert = models.CharField(_('Expert'), max_length=255)
-    expert_email = models.CharField(_('Expert Email'), max_length=255)
-    tast_status = models.CharField(choices=TASK_STATUS, max_length=255)
+    expert = models.CharField(_('Expert'), max_length=255, blank=True)
+    expert_email = models.CharField(_('Expert Email'), max_length=255, blank=True)
+    tast_status = models.CharField(choices=TASK_STATUS, max_length=255, blank=True)
     created_at = models.DateTimeField(_('Created At'), auto_now_add=True)
     updated_at = models.DateTimeField(_('Updated_At'), auto_now=True)
 
@@ -369,7 +370,7 @@ class Blueprint(models.Model):
     related_job_duration = models.ForeignKey(JobDuration, related_name="duration")
     related_experience = models.ForeignKey(ExperienceLevel, related_name="experience")
     related_user = models.ForeignKey(user, related_name="blueprint_user", null=True, blank=True)
-    related_tasks = models.ForeignKey(BlueprintTasks, related_name="blueprint_tasks", null=True, blank=True)
+    related_tasks = models.ManyToManyField(BlueprintTasks, related_name="blueprint_tasks", blank=True)
     related_visa_status = models.ForeignKey(Visa, related_name="visa_status")
 
     def __unicode__(self):
@@ -409,3 +410,14 @@ class Queue(models.Model):
 
     class Meta:
         verbose_name = "Queue"
+
+
+class WorkEnviorment(models.Model):
+    image = ResizedImageField(size=[300, 600], crop=['middle', 'center'], upload_to='img/work-enviorment/temp/')
+    session = models.CharField(max_length=511)
+
+    def __unicode__(self):
+        return self.session
+
+    class Meta:
+        verbose_name = 'Work Enviorment'

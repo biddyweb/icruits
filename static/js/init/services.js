@@ -493,3 +493,16 @@
         return $resource('/api/user-list/ ');
     }
 })();
+
+(function () {
+    "use strict";
+
+    angular.module('app').factory('CreateBlueprintRes', CreateBlueprintRes);
+
+    CreateBlueprintRes.$inject = ['$resource'];
+
+    function CreateBlueprintRes($resource) {
+        // body...
+        return $resource('/api/create-blueprint/ ');
+    }
+})();

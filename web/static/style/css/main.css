@@ -1889,11 +1889,28 @@ body,
 /******************************************************************
                         BLUEPRINT CONTAINER
 ******************************************************************/
+.previewImage {
+    display: block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 320px;
+    border: none;
+    text-align: center;
+}
+
 .blueprintContainer {
     width: 650px;
     margin-top: 10%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.previewImage {
+    height: auto;
+    margin: 0 0 20px 0;
 }
 
 .blueprintTasksContainer {
@@ -1917,6 +1934,12 @@ body,
     width: 750px;
     font-family: Roboto Condensed;
     text-transform: uppercase;
+    font-size: 0.8em!important;
+}
+
+.blueprintTasksInput:focus {
+    border-color: rgb(0,0,0);
+    transition: box-shadow .45s,border-color .45s ease-in-out;
 }
 
 .blueprintLabel {
@@ -1927,6 +1950,14 @@ body,
     text-transform: uppercase;
     width: 150px;
     position: relative;
+}
+
+.blueprintDesc {
+    width: 70%;
+    font-family: Roboto Condensed;
+    /* text-transform: uppercase; */
+    font-size: 1em!important;
+    height: 60px;
 }
 
 .blueprintExpert {
@@ -1941,6 +1972,12 @@ body,
     width: 300px;
     font-family: Roboto Condensed;
     text-transform: uppercase;
+    font-size: 0.8em!important;
+}
+
+.blueprintRefFix:focus {
+    border-color: rgb(0,0,0);
+    transition: box-shadow .45s,border-color .45s ease-in-out;
 }
 
 /*.expert-label {
@@ -1965,6 +2002,13 @@ body,
 .blueprintTeamID {
     width: 100px!important; 
     display: inline!important;
+    font-family: Roboto Condensed!important;
+    text-transform: uppercase!important;
+    font-size: 0.8em!important;
+}
+.blueprintTeamID:focus {
+    border-color: rgb(0,0,0);
+    transition: box-shadow .45s,border-color .45s ease-in-out;
 }
 
 .marginBlueprint {
@@ -1974,6 +2018,12 @@ body,
 .inputSizeFix {
     width: 150px!important; 
     display: inline!important;
+    font-size: 0.8em!important;
+}
+
+.inputSizeFix:focus {
+    border-color: rgb(0,0,0);
+    transition: box-shadow .45s,border-color .45s ease-in-out;
 }
 
 .blueprintDescription {
@@ -1991,6 +2041,12 @@ body,
     width: 150px;
     font-family: Roboto Condensed;
     text-transform: uppercase;
+    font-size: 0.8em!important;
+}
+
+.blueprintInput:focus {
+    border-color: rgb(0,0,0);
+    transition: box-shadow .45s,border-color .45s ease-in-out;
 }
 
 .blueprintRadioLabel {

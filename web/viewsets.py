@@ -14,6 +14,7 @@ from web.models import (
     Location,
     Visa,
     user,
+    WorkEnviorment,
 )
 from web.serializers import (
     BlueprintSerializer,
@@ -30,6 +31,7 @@ from web.serializers import (
     BlueprintTasksSerializer,
     LocationSerializer,
     VisaSerializer,
+    WorkEnviormentSerializer,
 )
 from rest_framework import (
     viewsets,
@@ -40,6 +42,7 @@ from rest_framework import (
     renderers,
     status,
     generics,
+    parsers,
 )
 import json
 from django.contrib.auth import (
@@ -307,7 +310,7 @@ class ExperienceLevelViewSet(viewsets.ReadOnlyModelViewSet):
     ]
 
 
-class BlueprintTasksViewSet(viewsets.ReadOnlyModelViewSet):
+class BlueprintTasksViewSet(viewsets.ModelViewSet):
     """
     Blueprint Tasks viewset endpoint
     """
@@ -338,3 +341,127 @@ class UserListViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [
         permissions.IsAuthenticated,
     ]
+
+
+class WorkEnviormentViewSet(viewsets.ModelViewSet):
+    queryset = WorkEnviorment.objects.all()
+    serializer_class = WorkEnviormentSerializer
+    permission_classes = [
+        permissions.AllowAny,
+    ]
+    parser_classes = [
+        parsers.MultiPartParser,
+    ]
+
+    def create(self, request, *args, **kwargs):
+
+        if not request.session.exists(request.session.session_key):
+            request.session.create()
+
+        image = request.data['file']
+
+        serializer = WorkEnviormentSerializer(data={'image': image,
+                                                    'session': request.session.session_key})
+
+        if serializer.is_valid():
+
+            self.perform_create(serializer)
+
+            _old_session = WorkEnviorment.objects.filter(session=request.session.session_key).first()
+
+            if _old_session:
+                self.perform_destroy(_old_session)
+
+            _headers = self.get_success_headers(serializer.data)
+
+            return response.Response(serializer.data, status=status.HTTP_201_CREATED, 
+                                     headers=_headers)
+        else:
+            return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CreateBlueprintViewSet(viewsets.ModelViewSet):
+    queryset = Blueprint.objects.all()
+    serializer_class = BlueprintSerializer
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+
+    def create(self, request, *args, **kwargs):
+
+        request_data = request.data[0]
+        tasks_data = request.data[1]
+
+        job_dur = request_data['related_job_duration']
+        t_id = request_data['team_id']
+        wait_int = request_data['related_wait_interval']
+        prof_qual = request_data['professional_qualifications']
+        rel_succ = request_data['related_on_success']
+        job_t = request_data['related_job_type']
+        company_t = request_data['related_company_type']
+        comapny_n = request_data['company_name']
+        rel_ind = request_data['related_industry']
+        work_env = request_data['work_enviorment']
+        rel_loc = request_data['related_location']
+        fun = request_data['function']
+        rel_sal = request_data['related_salary']
+        prac_lim = request_data['practice_limit']
+        max_q = request_data['max_queue']
+        nam = request_data['name']
+        blue_url = request_data['url']
+        remote_w = request_data['remote_work']
+
+        tasks = tasks_data['tasks']
+                #rel_ref = request.data['related_ref']
+
+        rel_exp = request_data['related_experience']
+        rel_visa = request_data['related_visa_status']
+        rel_user = request_data['related_user']
+        desc = request_data['description']
+
+        # add description!!
+        serializer = BlueprintSerializer(data={'name': nam,
+                                               'description': desc,
+                                               'url': blue_url,
+                                               'function': fun,
+                                               'professional_qualifications': prof_qual,
+                                               'team_id': t_id,
+                                               'practice_limit': prac_lim,
+                                               'remote_work': remote_w,
+                                               'max_queue': max_q,
+                                               'company_name': comapny_n,
+                                               'work_enviorment': work_env,
+                                               'related_location': rel_loc,
+                                               'related_industry': rel_ind,
+                                               'related_company_type': company_t,
+                                               'related_salary': rel_sal,
+                                               'related_wait_interval': wait_int,
+                                               'related_on_success': rel_succ,
+                                               'related_job_type': job_t,
+                                               'related_job_duration': job_dur,
+                                               'related_experience': rel_exp,
+                                               'related_user': rel_user,
+                                               'related_visa_status': rel_visa})
+
+        if serializer.is_valid():
+            self.perform_create(serializer)
+
+            blueprint_object = Blueprint.objects.filter(name=nam).first()
+
+            _headers = self.get_success_headers(serializer.data)
+
+            for task in tasks:
+                obj_status = task['task_status']
+                obj_name = task['name']
+                obj_expert = task['expert']
+
+                obj_email = user.objects.filter(id=obj_expert).first()
+
+                obj = BlueprintTasks(name=obj_name, expert=obj_expert, tast_status=obj_status, expert_email=obj_email.email)
+                obj.save()
+                blueprint_object.related_tasks.add(obj)
+
+            return response.Response(serializer.data, status=status.HTTP_201_CREATED, headers=_headers)
+        
+        else:
+            return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

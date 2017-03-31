@@ -1,7 +1,7 @@
 (function () {
     "use strict";
     var app = angular.module('app', ['ngCookies', 'ui.router', 'ngResource', 
-        'ngRoute', 'ngAnimate']);
+        'ngRoute', 'ngAnimate', 'ngFileUpload']);
 
     app.run(run);
 

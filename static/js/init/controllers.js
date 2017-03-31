@@ -99,11 +99,11 @@
 
     DashboardCtrl.$inject = ['$scope', '$rootScope', '$state', '$cookies', 'metaTags', 'BluePrints', 'UserInfo',
     'IndustryInfo', 'LocationInfo', 'SalaryInfo', 'ExperienceInfo', 'CompanyTypeInfo', 'WaitIntervalInfo', 'OnJobSuccessInfo',
-    'JobTypeInfo', 'JobDurationInfo', 'ExperienceLevelInfo', 'BlueprintTasksInfo', 'VisaStatusInfo', 'UserListInfo'];
+    'JobTypeInfo', 'JobDurationInfo', 'ExperienceLevelInfo', 'BlueprintTasksInfo', 'VisaStatusInfo', 'UserListInfo', 'Upload', 'CreateBlueprintRes'];
 
     function DashboardCtrl ($scope, $rootScope, $state, $cookies, metaTags, BluePrints, UserInfo,
     IndustryInfo, LocationInfo, SalaryInfo, ExperienceInfo, CompanyTypeInfo, WaitIntervalInfo, OnJobSuccessInfo,
-    JobTypeInfo, JobDurationInfo, ExperienceLevelInfo, BlueprintTasksInfo, VisaStatusInfo, UserListInfo) {
+    JobTypeInfo, JobDurationInfo, ExperienceLevelInfo, BlueprintTasksInfo, VisaStatusInfo, UserListInfo, Upload, CreateBlueprintRes) {
         
         $scope.blueprints = BluePrints;
 
@@ -131,11 +131,22 @@
 
         $scope.experience_level_info = ExperienceLevelInfo;
 
-        $scope.blueprint_tasks = BlueprintTasksInfo;
+        $scope.blueprint_tasks_info = BlueprintTasksInfo;
+
+        $scope.blueprint_tasks = [];
+
+        angular.forEach($scope.blueprint_tasks_info, function (value, key) {
+            // body...
+            if(value.expert === ""){
+                $scope.blueprint_tasks.push(value);
+            };
+        });
 
         $scope.visa_status_info = VisaStatusInfo;
 
         $scope.user_list_info = UserListInfo;
+
+        $scope.make_blueprint_tasks = [];
 
         $scope.make_blueprint = {related_user: $scope.user.id};
 
@@ -251,6 +262,59 @@
         $scope.$emit('metaTagsChanged', metaTags);
 
         $rootScope.image = '';
+
+        /* WORK ENVIORMENT UPLOAD PHOTO */
+
+        $scope.upload = function (file) {
+            // body...
+            if(!file){
+                return;
+            }
+            Upload.upload({
+                url: '/api/work-enviorment/',
+                file: file
+            }).success(function (data, status, headers, config) {
+                // body...
+                $scope.make_blueprint.work_enviorment = data.image;
+                $scope.preview = data.image;
+                $scope.errors = null;
+            }).errors(function (data, status, headers, config) {
+                // body...
+                $scope.errors = data.errors;
+            });
+        };
+
+        /* END OF WORK ENVIORMENT PHOTO UPLOAD */
+
+        /* ADDING BLUEPRINT TASK */
+        $scope.addTask = function (task) {
+            // body...
+            $scope.make_blueprint_tasks.push(task);
+        };
+
+        /* REMOVING BLUEPRINT TASK */
+        $scope.removeTask = function (task) {
+            // body...
+            angular.forEach($scope.make_blueprint_tasks, function (object, index) {
+                // body...
+                if(object.name === task) {
+                    $scope.make_blueprint_tasks.splice(index, 1);
+                }
+            });
+        };
+
+        /* CREATING BLUEPRINT */
+        $scope.createBlueprint = function () {
+            // body...
+            $scope.send_blueprint = []
+            $scope.send_blueprint.push($scope.make_blueprint);
+            $scope.send_blueprint.push({tasks: $scope.make_blueprint_tasks});
+            CreateBlueprintRes.save($scope.send_blueprint, function (response) {
+                // body...
+            }, function (response) {
+                // body...
+            });
+        };
 
     }
 })();

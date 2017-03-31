@@ -14,6 +14,7 @@ from web.models import (
     BlueprintTasks,
     Location,
     Visa,
+    WorkEnviorment,
 )
 from rest_framework import serializers
 from libs.djoser.serializers import UserSerializer
@@ -103,7 +104,7 @@ class CustomImageField(serializers.ImageField):
     def to_representation(self, value):
         try:
             data = get_responsive_image_url(value, self.context['request'].GET.get('image_size', ''))
-            #data = data.replace('/media/media/', '/media/')
+            data = data.replace('/media/media/', '/media/')
             return data
         except:
             pass
@@ -158,4 +159,11 @@ class QueueSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Queue
+        fields = '__all__'
+
+
+class WorkEnviormentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = WorkEnviorment
         fields = '__all__'

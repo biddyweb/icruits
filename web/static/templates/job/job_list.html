@@ -94,7 +94,7 @@
             x
         </span>            
     </a>
-    <a id="apply-btn" class="hide-button">
+    <a id="apply-btn" class="hide-button" ng-click="createBlueprint()">
         <span id="apply-span" class="hide-button">
             Finish
         </span>
@@ -273,47 +273,11 @@
                 </select>
             </div>
         </div>
-
-            <span class="btn btn-info" 
-                  style="font-size:20px;margin-left:3%;" 
-                  id="addNewRow">
-                <b class="fa fa-plus-circle"></b>
-            </span>
-
-
-        <!--div class="tasks-select">
-            
-            <div class="row">
-                <span class="new blueprintLabel"> Blueprint Tasks </span>
-                <span class="new blueprintLabel"> Expert Ref </span>
-            </div>
-
-            <div class="row">
-                <select class="form-control blueprintTasksInput"
-                        id="selectTask" 
-                        name="blueprint tasks"
-                        ng-model="make_blueprint.related_tasks"
-                        ng-options="option.id*1 as option.name for option in blueprint_tasks">
-                    <option value="" ng-show="false"></option>
-                </select>
-                <select class="form-control blueprintInput blueprintRefFix"
-                        id="expId"
-                        ng-model="make_blueprint.related_ref"
-                        ng-options="option.id*1 as option.username for option in user_list">
-                    <option value="" ng-show="false"></option>
-                </select>
-                <!--input type="email" 
-                       class="form-control blueprintExpert blueprintRefFix"  
-                       id="expId"-->
-            <!--/div>
-            <span class="btn btn-info" 
-                  style="font-size:20px;margin-left:3%;" 
-                  id="addNewRow">
-                <b class="fa fa-plus-circle"></b>
-            </span>
-
-        </div-->
-
+        <span class="btn btn-info" 
+              style="font-size:20px;margin-left:3%;" 
+              id="addNewRow">
+            <b class="fa fa-plus-circle"></b>
+        </span>
         <table class="table" id="hiddenTable">
             <tbody>
                 <tr>
@@ -325,15 +289,24 @@
 
     </div>
 
-    <div class="blueprintContainer">
-        <hr class="hrBotTen">
+    <div class="blueprintContainer" style="margin-top: 0;">
         <div class="row">
-            <span class="new blueprintLabel"> Work Environment </span>
-            <a class="btn" ngf-select="upload($file)">Browse</a>
-            <div class="previewFile">
-                <img ngf-thumbnail="preview || '/static/img/logo.png'">
-            </div>
+            <span class="new blueprintLabel"> Description </span>
+            <textarea name="description" 
+                   ng-model="make_blueprint.description"
+                   class="blueprintDesc" rows="4" cols="50"></textarea>
         </div>
+        <center>
+            <div class="row">
+                <span class="new blueprintLabel"> Work Environment </span>
+                <a class="btn" ngf-select="upload($file)">Browse</a>
+                <div class="previewImage">
+                    <img ngf-thumbnail="preview || '/static/img/logo.png'">
+                </div>
+            </div>
+        </center>
+        <hr class="hrBotTen">
+        <hr class="hrBotTen">
     </div>
 </div>        
 
@@ -435,16 +408,33 @@
 </script>
 <script>
 $("#addNewRow").click(function(){
-    var taskId = $('#selectTask').val();
+    var taskId = $('#selectTask').val().replace('number:', '');
     var taskName = $('#selectTask option:selected').text();
-    var expertEmail = $('#expId').val();
+    var expertEmail = $('#expId').text();
     $('#selectTask').find('option[value='+taskId+']').attr('disabled','disabled');
-    $('#hiddenTable tr:last').after("<tr><td><span class='btn btn-small btn-danger rembtn'><i class='fa fa-minus'></i></span></td><td><input type='text' value='"+taskName+"' class='form-control' readonly /><input type='hidden' name='task[]' value='"+taskId+"' class='form-control' readonly /></td><td><input type='email' name='expert_ref[]' value='"+expertEmail+"' class='form-control' readonly /></td></tr>");
-    $('#expId').val('');
+    //$('#hiddenTable tr:last').after("<tr><td><span class='btn btn-small btn-danger rembtn'><i class='fa fa-minus'></i></span></td><td><input type='text' value='"+taskName+"' class='form-control' readonly /><input type='hidden' name='task[]' value='"+taskId+"' class='form-control' readonly /></td><td><input type='email' name='expert_ref[]' value='"+expertEmail+"' class='form-control' readonly /></td></tr>");
+    $('#hiddenTable tr:last').after("<tr><td><span class='btn btn-small btn-danger rembtn'><i class='fa fa-minus'></i></span></td><td><input type='text' value='"+taskName+"' class='form-control' readonly /><input type='hidden' name='task[]' value='"+taskName+"' class='form-control' readonly /></td><td><input type='email' name='expert_ref[]' value='"+expertEmail+"' class='form-control' readonly /></td></tr>");
+
+    // method to push objects into make_blueprint_tasks
+    // call angular addTask
+    function addSelectedTask() {
+        // body...
+        var userId = $('#expId').val().replace('number:', '');
+        var task = {name: $('#selectTask option:selected').text(), expert: parseInt(userId), task_status: "Active"};
+        angular.element(document.getElementById('selectTask')).scope().addTask(task);
+    }
+    addSelectedTask();
 });
 $("#hiddenTable").on('click','.rembtn',function(){
     var taskId = $(this).parent().parent('tr').find('td:eq(1)').find('input[type=hidden]').val();
-    $('#selectTask').find('option[value='+taskId+']').attr('disabled',false);
+    //$('#selectTask').find('option[value='+taskId+']').attr('disabled',false);//*[@id="hiddenTable"]/tbody/tr[2]/td[2]/input[1]
+
+    function removeSelectedTask(taskId) {
+        // body...
+        angular.element(document.getElementById('selectTask')).scope().removeTask(taskId);
+    }
+
+    removeSelectedTask(taskId);
     $(this).parent().parent('tr').remove();
 });
     
