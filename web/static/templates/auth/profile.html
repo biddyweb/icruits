@@ -1,18 +1,7 @@
 <nav class="dashHeader text-center navbar navbar-default fixed top"><span>ICRUITS</span></nav>
 <section id="pages" style="margin-top: 75px;">
-    <div class="blueprintContainer" style="margin-top: 5%">
-        <div class="row" style="padding-top: 40px;">
-            <h3 class="userpageFonts userpageInline">Hi, <h3 class="userpageFonts userpageInline" data-ng-bind="user_info.username"></h3> </h3>
-        </div>
-        <div class="row userTypeFont">
-            <small class="userpageInline userpageFonts">User Account </small>
-            <small class="userpageInline userpageFonts userType" ng-if="user_info.profile_type">Job Seeker</small>
-            <small class="userpageInline userpageFonts userType" ng-if="!user_info.profile_type">Employer</small>
-        </div>
-        <div class="row userTypeFont" style="margin-top: 40px;">
-            <span class="perInfo">Personal Informations</span>
-        </div>
-        <div class="row userTypeFont" style="margin-top: 20px;">
+    <div class="profileContainer" style="margin-top: 150px">
+        <div class="userTypeFont" style="margin-top: 20px;">
             <span class="userFields">Email </span>
             <input type="text" 
                    name="email"
@@ -20,7 +9,7 @@
                    ng-model="user_info.email"
                    ng-trim="false" custom-validation>
         </div>
-        <div class="row userTypeFont" style="margin-top: 0px;">
+        <div class="userTypeFont" style="margin-top: 0px;">
             <span class="userFields">First Name </span>
             <input type="text" 
                    name="user first name"
@@ -28,7 +17,7 @@
                    ng-model="user_info.first_name"
                    ng-trim="false" custom-validation>
         </div>
-        <div class="row userTypeFont" style="margin-top: 0px;">
+        <div class="userTypeFont" style="margin-top: 0px;">
             <span class="userFields">Last Name </span>
             <input type="text" 
                    name="user first name"
@@ -36,7 +25,7 @@
                    ng-model="user_info.last_name"
                    ng-trim="false" custom-validation>
         </div>
-        <div class="row userTypeFont" style="margin-top: 0px;">
+        <div class="userTypeFont" style="margin-top: 0px;">
             <span class="userFields">Location </span>
             <input type="text" 
                    name="user first name"
@@ -44,7 +33,7 @@
                    ng-model="user_info.location"
                    ng-trim="false" custom-validation>
         </div>
-        <div class="row userTypeFont" style="margin-top: 0px;">
+        <div class="userTypeFont" style="margin-top: 0px;">
             <span class="userFields">Mobile Number </span>
             <input type="text" 
                    name="user first name"
@@ -52,7 +41,7 @@
                    ng-model="user_info.mobile_number"
                    ng-trim="false" custom-validation>
         </div>
-        <div class="row userTypeFont" style="margin-top: 0px;">
+        <div class="userTypeFont" style="margin-top: 0px; margin-bottom: 10px;">
             <span class="userFields">Address </span>
             <input type="text" 
                    name="user first name"

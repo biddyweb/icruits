@@ -111,7 +111,7 @@
         </span>
     </a-->
     <div class="blueprintContainer">
-        <div class="row">
+        <div class="row" style="background-color: rgb(252, 252, 252); padding-top: 15px;">
             <span class="new blueprintLabel"> Blueprint Name </span>
             <input type="text" 
                    class="form-control blueprintInput blueprintName" 
@@ -119,15 +119,15 @@
                    ng-model="make_blueprint.name"
                    required>
         </div>
-        <hr class="hrTopTen">
-        <div class="row">
+        <!--hr class="hrTopTen"-->
+        <div class="row" style="background-color: rgb(252, 252, 252); padding-top: 10px; padding-bottom: 10px;">
             <span class="new blueprintLabel"> Description </span>
             <textarea name="description" 
                    ng-model="make_blueprint.description"
                    class="blueprintDesc" rows="4" cols="50"></textarea>
         </div>
-        <hr class="hrTopTen">
-        <div class="row">
+        <!--hr class="hrTopTen"-->
+        <div class="row" style="background-color: rgb(245,245,245); padding-top: 15px;">
             <span class="new blueprintLabel"> Company Name </span>
             <input type="text" 
                    name="company name"
@@ -135,7 +135,7 @@
                    ng-model="make_blueprint.company_name"
                    required>
         </div>
-        <div class="row">
+        <div class="row" style="background-color: rgb(245,245,245);">
             <span class="new blueprintLabel"> Team ID </span>
             <input type="text" 
                    name="team id"
@@ -143,8 +143,8 @@
                    ng-model="make_blueprint.team_id" 
                    required>
         </div>
-        <hr class="hrTopTen">
-        <div class="row">
+        <!--hr class="hrTopTen"-->
+        <div class="row" style="background-color: rgb(245,245,245); padding-bottom: 15px;">
             <span class="new blueprintLabel"> Industry </span>
             <select class="form-control blueprintInput" 
                     name="job_industry"
@@ -215,8 +215,8 @@
                 <option value="" ng-show="false"></option>
             </select>
         </div>
-        <hr>
-        <div class="row">
+        <!--hr class="hrTopTen"-->
+        <div class="row" style="background-color: rgb(235,235,235); padding-top: 15px; padding-bottom: 5px;">
             <span class="new blueprintLabel"> Qualification </span>
             <input type="text" 
                    class="form-control blueprintInput inputSizeFix"
@@ -255,9 +255,9 @@
                    ng-model="make_blueprint.url" 
                    required>
         </div>
-        <hr class="hrTopTen">
+        <!--hr class="hrTopTen"-->
 
-        <div class="row" style="background-color: rgb(250,250,250);">
+        <div class="row" style="background-color: rgb(225,225,225);">
                 <span class="new blueprintLabel"> Blueprint Tasks </span>
                  <select class="form-control blueprintTasksInput"
                         id="selectTask" 
@@ -267,7 +267,7 @@
                     <option value="" ng-show="false"></option>
                 </select>
         </div>
-        <div class="row" style="background-color: rgb(250,250,250);">
+        <div class="row" style="background-color: rgb(225,225,225);">
                 <span class="new blueprintLabel" style="margin-top: 20px;"> Expert Ref </span>
                 <select class="form-control blueprintRefFix"
                         id="expId"
@@ -276,7 +276,7 @@
                     <option value="" ng-show="false"></option>
                 </select>
         </div>
-        <div class="row" style="background-color: rgb(250,250,250);">
+        <div class="row" style="background-color: rgb(225,225,225);">
             <span class="btn add-btn" 
                   id="addNewRow">
                     <span id="apply-span">
@@ -287,34 +287,34 @@
                     </span>
             </span>
         </div>
-        <table class="table" id="hiddenTable">
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-
+        <div class="row" style="background-color: rgb(225,225,225);">
+            <table class="table" id="hiddenTable">
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <div class="blueprintContainer" style="margin-top: 0;">
-        <center>
-            <div class="row">
-                <span class="new blueprintLabel"> Work Environment </span>
-                <a class="btn advanced-btn" ngf-select="upload($file)">
+            <div class="row" style="background-color: rgb(215,215,215); padding-top: 15px;">
+                <a class="btn advanced-btn" ngf-select="upload($file)" style="margin-left: -80px;">
                     <span id="apply-span">
-                        Browse
+                        Add Work Environment
                     </span>
                     <span id="apply-span-2" class="hover hide-button">
-                        Browse
+                        Add Work Environment
                     </span>
                 </a>
+        <center>
                 <div class="previewImage">
                     <img ngf-thumbnail="preview || '/static/img/logo.png'">
                 </div>
-            </div>
         </center>
+            </div>
         <hr class="hrBotTen">
         <hr class="hrBotTen">
     </div>
@@ -353,7 +353,7 @@
         <h3 data-ng-bind="user.username"></h3>
     </div>
     <!--a data-ui-sref="root.dashboard">Dashboard</a-->
-    <a data-ui-sref="root.profile" data-ng-class="{active: state.includes('root.profile')}" class="menu-item">Profile</a>
+    <a data-ui-sref="root.profile" data-ng-class="{active: state.includes('root.profile')}" class="menu-item" style="padding-top: 40px;">Profile</a>
     <a href='' class="menu-item" ng-click="logoutNow()">Logout</a>
 </aside>
 
