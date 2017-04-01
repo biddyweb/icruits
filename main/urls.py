@@ -21,6 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic.base import TemplateView
+from hide_herokuapp.views import herokuapp_robots_view
 from django.contrib.sitemaps.views import sitemap
 from main.sitemaps import (
     HomeSitemap,
@@ -42,6 +43,7 @@ urlpatterns = [
     url(r'^api/seo/', include('seo.urls')),
     url(r'^$', TemplateView.as_view(template_name='main.html'), name="home"),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    url(r'^robots\.txt$', herokuapp_robots_view, name='robots'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
