@@ -10,6 +10,21 @@
               content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
         {% verbatim %}
         <meta name="description" content="" />
+        <!-- Twitter Card data -->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@iCruits" />
+        <meta name="twitter:title" content="iCruits - {{ title }}" />
+        <meta name="twitter:description" content="{{ description }}" />
+        <meta name="twitter:creator" content="@iCruits" />
+        <meta name="twitter:image" content="https://polar-wave-49918.herokuapp.com{{ image }}" />
+        <!-- Open Graph data -->
+        <meta property="fb:app_id" content="1389676864376188" />
+        <meta property="og:title" content="iCruits - {{ title }}" />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://polar-wave-49918.herokuapp.com{{ location }}" />
+        <meta property="og:image" content="https://polar-wave-49918.herokuapp.com{{ image }}" />
+        <meta property="og:description" content="{{ description }}" />
+        <meta property="og:site_name" content="iCruits" />
         <title data-ng-bind="title"></title>
         {% endverbatim %}
 
