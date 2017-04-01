@@ -500,14 +500,25 @@
 
     angular.module('app').controller('ProfileCtrl', ProfileCtrl);
 
-    ProfileCtrl.$inject = ['$rootScope', '$scope', 'metaTags', 'UserInfo'];
+    ProfileCtrl.$inject = ['$rootScope', '$scope', 'metaTags', 'UserInfo', 'UserInfoRes'];
 
-    function ProfileCtrl($rootScope, $scope, metaTags, UserInfo) {
+    function ProfileCtrl($rootScope, $scope, metaTags, UserInfo, UserInfoRes) {
         // body...
 
         $scope.$on('metaTagsChanged', metaTags);
 
         $scope.user_info = UserInfo;
+
+        $scope.updateProfile = function () {
+            // body...
+            UserInfoRes.update($scope.user_info, function (response) {
+                // body...
+                $scope.data = response;
+            }, function (response) {
+                // body...
+                $scope.errors = response;
+            });
+        };
 
         $rootScope.image = '';
     }

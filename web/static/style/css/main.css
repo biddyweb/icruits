@@ -1828,6 +1828,7 @@ body,
     padding: 1.3em;
     color: rgb(255, 255, 255);
     font-size: 13px;
+    margin-bottom: -30px;
 }
 
 .menu-item {
@@ -1838,7 +1839,7 @@ body,
 }
 
 #filter-btn {
-    background: rgba(243,243,245,.56);
+    background: rgb(243,243,245);
     border-top: 1px solid #FFF;
     border-left: 1px solid #FFF;
     width: 180px;
@@ -2534,4 +2535,50 @@ div .containerDetails {
     text-transform: uppercase;
     width: 480px;
     top: 50%;
+}
+
+/**************************************************************************
+                                PROFILE PAGE
+**************************************************************************/
+
+.userpageFonts {
+    font-family: Roboto Condensed;
+    font-size: 1.2em;
+    text-transform: uppercase;
+}
+
+.userpageInline {
+    display: inline;
+}
+
+.userTypeFont {
+    font-size: 0.8em;
+    margin-top: 10px;
+}
+
+.userType {
+    margin-left: 20px;
+}
+
+.perInfo {
+    font-size: 1.2em;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+.bigUserInput {
+    width: 70%!important;
+    display: inline-block!important;
+    font-size: 1.1em!important;
+}
+
+.bigUserInput:focus {
+    border: 1px solid rgb(0,0,0)!important;
+}
+
+.userFields {
+    display: inline-block;
+    width: 20%;
+    /* position: relative; */
+    text-transform: uppercase;
 }
