@@ -1912,7 +1912,7 @@ body,
 .previewImage {
     height: auto;
     /* margin: 0 0 30px 0; */
-    margin-top: 40px;
+    margin-top: 10px;
     margin-bottom: 20px;
 }
 
@@ -2154,11 +2154,12 @@ body,
     text-decoration: none;
     color: rgb(0,0,0);
     letter-spacing: .25rem;
-    position: relative;
+    /* position: relative; */
     left: 100px;
     text-align: center;
     cursor: pointer;
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
+    margin-bottom: 20px;
 }
 .advanced-btn:hover {
     background-color:#fff;
@@ -2416,6 +2417,22 @@ body,
     font-size: 0.8em!important;
     margin-top: 10px;
     margin-left: 5%;
+}
+
+.createEmployee {
+    height: 66%;
+    width: 50%;
+    position: fixed;
+    z-index: 124141241241241;
+    top: 15%;
+    left: 24.5%;
+    background-color: rgb(240, 240, 240);
+    overflow-x: hidden;
+    transition: all .35s cubic-bezier(.455,.03,.515,.955);
+    padding-top: 15px;
+    visibility: hidden;
+    opacity: 0;
+    border: 1px solid white;
 }
 
 /************************************************

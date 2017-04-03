@@ -300,7 +300,7 @@
                 Create Task
             </span>
         </a>        
-        <a class="btn add-btn">
+        <a class="btn add-btn" onclick="openCreateEmployee()">
             <span id="apply-span">
                 Create Employee
             </span>
@@ -311,7 +311,11 @@
     </div>
     <div class="blueprintContainer" style="margin-top: -10px;">
             <div class="row" style="background-color: rgb(215,215,215); padding-top: 20px;">
-                <a class="btn advanced-btn" ngf-select="upload($file)" style="margin-left: -80px;">
+        <center>
+                <div class="previewImage">
+                    <img ngf-thumbnail="preview">
+                </div>
+                <a class="btn advanced-btn" ngf-select="upload($file)">
                     <span id="apply-span">
                         Add Work Environment
                     </span>
@@ -319,10 +323,6 @@
                         Add Work Environment
                     </span>
                 </a>
-        <center>
-                <div class="previewImage">
-                    <img ngf-thumbnail="preview || '/static/img/logo.png'">
-                </div>
         </center>
             </div>
         <hr class="hrBotTen">
@@ -356,28 +356,74 @@
 
 <!-- CREATE TASK CANVAS -->
 <aside id="createTask" class="createTask">
-                <span class="tasksLabel"> Blueprint Task </span>
-                <input class='form-control createTaskInput' 
-                        id='selectTask' 
-                        name='blueprint tasks' 
-                        ng-model='make_blueprint.related_tasks' 
-                        ng-options='option.id*1 as option.name for option in blueprint_tasks'>
-                <span class="tasksLabel" style="padding-top: 15px;"> Job Function </span>
-                <select class='form-control createTaskInput' 
-                        id='selectTask' 
-                        name='blueprint tasks' 
-                        ng-model='make_blueprint.related_tasks' 
-                        ng-options='option.id*1 as option.name for option in blueprint_tasks'>
-                    <option value='' ng-show='false'></option>
-                </select>
-        <a class="btn add-btn" onclick="CreateTasks()" style="display: block; width: 40%; margin-left: 5%; margin-top: 15px;">
-            <span id="apply-span">
-                Create Task
-            </span>
-            <span id="apply-span-2" class="hover hide-button">
-                Create Task
-            </span>
-        </a>     
+    <span class="tasksLabel"> Blueprint Task </span>
+    <input class='form-control createTaskInput' 
+           id='selectTask' 
+           name='blueprint tasks' 
+           ng-model='make_blueprint.related_tasks' 
+           ng-options='option.id*1 as option.name for option in blueprint_tasks'>
+    <span class="tasksLabel" style="padding-top: 15px;"> Job Function </span>
+    <select class='form-control createTaskInput' 
+            id='selectTask' 
+            name='blueprint tasks' 
+            ng-model='make_blueprint.related_tasks' 
+            ng-options='option.id*1 as option.name for option in blueprint_tasks'>
+        <option value='' ng-show='false'></option>
+    </select>
+    <a class="btn add-btn" onclick="CreateTasks()" style="display: block; width: 40%; margin-left: 5%; margin-top: 15px;">
+        <span id="apply-span">
+            Create Task
+        </span>
+        <span id="apply-span-2" class="hover hide-button">
+            Create Task
+        </span>
+    </a>     
+</aside>
+
+
+<!-- CREATE EMPLOYEE CANVAS -->
+<aside id="createEmployee" class="createEmployee">
+    <span class="tasksLabel"> First Name </span>
+    <input class='form-control createTaskInput' 
+           id='selectTask' 
+           type="text" 
+           name='blueprint tasks' 
+           ng-model='make_blueprint.related_tasks' 
+           ng-options='option.id*1 as option.name for option in blueprint_tasks'
+           style="margin-top: 15px; width: 90%; margin-left: 5%;">
+    <span class="tasksLabel" style="padding-top: 10px;"> Last Name </span>
+    <input class='form-control createTaskInput' 
+           id='selectTask' 
+           name='blueprint tasks' 
+           type="text" 
+           ng-model='make_blueprint.related_tasks' 
+           ng-options='option.id*1 as option.name for option in blueprint_tasks'
+           style="margin-top: 15px; width: 90%; margin-left: 5%;">
+    <span class="tasksLabel" style="padding-top: 10px;"> Email </span>
+    <input class='form-control createTaskInput' 
+           id='selectTask'
+           type="text"  
+           name='blueprint tasks' 
+           ng-model='make_blueprint.related_tasks' 
+           ng-options='option.id*1 as option.name for option in blueprint_tasks'
+           style="margin-top: 15px; width: 90%; margin-left: 5%;">           
+    <span class="tasksLabel" style="padding-top: 10px;"> Phone Number </span>
+    <input class='form-control createTaskInput' 
+           id='selectTask'
+           type="text"  
+           name='blueprint tasks' 
+           ng-model='make_blueprint.related_tasks' 
+           ng-options='option.id*1 as option.name for option in blueprint_tasks'
+           style="margin-top: 15px; width: 90%; margin-left: 5%;">
+
+    <a class="btn add-btn" onclick="CreateEmployee()" style="display: block; width: 40%; margin-left: 5%; margin-top: 15px;">
+        <span id="apply-span">
+            Create Employee
+        </span>
+        <span id="apply-span-2" class="hover hide-button">
+            Create Employee
+        </span>
+    </a>     
 </aside>
 
 
@@ -500,10 +546,27 @@ $("#TasksBlueprint").on('click','.rem-btn',function(){
         document.getElementById("createTask").style.opacity = "1";
     }
 </script>
+
 <script type="text/javascript">
     function CreateTasks() {
     // body...
         document.getElementById("createTask").style.visibility = "hidden";
         document.getElementById("createTask").style.opacity = "0";
+    }
+</script>
+
+<script type="text/javascript">
+    function openCreateEmployee() {
+    // body...
+        document.getElementById("createEmployee").style.visibility = "visible";
+        document.getElementById("createEmployee").style.opacity = "1";
+    }
+</script>
+
+<script type="text/javascript">
+    function CreateEmployee() {
+    // body...
+        document.getElementById("createEmployee").style.visibility = "hidden";
+        document.getElementById("createEmployee").style.opacity = "0";
     }
 </script>
