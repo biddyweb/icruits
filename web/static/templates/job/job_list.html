@@ -256,49 +256,58 @@
                    required>
         </div>
         <!--hr class="hrTopTen"-->
-        </div>
-    <div id="TasksBlueprint" class="blueprintTasksContainer" style="background-color: rgb(225,225,225);">
-        <div id="tasks">
-            <span class="new tasksLabel"> Predefined Blueprint Tasks </span>
-            <select class="form-control blueprintTasksInput"
-                    id="selectTask" 
-                    name="blueprint tasks"
-                    ng-model="make_blueprint.related_tasks"
-                    ng-options="option.id*1 as option.name for option in blueprint_tasks">
-                <option value="" ng-show="false"></option>
-            </select>
-            <span class="new tasksLabel" style="padding-top: 10px;"> Blueprint Tasks </span>
-            <input type="text" 
-                   name="blueprint task"
-                   ng-model="make_blueprint.related_tasks"
-                   class="form-control blueprintTasksInput"
-                   style="margin-left: 4%; margin-top: 10px;">
-        </div>
-        <div id="refs">
-            <span class="new tasksLabel"> Reference User </span>
-            <input type="text" 
-                   name="reference user"
-                   class="form-control blueprintRefFix"
-                   id="expId"
-                   ng-model="make_blueprint.related_ref"
-                   style="margin-top: 10px;">
-                <option value="" ng-show="false"></option>
-            <span class="new tasksLabel" style="visibility: hidden;"> btn </span>
-            <span class="btn add-btn" 
-                  id="addNewRow">
-                    <span id="apply-span">
-                        Add
-                    </span>
-                    <span id="apply-span-2" class="hover hide-button">
-                        Add
-                    </span>
-            </span>
-        </div>
+    </div>
+    <div id="TasksBlueprint" class="blueprintTasksContainer" style="background-color: rgb(225,225,225); margin-bottom: 15px; padding-bottom: 10px;">
         <div id="hiddenTasks">
-            <div>
+            <div id='tasks'>
+                <span class="tasksLabel"> Blueprint Task </span>
+                <select class='form-control blueprintTasksInput' 
+                        id='selectTask' 
+                        name='blueprint tasks' 
+                        ng-model='make_blueprint.related_tasks' 
+                        ng-options='option.id*1 as option.name for option in blueprint_tasks'>
+                    <option value='' ng-show='false'></option>
+                </select>
                 <div></div>
             </div>
+            <div id='refs'>
+                <span class="tasksLabel" style="padding-right: 25%;"> Employee </span>
+                <select class='form-control blueprintRefsInput' 
+                        id='selectTask' 
+                        name='blueprint tasks' 
+                        ng-model='make_blueprint.related_tasks' 
+                        ng-options='option.id*1 as option.name for option in blueprint_tasks'>
+                    <option value='' ng-show='false'></option>
+                </select>
+            </div>
         </div>
+    </div>
+    <div id="TasksBlueprint" class="blueprintTasksContainer" style="background-color: rgb(225,225,225); margin-top: -20px; padding-top: 10px;">
+        <span class="btn add-btn" 
+              id="addNewRow">
+            <span id="apply-span">
+                Add Task
+            </span>
+            <span id="apply-span-2" class="hover hide-button">
+                Add Task
+            </span>
+        </span>
+        <a class="btn add-btn" onclick="openCreateTasks()">
+            <span id="apply-span">
+                Create Task
+            </span>
+            <span id="apply-span-2" class="hover hide-button">
+                Create Task
+            </span>
+        </a>        
+        <a class="btn add-btn">
+            <span id="apply-span">
+                Create Employee
+            </span>
+            <span id="apply-span-2" class="hover hide-button">
+                Create Employee
+            </span>
+        </a>
     </div>
     <div class="blueprintContainer" style="margin-top: -10px;">
             <div class="row" style="background-color: rgb(215,215,215); padding-top: 20px;">
@@ -344,6 +353,32 @@
                 No
             </label>
         </div-->
+
+<!-- CREATE TASK CANVAS -->
+<aside id="createTask" class="createTask">
+                <span class="tasksLabel"> Blueprint Task </span>
+                <input class='form-control createTaskInput' 
+                        id='selectTask' 
+                        name='blueprint tasks' 
+                        ng-model='make_blueprint.related_tasks' 
+                        ng-options='option.id*1 as option.name for option in blueprint_tasks'>
+                <span class="tasksLabel" style="padding-top: 15px;"> Job Function </span>
+                <select class='form-control createTaskInput' 
+                        id='selectTask' 
+                        name='blueprint tasks' 
+                        ng-model='make_blueprint.related_tasks' 
+                        ng-options='option.id*1 as option.name for option in blueprint_tasks'>
+                    <option value='' ng-show='false'></option>
+                </select>
+        <a class="btn add-btn" onclick="CreateTasks()" style="display: block; width: 40%; margin-left: 5%; margin-top: 15px;">
+            <span id="apply-span">
+                Create Task
+            </span>
+            <span id="apply-span-2" class="hover hide-button">
+                Create Task
+            </span>
+        </a>     
+</aside>
 
 
 <!-- SMALL CANVAS MENU -->
@@ -417,14 +452,15 @@
 </script>
 <script>
 $("#addNewRow").click(function(){
-    var taskId = $('#selectTask').val().replace('number:', '');
-    var taskName = $('#selectTask option:selected').text();
-    var expertEmail = $('#expId').text();
-    $('#selectTask').find('option[value='+taskId+']').attr('disabled','disabled');
-    $('#hiddenTasks:last').after("<div><div id='tasks'><a class='btn rem-btn'><span id='apply-span' class='apply-span'>Remove</span><span id='apply-span-2' class='hover hide-button'>Remove</span></a><input type='text' value='"+taskName+"' class='form-control blueprintHiddenFix' readonly></div><div id='refs'><input type='email' name='expert_ref[]' value='"+expertEmail+"' class='form-control hiddenRefFix' readonly></div></div>");
+    //var taskId = $('#selectTask').val().replace('number:', '');
+    //var taskName = $('#selectTask option:selected').text();
+    //var expertEmail = $('#expId').text();
+    //$('#selectTask').find('option[value='+taskId+']').attr('disabled','disabled');
+    $('#hiddenTasks:last').after("<div><div id='tasks'><select class='form-control blueprintTasksInput' id='selectTask' name='blueprint tasks' ng-model='make_blueprint.related_tasks' ng-options='option.id*1 as option.name for option in blueprint_tasks'><option value='' ng-show='false'></option></select></div><div id='refs'><select class='form-control blueprintRefsInput' id='selectTask' name='blueprint tasks' ng-model='make_blueprint.related_tasks' ng-options='option.id*1 as option.name for option in blueprint_tasks'><option value='' ng-show='false'></option></select><button class='btn rem-btn'><span id='apply-span' class='apply-span'>Remove</span><span id='apply-span-2' class='hover hide-button'>Remove</span></button></div></div>");
 
     // method to push objects into make_blueprint_tasks
     // call angular addTask
+
     function addSelectedTask() {
         // body...
         var userId = $('#expId').val().replace('number:', '');
@@ -455,4 +491,19 @@ $("#TasksBlueprint").on('click','.rem-btn',function(){
         });
     }
     $(window).on('scroll resize', expandMenu);
+</script>
+
+<script type="text/javascript">
+    function openCreateTasks() {
+    // body...
+        document.getElementById("createTask").style.visibility = "visible";
+        document.getElementById("createTask").style.opacity = "1";
+    }
+</script>
+<script type="text/javascript">
+    function CreateTasks() {
+    // body...
+        document.getElementById("createTask").style.visibility = "hidden";
+        document.getElementById("createTask").style.opacity = "0";
+    }
 </script>

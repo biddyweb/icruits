@@ -26,15 +26,6 @@
                    ng-trim="false" custom-validation>
         </div>
         <div class="userTypeFont" style="margin-top: 0px;">
-            <span class="userFields">Location </span>
-            <input type="text" 
-                   name="location"
-                   class="cleaninput bigUserInput"
-                   id="address" 
-                   ng-model="user_info.location"
-                   ng-trim="false" custom-validation>
-        </div>
-        <div class="userTypeFont" style="margin-top: 0px;">
             <span class="userFields">Mobile Number </span>
             <input type="text" 
                    name="Mobile number"
@@ -48,7 +39,7 @@
                    name="address"
                    class="cleaninput bigUserInput"
                    ng-model="user_info.address"
-                   ng-trim="false" custom-validation>
+                   id="address">
         </div>
         <a id="filter-btn" ng-click="updateProfile()">
             <span>
@@ -97,7 +88,6 @@
       }
 
     google.maps.event.addDomListener(window, 'load', initialize);
-
 
     /*function savedata(){
 
