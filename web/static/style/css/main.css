@@ -1918,17 +1918,19 @@ body,
 
 .blueprintTasksContainer {
     width: 80%;
-    margin-left: 15%;
-    /* margin-right: auto; */
+    margin-left: 10%;
+    margin-right: 10%;
+    display: inline-block;
 }
 
 .blueprintTasksInput {
     display: inline;
-    width: 70%;
+    width: 100%;
     font-family: Roboto Condensed;
     text-transform: uppercase;
     font-size: 0.8em!important;
-    margin-top: 15px;
+    margin-top: 10px;
+    margin-left: 4%;
 }
 
 .blueprintTasksInput:focus {
@@ -1968,20 +1970,36 @@ body,
     /* width: 39%!important; */
     /* display: inline!important; */
     display: inline;
-    width: 240px;
+    width: 100%;
     font-family: Roboto Condensed;
     text-transform: uppercase;
     font-size: 0.8em!important;
+    margin-top: 10px;
 }
 
 .blueprintHiddenFix {
-    /* width: 39%!important; */
-    /* display: inline!important; */
-    /* display: inline; */
-    /* width: 240px; */
-    font-family: Roboto Condensed;
+    display: inline!important;
+    font-family: Roboto Condensed!important;
     text-transform: uppercase;
     font-size: 0.8em!important;
+    background-color: rgb(255,255,255)!important;
+    width: 74%!important;
+    margin-left: 2%!important;
+    margin-right: -4%!important;
+    float: right;
+    margin-top: 2.5px!important;
+}
+
+.hiddenRefFix {
+    /* width: 39%!important; */
+    /* display: inline!important; */
+    display: inline!important;
+    width: 100%!important;
+    font-family: Roboto Condensed!important;
+    text-transform: uppercase;
+    font-size: 0.8em!important;
+    margin-top: 2.5px!important;
+    background-color: rgb(255,255,255)!important;
 }
 
 .blueprintHiddenFix:focus {
@@ -2162,6 +2180,7 @@ body,
 }
 
 .add-btn {
+    top: -5px;
     background: rgb(240,240,240);
     border: 1px solid #fff;
     width: 80px;
@@ -2174,7 +2193,9 @@ body,
     text-align: center;
     cursor: pointer;
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
-    margin-left: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -2206,7 +2227,7 @@ body,
     opacity: 0;
 }
 .add-btn:not(.disabled):not([disabled]):not(.active):hover>span.hover{ 
-    top: -2.150em;
+    top: -0.650em;
     visibility: visible;
     opacity: 1;
     letter-spacing: .35rem;
@@ -2215,7 +2236,7 @@ body,
 .rem-btn {
     background: rgb(0,0,0);
     border: 1px solid #fff;
-    width: 80px;
+    width: 20%;
     height: 40px;
     text-decoration: none;
     color: rgb(0,0,0);
@@ -2225,7 +2246,7 @@ body,
     text-align: center;
     cursor: pointer;
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
-    /* margin-left: 20px; */
+    margin-left: 4%;
     /* margin-top: 10px; */
     /* margin-bottom: 10px; */
 }
@@ -2320,6 +2341,33 @@ body,
     font-size: 1em !important;
     color: rgb(0,0,0) !important;
     text-transform: uppercase !important;
+}
+
+.tasksLabel {
+    /* display: block; */
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Roboto Condensed;
+    text-transform: uppercase;
+    /* width: 150px; */
+    /* position: relative; */
+    width: 1008px;
+    text-align: center;
+    /* height: 70px; */
+    vertical-align: middle;
+    display: table-cell;
+}
+#tasks {
+    float: left;
+    width: 65%;
+    margin-right: 5%;
+    margin-top: 10px;
+}
+#refs {
+    float: left;
+    width: 27%;
+    margin-top: 10px;
+    margin-right: 20px;
 }
 /************************************************
                 DETAILS PAGE
