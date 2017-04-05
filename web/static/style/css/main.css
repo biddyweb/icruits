@@ -72,8 +72,22 @@ input.faChkRnd, input.faChkSqr {
   visibility: hidden;
 }
 
-input.faChkRnd:checked:after, input.faChkRnd:after,
 input.faChkSqr:checked:after, input.faChkSqr:after {
+    visibility: visible;
+    font-family: FontAwesome;
+    font-size: 15px;
+    height: 10px;
+    width: 5px;
+    position: relative;
+    /* top: -3px; */
+    /* left: 0px; */
+    /* background-color: #FFF; */
+    color: black;
+    display: inline-block;
+    cursor: pointer;
+}
+
+input.faChkRnd:checked:after, input.faChkRnd:after {
     visibility: visible;
     font-family: FontAwesome;
     font-size: 15px;
@@ -87,6 +101,7 @@ input.faChkSqr:checked:after, input.faChkSqr:after {
     display: inline-block;
     cursor: pointer;
 }
+
 
 input.faChkRnd:checked:after {
   content: '\f058';
@@ -140,6 +155,12 @@ input.faChkSqr:checked:after span.checkbox-label {
 
 input.faChkSqr:after span.checkbox-label {
     color: rgb(255, 255, 255);
+}
+
+#refs > ul > li > a > span {
+    padding-left: 10px;
+    position: relative;
+    top: -1px;
 }
 
 a {

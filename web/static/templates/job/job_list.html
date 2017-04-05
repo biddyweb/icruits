@@ -274,7 +274,14 @@
                 <span class="tasksLabel" style="padding-right: 25%;"> Employee </span>
                 <span class='form-control blueprintRefsInput' data-toggle='dropdown'>Select</span>
                 <ul class='dropdown-menu refsFix'>
-                    <li><a href='#' class='small' data-value='option1' tabIndex='-1'><input type='checkbox' class='faChkSqr'>Option 1</a></li>
+                    <li>
+                        <a href='#' class='small' data-value='option1' tabIndex='-1'>
+                            <input type='checkbox' class='faChkSqr'>
+                            <span>
+                                User 1            
+                            </span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -499,7 +506,7 @@ $("#addNewRow").click(function(){
     //var taskName = $('#selectTask option:selected').text();
     //var expertEmail = $('#expId').text();
     //$('#selectTask').find('option[value='+taskId+']').attr('disabled','disabled');
-    $('#hiddenTasks:last').after("<div><div id='tasks'><select class='form-control blueprintTasksInput' id='selectTask' name='blueprint tasks' ng-model='make_blueprint.related_tasks' ng-options='option.id*1 as option.name for option in blueprint_tasks'><option value='' ng-show='false'></option></select></div><div id='refs'><span class='form-control blueprintRefsInput' data-toggle='dropdown'>Select</span><ul class='dropdown-menu refsFix'><li><a href='#' class='small' data-value='option1' tabIndex='-1'><input type='checkbox' class='faChkSqr'>Option 1</a></li></ul><button class='btn rem-btn'><span id='apply-span' class='apply-span'>Remove</span><span id='apply-span-2' class='hover hide-button'>Remove</span></button></div></div>");
+    $('#hiddenTasks:last').after("<div><div id='tasks'><select class='form-control blueprintTasksInput' id='selectTask' name='blueprint tasks' ng-model='make_blueprint.related_tasks' ng-options='option.id*1 as option.name for option in blueprint_tasks'><option value='' ng-show='false'></option></select></div><div id='refs'><span class='form-control blueprintRefsInput' data-toggle='dropdown'>Select</span><ul class='dropdown-menu refsFix'><li><a href='#' class='small' data-value='option1' tabIndex='-1'><input type='checkbox' class='faChkSqr'><span>User 1</span></a></li></ul><button class='btn rem-btn'><span id='apply-span' class='apply-span'>Remove</span><span id='apply-span-2' class='hover hide-button'>Remove</span></button></div></div>");
 
     // method to push objects into make_blueprint_tasks
     // call angular addTask
