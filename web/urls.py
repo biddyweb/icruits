@@ -25,6 +25,7 @@ from web.viewsets import (
     UserListViewSet,
     WorkEnviormentViewSet,
     CreateBlueprintViewSet,
+    MobileLogin,
 )
 from libs.djoser.views import (
     RegistrationView,
@@ -83,4 +84,5 @@ urlpatterns = base_urlpatterns + (
     #url(r'^queue', QueueViewSet.as_view(), name='queue'),
     url(r'^work-enviorment/', WorkEnviormentViewSet.as_view({'post': 'create'}), name='work-enviorment'),
     url(r'^create-blueprint/', CreateBlueprintViewSet.as_view({'post': 'create'}), name='create-blueprint'),
+    url(r'^mobile-login/', MobileLogin.as_view(), name='mobile-login'),
 )

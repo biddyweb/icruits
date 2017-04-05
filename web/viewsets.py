@@ -211,6 +211,38 @@ class CheckUserViewSet(views.APIView):
             return response.Response(status=status.HTTP_201_CREATED)
 
 
+class MobileLogin(views.APIView):
+    """
+    Endpoint for mobile logins
+    """
+    permission_classes = [
+        permissions.AllowAny,
+    ]
+
+    def post(self, request, format=None):
+
+        try:
+            data = json.loads(request.data)
+        except Exception as e:
+            return response.Response(status=status.HTTP_400_BAD_REQUEST)
+
+        username_ = data.get('username')
+        password_ = data.get('password')
+
+        account = authenticate(username=username_, password=password_)
+
+        if account:
+            data = {
+                exists: True,
+            }
+            return response.Response(data, status=status.HTTP_200_OK)
+        else:
+            data = {
+                exists: False,
+            }
+            return response.Response(data, status=status.HTTP_400_BAD_REQUEST)
+
+
 class LocationViewSet(viewsets.ReadOnlyModelViewSet):
     """
     Location endpoint api

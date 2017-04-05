@@ -27,7 +27,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #333;
 }
 body {
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(250, 250, 250);
 }
 h2 {
     font-size: 30px;
@@ -1675,7 +1675,7 @@ input, textarea, select, button, meter, progress {
     height: 200px;
     width: 100%;
     transition: all 750ms cubic-bezier(.25,.46,.45,.94);
-    border: 1px solid rgb(255,255,255);
+    border: 1px solid rgb(235,235,235);
 }
 .job-item .hover-bg-articles:hover {
     background-color: rgb(255,255,255);
