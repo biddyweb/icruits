@@ -15,6 +15,8 @@ from web.models import (
     Location,
     Visa,
     WorkEnviorment,
+    DesiredEmployee,
+    TestPilots,
 )
 from rest_framework import serializers
 from libs.djoser.serializers import UserSerializer
@@ -91,10 +93,26 @@ class ExperienceLevelSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class DesiredEmployeeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = DesiredEmployee
+        fields = '__all__'
+
+
 class BlueprintTasksSerializer(serializers.ModelSerializer):
+
+    desired_employees = DesiredEmployeeSerializer(many=True, read_only=False)
 
     class Meta:
         model = BlueprintTasks
+        fields = '__all__'
+
+
+class TestPilotsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = TestPilots
         fields = '__all__'
 
 

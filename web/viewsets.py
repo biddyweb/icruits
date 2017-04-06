@@ -15,6 +15,7 @@ from web.models import (
     Visa,
     user,
     WorkEnviorment,
+    TestPilots,
 )
 from web.serializers import (
     BlueprintSerializer,
@@ -32,6 +33,7 @@ from web.serializers import (
     LocationSerializer,
     VisaSerializer,
     WorkEnviormentSerializer,
+    TestPilotsSerializer,
 )
 from rest_framework import (
     viewsets,
@@ -339,17 +341,6 @@ class ExperienceLevelViewSet(viewsets.ReadOnlyModelViewSet):
     ]
 
 
-class BlueprintTasksViewSet(viewsets.ModelViewSet):
-    """
-    Blueprint Tasks viewset endpoint
-    """
-    queryset = BlueprintTasks.objects.all()
-    serializer_class = BlueprintTasksSerializer
-    permission_classes = [
-        permissions.IsAuthenticated,
-    ]
-
-
 class VisaStatusViewSet(viewsets.ReadOnlyModelViewSet):
     """
     Visa Status viewset endpoint
@@ -407,6 +398,39 @@ class WorkEnviormentViewSet(viewsets.ModelViewSet):
                                      headers=_headers)
         else:
             return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class TestPilotsViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = TestPilots
+    serializer_class = TestPilotsSerializer
+    permission_classes = [
+        permissions.AllowAny,
+    ]
+
+
+class BlueprintTasksViewSet(viewsets.ModelViewSet):
+    """
+    Blueprint Tasks viewset endpoint
+    """
+    queryset = BlueprintTasks.objects.all()
+    serializer_class = BlueprintTasksSerializer
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+
+
+class CreateBlueprintTasksViewSet(viewsets.ModelViewSet):
+    """
+    Blueprint tasks creation endpoint
+    """
+    queryset = BlueprintTasks.objects.all()
+    serializer_class = BlueprintSerializer
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+
+    def create(self, request, *args, **kwargs):
+        pass
 
 
 class CreateBlueprintViewSet(viewsets.ModelViewSet):

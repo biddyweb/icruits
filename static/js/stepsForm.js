@@ -56,6 +56,9 @@
 		// next question control
 		this.ctrlNext = this.el.querySelector( 'button.next-login' );
 
+		// previous question control
+		this.ctrlPrev = this.el.querySelector( 'button.prev-login' );
+
 		// progress bar
 		this.progress = this.el.querySelector( 'div.progress' );
 		
@@ -73,6 +76,13 @@
 		
 		// init events
 		this._initEvents();
+
+		// not displaying prev button if first question
+		if(this.current === 0){
+			if(classie.hasClass( this.ctrlPrev, 'show')){
+				classie.removeClass( this.ctrlPrev, 'show');
+			};
+		}
 	};
 
 	stepsForm.prototype._initEvents = function() {
@@ -92,7 +102,15 @@
 		this.ctrlNext.addEventListener( 'click', function( ev ) { 
 			ev.preventDefault();
 			self._nextQuestion(); 
+			classie.addClass( self.ctrlPrev, 'show' );
 		} );
+
+		// show previous question
+		this.ctrlPrev.addEventListener( 'click', function (ev) {
+			// body...
+			ev.preventDefault();
+			self._prevQuestion();
+		});
 
 		// pressing enter will jump to next question
 		document.addEventListener( 'keydown', function( ev ) {
@@ -113,6 +131,63 @@
 			} 
 		} );
 	};
+
+	stepsForm.prototype._prevQuestion = function () {
+		// body...
+		this._clearError();
+
+		var currentQuestion = this.questions[ this.current ];
+
+		--this.current;
+
+		// not displaying prev button if first question
+		if(this.current === 0){
+			if(classie.hasClass( this.ctrlPrev, 'show')){
+				classie.removeClass( this.ctrlPrev, 'show');
+			};
+		}
+
+		this._progress();
+
+		if( !this.isFilled ) {
+			// change the current question number/status
+			this._updateQuestionNumber();
+
+			// add class "show-next" to form element (start animations)
+			classie.addClass( this.el, 'show-next' );
+
+			// remove class "current" from current question and add it to the next one
+			// current question
+			var nextQuestion = this.questions[ this.current ];
+			classie.removeClass( currentQuestion, 'current' );
+			classie.addClass( nextQuestion, 'current' );
+		}
+
+		// after animation ends, remove class "show-next" from form element and change current question placeholder
+		var self = this,
+			onEndTransitionFn = function( ev ) {
+				if( support.transitions ) {
+					this.removeEventListener( transEndEventName, onEndTransitionFn );
+				}
+				if( self.isFilled ) {
+					self._submit();
+				}
+				else {
+					classie.removeClass( self.el, 'show-next' );
+					self.currentNum.innerHTML = self.nextQuestionNum.innerHTML;
+					self.questionStatus.removeChild( self.nextQuestionNum );
+					// force the focus on the next input
+					nextQuestion.querySelector( 'input' ).focus();
+				}
+			};
+
+		if( support.transitions ) {
+			this.progress.addEventListener( transEndEventName, onEndTransitionFn );
+		}
+		else {
+			onEndTransitionFn();
+		}
+	}
 
 	stepsForm.prototype._nextQuestion = function() {
 		if( !this._validade() ) {

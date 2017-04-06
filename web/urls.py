@@ -26,6 +26,8 @@ from web.viewsets import (
     WorkEnviormentViewSet,
     CreateBlueprintViewSet,
     MobileLogin,
+    TestPilotsViewSet,
+    CreateBlueprintTasksViewSet
 )
 from libs.djoser.views import (
     RegistrationView,
@@ -60,6 +62,7 @@ router.register(r'experience-level', ExperienceLevelViewSet, base_name='experien
 router.register(r'blueprint-tasks', BlueprintTasksViewSet, base_name='blueprint-tasks')
 router.register(r'visa-status', VisaStatusViewSet, base_name='visa-status')
 router.register(r'user-list', UserListViewSet, base_name='user-list')
+router.register(r'test-pilots', TestPilotsViewSet, base_name='test-pilots')
 
 base_urlpatterns = (
     url(r'^auth/register/$', RegistrationView.as_view(), name='register'),
@@ -69,10 +72,10 @@ base_urlpatterns = (
     url(r'^auth/password/reset/confirm/$', PasswordResetConfirmView.as_view(), name='password/reset/confirm'),
     url(r'^auth/login/$', LoginViewSet.as_view(), name='login_'),
     url(r'^auth/logout/$', LogoutViewSet.as_view(), name='logout_'),
-    url(r'^auth/whoami/', UserViewSet.as_view(), name='whoami'),
-    url(r'^auth/get-jtw-token/', obtain_jwt_token, name='get-jwt'),
-    url(r'^auth/check-jwt-token/', verify_jwt_token, name='check-jwt-token'),
-    url(r'^auth/check-user/', CheckUserViewSet.as_view(), name='check-user'),
+    url(r'^auth/whoami/$', UserViewSet.as_view(), name='whoami'),
+    url(r'^auth/get-jtw-token/$', obtain_jwt_token, name='get-jwt'),
+    url(r'^auth/check-jwt-token/$', verify_jwt_token, name='check-jwt-token'),
+    url(r'^auth/check-user/$', CheckUserViewSet.as_view(), name='check-user'),
 )
 
 urlpatterns = base_urlpatterns + (
@@ -82,7 +85,8 @@ urlpatterns = base_urlpatterns + (
     ), name='root'),
     url(r'^', include(router.urls)),
     #url(r'^queue', QueueViewSet.as_view(), name='queue'),
-    url(r'^work-enviorment/', WorkEnviormentViewSet.as_view({'post': 'create'}), name='work-enviorment'),
-    url(r'^create-blueprint/', CreateBlueprintViewSet.as_view({'post': 'create'}), name='create-blueprint'),
-    url(r'^mobile-login/', MobileLogin.as_view(), name='mobile-login'),
+    url(r'^work-enviorment/$', WorkEnviormentViewSet.as_view({'post': 'create'}), name='work-enviorment'),
+    url(r'^create-blueprint/$', CreateBlueprintViewSet.as_view({'post': 'create'}), name='create-blueprint'),
+    url(r'^create-blueprint-tasks/$', CreateBlueprintTasksViewSet.as_view({'post': 'create'}), name='create-blueprint-task'),
+    url(r'^mobile-login/$', MobileLogin.as_view(), name='mobile-login'),
 )

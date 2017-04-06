@@ -481,6 +481,29 @@
 })();
 
 (function () {
+    'use strict';
+
+    angular.module('app').factory('TestPilotsRes', TestPilotsRes);
+
+    TestPilotsRes.$inject = ['$resource'];
+
+    function TestPilotsRes($resource) {
+        return $resource('/api/test-pilots/', {}, {
+            'query': {
+                method: 'GET',
+                isArray: true,
+                cache: true
+            },
+            'get': {
+                method: 'GET',
+                isArray: false,
+                cache: true
+            }
+        });
+    }
+})();
+
+(function () {
     // body...
     "use strict";
 
@@ -504,5 +527,18 @@
     function CreateBlueprintRes($resource) {
         // body...
         return $resource('/api/create-blueprint/ ');
+    }
+})();
+
+(function () {
+    "use strict";
+
+    angular.module('app').factory('CreateBlueprintTasksRes', CreateBlueprintTasksRes);
+
+    CreateBlueprintTasksRes.$inject = ['$resource'];
+
+    function CreateBlueprintTasksRes($resource) {
+        // body...
+        return $resource('/api/create-blueprint-tasks/ ');
     }
 })();

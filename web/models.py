@@ -322,6 +322,14 @@ class user(AbstractUser):
         verbose_name_plural = "Users"
 
 
+class DesiredEmployee(models.Model):
+    name = models.CharField(_('Name'), max_length=255)
+    email = models.CharField(_('Email Address'), max_length=255)
+
+    class Meta:
+        verbose_name = 'Desired Employee'
+
+
 TASK_STATUS = (('Active', 'Active'),
                ('Finished', 'Finished'),
                ('Canceled', 'Canceled'),
@@ -330,8 +338,7 @@ TASK_STATUS = (('Active', 'Active'),
 
 class BlueprintTasks(models.Model):
     name = models.CharField(_('Task Name'), max_length=255)
-    expert = models.CharField(_('Expert'), max_length=255, blank=True)
-    expert_email = models.CharField(_('Expert Email'), max_length=255, blank=True)
+    desired_employee = models.ManyToManyField(DesiredEmployee, related_name='desired_employees', blank=True)
     tast_status = models.CharField(choices=TASK_STATUS, max_length=255, blank=True)
     created_at = models.DateTimeField(_('Created At'), auto_now_add=True)
     updated_at = models.DateTimeField(_('Updated_At'), auto_now=True)
@@ -421,3 +428,10 @@ class WorkEnviorment(models.Model):
 
     class Meta:
         verbose_name = 'Work Enviorment'
+
+
+class TestPilots(models.Model):
+    email = models.CharField(_('Email Address'), max_length=255)
+
+    class Meta:
+        verbose_name = 'Test Pilot'

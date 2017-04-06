@@ -17,10 +17,20 @@ from web.models import (
     ProfileType,
     Location,
     Visa,
+    TestPilots,
+    DesiredEmployee
 )
 
 
 # Register your models here.
+class DesiredEmployeeAdmin(admin.ModelAdmin):
+    pass
+
+
+class TestPilotsAdmin(admin.ModelAdmin):
+    pass
+
+
 class VisaAdmin(admin.ModelAdmin):
     pass
 
@@ -104,3 +114,5 @@ admin.site.register(Blueprint, BlueprintAdmin)
 admin.site.register(ProfileType, ProfileTypeAdmin)
 admin.site.register(Location, LocationAdmin)
 admin.site.register(Visa, VisaAdmin)
+admin.site.register(TestPilots, TestPilotsAdmin)
+admin.site.register(DesiredEmployee, DesiredEmployeeAdmin)
