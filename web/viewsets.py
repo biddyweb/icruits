@@ -222,9 +222,10 @@ class MobileLogin(views.APIView):
     def post(self, request, format=None):
 
         try:
-            data = json.loads(request.data)
+            data = json.load(request)
         except Exception as e:
-            return response.Response(status=status.HTTP_400_BAD_REQUEST)
+            data = json.dumps({'exists':False}, sort_keys=True, indent=4, separators=(',', ': '))
+            return response.Response(data, status=status.HTTP_400_BAD_REQUEST)
 
         username_ = data.get('username')
         password_ = data.get('password')
@@ -232,14 +233,10 @@ class MobileLogin(views.APIView):
         account = authenticate(username=username_, password=password_)
 
         if account:
-            data = {
-                exists: True,
-            }
+            data = json.dumps({'exists':True}, sort_keys=True, indent=4, separators=(',', ': '))
             return response.Response(data, status=status.HTTP_200_OK)
         else:
-            data = {
-                exists: False,
-            }
+            data = json.dumps({'exists':False}, sort_keys=True, indent=4, separators=(',', ': '))
             return response.Response(data, status=status.HTTP_400_BAD_REQUEST)
 
 
