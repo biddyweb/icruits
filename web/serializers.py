@@ -173,7 +173,7 @@ class HelpSerializer(serializers.ModelSerializer):
 
 class QueueSerializer(serializers.ModelSerializer):
     blueprint_name = BlueprintSerializer(many=False, read_only=True)
-    candidate_name = UserSerializer(many=False, read_only=True)
+    candidate_name = UserSerializer(many=True, read_only=True)
 
     class Meta:
         model = Queue

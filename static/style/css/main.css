@@ -20,7 +20,7 @@ menu {
 html {
     font-family: Roboto Condensed;
     -ms-text-size-adjust:100%;
-    -webkit-text-size-adjust:100%
+    -webkit-text-size-adjust:100%;
     text-shadow: 1px 1px grey;
 }
 h1, h2, h3, h4, h5, h6 {
@@ -1519,7 +1519,7 @@ input[type=search], textarea {
     transition: box-shadow .45s,border-color .45s ease-in-out;
 }
 
-input[type="password" i] {
+input[type="password"] {
     -webkit-text-security: disc;
 }
 input {
@@ -2283,7 +2283,7 @@ body,
     font-size: 0.66em;
 }
 .advanced-btn span.hover {
-    top: 1.150;
+    top: 1.150em;
     visibility: hidden;
     opacity: 0;
 }
@@ -2337,7 +2337,7 @@ body,
     font-size: 0.66em;
 }
 .add-btn span.hover {
-    top: 0.950;
+    top: 0.950em;
     visibility: hidden;
     opacity: 0;
 }
@@ -2396,7 +2396,7 @@ body,
 }
 
 .rem-btn span.hover {
-    top: 0.950;
+    top: 0.950em;
     visibility: hidden;
     opacity: 0;
     color: rgb(0,0,0);
@@ -2629,7 +2629,7 @@ div .containerDetails {
 
 #blueprint-btn:hover {
     background-color: rgb(0,0,0);
-    letter-spacing:.25rem
+    letter-spacing:.25rem;
     color: rgb(255,255,255);
 }
 
@@ -2684,7 +2684,7 @@ div .containerDetails {
 
 #back-btn:hover {
     background-color: rgb(255,255,255);
-    letter-spacing:.25rem
+    letter-spacing:.25rem;
     color: rgb(0,0,0);
 }
 

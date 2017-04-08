@@ -386,7 +386,6 @@
 
                 }
                 if(pilot.email !== $scope.reg.email){
-                    console.log('not ok');
                     $state.go('root.non_pilot', { reload: true });
                 }
             });
