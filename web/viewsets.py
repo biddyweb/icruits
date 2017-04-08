@@ -46,9 +46,8 @@ from rest_framework import (
     generics,
     parsers,
 )
-from django.http.response import HttpResponse
-from django.core import serializers
 import json
+from django.contrib.sessions.backends.db import SessionStore
 from django.contrib.auth import (
     logout,
     login,
@@ -214,13 +213,17 @@ class MobileLogin(views.APIView):
         username_ = data.get('username')
         password_ = data.get('password')
 
+        s = SessionStore()
+        s.create()
+        session_id = s.session_key
+
         account = authenticate(username=username_, password=password_)
 
         if account:
-            data = json.dumps({'exists':True}, sort_keys=True, indent=4, separators=(',', ': '))
+            data = json.dumps({'exists':True, 'session_id':session_id}, sort_keys=True, indent=4, separators=(',', ': '))
             return response.Response(data, status=status.HTTP_200_OK)
         else:
-            data = json.dumps({'exists':False}, sort_keys=True, indent=4, separators=(',', ': '))
+            data = json.dumps({'exists':False, 'session_id':session_id}, sort_keys=True, indent=4, separators=(',', ': '))
             return response.Response(data, status=status.HTTP_400_BAD_REQUEST)
 
 
