@@ -111,6 +111,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# EMail configuration
+
+EMAIL_HOST = 'smtpout.secureserver.net'
+EMAIL_PORT = 80
+EMAIL_USE_TLS = False
+EMAIL_HOST_USER = 'alek.rajic@icruits.com'
+DEFAULT_FROM_EMAIL = 'alek.rajic@icruits.com'
+SERVER_EMAIL = 'alek.rajic@icruits.com'
+EMAIL_HOST_PASSWORD = 'Hello123#'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
@@ -171,11 +180,11 @@ JWT_AUTH = {
 }
 
 DJOSER = {
-    'DOMAIN': 'icruits.com',
+    'DOMAIN': 'https://polar-wave-49918.herokuapp.com',
     'SITE_NAME': 'iCruits',
     'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/?params={uid}?{token}',
     'ACTIVATION_URL': 'activate/?params={uid}?{token}',
-    'SEND_ACTIVATION_EMAIL': False,
+    'SEND_ACTIVATION_EMAIL': True,
     'SEND_CONFIRMATION_EMAIL': False,
     'SET_PASSWORD_RETYPE': True,
     'SET_USERNAME_RETYPE': True,

@@ -55,10 +55,6 @@
                     // body...
                     return ExperienceLevelRes.query().$promise;
                 },
-                LocationInfo: function (LocationRes) {
-                    // body...
-                    return LocationRes.query().$promise;
-                },
                 CompanyTypeInfo: function (CompanyTypeRes) {
                     // body...
                     return CompanyTypeRes.query().$promise;
@@ -147,6 +143,9 @@
                     return metaTagsRes.get({
                         page_name: 'register'
                     }).$promise;
+                },
+                Pilots: function (PilotsRes) {
+                    return PilotsRes.query().$promise;
                 }
             }
         }).state('root.profile', {
@@ -163,6 +162,31 @@
                 UserInfo: function (UserInfoRes) {
                     // body...
                     return UserInfoRes.query().$promise;
+                }
+            }
+        }).state('root.activate', {
+            url: '/activate/?params',
+            controller: 'ActivationCtrl',
+            templateUrl: '/static/templates/auth/activation.html',
+            resolve: {
+                params: function ($stateParams) {
+                    return $stateParams.params;
+                },
+                metaTags: function (metaTagsRes) {
+                    return metaTagsRes.get({
+                        page_name: 'activation'
+                    }).$promise;
+                }
+            }
+        }).state('root.non_pilot', {
+            url: '/not-approved/',
+            controller: 'NonPilotCtrl',
+            templateUrl: '/static/templates/auth/non_pilot.html',
+            resolve: {
+                metaTags: function (metaTagsRes) {
+                    return metaTagsRes.get({
+                        page_name: 'non_pilot'
+                    }).$promise;
                 }
             }
         });

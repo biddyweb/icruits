@@ -359,27 +359,40 @@
 
     angular.module('app').controller('RegisterCtrl', RegisterCtrl);
 
-    RegisterCtrl.$inject = ['$scope', '$rootScope', '$state', '$window', 'AuthRes', 'metaTags'];
+    RegisterCtrl.$inject = ['$scope', '$rootScope', '$state', '$window', 'AuthRes', 'metaTags', 'Pilots'];
 
-    function RegisterCtrl($scope, $rootScope, $state, $window, AuthRes, metaTags) {
+    function RegisterCtrl($scope, $rootScope, $state, $window, AuthRes, metaTags, Pilots) {
 
         $scope.$emit('metaTagsChanged', metaTags);
+
+        $scope.test_pilots = Pilots;
 
         $scope.reg = {};
 
         $scope.profile_types = [{profile_type: true, label: 'JobSeeker'}, {profile_type: false, label: 'Employer'}];
 
         $scope.registration = function () {
-            AuthRes.save($scope.reg, function (resource) {
-                $state.go('root.home', { reload: true });
-                setTimeout(function() {
-                    $window.location.reload();
-                }, 600);
-            }, function (response) {
-                $scope.errors = response.data;
+            angular.forEach($scope.test_pilots, function (pilot) {
+                if(pilot.email === $scope.reg.email){
+
+                    AuthRes.save($scope.reg, function (resource) {
+                        $state.go('root.home', { reload: true });
+                        setTimeout(function() {
+                            $window.location.reload();
+                        }, 600);
+                    }, function (response) {
+                        $scope.errors = response.data;
+                    });
+
+                }
+                if(pilot.email !== $scope.reg.email){
+                    console.log('not ok');
+                    $state.go('root.non_pilot', { reload: true });
+                }
             });
         };
-        
+
+        $rootScope.image = '';
     }
 })();
 
@@ -518,6 +531,63 @@
                 // body...
                 $scope.errors = response;
             });
+        };
+
+        $rootScope.image = '';
+    }
+})();
+
+(function () {
+    "use strict";
+
+    angular.module('app').controller('ActivationCtrl', ActivationCtrl);
+
+    ActivationCtrl.$inject = ['$scope', '$rootScope', '$window', '$state', 'metaTags', 'params', 'ActivationRes'];
+
+    function ActivationCtrl($scope, $rootScope, $window, $state, metaTags, params, ActivationRes) {
+        $scope.$on('metaTagsChanged', metaTags);
+
+        var uid = params.split("?")[0],
+            token = params.split("?")[1],
+            activation_done = false;
+
+        ActivationRes.activate(uid, token).then(ActivateSuccess, ActivateFail);
+
+        function ActivateSuccess(response) {
+            activation_done = true;
+            $scope.activation_done = activation_done;
+            $state.go('root.home', { 'reload': true });
+            setTimeout(function () {
+                $window.location.reload();
+            }, 700);
+            $scope.data = response.data;
+        }
+
+        function ActivateFail(response) {
+            activation_done = false;
+            $scope.activation_done = activation_done;
+            $scope.errors = response.data;
+        }
+
+        $rootScope.image = '';
+    }
+})();
+
+(function () {
+    "use strict";
+
+    angular.module('app').controller('NonPilotCtrl', NonPilotCtrl);
+
+    NonPilotCtrl.$inject = ['$scope', '$rootScope', '$state', '$window', 'metaTags'];
+
+    function NonPilotCtrl($scope, $rootScope, $state, $window, metaTags) {
+        $scope.$on('metaTagsChanged', metaTags);
+
+        $scope.backToHome = function () {
+            $state.go('root.home', { reload: true });
+            setTimeout(function () {
+                $window.location.reload();
+            }, 700);
         };
 
         $rootScope.image = '';

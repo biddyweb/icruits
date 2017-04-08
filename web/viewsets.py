@@ -46,6 +46,8 @@ from rest_framework import (
     generics,
     parsers,
 )
+from django.http.response import HttpResponse
+from django.core import serializers
 import json
 from django.contrib.auth import (
     logout,
@@ -87,27 +89,7 @@ class QueueViewSet(viewsets.ModelViewSet):
     serializer_class = QueueSerializer
     permission_classes = [
         permissions.IsAuthenticated,
-        #permissions.AllowAny,
     ]
-
-#class QueueViewSet(views.APIView):
-    #queryset = Blueprint.objects.all()
-    #renderer_classes = [
-    #    renderers.JSONRenderer,
-    #]
-    #permission_classes = [
-    #    permissions.IsAuthenticated,
-    #]
-
-    #def get(self, request, format=None):
-    #    queues = Blueprint.objects.all()
-    #    job_queue = request.query_params.get('queue')
-    #    if job_queue:
-    #        queues = queues.filter(queue=job_queue)
-    #    content = {'job_queue': queues}
-        # za django 1.10 koristiti json dumps
-    #    return response.Response(json.dumps(content), content_type='application/json; charset=utf-8')
-        #return response.Response(content, content_type='application/json; charset=utf-8')
 
 
 class HelpViewSet(viewsets.ReadOnlyModelViewSet):
@@ -203,7 +185,7 @@ class CheckUserViewSet(views.APIView):
         try:
             user = data.split(':')[1]
 
-            checkUser = User.objects.filter(username=user)
+            checkUser = User.objects.filter(email=user)
 
             if checkUser:
                 return response.Response(status=status.HTTP_200_OK)
@@ -401,7 +383,7 @@ class WorkEnviormentViewSet(viewsets.ModelViewSet):
 
 
 class TestPilotsViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = TestPilots
+    queryset = TestPilots.objects.all()
     serializer_class = TestPilotsSerializer
     permission_classes = [
         permissions.AllowAny,
@@ -465,7 +447,6 @@ class CreateBlueprintViewSet(viewsets.ModelViewSet):
         remote_w = request_data['remote_work']
 
         tasks = tasks_data['tasks']
-                #rel_ref = request.data['related_ref']
 
         rel_exp = request_data['related_experience']
         rel_visa = request_data['related_visa_status']
@@ -502,6 +483,8 @@ class CreateBlueprintViewSet(viewsets.ModelViewSet):
             blueprint_object = Blueprint.objects.filter(name=nam).first()
 
             _headers = self.get_success_headers(serializer.data)
+
+            print tasks
 
             for task in tasks:
                 obj_status = task['task_status']

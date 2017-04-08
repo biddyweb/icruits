@@ -36,6 +36,7 @@ from libs.djoser.views import (
     PasswordResetView,
     PasswordResetConfirmView,
     RootView,
+    ActivationView,
 )
 from rest_framework_jwt.views import (
     obtain_jwt_token,
@@ -62,7 +63,7 @@ router.register(r'experience-level', ExperienceLevelViewSet, base_name='experien
 router.register(r'blueprint-tasks', BlueprintTasksViewSet, base_name='blueprint-tasks')
 router.register(r'visa-status', VisaStatusViewSet, base_name='visa-status')
 router.register(r'user-list', UserListViewSet, base_name='user-list')
-router.register(r'test-pilots', TestPilotsViewSet, base_name='test-pilots')
+#router.register(r'test-pilots', TestPilotsViewSet, base_name='test-pilots')
 
 base_urlpatterns = (
     url(r'^auth/register/$', RegistrationView.as_view(), name='register'),
@@ -76,6 +77,7 @@ base_urlpatterns = (
     url(r'^auth/get-jtw-token/$', obtain_jwt_token, name='get-jwt'),
     url(r'^auth/check-jwt-token/$', verify_jwt_token, name='check-jwt-token'),
     url(r'^auth/check-user/$', CheckUserViewSet.as_view(), name='check-user'),
+    url(r'^auth/activate/$', ActivationView.as_view(), name='activation'),
 )
 
 urlpatterns = base_urlpatterns + (
@@ -89,4 +91,5 @@ urlpatterns = base_urlpatterns + (
     url(r'^create-blueprint/$', CreateBlueprintViewSet.as_view({'post': 'create'}), name='create-blueprint'),
     url(r'^create-blueprint-tasks/$', CreateBlueprintTasksViewSet.as_view({'post': 'create'}), name='create-blueprint-task'),
     url(r'^mobile-login/$', MobileLogin.as_view(), name='mobile-login'),
+    url(r'^test-pilots/$', TestPilotsViewSet.as_view({'get': 'list'}), name='pilots'),
 )

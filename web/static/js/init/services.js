@@ -195,7 +195,7 @@
 
         function jwt(username, password) {
             return $http.post('/api/auth/get-jtw-token/', {
-                username: username,
+                email: username,
                 password: password
             }).then(SuccessFn, FailFn);
 
@@ -540,5 +540,40 @@
     function CreateBlueprintTasksRes($resource) {
         // body...
         return $resource('/api/create-blueprint-tasks/ ');
+    }
+})();
+
+(function () {
+    "use strict";
+
+    angular.module('app').factory('ActivationRes', ActivationRes);
+
+    ActivationRes.$inject = ['$http'];
+
+    function ActivationRes($http) {
+        var ActivationRes = {
+            activate: activate
+        };
+
+        function activate(uid, token) {
+            return $http.post('/api/auth/activate/', {
+                uid: uid,
+                token: token
+            });
+        }
+
+        return ActivationRes;
+    }
+})();
+
+(function () {
+    "use strict";
+
+    angular.module('app').factory('PilotsRes', PilotsRes);
+
+    PilotsRes.$inject = ['$resource'];
+
+    function PilotsRes($resource) {
+        return $resource('/api/test-pilots/' );
     }
 })();

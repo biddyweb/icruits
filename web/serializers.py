@@ -113,7 +113,7 @@ class TestPilotsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TestPilots
-        fields = '__all__'
+        fields = ('id', 'email', 'name', )
 
 
 class CustomImageField(serializers.ImageField):

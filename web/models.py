@@ -24,10 +24,22 @@ number_validator = RegexValidator(r'^[0-9+]*$', 'Must be numbers only')
 
 
 # Create your models here.
+class TestPilots(models.Model):
+    email = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=64, blank=True)
+
+    def __unicode__(self):
+        return self.email
+
+    class Meta:
+        verbose_name = 'Test Pilot'
+
+
 #
 # This part is serving as choices for our model
 VISA_STATUS = (('H1B Visa', 'H1B Visa'),
                ('Work Visa', 'Work Visa'))
+
 
 class Visa(models.Model):
     visa = models.CharField(choices=VISA_STATUS, max_length=255)
@@ -294,8 +306,8 @@ class user(AbstractUser):
 
     objects = UserManager()
 
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email', ]
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username', ]
 
     def __unicode__(self):
         return self.username
@@ -427,11 +439,4 @@ class WorkEnviorment(models.Model):
         return self.session
 
     class Meta:
-        verbose_name = 'Work Enviorment'
-
-
-class TestPilots(models.Model):
-    email = models.CharField(_('Email Address'), max_length=255)
-
-    class Meta:
-        verbose_name = 'Test Pilot'
+        verbose_name = 'Work Environment'
