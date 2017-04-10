@@ -3,9 +3,11 @@
 
     angular.module('app').controller('BluprintDetailsCtrl', BluprintDetailsCtrl);
 
-    BluprintDetailsCtrl.$inject = ['$scope', '$rootScope', '$cookies', '$state', 'JobFeed', 'UserInfoRes', 'SalaryInfo', 'JobType', 'VisaStatusInfo'];
+    BluprintDetailsCtrl.$inject = ['$scope', '$rootScope', '$cookies', '$state', 'JobFeed', 'UserInfoRes', 
+    'SalaryInfo', 'JobType', 'VisaStatusInfo', 'JobFeedsRes', 'QueueRes'];
 
-    function BluprintDetailsCtrl ($scope, $rootScope, $cookies, $state, JobFeed, UserInfoRes, SalaryInfo, JobType, VisaStatusInfo) {
+    function BluprintDetailsCtrl ($scope, $rootScope, $cookies, $state, JobFeed, UserInfoRes, 
+        SalaryInfo, JobType, VisaStatusInfo, JobFeedsRes, QueueRes) {
 
         $scope.blueprint = JobFeed;
 
@@ -17,6 +19,9 @@
 
         $scope.sent_mail = false;
 
+        $scope.published = $scope.blueprint.is_published;
+
+        //      querying data from DB for related fields     //
         angular.forEach($scope.type, function (value, key) {
             // body...
             if(value.id == $scope.blueprint.related_job_type){
@@ -37,6 +42,7 @@
                 $scope.visa_status_info = value;
             }
         });
+        //////////////////////////////////////////////////////////
 
         $scope.user = UserInfoRes.query();
 
@@ -51,7 +57,28 @@
         $scope.SendMail = function () {
             // body...
             $scope.sent_mail = true;
-        }
+        };
+
+        $scope.updateBlueprint = function () {
+            // body...
+            JobFeedsRes.update({ name_slug: $scope.blueprint.name_slug }, $scope.blueprint, function (response) {
+                // body...
+                $scope.data = response.data;
+                if($scope.blueprint.is_published){
+                    var queue_data = {blueprint: $scope.blueprint.id};
+                    QueueRes.save(queue_data, function (response) {
+                        // body...
+                        $scope.queue_response = response.data;
+                    }, function (response) {
+                        // body...
+                        $scope.errors = response.errors;
+                    });
+                };
+            }, function (response) {
+                // body...
+                $scope.errors = response.data;
+            });
+        };
         
         $scope.$emit('metaTagsChanged', {
             title: $scope.blueprint.name,
@@ -97,19 +124,23 @@
 
     angular.module('app').controller('DashboardCtrl', DashboardCtrl);
 
-    DashboardCtrl.$inject = ['$scope', '$rootScope', '$state', '$cookies', 'metaTags', 'BluePrints', 'UserInfo',
+    DashboardCtrl.$inject = ['$scope', '$rootScope', '$state', '$cookies', '$window', 'metaTags', 'BluePrints', 'UserInfo',
     'IndustryInfo', 'LocationInfo', 'SalaryInfo', 'ExperienceInfo', 'CompanyTypeInfo', 'WaitIntervalInfo', 'OnJobSuccessInfo',
-    'JobTypeInfo', 'JobDurationInfo', 'ExperienceLevelInfo', 'BlueprintTasksInfo', 'VisaStatusInfo', 'UserListInfo', 'Upload', 'CreateBlueprintRes'];
+    'JobTypeInfo', 'JobDurationInfo', 'ExperienceLevelInfo', 'BlueprintTasksInfo', 'VisaStatusInfo', 'UserListInfo', 'Upload', 'CreateBlueprintRes',
+    'DesiredEmployeeRes', 'DesiredEmployeesInfo', 'BlueprintTasksRes'];
 
-    function DashboardCtrl ($scope, $rootScope, $state, $cookies, metaTags, BluePrints, UserInfo,
+    function DashboardCtrl ($scope, $rootScope, $state, $cookies, $window, metaTags, BluePrints, UserInfo,
     IndustryInfo, LocationInfo, SalaryInfo, ExperienceInfo, CompanyTypeInfo, WaitIntervalInfo, OnJobSuccessInfo,
-    JobTypeInfo, JobDurationInfo, ExperienceLevelInfo, BlueprintTasksInfo, VisaStatusInfo, UserListInfo, Upload, CreateBlueprintRes) {
+    JobTypeInfo, JobDurationInfo, ExperienceLevelInfo, BlueprintTasksInfo, VisaStatusInfo, UserListInfo, Upload, CreateBlueprintRes,
+    DesiredEmployeeRes, DesiredEmployeesInfo, BlueprintTasksRes) {
         
         $scope.blueprints = BluePrints;
 
         $scope.make_blueprint = {};
 
         $scope.user = UserInfo;
+
+        $scope.desired_employees_info = DesiredEmployeesInfo;
 
         $scope.industry_info = IndustryInfo;
 
@@ -133,14 +164,15 @@
 
         $scope.blueprint_tasks_info = BlueprintTasksInfo;
 
-        $scope.blueprint_tasks = [];
+        $scope.blueprint_tasks = $scope.blueprint_tasks_info;
+        /*$scope.blueprint_tasks = [];
 
         angular.forEach($scope.blueprint_tasks_info, function (value, key) {
             // body...
             if(value.expert === ""){
                 $scope.blueprint_tasks.push(value);
             };
-        });
+        });*/
 
         $scope.visa_status_info = VisaStatusInfo;
 
@@ -303,16 +335,75 @@
             });
         };
 
+        if($cookies.get('blueprint')){
+            var cookie_blueprint_data = $cookies.get('blueprint');
+            $scope.make_blueprint = angular.fromJson(cookie_blueprint_data);
+        };
+
+        $scope.new_employee = [];
+
         /* CREATING BLUEPRINT */
         $scope.createBlueprint = function () {
             // body...
             $scope.send_blueprint = []
             $scope.send_blueprint.push($scope.make_blueprint);
             $scope.send_blueprint.push({tasks: $scope.make_blueprint_tasks});
+            $scope.send_blueprint.push({employee: $scope.new_employee});
             CreateBlueprintRes.save($scope.send_blueprint, function (response) {
                 // body...
             }, function (response) {
                 // body...
+            });
+        };
+
+        $scope.desiredEmployee = {};
+
+        /* CREATING DESIRED EMPLOYEE */
+        $scope.createDesiredEmployee = function () {
+            // body...
+            var expireTime = new Date(),
+                blueprint_data = angular.toJson($scope.make_blueprint);
+            expireTime.setDate(expireTime.getTime() + 1);
+            $cookies.put('blueprint', blueprint_data, {'expires': expireTime});
+            DesiredEmployeeRes.save($scope.desiredEmployee, function (response) {
+                // body...
+                $scope.data = response.data;
+                setTimeout(function() {
+                    $window.location.reload();
+                }, 500);
+            }, function (response) {
+                // body...
+                $scope.errors = response.errors;
+            });
+        };
+
+        $scope.addEmployeeId = function (id) {
+            // body...
+            var i = $.inArray(id, $scope.new_employee);
+            if(i > -1 ){
+                $scope.new_employee.splice(i, 1);
+            } else {
+                $scope.new_employee.push(id);
+            }            
+        };
+
+        $scope.newBlueprintTask = {};
+
+        /* CREATING BLUEPRINT TASK */
+        $scope.createBlueprintTask = function () {
+            // body...
+            var expireTime = new Date(),
+                blueprint_data = angular.toJson($scope.make_blueprint);
+            expireTime.setDate(expireTime.getTime() + 1);
+            $cookies.put('blueprint', blueprint_data, {'expires': expireTime});
+            BlueprintTasksRes.save($scope.newBlueprintTask, function (response) {
+                // body...
+                setTimeout(function() {
+                    $window.location.reload();
+                }, 500);
+            }, function (response) {
+                // body...
+                $scope.errors = response.errors;
             });
         };
 

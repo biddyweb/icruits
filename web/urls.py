@@ -27,7 +27,8 @@ from web.viewsets import (
     CreateBlueprintViewSet,
     MobileLogin,
     TestPilotsViewSet,
-    CreateBlueprintTasksViewSet
+    CreateBlueprintTasksViewSet,
+    DesiredEmployeeViewSet,
 )
 from libs.djoser.views import (
     RegistrationView,
@@ -63,6 +64,7 @@ router.register(r'experience-level', ExperienceLevelViewSet, base_name='experien
 router.register(r'blueprint-tasks', BlueprintTasksViewSet, base_name='blueprint-tasks')
 router.register(r'visa-status', VisaStatusViewSet, base_name='visa-status')
 router.register(r'user-list', UserListViewSet, base_name='user-list')
+router.register(r'desired-employee', DesiredEmployeeViewSet, base_name='desired-employee')
 #router.register(r'test-pilots', TestPilotsViewSet, base_name='test-pilots')
 
 base_urlpatterns = (

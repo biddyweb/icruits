@@ -94,6 +94,10 @@
                 UserListInfo: function (UserListRes) {
                     // body...
                     return UserListRes.query().$promise;
+                },
+                DesiredEmployeesInfo: function (DesiredEmployeeRes) {
+                    // body...
+                    return DesiredEmployeeRes.query().$promise;
                 }
             }
         })

@@ -264,7 +264,7 @@
                 <select class='form-control blueprintTasksInput' 
                         id='selectTask' 
                         name='blueprint tasks' 
-                        ng-model='make_blueprint.related_tasks' 
+                        ng-model='make_blueprint_tasks' 
                         ng-options='option.id*1 as option.name for option in blueprint_tasks'>
                     <option value='' ng-show='false'></option>
                 </select>
@@ -274,12 +274,10 @@
                 <span class="tasksLabel" style="padding-right: 25%;"> Employee </span>
                 <span class='form-control blueprintRefsInput' data-toggle='dropdown'>Select</span>
                 <ul class='dropdown-menu refsFix'>
-                    <li>
-                        <a href='#' class='small' data-value='option1' tabIndex='-1'>
-                            <input type='checkbox' class='faChkSqr'>
-                            <span>
-                                User 1            
-                            </span>
+                    <li ng-repeat="employee in desired_employees_info">
+                        <a class='small' tabIndex='-1'>
+                            <input type='checkbox' class='faChkSqr' ng-click="addEmployeeId(employee.id)">
+                            <span data-ng-bind="employee.email"></span>
                         </a>
                     </li>
                 </ul>
@@ -364,15 +362,19 @@
     <input class='form-control createTaskInput' 
            id='selectTask' 
            name='blueprint tasks' 
-           ng-model='make_blueprint.related_tasks'> 
+           ng-model='newBlueprintTask.name'> 
     <span class="tasksLabel" style="padding-top: 15px;"> Job Function </span>
-    <select class='form-control createTaskInput' 
+    <!--select class='form-control createTaskInput' 
             id='selectTask' 
             name='blueprint tasks' 
-            ng-model='make_blueprint.related_tasks' 
-            ng-options='option.id*1 as option.name for option in blueprint_tasks'>
+            ng-model='newBlueprintTask.function' 
+            ng-options='ooption.function as ooption.function for ooption in make_blueprint.function'>
         <option value='' ng-show='false'></option>
-    </select>
+    </select-->
+    <input class='form-control createTaskInput' 
+           id='selectTask' 
+           name='blueprint tasks' 
+           ng-model='newBlueprintTask.function'> 
     <a class="btn add-btn" onclick="CreateTasks()" style="display: block; width: 40%; margin-left: 5%; margin-top: 15px;">
         <span id="apply-span">
             Create Task
@@ -391,28 +393,28 @@
            id='selectTask' 
            type="text" 
            name='blueprint tasks' 
-           ng-model='make_blueprint.related_tasks' 
+           ng-model='desiredEmployee.first_name' 
            style="margin-top: 15px; width: 90%; margin-left: 5%;">
     <span class="tasksLabel" style="padding-top: 10px;"> Last Name </span>
     <input class='form-control createTaskInput' 
            id='selectTask' 
            name='blueprint tasks' 
            type="text" 
-           ng-model='make_blueprint.related_tasks' 
+           ng-model='desiredEmployee.last_name' 
            style="margin-top: 15px; width: 90%; margin-left: 5%;">
     <span class="tasksLabel" style="padding-top: 10px;"> Email </span>
     <input class='form-control createTaskInput' 
            id='selectTask'
            type="text"  
            name='blueprint tasks' 
-           ng-model='make_blueprint.related_tasks' 
+           ng-model='desiredEmployee.email' 
            style="margin-top: 15px; width: 90%; margin-left: 5%;">           
     <span class="tasksLabel" style="padding-top: 10px;"> Phone Number </span>
     <input class='form-control createTaskInput' 
            id='selectTask'
            type="text"  
            name='blueprint tasks' 
-           ng-model='make_blueprint.related_tasks' 
+           ng-model='desiredEmployee.phone_number' 
            style="margin-top: 15px; width: 90%; margin-left: 5%;">
 
     <a class="btn add-btn" onclick="CreateEmployee()" style="display: block; width: 40%; margin-left: 5%; margin-top: 15px;">
@@ -501,7 +503,7 @@ $("#addNewRow").click(function(){
     //var taskName = $('#selectTask option:selected').text();
     //var expertEmail = $('#expId').text();
     //$('#selectTask').find('option[value='+taskId+']').attr('disabled','disabled');
-    $('#hiddenTasks:last').after("<div><div id='tasks'><select class='form-control blueprintTasksInput' id='selectTask' name='blueprint tasks' ng-model='make_blueprint.related_tasks' ng-options='option.id*1 as option.name for option in blueprint_tasks'><option value='' ng-show='false'></option></select></div><div id='refs'><span class='form-control blueprintRefsInput' data-toggle='dropdown'>Select</span><ul class='dropdown-menu refsFix'><li><a href='#' class='small' data-value='option1' tabIndex='-1'><input type='checkbox' class='faChkSqr'><span>User 1</span></a></li></ul><button class='btn rem-btn'><span id='apply-span' class='apply-span'>Remove</span><span id='apply-span-2' class='hover hide-button'>Remove</span></button></div></div>");
+    $('#hiddenTasks:last').after("<div><div id='tasks'><select class='form-control blueprintTasksInput' id='selectTask' name='blueprint tasks' ng-model='make_blueprint.related_tasks' ng-options='option.id*1 as option.name for option in blueprint_tasks'><option value='' ng-show='false'></option></select></div><div id='refs'><span class='form-control blueprintRefsInput' data-toggle='dropdown'>Select</span><ul class='dropdown-menu refsFix'><li ng-repeat='employee in desired_employees_info'><a class='small' data-value='option1' tabIndex='-1'><input type='checkbox' class='faChkSqr' ng-model='make_blueprint.employee'><span data-ng-bind='employee.email'></span></a></li></ul><button class='btn rem-btn'><span id='apply-span' class='apply-span'>Remove</span><span id='apply-span-2' class='hover hide-button'>Remove</span></button></div></div>");
 
     // method to push objects into make_blueprint_tasks
     // call angular addTask
@@ -576,6 +578,7 @@ $( '.dropdown-menu a' ).on( 'click', function( event ) {
     // body...
         document.getElementById("createTask").style.visibility = "hidden";
         document.getElementById("createTask").style.opacity = "0";
+        angular.element(document.getElementById('createTask')).scope().createBlueprintTask();
     }
 </script>
 
@@ -592,5 +595,6 @@ $( '.dropdown-menu a' ).on( 'click', function( event ) {
     // body...
         document.getElementById("createEmployee").style.visibility = "hidden";
         document.getElementById("createEmployee").style.opacity = "0";
+        angular.element(document.getElementById('createEmployee')).scope().createDesiredEmployee();
     }
 </script>

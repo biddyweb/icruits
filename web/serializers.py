@@ -17,6 +17,7 @@ from web.models import (
     WorkEnviorment,
     DesiredEmployee,
     TestPilots,
+    QueueStack,
 )
 from rest_framework import serializers
 from libs.djoser.serializers import UserSerializer
@@ -102,7 +103,7 @@ class DesiredEmployeeSerializer(serializers.ModelSerializer):
 
 class BlueprintTasksSerializer(serializers.ModelSerializer):
 
-    desired_employees = DesiredEmployeeSerializer(many=True, read_only=False)
+    desired_employees = DesiredEmployeeSerializer(many=True, read_only=True)
 
     class Meta:
         model = BlueprintTasks
@@ -171,9 +172,16 @@ class HelpSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class QueueStackSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = QueueStack
+        fields = '__all__'
+
+
 class QueueSerializer(serializers.ModelSerializer):
     blueprint_name = BlueprintSerializer(many=False, read_only=True)
-    candidate_name = UserSerializer(many=True, read_only=True)
+    queue_stack = QueueStackSerializer(many=True, read_only=True)
 
     class Meta:
         model = Queue

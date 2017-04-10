@@ -18,7 +18,7 @@
     JobFeedsRes.$inject = ['$resource'];
 
     function JobFeedsRes($resource) {
-        return $resource('/api/job/:name_slug/', {}, {
+        return $resource('/api/job/:name_slug/ ', {}, {
             'query': {
                 method: 'GET',
                 isArray: true,
@@ -28,7 +28,8 @@
                 method: 'GET',
                 isArray: false,
                 cache: true
-            }
+            },
+            'update': { method:'PUT' }
         });
     }
 })();
@@ -442,7 +443,29 @@
     BlueprintTasksRes.$inject = ['$resource'];
 
     function BlueprintTasksRes($resource) {
-        return $resource('/api/blueprint-tasks/', {}, {
+        return $resource('/api/blueprint-tasks/ ', {}, {
+            'query': {
+                method: 'GET',
+                isArray: true,
+                cache: true
+            },
+            'get': {
+                method: 'GET',
+                isArray: false,
+                cache: true
+            }
+        });
+    }
+})();
+
+(function () {
+    "use strict";
+    angular.module('app').factory('DesiredEmployeeRes', DesiredEmployeeRes);
+
+    DesiredEmployeeRes.$inject = ['$resource'];
+
+    function DesiredEmployeeRes($resource) {
+        return $resource('/api/desired-employee/ ', {}, {
             'query': {
                 method: 'GET',
                 isArray: true,

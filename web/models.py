@@ -11,7 +11,7 @@ from django.contrib.auth.models import (
     BaseUserManager,
     AbstractUser
 )
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 from django.utils import six
@@ -335,8 +335,13 @@ class user(AbstractUser):
 
 
 class DesiredEmployee(models.Model):
-    name = models.CharField(_('Name'), max_length=255)
-    email = models.CharField(_('Email Address'), max_length=255)
+    first_name = models.CharField(_('First Name'), max_length=255)
+    last_name = models.CharField(_('Last Name'), max_length=255)
+    email = models.CharField(_('Email Address'), max_length=255, unique=True)
+    phone_number = models.CharField(_('Phone Number'), max_length=255)
+
+    def __unicode__(self):
+        return self.email
 
     class Meta:
         verbose_name = 'Desired Employee'
@@ -350,6 +355,7 @@ TASK_STATUS = (('Active', 'Active'),
 
 class BlueprintTasks(models.Model):
     name = models.CharField(_('Task Name'), max_length=255)
+    function = models.CharField(_('Job Function'), max_length=255)
     desired_employee = models.ManyToManyField(DesiredEmployee, related_name='desired_employees', blank=True)
     tast_status = models.CharField(choices=TASK_STATUS, max_length=255, blank=True)
     created_at = models.DateTimeField(_('Created At'), auto_now_add=True)
@@ -416,16 +422,37 @@ CANDIDATE_STATUS = (('Active', 'Active'),
                     ('Available', 'Available'))
 
 
-class Queue(models.Model):
-    blueprint = models.ForeignKey(Blueprint, related_name="blueprint_name")
-    candidate = models.ForeignKey(user, related_name="candidate_name")
-    candidate_status = models.CharField(choices=CANDIDATE_STATUS, max_length=255)
+class QueueStack(models.Model):
+    candidate = models.ForeignKey(user, related_name="candidate_name", null=True, blank=True)
+    candidate_status = models.CharField(choices=CANDIDATE_STATUS, max_length=255, blank=True)
     candidate_position = models.IntegerField(default=0)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):
-        return self.candidate_position
+        return str(self.candidate_position)
+
+    #@receiver(post_save)
+    #def update_position_by_one(**kwargs):
+    #    print kwargs
+    #    instance = kwargs['instance']
+    #    get_queue = Queue.objects.filter(blueprint=instance.id).first()
+    #    print instance.id # this is okey
+    #    print get_queue
+    #    get_stack = get_queue.stack
+    #    for stack in get_stack:
+    #        stack.candidate_position += 1
+
+    #@receiver(post_delete)
+    #def decrease_position_by_one(**kwargs):
+    #    self.candidate_position -= 1
+    #    if self.candidate_position < 0:
+    #        self.candidate_position = 0
+
+
+class Queue(models.Model):
+    blueprint = models.OneToOneField(Blueprint, related_name="blueprint_name", unique=True)
+    stack = models.ManyToManyField(QueueStack, related_name='queue_stack', blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = "Queue"

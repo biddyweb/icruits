@@ -16,6 +16,8 @@ from web.models import (
     user,
     WorkEnviorment,
     TestPilots,
+    QueueStack,
+    DesiredEmployee,
 )
 from web.serializers import (
     BlueprintSerializer,
@@ -34,6 +36,7 @@ from web.serializers import (
     VisaSerializer,
     WorkEnviormentSerializer,
     TestPilotsSerializer,
+    DesiredEmployeeSerializer,
 )
 from rest_framework import (
     viewsets,
@@ -89,6 +92,29 @@ class QueueViewSet(viewsets.ModelViewSet):
     permission_classes = [
         permissions.IsAuthenticated,
     ]
+
+    def create(self, request, *args, **kwargs):
+
+        blueprint_id = request.data['blueprint']
+
+        initial_stack = QueueStack(candidate_position=0)
+        initial_stack.save()
+
+        serializer = QueueSerializer(data={'blueprint': blueprint_id})
+        if serializer.is_valid():
+            self.perform_create(serializer)
+
+            get_id = Queue.objects.filter(blueprint=request.data['blueprint']).first()
+
+            get_id.stack.add(initial_stack)
+            #get_id.stack.save(initial_stack)
+
+            headers_ = self.get_success_headers(serializer.data)
+            return response.Response(data=serializer.data,
+                                     status=status.HTTP_201_CREATED,
+                                     headers=headers_)
+        else:
+            return response.Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 class HelpViewSet(viewsets.ReadOnlyModelViewSet):
@@ -429,6 +455,7 @@ class CreateBlueprintViewSet(viewsets.ModelViewSet):
 
         request_data = request.data[0]
         tasks_data = request.data[1]
+        employee_data = request.data[2]
 
         job_dur = request_data['related_job_duration']
         t_id = request_data['team_id']
@@ -450,6 +477,8 @@ class CreateBlueprintViewSet(viewsets.ModelViewSet):
         remote_w = request_data['remote_work']
 
         tasks = tasks_data['tasks']
+
+        employees = employee_data['employee']
 
         rel_exp = request_data['related_experience']
         rel_visa = request_data['related_visa_status']
@@ -483,24 +512,28 @@ class CreateBlueprintViewSet(viewsets.ModelViewSet):
         if serializer.is_valid():
             self.perform_create(serializer)
 
-            blueprint_object = Blueprint.objects.filter(name=nam).first()
+            blueprint_object = Blueprint.objects.last()
 
             _headers = self.get_success_headers(serializer.data)
 
-            print tasks
+            for user in str(employees).replace('[', '').replace(']', ''):
 
-            for task in tasks:
-                obj_status = task['task_status']
-                obj_name = task['name']
-                obj_expert = task['expert']
+                for task in str(tasks):
+                    task_obj = BlueprintTasks.objects.filter(id=task).first()
 
-                obj_email = user.objects.filter(id=obj_expert).first()
+                    task_obj.desired_employee.add(user)
 
-                obj = BlueprintTasks(name=obj_name, expert=obj_expert, tast_status=obj_status, expert_email=obj_email.email)
-                obj.save()
-                blueprint_object.related_tasks.add(obj)
+                    blueprint_object.related_tasks.add(task_obj)
 
             return response.Response(serializer.data, status=status.HTTP_201_CREATED, headers=_headers)
         
         else:
             return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class DesiredEmployeeViewSet(viewsets.ModelViewSet):
+    queryset = DesiredEmployee.objects.all()
+    serializer_class = DesiredEmployeeSerializer
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
