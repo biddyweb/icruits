@@ -61,8 +61,67 @@
                     </div>
                 </div>
             </div>
+            <div class="half-container-right" ng-if="!published && !blueprint.has_simulator">
+                <div class="blueprint-name" data-ng-bind="blueprint.name"></div>
+                <div class="details-description">
+                    <div data-ng-bind="blueprint.description"></div>
+                    <p>
+                        description description description description description descri
+                        description description description description description des description description
+                        description description descriptiondescription description
+                    </p>
+                </div>
+                <div class="practice-info" style="margin-top: 2em;">
+                    <span><strong>Practice limit :  </strong></span>
+                    <div class="square-info">
+                        <span data-ng-bind="blueprint.practice_limit"></span>
+                    </div>
+                </div>
+                <div class="practice-info">
+                    <span><strong>Max Queue :  </strong></span>
+                    <div class="square-info">
+                        <span data-ng-bind="blueprint.max_queue"></span>
+                    </div>
+                </div>
+                <div class="practice-info">
+                    <span><strong>Current Queue :  </strong></span>
+                    <div class="square-info">
+                        <span>NA</span>
+                    </div>
+                </div>
+                <div class="practice-info">
+                    <span><strong>Visa Status :  </strong></span>
+                    <div class="square-info">
+                        <span data-ng-bind="visa_status_info.visa"></span>
+                    </div>
+                </div>
+                <div class="practice-info">
+                    <span><strong>Minimum Education :  </strong></span>
+                    <div class="square-info">
+                        <span data-ng-bind="blueprint.professional_qualifications"></span>
+                    </div>
+                </div>
+                <div class="practice-info">
+                    <span><strong>Remote Work :  </strong></span>
+                    <div class="square-info">
+                        <span data-ng-bind="blueprint.remote_work"></span>
+                    </div>
+                </div>
+                <div class="practice-info">
+                    <span><strong>Salary Range :  </strong></span>
+                    <div class="square-info">
+                        <span data-ng-bind="job_salary.sal_range"></span>
+                    </div>
+                </div>
+                <div class="practice-info">
+                    <span><strong>Job Type :  </strong></span>
+                    <div class="square-info">
+                        <span data-ng-bind="job_type.employment"></span>
+                    </div>
+                </div>
+            </div>
             <div class="half-container-right" 
-                 ng-if="!published"
+                 ng-if="!published && blueprint.has_simulator"
                  style="top: 80px;">
                 <div class="blueprint-name" data-ng-bind="blueprint.name"></div>
                 <div class="details-description">
@@ -71,24 +130,6 @@
                            class="blueprintDesc" rows="2" cols="70"></textarea>
                 </div>
                 <div class="practice-info" style="margin-top: 2em;">
-                    <span><strong>Publish Blueprint :  </strong></span>
-                    <div class="square-info"
-                         style="margin-bottom: 10px;">
-                        <input type="radio"
-                               id="publish blueprint"
-                               name="publish blueprint"
-                               ng-value="true"
-                               ng-model="blueprint.is_published"
-                               checked/> Yes
-                        <input type="radio"
-                               id="publish blueprint"
-                               name="publish blueprint"
-                               ng-value="false"
-                               ng-model="blueprint.is_published"
-                               checked/> No
-                    </div>
-                </div>
-                <div class="practice-info">
                     <span><strong>Practice limit :  </strong></span>
                     <div class="square-info"
                          style="margin-bottom: 10px;">
@@ -188,20 +229,45 @@
                     Apply
                 </span>
             </a>
-            <a id="blueprint-btn" ng-show="!user.profile_type" ng-click="SendMail()" ng-if="published">
+            <a id="blueprint-btn" ng-show="!user.profile_type"
+               ng-click="SendMail()" ng-if="published && blueprint.has_simulator && !blueprint.is_closed">
                 <span id="advanced-span" class="show-button">
-                    Apply Company
+                    iCruit
                 </span>
                 <span id="advanced-span-2" class="hover show-button">
-                    Apply Company
+                    iCruit
                 </span>
             </a>
-            <a id="blueprint-btn" ng-show="!user.profile_type" ng-click="updateBlueprint()" ng-if="!published">
+            <a id="blueprint-btn" ng-show="!user.profile_type" ng-click="updateBlueprint()" ng-if="!published && blueprint.has_simulator">
                 <span id="advanced-span" class="show-button">
                     Update Blueprint
                 </span>
                 <span id="advanced-span-2" class="hover show-button">
                     Update Blueprint
+                </span>
+            </a>
+            <a id="blueprint-btn" ng-show="!user.profile_type" ng-click="publishBlueprint()" ng-if="!published && blueprint.has_simulator" style="right: 180px;">
+                <span id="advanced-span" class="show-button">
+                    Publish Blueprint
+                </span>
+                <span id="advanced-span-2" class="hover show-button">
+                    Publish Blueprint
+                </span>
+            </a>
+            <a id="blueprint-btn" ng-show="!user.profile_type" ng-click="previewBlueprint()" ng-if="!published && editable && blueprint.has_simulator" style="left: 50px;">
+                <span id="advanced-span" class="show-button">
+                    Preview Blueprint
+                </span>
+                <span id="advanced-span-2" class="hover show-button">
+                    Preview Blueprint
+                </span>
+            </a>
+            <a id="blueprint-btn" ng-show="!user.profile_type" ng-click="editBlueprint()" ng-if="published && editable && blueprint.has_simulator" style="left: 50px;">
+                <span id="advanced-span" class="show-button">
+                    Edit Blueprint
+                </span>
+                <span id="advanced-span-2" class="hover show-button">
+                    Edit Blueprint
                 </span>
             </a>
             <a id="back-btn" data-ui-sref="root.dashboard">
@@ -215,16 +281,16 @@
         </div>
     </div>
     <div ng-if="sent_mail">
-            <span class="sentEmail">
-                Your Email has been successfully sent!
+        <span class="sentEmail">
+            Your Email has been successfully sent!
+        </span>
+        <a id="back-btn" data-ui-sref="root.dashboard">
+            <span id="advanced-span" class="show-button">
+                x
             </span>
-            <a id="back-btn" data-ui-sref="root.dashboard">
-                <span id="advanced-span" class="show-button">
-                    x
-                </span>
-                <span id="advanced-span-2" class="hover show-button">
-                    x
-                </span>            
-            </a>
+            <span id="advanced-span-2" class="hover show-button">
+                x
+            </span>
+        </a>
     </div>
 </section>

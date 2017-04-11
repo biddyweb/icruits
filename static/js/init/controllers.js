@@ -3,10 +3,10 @@
 
     angular.module('app').controller('BluprintDetailsCtrl', BluprintDetailsCtrl);
 
-    BluprintDetailsCtrl.$inject = ['$scope', '$rootScope', '$cookies', '$state', 'JobFeed', 'UserInfoRes', 
+    BluprintDetailsCtrl.$inject = ['$scope', '$rootScope', '$cookies', '$state', '$window', 'JobFeed', 'UserInfoRes', 
     'SalaryInfo', 'JobType', 'VisaStatusInfo', 'JobFeedsRes', 'QueueRes'];
 
-    function BluprintDetailsCtrl ($scope, $rootScope, $cookies, $state, JobFeed, UserInfoRes, 
+    function BluprintDetailsCtrl ($scope, $rootScope, $cookies, $state, $window, JobFeed, UserInfoRes, 
         SalaryInfo, JobType, VisaStatusInfo, JobFeedsRes, QueueRes) {
 
         $scope.blueprint = JobFeed;
@@ -21,16 +21,22 @@
 
         $scope.published = $scope.blueprint.is_published;
 
+        if($scope.published){
+            $scope.editable = false;
+        }
+        if(!$scope.published){
+            $scope.editable = true;            
+        }
         //      querying data from DB for related fields     //
         angular.forEach($scope.type, function (value, key) {
             // body...
-            if(value.id == $scope.blueprint.related_job_type){
+            if(value.id === $scope.blueprint.related_job_type){
                 $scope.job_type = value;
             }
         });
 
         angular.forEach($scope.salary, function(value, key){
-            if(value.id == $scope.blueprint.related_salary){
+            if(value.id === $scope.blueprint.related_salary){
                 $scope.job_salary = value;
                 // body...
             }
@@ -38,7 +44,7 @@
 
         angular.forEach($scope.visa_status, function (value, key) {
             // body...
-            if(value.id == $scope.blueprint.related_visa_status){
+            if(value.id === $scope.blueprint.related_visa_status){
                 $scope.visa_status_info = value;
             }
         });
@@ -46,6 +52,7 @@
 
         $scope.user = UserInfoRes.query();
 
+        /*
         if ($cookies.get('token')) {
             var user_logged;
         } else {
@@ -53,6 +60,7 @@
                 $state.go('root.home', { reload: true });
             }, 100);
         }
+        */
 
         $scope.SendMail = function () {
             // body...
@@ -64,20 +72,44 @@
             JobFeedsRes.update({ name_slug: $scope.blueprint.name_slug }, $scope.blueprint, function (response) {
                 // body...
                 $scope.data = response.data;
-                if($scope.blueprint.is_published){
-                    var queue_data = {blueprint: $scope.blueprint.id};
-                    QueueRes.save(queue_data, function (response) {
-                        // body...
-                        $scope.queue_response = response.data;
-                    }, function (response) {
-                        // body...
-                        $scope.errors = response.errors;
-                    });
-                };
             }, function (response) {
                 // body...
                 $scope.errors = response.data;
             });
+            $window.location.reload();
+        };
+        $scope.publishBlueprint = function () {
+            // body...
+            $scope.blueprint.is_published = true;
+            JobFeedsRes.update({ name_slug: $scope.blueprint.name_slug }, $scope.blueprint, function (response) {
+                // body...
+                $scope.data = response.data;
+            }, function (response) {
+                // body...
+                $scope.errors = response.data;
+            });
+
+            var queue_data = {blueprint: $scope.blueprint.id};
+            QueueRes.save(queue_data, function (response) {
+                // body...
+                $scope.queue_response = response.data;
+            }, function (response) {
+                // body...
+                $scope.errors = response.errors;
+            });
+            setTimeout(function() {
+                $state.go('root.dashboard', { reload: true });
+                $window.location.reload();
+            }, 500);
+        };
+
+        $scope.previewBlueprint = function () {
+            // body...
+            $scope.published = true;
+        };
+        $scope.editBlueprint = function () {
+            // body...
+            $scope.published = false;
         };
         
         $scope.$emit('metaTagsChanged', {
@@ -133,8 +165,6 @@
     IndustryInfo, LocationInfo, SalaryInfo, ExperienceInfo, CompanyTypeInfo, WaitIntervalInfo, OnJobSuccessInfo,
     JobTypeInfo, JobDurationInfo, ExperienceLevelInfo, BlueprintTasksInfo, VisaStatusInfo, UserListInfo, Upload, CreateBlueprintRes,
     DesiredEmployeeRes, DesiredEmployeesInfo, BlueprintTasksRes) {
-        
-        $scope.blueprints = BluePrints;
 
         $scope.make_blueprint = {};
 
@@ -174,6 +204,42 @@
             };
         });*/
 
+        $scope.blueprint_resource = BluePrints;
+        $scope.blueprints = [];
+        $scope.not_closed_blueprints = [];
+        $scope.closed_blueprints = [];
+
+        $scope.show_closed_jobs = false;
+
+        // tuple show closed/opened jobs logic
+        $scope.tupleJobsState = function () {
+            if(!$scope.show_closed_jobs){
+                $scope.show_closed_jobs = true;
+                $scope.blueprints = $scope.closed_blueprints;
+            } else {
+                $scope.show_closed_jobs = false;
+                $scope.blueprints = $scope.not_closed_blueprints;
+            }
+        };
+
+        if($scope.show_closed_jobs){
+            $scope.blueprints = $scope.closed_blueprints;
+        } else {
+            $scope.blueprints = $scope.not_closed_blueprints;
+        }
+
+        if(!$scope.user.profile_type){
+            // employeer blueprints data
+            angular.forEach($scope.blueprint_resource, function (value, key) {
+                if($scope.user.id === value.related_user && !value.is_closed){
+                    $scope.not_closed_blueprints.push(value);
+                }
+                if($scope.user.id === value.related_user && value.is_closed){
+                    $scope.closed_blueprints.push(value);
+                }
+            });
+        }
+
         $scope.visa_status_info = VisaStatusInfo;
 
         $scope.user_list_info = UserListInfo;
@@ -209,7 +275,7 @@
             } else {
                 $scope.industryIncludes.push(filter);
             }
-        }
+        };
 
         $scope.industryFilter = function (blueprints) {
             // body...
@@ -218,7 +284,7 @@
                     return;
             }
             return blueprints;
-        }
+        };
 
         $scope.FilterLocation = function (filter) {
             // body...
@@ -228,7 +294,7 @@
             } else {
                 $scope.locationIncludes.push(filter);
             }
-        }
+        };
 
         $scope.locationFilter = function (blueprints) {
             // body...
@@ -237,8 +303,7 @@
                     return;
             }
             return blueprints;
-            console.log(blueprints);
-        }
+        };
 
         $scope.FilterSalary = function (filter) {
             // body...
@@ -248,7 +313,7 @@
             } else {
                 $scope.salaryIncludes.push(filter);
             }
-        }
+        };
 
         $scope.salaryFilter = function (blueprints) {
             // body...
@@ -257,8 +322,7 @@
                     return;
             }
             return blueprints;
-            console.log(blueprints);
-        }
+        };
 
         $scope.FilterExperience = function (filter) {
             // body...
@@ -268,7 +332,7 @@
             } else {
                 $scope.experienceIncludes.push(filter);
             }
-        }
+        };
 
         $scope.experienceFilter = function (blueprints) {
             // body...
@@ -277,8 +341,7 @@
                     return;
             }
             return blueprints;
-            console.log(blueprints);
-        }
+        };
 
         /* END OF FILTER PART */
 
@@ -338,19 +401,22 @@
         if($cookies.get('blueprint')){
             var cookie_blueprint_data = $cookies.get('blueprint');
             $scope.make_blueprint = angular.fromJson(cookie_blueprint_data);
-        };
+        }
 
         $scope.new_employee = [];
 
         /* CREATING BLUEPRINT */
         $scope.createBlueprint = function () {
             // body...
-            $scope.send_blueprint = []
+            $scope.send_blueprint = [];
             $scope.send_blueprint.push($scope.make_blueprint);
             $scope.send_blueprint.push({tasks: $scope.make_blueprint_tasks});
             $scope.send_blueprint.push({employee: $scope.new_employee});
             CreateBlueprintRes.save($scope.send_blueprint, function (response) {
                 // body...
+                setTimeout(function () {
+                    $window.location.reload();
+                }, 500);
             }, function (response) {
                 // body...
             });

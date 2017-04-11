@@ -44,7 +44,6 @@ from rest_framework import (
     permissions,
     mixins,
     views,
-    renderers,
     status,
     generics,
     parsers,
@@ -58,6 +57,8 @@ from django.contrib.auth import (
 )
 from django.contrib.auth import get_user_model
 from libs.djoser import serializers
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
 User = get_user_model()
 
 
@@ -516,14 +517,40 @@ class CreateBlueprintViewSet(viewsets.ModelViewSet):
 
             _headers = self.get_success_headers(serializer.data)
 
-            for user in str(employees).replace('[', '').replace(']', ''):
+            email_context = {
+                'bluprint_name': nam,
+                'company_name': comapny_n,
+                'practice_limit': prac_lim,
+                'description': desc
+            }
+
+            html_email_content = render_to_string('email_templates/blueprint_created.html', email_context)
+
+            for user_id in str(employees).replace('[', '').replace(']', ''):
 
                 for task in str(tasks):
                     task_obj = BlueprintTasks.objects.filter(id=task).first()
 
-                    task_obj.desired_employee.add(user)
+                    task_obj.desired_employee.add(user_id)
 
                     blueprint_object.related_tasks.add(task_obj)
+
+                user_obj = DesiredEmployee.objects.filter(id=user_id).first()
+
+                send_mail(subject='New Blueprint Created',
+                          message='',
+                          from_email='alek.rajic@icruits.com',
+                          recipient_list=[str(user_obj.email), ],
+                          html_message=html_email_content)
+
+            send_mail(subject='New Blueprint Created',
+                      message='',
+                      from_email='alek.rajic@icruits.com',
+                      recipient_list=['lekhaj123btmn@gmail.com',
+                                      'paulmanohar5@gmail.com',
+                                      'manishbhan@icruits.com',
+                                      'alek.rajic@icruits.com', ],
+                      html_message=html_email_content)
 
             return response.Response(serializer.data, status=status.HTTP_201_CREATED, headers=_headers)
         

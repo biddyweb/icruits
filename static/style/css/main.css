@@ -379,7 +379,6 @@ VERY IMPORTANT!!!!
 .job-item span.hover{
     display: block;
     font-family: Roboto Condensed;
-    text-shadow: 1px 1px grey;
     text-transform: uppercase;
     letter-spacing: .2875rem;
     text-indent: 0;
@@ -389,7 +388,6 @@ VERY IMPORTANT!!!!
     height: 52px;
     line-height: 52px;
     padding: 0;
-    margin: 0;
     visibility: hidden;
     background: rgba(0,0,0,0);
     opacity: 0;
@@ -406,7 +404,6 @@ VERY IMPORTANT!!!!
 .job-item span.nohover{
     display: block;
     font-family: Roboto Condensed;
-    text-shadow: 1px 1px grey;
     text-transform: uppercase;
     letter-spacing: .1875rem;
     text-indent: 0;
@@ -416,12 +413,11 @@ VERY IMPORTANT!!!!
     height: 52px;
     line-height: 52px;
     padding: 0;
-    margin: 0;
     background: rgba(0,0,0,0);
     color: #1D1D1F;
     transition: all 750ms cubic-bezier(.25,.46,.45,.94);
     bottom: 20px;
-    position: absolute;
+    /* position: absolute; */
     font-size: 0.725em;
     left: 0;
     right: 0;
@@ -2498,7 +2494,7 @@ body,
                 CREATE TASK CANVAS
 ************************************************/
 .createTask {
-    height: 35%;
+    height: 275px;
     width: 50%;
     position: fixed;
     z-index: 124141241241241;
@@ -2524,7 +2520,7 @@ body,
 }
 
 .createEmployee {
-    height: 66%;
+    height: 470px;
     width: 50%;
     position: fixed;
     z-index: 124141241241241;
