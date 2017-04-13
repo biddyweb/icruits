@@ -1,5 +1,5 @@
-
-<div class="container-wrap" ng-show="!user.profile_type">
+<!-- JOBSEEKER DASHBOARD EXPERIENCE -->
+<div class="container-wrap" ng-show="user.profile_type">
     <div class="menu-wrap">
         <nav id="sidemenu" class="menu">
             <div class="icon-list">
@@ -15,6 +15,144 @@
                         </label>
                     </div>
                 </div>
+                <a type="button" class="menu-item" data-toggle="collapse" data-target="#location">Job Location</a>
+                <div id="location" class="collapse dropdown-fix">
+                    <div ng-repeat="loc in location_info">
+                        <label>
+                            <input type="checkbox"
+                                   class="faChkRnd"
+                                   ng-click="FilterLocation(loc.id)"/>
+                            <span class="checkbox-label">{{ loc.location }}</span></br/>
+                        </label>
+                    </div>
+                </div>
+                <a type="button" class="menu-item" data-toggle="collapse" data-target="#Salary">Salary Range</a>
+                <div id="Salary" class="collapse dropdown-fix">
+                    <div ng-repeat="sal in salary_info">
+                        <label>
+                            <input type="checkbox"
+                                   class="faChkRnd"
+                                   ng-click="FilterSalary(sal.id)"/>
+                            <span class="checkbox-label">{{ sal.sal_range }}</span></br/>
+                        </label>
+                    </div>
+                </div>
+                <a type="button" class="menu-item" data-toggle="collapse" data-target="#Experience">Experience Level</a>
+                <div id="Experience" class="collapse dropdown-fix">
+                    <div ng-repeat="exp in experience_info">
+                        <label>
+                            <input type="checkbox"
+                                   class="faChkRnd"
+                                   ng-click="FilterExperience(exp.id)"/>
+                            <span class="checkbox-label">{{ exp.experience_level }}</span></br/>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <span id="open-button" class="menu-white"><span class="label" style="color: rgb(0,0,0);">FILTER</span> </span>
+    <a id="user-nav" class="userNav" onclick="openNav()"><i class="fa fa-user"></i></a>
+    <!--div id="userContent" class="userContainer" ng-controller='LogoutCtrl'>
+        <a id="btn-2" ng-click="logoutNow()" class="userNavBtn">Logout</a>
+    </div-->
+
+    <div class="content-wrap">
+        <div class="content">
+            <nav class="dashHeader text-center navbar navbar-default fixed top"><span>ICRUITS</span></nav>
+            <section id="dashboard" style="margin-top: 75px;">
+                <div class="containerSub cf">
+                    <div class="row">
+                        <div class="col-sm-3"
+                             data-ng-repeat="JobFeed in blueprints | filter:industryFilter | filter:locationFilter | filter:salaryFilter | filter:experienceFilter">
+                            <div class="job-item text-center">
+                                <div class="hover-bg hover-bg-articles">
+                                    <a data-ui-sref="root.blueprint({name_slug: JobFeed.blueprints[0].name_slug})">
+                                        <!--img class="img-responsive"
+                                                data-ng-src="{{ JobFeed.image }}" alt=""-->
+                                        <div class="hover-text">
+                                            <span class="lead" data-ng-bind="JobFeed.stacks[JobFeed.stacks.length - 1].candidate_position"></span>
+                                        </div>
+                                        <img class="img-circle img-thumbnail" src="">
+                                        <span class="nohover center-block"
+                                              style="padding-top: 110px;"
+                                              data-ng-bind="JobFeed.blueprints[0].name">
+                                        </span>
+                                        <span class="hover company center-block"
+                                              data-ng-bind="JobFeed.blueprints[0].company_name">
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a id="filter-btn" ng-click="tupleAppliedJobs()" ng-if="show_new_jobs">
+                    <span>
+                        Applied Jobs
+                    </span>
+                    <span class="hover">
+                        Applied Jobs
+                    </span>
+                </a>
+                <a id="filter-btn" ng-click="tupleAppliedJobs()" ng-if="!show_new_jobs">
+                    <span>
+                        New Jobs
+                    </span>
+                    <span class="hover">
+                        New Jobs
+                    </span>
+                </a>
+                <a id="filter-btn" ng-click="tupleICruitedJobs()"
+                   style="right: 180px;"
+                   ng-if="show_new_jobs_icruited">
+                    <span>
+                        iCruited Jobs
+                    </span>
+                    <span class="hover">
+                        iCruited Jobs
+                    </span>
+                </a>
+                <a id="filter-btn" ng-click="tupleICruitedJobs()"
+                   style="right: 180px;"
+                   ng-if="!show_new_jobs_icruited">
+                    <span>
+                        New Jobs
+                    </span>
+                    <span class="hover">
+                        New Jobs
+                    </span>
+                </a>
+                <!--a id="filter-btn" style="right: 180px;"
+                   ng-click="tupleJobsState()" ng-if="!show_closed_jobs">
+                    <span>
+                        Closed Jobs
+                    </span>
+                    <span class="hover">
+                        Closed Jobs
+                    </span>
+                </a>
+                <a id="filter-btn" style="right: 180px;"
+                   ng-click="tupleJobsState()" ng-if="show_closed_jobs">
+                    <span>
+                        Opened Jobs
+                    </span>
+                    <span class="hover">
+                        Opened Jobs
+                    </span>
+                </a-->
+            </section>
+        </div>
+    </div>
+</div>
+<!-- END OF JOBSEEKER DASHBOARD EXPERIENCE -->
+
+<!-- EMPLOYER DASHBOARD EXPERIENCE -->
+<div class="container-wrap" ng-show="!user.profile_type">
+    <div class="menu-wrap">
+        <nav id="sidemenu" class="menu">
+            <div class="icon-list">
+                <h3>Filter</h3>
                 <a type="button" class="menu-item" data-toggle="collapse" data-target="#location">Job Location</a>
                 <div id="location" class="collapse dropdown-fix">
                     <div ng-repeat="loc in location_info">
@@ -151,8 +289,9 @@
         </div>
     </div>
 </div>
+<!-- END OF EMPLOYER DASHBOARD EXPERIENCE -->
 
-<!-- FULLSCREEN NAV -->
+<!-- FULLSCREEN CANVAS FOR CREATING BLUEPRINT -->
 <div id="myNav" class="overlay-offcanvas">
     <a id="back-btn" class="hide-button" onclick="closeBigNav()">
         <span id="advanced-span" class="show-button">
@@ -170,14 +309,6 @@
             Finish
         </span>
     </a>
-    <!--a id="advanced-btn" class="hide-button">
-        <span id="advanced-span" class="hide-button">
-            Advanced
-        </span>
-        <span id="advanced-span-2" class="hover hide-button">
-            Advanced
-        </span>
-    </a-->
     <div class="blueprintContainer">
         <div class="row" style="background-color: rgb(252, 252, 252); padding-top: 15px;">
             <span class="new blueprintLabel"> Blueprint Name </span>
@@ -342,26 +473,29 @@
                 <span class="tasksLabel" style="padding-right: 25%;"> Employee </span>
                 <span class='form-control blueprintRefsInput' data-toggle='dropdown'>Select</span>
                 <ul class='dropdown-menu refsFix'>
-                    <li ng-repeat="employee in desired_employees_info">
-                        <a class='small' tabIndex='-1'>
-                            <input type='checkbox' class='faChkSqr' ng-click="addEmployeeId(employee.id)">
-                            <span data-ng-bind="employee.email"></span>
-                        </a>
-                    </li>
+                    <div ng-repeat="employee in desired_employees_info">
+                        <label>
+                            <input type='checkbox'
+                                   style="margin-left: 10px;"
+                                   class='faChkSqr small'
+                                   ng-click="addEmployeeId(employee.id)">
+                            <span style="cursor: pointer;" data-ng-bind="employee.email"></span></br/>
+                        </label>
+                    </div>
                 </ul>
             </div>
+            <button class='btn rem-btn'>
+                <span id='apply-span' class='apply-span'>
+                    Remove
+                </span>
+                <span id='apply-span-2' class='hover hide-button'>
+                    Remove
+                </span>
+            </button>
         </div>
     </div>
     <div id="TasksBlueprint" class="blueprintTasksContainer" style="background-color: rgb(225,225,225); margin-top: -20px; padding-top: 10px;">
-        <span class="btn add-btn" 
-              id="addNewRow">
-            <span id="apply-span">
-                Add Task
-            </span>
-            <span id="apply-span-2" class="hover hide-button">
-                Add Task
-            </span>
-        </span>
+        <div add-div-directive style="display: inline;"></div>
         <a class="btn add-btn" onclick="openCreateTasks()">
             <span id="apply-span">
                 Create Task
@@ -398,31 +532,8 @@
         <hr class="hrBotTen">
         <hr class="hrBotTen">
     </div>
-</div>        
-
-        <!--hr>
-        <div class="row">
-            <span class="new blueprintLabel"> Publish Blueprint </span>
-            <label class="blueprintRadioLabel">
-                <input class="register-radio" 
-                       type="radio"
-                       name="publish radio"
-                       ng-value="true"
-                       ng-model="make_blueprint.is_published"/>
-                Yes
-            </label>
-        </div>
-        <div class="row">
-            <label class="blueprintRadioLabel" style="margin-left: 174px;">
-                <input class="register-radio" 
-                       type="radio"
-                       name="publish radio"
-                       ng-value="false"
-                       ng-model="make_blueprint.is_published"
-                       checked/>
-                No
-            </label>
-        </div-->
+</div>
+<!-- END OF FULLSCREEN CANVAS FOR CREATING BLUEPRINT -->
 
 <!-- CREATE TASK CANVAS -->
 <aside id="createTask" class="createTask">
@@ -464,6 +575,7 @@
         </span>
     </a>
 </aside>
+<!-- END OF CREATE TASK CANVAS -->
 
 
 <!-- CREATE EMPLOYEE CANVAS -->
@@ -518,7 +630,7 @@
         </span>
     </a>
 </aside>
-
+<!-- END OF CREATE EMPLOYEE CANVAS -->
 
 <!-- SMALL CANVAS MENU -->
 <aside id="sidenav" class="sidenav" ng-controller='LogoutCtrl'>
@@ -531,6 +643,7 @@
     <a data-ui-sref="root.profile" data-ng-class="{active: state.includes('root.profile')}" class="menu-item" style="padding-top: 40px;">Profile</a>
     <a href='' class="menu-item" ng-click="logoutNow()">Logout</a>
 </aside>
+<!-- END OF SMALL CANVAS MENU -->
 
 <script type="text/javascript">
 
@@ -589,7 +702,7 @@
     }
 
 </script>
-<script>
+<!--script>
 $("#addNewRow").click(function(){
     //var taskId = $('#selectTask').val().replace('number:', '');
     //var taskName = $('#selectTask option:selected').text();
@@ -618,6 +731,8 @@ $("#addNewRow").click(function(){
     }
     //addSelectedTask();
 });
+</script-->
+<script>
 $("#TasksBlueprint").on('click','.rem-btn',function(){
     var taskId = $(this).parent().parent('tr').find('td:eq(1)').find('input[type=hidden]').val();
 

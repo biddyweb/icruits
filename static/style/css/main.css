@@ -79,7 +79,7 @@ input.faChkSqr:checked:after, input.faChkSqr:after {
     height: 10px;
     width: 5px;
     position: relative;
-    /* top: -3px; */
+    top: 2px;
     /* left: 0px; */
     /* background-color: #FFF; */
     color: black;
@@ -155,6 +155,13 @@ input.faChkSqr:checked:after span.checkbox-label {
 
 input.faChkSqr:after span.checkbox-label {
     color: rgb(255, 255, 255);
+}
+
+#refs > ul > div > label > span {
+    cursor: pointer;
+    font-family: Roboto Condensed;
+    font-weight: lighter;
+    margin-left: 10px;
 }
 
 #refs > ul > li > a > span {
@@ -1202,7 +1209,7 @@ LOGIN FORM
 .next-login {
     position: absolute;
     right: 2.1em;
-    top: 4.905em;
+    top: 4.805em;
     display: block;
     padding: 0;
     font-size: 15px;  border: none;
@@ -1240,11 +1247,11 @@ LOGIN FORM
   left: 0;
   width: 100%;
   height: 100%;
-  content: "\e600";
+  content: "\f061";
   text-transform: none;
   font-style: normal;
   font-variant: normal;
-  font-family: 'icomoon';
+  font-family: FontAwesome;
   line-height: 2;
   speak: none;
   -webkit-font-smoothing: antialiased;
@@ -1262,7 +1269,7 @@ LOGIN FORM
 .prev-login {
     position: absolute;
     right: 4.1em;
-    top: 4.905em;
+    top: 4.805em;
     display: block;
     padding: 0;
     font-size: 15px;  border: none;
@@ -1300,11 +1307,11 @@ LOGIN FORM
   left: 0;
   width: 100%;
   height: 100%;
-  content: "\e600";
+  content: "\f060";
   text-transform: none;
   font-style: normal;
   font-variant: normal;
-  font-family: 'icomoon';
+  font-family: FontAwesome;
   line-height: 2;
   speak: none;
   -webkit-font-smoothing: antialiased;
@@ -2364,7 +2371,7 @@ body,
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
     /* margin-top: 10px; */
     /* margin-bottom: 10px; */
-    display: inline-block;
+    display: none;
     margin-top: -34px;
     margin-right: -10%;
     float: right;
@@ -2416,6 +2423,7 @@ body,
     opacity: 0;
     transition: all 1s cubic-bezier(.455,.03,.515,.955);
 }
+
 .show-button {
     visibility: visible;
     opacity: 1;

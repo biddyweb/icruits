@@ -18,6 +18,7 @@ from web.models import (
     TestPilots,
     QueueStack,
     DesiredEmployee,
+    AppliedBlueprints,
 )
 from web.serializers import (
     BlueprintSerializer,
@@ -37,6 +38,8 @@ from web.serializers import (
     WorkEnviormentSerializer,
     TestPilotsSerializer,
     DesiredEmployeeSerializer,
+    QueueStackSerializer,
+    AppliedBlueprintsSerializer,
 )
 from rest_framework import (
     viewsets,
@@ -55,6 +58,7 @@ from django.contrib.auth import (
     login,
     authenticate,
 )
+from django.http import Http404
 from django.contrib.auth import get_user_model
 from libs.djoser import serializers
 from django.core.mail import send_mail
@@ -105,10 +109,12 @@ class QueueViewSet(viewsets.ModelViewSet):
         if serializer.is_valid():
             self.perform_create(serializer)
 
-            get_id = Queue.objects.filter(blueprint=request.data['blueprint']).first()
+            que_id = serializer['id'].value
+
+            get_id = Queue.objects.filter(id=que_id).first()
 
             get_id.stack.add(initial_stack)
-            #get_id.stack.save(initial_stack)
+            get_id.stack.save(initial_stack)
 
             headers_ = self.get_success_headers(serializer.data)
             return response.Response(data=serializer.data,
@@ -116,6 +122,12 @@ class QueueViewSet(viewsets.ModelViewSet):
                                      headers=headers_)
         else:
             return response.Response(status=status.HTTP_400_BAD_REQUEST)
+
+    def update(self, request, *args, **kwargs):
+
+        print 'in update queue'
+
+        return response.Response(status=status.HTTP_200_OK)
 
 
 class HelpViewSet(viewsets.ReadOnlyModelViewSet):
@@ -240,6 +252,8 @@ class MobileLogin(views.APIView):
         username_ = data.get('username')
         password_ = data.get('password')
 
+        user_obj = user.objects.filter(email=username_).first()
+
         s = SessionStore()
         s.create()
         session_id = s.session_key
@@ -247,10 +261,12 @@ class MobileLogin(views.APIView):
         account = authenticate(username=username_, password=password_)
 
         if account:
-            data = json.dumps({'exists':True, 'session_id':session_id}, sort_keys=True, indent=4, separators=(',', ': '))
+            data = json.dumps({'exists':True, 'session_id':session_id, 'username':user_obj.username},
+                              sort_keys=True, indent=4, separators=(',', ': '))
             return response.Response(data, status=status.HTTP_200_OK)
         else:
-            data = json.dumps({'exists':False, 'session_id':session_id}, sort_keys=True, indent=4, separators=(',', ': '))
+            data = json.dumps({'exists':False, 'session_id':session_id},
+                              sort_keys=True, indent=4, separators=(',', ': '))
             return response.Response(data, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -513,7 +529,9 @@ class CreateBlueprintViewSet(viewsets.ModelViewSet):
         if serializer.is_valid():
             self.perform_create(serializer)
 
-            blueprint_object = Blueprint.objects.last()
+            blueprint_object_id = serializer['id'].value
+
+            blueprint_object = Blueprint.objects.filter(id=blueprint_object_id).first()
 
             _headers = self.get_success_headers(serializer.data)
 
@@ -564,3 +582,153 @@ class DesiredEmployeeViewSet(viewsets.ModelViewSet):
     permission_classes = [
         permissions.IsAuthenticated,
     ]
+
+
+class QueueStackViewSet(viewsets.ModelViewSet):
+    queryset = QueueStack.objects.all()
+    serializer_class = QueueStackSerializer
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+
+    def destroy(self, request, *args, **kwargs):
+
+        try:
+            instance = self.get_object()
+            blueprint_name = Queue.objects.get(stack=instance.id).blueprint.name
+            username = instance.candidate.username
+            name_trim = ''.join(e for e in username if e.isalnum())
+            company_trim = ''.join(e for e in blueprint_name if e.isalnum())
+            applied_job_name_slug = str(name_trim).lower() + '-' + str(company_trim).lower()
+            user_email = instance.candidate.email
+            applied_obj = AppliedBlueprints.objects.filter(name_slug=applied_job_name_slug).first()
+            Queue.objects.get(stack=instance.id).stack.remove(instance)
+            applied_obj.remove()
+            self.perform_destroy(instance)
+
+            email_html_context = {
+                'username': username,
+                'blueprint': blueprint_name
+            }
+            html_email = render_to_string('email_templates/left_queue.html', email_html_context)
+
+            send_mail(subject='Left Blueprints Queue',
+                      message='',
+                      from_email='alek.rajic@icruits.com',
+                      recipient_list=[user_email, ],
+                      html_message=html_email)
+
+        except Http404:
+            pass
+
+        return response.Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class AppliedBlueprintsViewSet(viewsets.ModelViewSet):
+    queryset = AppliedBlueprints.objects.all()
+    serializer_class = AppliedBlueprintsSerializer
+    permission_classes = [
+        permissions.AllowAny,
+    ]
+    lookup_field = 'name_slug'
+
+    def create(self, request, *args, **kwargs):
+        related_candidate = request.data['related_candidate']
+        related_blueprint = request.data['related_blueprint']
+
+        serializer = AppliedBlueprintsSerializer(data={'candidate': related_candidate,
+                                                       'blueprint': related_blueprint,
+                                                       'has_applied': True})
+
+        if serializer.is_valid():
+            self.perform_create(serializer)
+
+            user_obj = user.objects.filter(id=related_candidate).first()
+            blueprint = Blueprint.objects.filter(id=related_blueprint).first()
+
+            email_context = {
+                'username': str(user_obj.username).capitalize(),
+                'blueprint': blueprint.name,
+                'simulator_url_mac': blueprint.simulator_url_mac,
+                'simulator_url_ios': blueprint.simulator_url_ios,
+                'simulator_url_win': blueprint.simulator_url_win,
+                'simulator_url_android': blueprint.simulator_url_android
+            }
+
+            html_email_content = render_to_string('email_templates/applied_to_blueprint.html', email_context)
+
+            send_mail(subject='Applied to Job',
+                      message='',
+                      from_email='alek.rajic@icruits.com',
+                      recipient_list=[str(user_obj.email), ],
+                      html_message=html_email_content)
+
+            headers_ = self.get_success_headers(serializer.data)
+
+            return response.Response(data=serializer.data, status=status.HTTP_201_CREATED, headers=headers_)
+        else:
+            return response.Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def destroy(self, request, *args, **kwargs):
+        try:
+            instance = self.get_object()
+            addr = instance.candidate.email
+            candidate = instance.candidate.username
+            blueprint = instance.blueprint.name
+            email_context = {
+                'username': candidate.capitalize(),
+                'blueprint': blueprint
+            }
+            html_email_context = render_to_string('email_templates/unapplied_from_blueprint.html', email_context)
+            self.perform_destroy(instance)
+            send_mail(subject='Unapplied from Job',
+                      message='',
+                      from_email='alek.rajic@icruits.com',
+                      recipient_list=[str(addr,), ],
+                      html_message=html_email_context)
+
+        except Http404:
+            pass
+
+        return response.Response(status=status.HTTP_204_NO_CONTENT)
+
+    def update(self, request, *args, **kwargs):
+        try:
+            instance = self.get_object()
+            try:
+                has_failed = request.data['has_failed']
+                instance.has_failed = has_failed
+            except:
+                has_failed = False
+
+            try:
+                has_completed_simulation = request.data['has_completed']
+                instance.has_completed_simulation = has_completed_simulation
+            except:
+                has_completed_simulation = True
+
+            try:
+                simulator_results = request.data['results']
+                instance.simulator_results = simulator_results
+            except:
+                pass
+
+            instance.save()
+
+            if has_completed_simulation and not has_failed:
+                que_obj = Queue.objects.filter(blueprint=instance.blueprint.id).first()
+                user_obj = user.objects.filter(id=instance.candidate.id).first()
+                last_position = que_obj.stack.last().candidate_position
+                last_position += 1
+                new_stack = QueueStack(candidate=user_obj,
+                                       candidate_position=last_position,
+                                       has_applied=False,
+                                       has_icruited=True)
+                new_stack.save()
+
+                que_obj.stack.add(new_stack)
+
+        except Http404:
+            pass
+
+        return response.Response(status=status.HTTP_201_CREATED)

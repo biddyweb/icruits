@@ -4,10 +4,20 @@
     angular.module('app').controller('BluprintDetailsCtrl', BluprintDetailsCtrl);
 
     BluprintDetailsCtrl.$inject = ['$scope', '$rootScope', '$cookies', '$state', '$window', 'JobFeed', 'UserInfoRes', 
-    'SalaryInfo', 'JobType', 'VisaStatusInfo', 'JobFeedsRes', 'QueueRes'];
+    'SalaryInfo', 'JobType', 'VisaStatusInfo', 'JobFeedsRes', 'QueueRes', 'QueueInfo', 'UserInfo', 'QueueStackInfo', 
+    'AppliedBlueprintsInfo', 'AppliedBlueprintsRes', 'QueueStackRes'];
 
     function BluprintDetailsCtrl ($scope, $rootScope, $cookies, $state, $window, JobFeed, UserInfoRes, 
-        SalaryInfo, JobType, VisaStatusInfo, JobFeedsRes, QueueRes) {
+        SalaryInfo, JobType, VisaStatusInfo, JobFeedsRes, QueueRes, QueueInfo, UserInfo, QueueStackInfo,
+        AppliedBlueprintsInfo, AppliedBlueprintsRes, QueueStackRes) {
+
+        $scope.queue_resource = QueueInfo;
+
+        $scope.queue_stack_resource = QueueStackInfo;
+
+        $scope.applied_blueprints_resource = AppliedBlueprintsInfo;
+
+        $scope.user = UserInfo;
 
         $scope.blueprint = JobFeed;
 
@@ -18,6 +28,18 @@
         $scope.visa_status = VisaStatusInfo;
 
         $scope.sent_mail = false;
+
+        $scope.has_applied = false;
+
+        $scope.is_icruited = false;
+
+        $scope.has_accepted = false;
+
+        $scope.has_interview = false;
+
+        $scope.is_hired = false;
+
+        $scope.blueprint_in_queue = false;
 
         $scope.published = $scope.blueprint.is_published;
 
@@ -50,8 +72,6 @@
         });
         //////////////////////////////////////////////////////////
 
-        $scope.user = UserInfoRes.query();
-
         /*
         if ($cookies.get('token')) {
             var user_logged;
@@ -62,6 +82,7 @@
         }
         */
 
+        /* Employer BLUEPRINT DETAIL PAGE LOGIC */
         $scope.SendMail = function () {
             // body...
             $scope.sent_mail = true;
@@ -95,7 +116,7 @@
                 $scope.queue_response = response.data;
             }, function (response) {
                 // body...
-                $scope.errors = response.errors;
+                $scope.errors = response.data;
             });
             setTimeout(function() {
                 $state.go('root.dashboard', { reload: true });
@@ -110,6 +131,101 @@
         $scope.editBlueprint = function () {
             // body...
             $scope.published = false;
+        };
+
+        /*
+            JobSeeker BLUEPRINT DETAIL LOGIC
+        */
+
+        $scope.blueprint_queue = [];
+
+        angular.forEach($scope.queue_resource, function (value, que_key) {
+            // body...
+            $scope.queue_resource[que_key].stacks = [];
+            angular.forEach(value.stack, function (current_que_stack_value, current_que_stack_key) {
+                // body...
+                angular.forEach($scope.queue_stack_resource, function (que_stack_value, que_stack_key) {
+                    // body...
+                    if(current_que_stack_value === que_stack_value.id){
+                        $scope.queue_resource[que_key].stacks.push(que_stack_value);
+                    }
+                });
+                if(!$scope.user.profile_type){
+                    $scope.current_queue = $scope.queue_resource[que_key].stacks[$scope.queue_resource[que_key].stacks.length - 1 ].candidate_position;
+                }
+            });
+            if(value.blueprint === $scope.blueprint.id){
+                $scope.blueprint_queue.push(value);
+                $scope.blueprint_in_queue = true;
+            }
+        });
+        if($scope.user.profile_type) {
+            angular.forEach($scope.queue_resource, function (qu_value, qu_key) {
+                if (qu_value.blueprint === $scope.blueprint.id) {
+                    angular.forEach(qu_value.stacks, function (st_value, st_key) {
+                        if (st_value.candidate === $scope.user.id) {
+                            $scope.current_queue = st_value.candidate_position;
+                            $scope.current_queue_id = st_value.id;
+                            $scope.has_applied = st_value.has_applied;
+                            $scope.is_icruited = st_value.has_icruited;
+                            $scope.has_accepted = st_value.has_accepted;
+                            $scope.has_interview = st_value.has_interview;
+                            $scope.is_hired = st_value.is_hired;
+                        }
+                    });
+                }
+            });
+        }
+
+        angular.forEach($scope.applied_blueprints_resource, function (value, key) {
+            // body...
+            if(value.blueprint === $scope.blueprint.id && value.candidate === $scope.user.id){
+                $scope.has_applied = true;
+                $scope.applied_bluprint_name_slug = value.name_slug;
+            }
+            if(value.has_completed_simulation && !value.has_failed){
+                $scope.is_icruited = true;
+            }
+        });
+
+        $scope.applyForBlueprint = function () {
+            // body...
+            $scope.apply_for_blueprint_data = {
+                related_candidate: $scope.user.id,
+                related_blueprint: $scope.blueprint.id
+            };
+            AppliedBlueprintsRes.save($scope.apply_for_blueprint_data, function (response) {
+                // body...
+                $window.location.reload();
+                $scope.sent_mail = true;
+            }, function (response) {
+                // body...
+                $scope.errors = response.data;
+            });
+        };
+
+        $scope.unapplyFromBlueprint = function () {
+            // body...
+            AppliedBlueprintsRes.delete({ name_slug: $scope.applied_bluprint_name_slug }, function (response) {
+                // body...
+                $scope.has_applied = false;
+                setTimeout(function () {
+                    $window.location.reload();
+                }, 500);
+            }, function (response) {
+                // body...
+                $scope.errors = response.data;
+            });
+        };
+
+        $scope.exitQueue = function () {
+            QueueStackRes.delete({ id: $scope.current_queue_id }, function (response) {
+                $scope.data = response.data;
+                $scope.is_icruited = false;
+                $scope.has_applied = false;
+            }, function (response) {
+               $scope.errors = response.data;
+            });
         };
         
         $scope.$emit('metaTagsChanged', {
@@ -159,12 +275,18 @@
     DashboardCtrl.$inject = ['$scope', '$rootScope', '$state', '$cookies', '$window', 'metaTags', 'BluePrints', 'UserInfo',
     'IndustryInfo', 'LocationInfo', 'SalaryInfo', 'ExperienceInfo', 'CompanyTypeInfo', 'WaitIntervalInfo', 'OnJobSuccessInfo',
     'JobTypeInfo', 'JobDurationInfo', 'ExperienceLevelInfo', 'BlueprintTasksInfo', 'VisaStatusInfo', 'UserListInfo', 'Upload', 'CreateBlueprintRes',
-    'DesiredEmployeeRes', 'DesiredEmployeesInfo', 'BlueprintTasksRes'];
+    'DesiredEmployeeRes', 'DesiredEmployeesInfo', 'BlueprintTasksRes' , 'QueueInfo', 'QueueStackInfo', 'AppliedBlueprintsInfo'];
 
     function DashboardCtrl ($scope, $rootScope, $state, $cookies, $window, metaTags, BluePrints, UserInfo,
     IndustryInfo, LocationInfo, SalaryInfo, ExperienceInfo, CompanyTypeInfo, WaitIntervalInfo, OnJobSuccessInfo,
     JobTypeInfo, JobDurationInfo, ExperienceLevelInfo, BlueprintTasksInfo, VisaStatusInfo, UserListInfo, Upload, CreateBlueprintRes,
-    DesiredEmployeeRes, DesiredEmployeesInfo, BlueprintTasksRes) {
+    DesiredEmployeeRes, DesiredEmployeesInfo, BlueprintTasksRes, QueueInfo, QueueStackInfo, AppliedBlueprintsInfo) {
+
+        $scope.queue_resource = QueueInfo;
+
+        $scope.applied_blueprints_resource = AppliedBlueprintsInfo;
+
+        $scope.queue_stack_resource = QueueStackInfo;
 
         $scope.make_blueprint = {};
 
@@ -210,6 +332,14 @@
         $scope.closed_blueprints = [];
 
         $scope.show_closed_jobs = false;
+        $scope.show_accepted_jobs = false;
+        $scope.show_applied_jobs = false;
+        $scope.show_icruited_jobs = false;
+        $scope.show_has_interview = false;
+        $scope.show_is_hired = false;
+        $scope.show_new_jobs = true;
+
+        $scope.show_new_jobs_icruited = true;
 
         // tuple show closed/opened jobs logic
         $scope.tupleJobsState = function () {
@@ -222,12 +352,6 @@
             }
         };
 
-        if($scope.show_closed_jobs){
-            $scope.blueprints = $scope.closed_blueprints;
-        } else {
-            $scope.blueprints = $scope.not_closed_blueprints;
-        }
-
         if(!$scope.user.profile_type){
             // employeer blueprints data
             angular.forEach($scope.blueprint_resource, function (value, key) {
@@ -238,7 +362,126 @@
                     $scope.closed_blueprints.push(value);
                 }
             });
+            if($scope.show_closed_jobs){
+                $scope.blueprints = $scope.closed_blueprints;
+            } else {
+                $scope.blueprints = $scope.not_closed_blueprints;
+            }
+        } else {
+            // jobseeker queue data
+            angular.forEach($scope.queue_resource, function (que_value, que_key) {
+                // body...
+                $scope.queue_resource[que_key].blueprints = [];
+                $scope.queue_resource[que_key].stacks = [];
+                $scope.queue_resource[que_key].full_stacks = [];
+                $scope.queue_resource[que_key].accepted_stacks = [];
+                $scope.queue_resource[que_key].applied_stacks = [];
+                $scope.queue_resource[que_key].icruited_stacks = [];
+                $scope.queue_resource[que_key].interview_stacks = [];
+                $scope.queue_resource[que_key].hired_stacks = [];
+                $scope.queue_resource[que_key].new_job_stacks = [];
+
+                angular.forEach($scope.blueprint_resource, function (blueprint_value, blueprint_key) {
+                    // body...
+                    if(que_value.blueprint === blueprint_value.id){
+                        $scope.queue_resource[que_key].blueprints.push(blueprint_value);
+                    }
+                });
+                angular.forEach(que_value.stack, function (current_que_stack_value, current_que_stack_key) {
+                    // body...
+                    angular.forEach($scope.queue_stack_resource, function (que_stack_value, que_stack_key) {
+                        // body...
+                        if(current_que_stack_value === que_stack_value.id){
+                            $scope.queue_resource[que_key].full_stacks.push(que_stack_value);
+                        }
+                        if(current_que_stack_value === que_stack_value.id && que_stack_value.has_accepted){
+                            $scope.queue_resource[que_key].accepted_stacks.push(que_stack_value);
+                        }
+                        if(current_que_stack_value === que_stack_value.id && que_stack_value.has_applied){
+                            $scope.queue_resource[que_key].applied_stacks.push(que_stack_value);
+                        }
+                        if(current_que_stack_value === que_stack_value.id && !que_stack_value.has_applied){
+                            $scope.queue_resource[que_key].new_job_stacks.push(que_stack_value);
+                        }
+                        if(current_que_stack_value === que_stack_value.id && que_stack_value.has_icruited){
+                            $scope.queue_resource[que_key].icruited_stacks.push(que_stack_value);
+                        }
+                        if(current_que_stack_value === que_stack_value.id && que_stack_value.has_interview){
+                            $scope.queue_resource[que_key].interview_stacks.push(que_stack_value);
+                        }
+                        if(current_que_stack_value === que_stack_value.id && que_stack_value.is_hired){
+                            $scope.queue_resource[que_key].hired_stacks.push(que_stack_value);
+                        }
+                    });
+                });
+                $scope.queue_resource[que_key].stacks = $scope.queue_resource[que_key].full_stacks;
+            });
+            $scope.blueprints = $scope.queue_resource;
         }
+
+        $scope.tupleAppliedJobs = function () {
+            // body...
+            if($scope.show_new_jobs){
+                $scope.blueprints = [];
+                angular.forEach($scope.applied_blueprints_resource, function (value, key) {
+                    // body...
+                    angular.forEach($scope.queue_resource, function (stack_value, stack_key) {
+                        // body...
+                        if(value.candidate === $scope.user.id && value.blueprint === stack_value.blueprints[0].id){
+                            console.log(value);
+                            if(value.has_applied){
+                                angular.forEach(stack_value.stacks, function (get_val, get_key) {
+                                    if(get_val.has_icruited === false) {
+                                        $scope.blueprints.push(stack_value);
+                                    }
+                                });
+                            }
+                        }
+                    });
+                });
+                $scope.show_new_jobs = false;
+            } else {
+                $scope.blueprints = [];
+                angular.forEach($scope.queue_resource, function (value, key) {
+                    // body...
+                    if(typeof $scope.queue_resource[key].new_job_stacks != 'undefined'){
+                        $scope.blueprints.push(value);
+                    }
+                });
+                $scope.show_new_jobs = true;
+            }
+        };
+
+        $scope.tupleICruitedJobs = function () {
+            // body...
+            if($scope.show_new_jobs_icruited){
+                $scope.blueprints = [];
+                angular.forEach($scope.applied_blueprints_resource, function (value, key) {
+                    // body...
+                    angular.forEach($scope.queue_resource, function (stack_value, stack_key) {
+                        // body...
+                        if(value.candidate === $scope.user.id && value.blueprint === stack_value.blueprints[0].id){
+                            angular.forEach(stack_value.stacks, function (get_val, get_key) {
+                                if(get_val.has_icruited){
+                                    $scope.blueprints.push(stack_value);
+                                }
+                            });
+                        }
+                    });
+                });
+                $scope.show_new_jobs_icruited = false;
+            } else {
+                $scope.blueprints = [];
+                angular.forEach($scope.queue_resource, function (value, key) {
+                    // body...
+                    if(typeof $scope.queue_resource[key].new_job_stacks != 'undefined'){
+                        $scope.blueprints.push(value);
+                    }
+                });
+                $scope.show_new_jobs_icruited = true;
+            }
+        };
+
 
         $scope.visa_status_info = VisaStatusInfo;
 
@@ -279,11 +522,19 @@
 
         $scope.industryFilter = function (blueprints) {
             // body...
-            if($scope.industryIncludes.length > 0){
-                if ($.inArray(blueprints.related_industry, $scope.industryIncludes) < 0)
-                    return;
+            if(!$scope.user.profile_type){
+                if($scope.industryIncludes.length > 0){
+                    if ($.inArray(blueprints.related_industry, $scope.industryIncludes) < 0)
+                        return;
+                }
+                return blueprints;
+            } else {
+                if($scope.industryIncludes.length > 0){
+                    if ($.inArray(blueprints.blueprints[0].related_industry, $scope.industryIncludes) < 0)
+                        return;
+                }
+                return blueprints;                
             }
-            return blueprints;
         };
 
         $scope.FilterLocation = function (filter) {
@@ -298,11 +549,19 @@
 
         $scope.locationFilter = function (blueprints) {
             // body...
-            if($scope.locationIncludes.length > 0){
-                if ($.inArray(blueprints.related_location, $scope.locationIncludes) < 0)
-                    return;
+            if(!$scope.user.profile_type){
+                if($scope.locationIncludes.length > 0){
+                    if ($.inArray(blueprints.related_location, $scope.locationIncludes) < 0)
+                        return;
+                }
+                return blueprints;                
+            } else {
+                if($scope.locationIncludes.length > 0){
+                    if ($.inArray(blueprints.blueprints[0].related_location, $scope.locationIncludes) < 0)
+                        return;
+                }
+                return blueprints;                
             }
-            return blueprints;
         };
 
         $scope.FilterSalary = function (filter) {
@@ -317,11 +576,19 @@
 
         $scope.salaryFilter = function (blueprints) {
             // body...
-            if($scope.salaryIncludes.length > 0){
-                if ($.inArray(blueprints.related_salary, $scope.salaryIncludes) < 0)
-                    return;
+            if(!$scope.user.profile_type){
+                if($scope.salaryIncludes.length > 0){
+                    if ($.inArray(blueprints.related_salary, $scope.salaryIncludes) < 0)
+                        return;
+                }
+                return blueprints;                
+            } else {
+                if($scope.salaryIncludes.length > 0){
+                    if ($.inArray(blueprints.blueprints[0].related_salary, $scope.salaryIncludes) < 0)
+                        return;
+                }
+                return blueprints;                
             }
-            return blueprints;
         };
 
         $scope.FilterExperience = function (filter) {
@@ -336,11 +603,19 @@
 
         $scope.experienceFilter = function (blueprints) {
             // body...
-            if($scope.experienceIncludes.length > 0){
-                if ($.inArray(blueprints.related_experience, $scope.experienceIncludes) < 0)
-                    return;
+            if(!$scope.user.profile_type){
+                if($scope.experienceIncludes.length > 0){
+                    if ($.inArray(blueprints.related_experience, $scope.experienceIncludes) < 0)
+                        return;
+                }
+                return blueprints;                
+            } else {
+                if($scope.experienceIncludes.length > 0){
+                    if ($.inArray(blueprints.blueprints[0].related_experience, $scope.experienceIncludes) < 0)
+                        return;
+                }
+                return blueprints;                
             }
-            return blueprints;
         };
 
         /* END OF FILTER PART */
@@ -375,7 +650,7 @@
                 $scope.errors = null;
             }).errors(function (data, status, headers, config) {
                 // body...
-                $scope.errors = data.errors;
+                $scope.errors = data;
             });
         };
 
@@ -439,7 +714,7 @@
                 }, 500);
             }, function (response) {
                 // body...
-                $scope.errors = response.errors;
+                $scope.errors = response.data;
             });
         };
 
@@ -469,7 +744,7 @@
                 }, 500);
             }, function (response) {
                 // body...
-                $scope.errors = response.errors;
+                $scope.errors = response.data;
             });
         };
 
@@ -566,11 +841,8 @@
             // body...
             CheckUserRes.save(data, function (response) {
                 // body...
-                console.log(response);
             }, function (response) {
                 // body...
-                console.log(response);
-                console.log(response.status);
                 if(response.status === 400){
                     setTimeout(function() {
                         $state.go('root.register', { reload: true });
@@ -617,10 +889,7 @@
 
         if($scope.user.is_superuser){
             $scope.user.user_company = true;
-            console.log('');
-        } else {
-            console.log('');
-        };
+        }
 
         $scope.logoutNow = function () {
             // body...
@@ -685,7 +954,7 @@
                 $scope.data = response;
             }, function (response) {
                 // body...
-                $scope.errors = response;
+                $scope.errors = response.data;
             });
         };
 
@@ -748,4 +1017,33 @@
 
         $rootScope.image = '';
     }
+})();
+
+(function () {
+    "use strict";
+
+    angular.module('app').directive('addDivDirective', function () {
+        return {
+            restrict: 'A',
+            scope: true,
+            template: '<a class="btn add-btn" ' +
+                            'id="addNewRow" ng-click="addNewTaskClick()">' +
+                            '<span id="apply-span">' +
+                                'Add Task' +
+                            '</span>' +
+                            '<span id="apply-span-2" class="hover hide-button">' +
+                                'Add Task' +
+                            '</span>' +
+                      '</a>',
+            controller: function ($scope, $element, $compile) {
+                $scope.clicked = 0;
+                $scope.addNewTaskClick = function () {
+                        $('#TasksBlueprint').append($compile($('#hiddenTasks').clone())($scope));
+                        $('#TasksBlueprint:last button:last').css({
+                            display: 'inline'
+                        });
+                }
+            }
+        }
+    });
 })();

@@ -13,11 +13,16 @@
         $http.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
         if (JWTTokenRes.isAuthorized() === $cookies.get('token')) {
             $http.defaults.headers.common.Authorization = 'JWT ' + $cookies.get('token');
-            setTimeout(function() {
-                $state.go('root.dashboard', { reload: true });
-            }, 600);
+            if(!$rootScope.$on("$locationChangeSuccess")) {
+                setTimeout(function () {
+                    $state.go('root.dashboard', {reload: true});
+                }, 600);
+            }
         } else {
             $http.defaults.headers.common.Authorization = '';
+            setTimeout(function() {
+                $state.go('root.home', { reload: true });
+            }, 600);
         }
         $rootScope.$on("$locationChangeSuccess", function(){
             $timeout(function() {

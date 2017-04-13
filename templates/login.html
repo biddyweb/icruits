@@ -33,7 +33,12 @@
                                    ng-trim="false" custom-validation>
                         </li>
                         <li>
-                            <input id="q2"
+                            <input class="cleaninput" 
+                                   type="text"
+                                   onfocus="checkUser()" 
+                                   data-ng-model="log.username"
+                                   readonly>
+                            <input 
                                    name="q2"
                                    class="cleaninput" 
                                    type="password"

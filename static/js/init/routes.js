@@ -98,6 +98,18 @@
                 DesiredEmployeesInfo: function (DesiredEmployeeRes) {
                     // body...
                     return DesiredEmployeeRes.query().$promise;
+                },
+                QueueInfo: function (QueueRes) {
+                    // body...
+                    return QueueRes.query().$promise;
+                },
+                QueueStackInfo: function (QueueStackRes) {
+                    // body...
+                    return QueueStackRes.query().$promise;
+                },
+                AppliedBlueprintsInfo: function (AppliedBlueprintsRes) {
+                    // body...
+                    return AppliedBlueprintsRes.query().$promise;
                 }
             }
         })
@@ -122,6 +134,22 @@
                 VisaStatusInfo: function (VisaStatusRes) {
                     // body...
                     return VisaStatusRes.query().$promise;
+                },
+                QueueInfo: function (QueueRes) {
+                    // body...
+                    return QueueRes.query().$promise;
+                },
+                UserInfo: function (UserInfoRes) {
+                    // body...
+                    return UserInfoRes.query().$promise;
+                },
+                QueueStackInfo: function (QueueStackRes) {
+                    // body...
+                    return QueueStackRes.query().$promise;
+                },
+                AppliedBlueprintsInfo: function (AppliedBlueprintsRes) {
+                    // body...
+                    return AppliedBlueprintsRes.query().$promise;
                 }
             }
         }).state('root.help', {

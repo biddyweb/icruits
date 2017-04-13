@@ -373,7 +373,10 @@ class Blueprint(models.Model):
     name = models.CharField(_('Blueprint Name'), max_length=255)
     name_slug = models.SlugField(_('Blueprint Name Slug'), max_length=255, unique=True, blank=True)
     description = models.TextField(_('Blueprint Description'), blank=True)
-    simulator_url = models.CharField(_('Simulator Url'), blank=True, max_length=255)
+    simulator_url_mac = models.CharField(_('MacOS Job Simulator Url'), blank=True, max_length=255)
+    simulator_url_ios = models.CharField(_('iOS Job Simulator Url'), blank=True, max_length=255)
+    simulator_url_win = models.CharField(_('Windows Job Simulator Url'), blank=True, max_length=255)
+    simulator_url_android = models.CharField(_('Android Job Simulator Url'), blank=True, max_length=255)
     function = models.CharField(_('Job Function'), max_length=255)
     professional_qualifications = models.CharField(_('Professional Qualifications'), max_length=255)
     team_id = models.CharField(_('Team ID'), max_length=255)
@@ -413,7 +416,7 @@ class Blueprint(models.Model):
         name_trim = ''.join(e for e in self.name if e.isalnum())
         company_trim = ''.join(e for e in self.company_name if e.isalnum())
         self.name_slug = str(name_trim).lower() + '-' + str(company_trim).lower() + '-' + str(blueprint_id)
-        super(Blueprint, self).save(force_insert, force_update, using, update_fields, **kwargs)
+        super(Blueprint, self).save(force_insert, force_update, using, update_fields)
 
     class Meta:
         verbose_name = 'Blueprint'
@@ -425,10 +428,35 @@ CANDIDATE_STATUS = (('Active', 'Active'),
                     ('Available', 'Available'))
 
 
+class AppliedBlueprints(models.Model):
+    candidate = models.ForeignKey(user, related_name="related_candidate")
+    blueprint = models.ForeignKey(Blueprint, related_name="related_blueprint")
+    name_slug = models.SlugField(_('Blueprint Name Slug'), max_length=255, unique=True, blank=True)
+    simulator_results = models.CharField(_('Simulator Results'), max_length=255, blank=True)
+    has_completed_simulation = models.BooleanField(default=False)
+    has_failed = models.BooleanField(default=False)
+    has_applied = models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return str(self.candidate.username) + " applied to " + str(self.blueprint.name)
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None, **kwargs):
+        name_trim = ''.join(e for e in self.candidate.username if e.isalnum())
+        company_trim = ''.join(e for e in self.blueprint.name if e.isalnum())
+        self.name_slug = str(name_trim).lower() + '-' + str(company_trim).lower()
+        super(AppliedBlueprints, self).save(force_insert, force_update, using, update_fields)
+
+
 class QueueStack(models.Model):
     candidate = models.ForeignKey(user, related_name="candidate_name", null=True, blank=True)
     candidate_status = models.CharField(choices=CANDIDATE_STATUS, max_length=255, blank=True)
     candidate_position = models.IntegerField(default=0)
+    has_interview = models.BooleanField(default=False)
+    has_applied = models.BooleanField(default=False)
+    has_icruited = models.BooleanField(default=False)
+    has_accepted = models.BooleanField(default=False)
+    is_hired = models.BooleanField(default=False)
 
     def __unicode__(self):
         return str(self.candidate_position)

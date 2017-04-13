@@ -42,7 +42,19 @@
     QueueRes.$inject = ['$resource'];
 
     function QueueRes($resource) {
-        return $resource('/api/queue/ ');
+        return $resource('/api/queue/ ', {}, {
+            'query': {
+                method: 'GET',
+                isArray: true,
+                cache: true
+            },
+            'get': {
+                method: 'GET',
+                isArray: false,
+                cache: true
+            },
+            'update': { method:'PUT' }
+        });
     }
 })();
 
@@ -598,5 +610,59 @@
 
     function PilotsRes($resource) {
         return $resource('/api/test-pilots/' );
+    }
+})();
+
+(function () {
+    // body... 
+    "use strict";
+
+    angular.module('app').factory('QueueStackRes', QueueStackRes);
+
+    QueueStackRes.$inject = ['$resource'];
+
+    function QueueStackRes($resource) {
+        // body...
+        return $resource('/api/queue-stack/:id/ ', {}, {
+            'query': {
+                method: 'GET',
+                isArray: true,
+                cache: true
+            },
+            'get': {
+                method: 'GET',
+                isArray: false,
+                cache: true
+            },
+            'update': { method:'PUT' }            
+        });
+    }
+})();
+
+(function () {
+    // body...
+    "use strict";
+
+    angular.module('app').factory('AppliedBlueprintsRes', AppliedBlueprintsRes);
+
+    AppliedBlueprintsRes.$inject = ['$resource'];
+
+    function AppliedBlueprintsRes($resource) {
+        // body...
+        return $resource('/api/applied-blueprints/:name_slug/ ', {}, {
+            'query': {
+                method: 'GET',
+                isArray: true,
+                cache: true
+            },
+            'get': {
+                method: 'GET',
+                isArray: false,
+                cache: true
+            },
+            'update': { 
+                method: 'PUT' 
+            }
+        });
     }
 })();

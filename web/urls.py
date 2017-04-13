@@ -29,6 +29,8 @@ from web.viewsets import (
     TestPilotsViewSet,
     CreateBlueprintTasksViewSet,
     DesiredEmployeeViewSet,
+    QueueStackViewSet,
+    AppliedBlueprintsViewSet,
 )
 from libs.djoser.views import (
     RegistrationView,
@@ -65,7 +67,8 @@ router.register(r'blueprint-tasks', BlueprintTasksViewSet, base_name='blueprint-
 router.register(r'visa-status', VisaStatusViewSet, base_name='visa-status')
 router.register(r'user-list', UserListViewSet, base_name='user-list')
 router.register(r'desired-employee', DesiredEmployeeViewSet, base_name='desired-employee')
-#router.register(r'test-pilots', TestPilotsViewSet, base_name='test-pilots')
+router.register(r'queue-stack', QueueStackViewSet, base_name='queue-stack')
+router.register(r'applied-blueprints', AppliedBlueprintsViewSet, base_name='applied-blueprints')
 
 base_urlpatterns = (
     url(r'^auth/register/$', RegistrationView.as_view(), name='register'),
