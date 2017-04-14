@@ -263,18 +263,18 @@ class MobileLogin(views.APIView):
         account = authenticate(username=username_, password=password_)
 
         if not user_obj:
-            data = json.dumps([{'exist': False,
-                                'error': 'Wrong email'}], separators=(',', ': '))
+            data = json.dumps({'exist': False,
+                               'error': 'Wrong email'}, sort_keys=True, indent=4)
             return response.Response(data=data, status=status.HTTP_200_OK)
 
         if account:
-            data = json.dumps([{'exist': True,
-                                'session_id': session_id,
-                                'username': user_obj.username}], separators=(',', ': '))
+            data = json.dumps({'exist': True,
+                               'session_id': session_id,
+                               'username': user_obj.username}, sort_keys=True, indent=4)
             return response.Response(data, status=status.HTTP_200_OK)
         else:
-            data = json.dumps([{'exists': False,
-                                'error': 'Wrong password'}], separators=(',', ': '))
+            data = json.dumps({'exists': False,
+                               'error': 'Wrong password'}, sort_keys=True, indent=4)
             return response.Response(data, status=status.HTTP_400_BAD_REQUEST)
 
 
