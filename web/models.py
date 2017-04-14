@@ -498,3 +498,13 @@ class WorkEnviorment(models.Model):
 
     class Meta:
         verbose_name = 'Work Environment'
+
+
+class PrehiredEmployee(models.Model):
+    blueprint = models.OneToOneField(Blueprint, related_name="related_blueprint_id", unique=True)
+    employee = models.OneToOneField(user, related_name='related_user_id', unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Pre-hired Employee'

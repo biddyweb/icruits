@@ -19,6 +19,7 @@ from web.models import (
     TestPilots,
     QueueStack,
     AppliedBlueprints,
+    PrehiredEmployee,
 )
 from rest_framework import serializers
 from libs.djoser.serializers import UserSerializer
@@ -204,4 +205,13 @@ class AppliedBlueprintsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AppliedBlueprints
+        fields = '__all__'
+
+
+class PrehiredEmployeeSerializer(serializers.ModelSerializer):
+    related_blueprint_id = BlueprintSerializer(many=False, read_only=True)
+    related_user_id = UserSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = PrehiredEmployee
         fields = '__all__'

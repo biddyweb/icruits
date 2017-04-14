@@ -150,6 +150,9 @@
                 AppliedBlueprintsInfo: function (AppliedBlueprintsRes) {
                     // body...
                     return AppliedBlueprintsRes.query().$promise;
+                },
+                PrehiredEmpInfo: function (PrehiredEmpRes) {
+                    return PrehiredEmpRes.query().$promise;
                 }
             }
         }).state('root.help', {

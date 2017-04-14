@@ -666,3 +666,27 @@
         });
     }
 })();
+
+(function () {
+    "use strict";
+
+    angular.module('app').factory('ReviewResultsRes', ReviewResultsRes);
+
+    ReviewResultsRes.$inject = ['$resource'];
+
+    function ReviewResultsRes($resource) {
+        return $resource('/api/review-results/ ');
+    }
+})();
+
+(function () {
+    "use strict";
+
+    angular.module('app').factory('PrehiredEmpRes', PrehiredEmpRes);
+
+    PrehiredEmpRes.$inject = ['$resource'];
+
+    function PrehiredEmpRes($resource) {
+        return $resource('/api/prehired-employee/ ');
+    }
+})();

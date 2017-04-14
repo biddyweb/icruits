@@ -19,6 +19,7 @@ from web.models import (
     QueueStack,
     DesiredEmployee,
     AppliedBlueprints,
+    PrehiredEmployee,
 )
 from web.serializers import (
     BlueprintSerializer,
@@ -40,6 +41,7 @@ from web.serializers import (
     DesiredEmployeeSerializer,
     QueueStackSerializer,
     AppliedBlueprintsSerializer,
+    PrehiredEmployeeSerializer,
 )
 from rest_framework import (
     viewsets,
@@ -261,8 +263,7 @@ class MobileLogin(views.APIView):
         account = authenticate(username=username_, password=password_)
 
         if account:
-            data = json.dumps({'exists':True, 'session_id':session_id, 'username':user_obj.username},
-                              sort_keys=True, indent=4, separators=(',', ': '))
+            data = json.dumps([True, session_id, user_obj.username])
             return response.Response(data, status=status.HTTP_200_OK)
         else:
             data = json.dumps({'exists':False, 'session_id':session_id},
@@ -731,4 +732,75 @@ class AppliedBlueprintsViewSet(viewsets.ModelViewSet):
         except Http404:
             pass
 
+        return response.Response(status=status.HTTP_201_CREATED)
+
+
+class ReviewResultsViewSet(views.APIView):
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+
+    def post(self, request, format=None):
+        try:
+            blueprint_id = request.data['blueprint']
+            user_id = request.data['user']
+        except:
+            return response.Response(status=status.HTTP_404_NOT_FOUND)
+
+        user_obj = user.objects.filter(id=user_id).first()
+        blueprint_obj = Blueprint.objects.filter(id=blueprint_id).first()
+        send_to = user_obj.email
+        email_html_context = {
+            'username': user_obj.username,
+            'blueprint': blueprint_obj.name,
+            'company': blueprint_obj.company_name
+        }
+        email_html = render_to_string('email_templates/reviewing_results.html', email_html_context)
+        send_mail(subject='Reviewing Your Simulation Results',
+                  message='',
+                  from_email='alek.rajic@icruits.com',
+                  recipient_list=[send_to, ],
+                  html_message=email_html)
+
+        return response.Response(status=status.HTTP_200_OK)
+
+
+class PrehiredEmployeeViewSet(viewsets.ModelViewSet):
+    queryset = PrehiredEmployee.objects.all()
+    serializer_class = PrehiredEmployeeSerializer
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+
+    def create(self, request, *args, **kwargs):
+        que_stack = request.data['que_stack']
+        user_id = request.data['user_id']
+        blueprint_id = request.data['blueprint_id']
+
+        stack_obj = QueueStack.objects.filter(id=que_stack).first()
+        candidate = stack_obj.candidate.id
+
+        user_obj = user.objects.filter(id=candidate).first()
+        blueprint_obj = Blueprint.objects.filter(id=blueprint_id).first()
+
+        serializer = PrehiredEmployeeSerializer(data={'blueprint': blueprint_id,
+                                                      'employee': candidate})
+
+        if serializer.is_valid():
+            stack_obj.has_interview = True
+            stack_obj.has_icruited = False
+            stack_obj.has_applied = False
+            stack_obj.save()
+            self.perform_create(serializer)
+            email_html_context = {
+                'company': blueprint_obj.company_name,
+                'blueprint': blueprint_obj.name,
+                'username': user_obj.username
+            }
+            email_html = render_to_string('email_templates/accept_interview.html', email_html_context)
+            send_mail(subject='Incoming Interview',
+                      message='',
+                      from_email='alek.rajic@icruits.com',
+                      recipient_list=[user_obj.email, ],
+                      html_message=email_html)
         return response.Response(status=status.HTTP_201_CREATED)

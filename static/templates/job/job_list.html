@@ -123,6 +123,26 @@
                         New Jobs
                     </span>
                 </a>
+                <a id="filter-btn" ng-click="tupleInterviewJobs()"
+                   style="right: 360px;"
+                   ng-if="show_new_jobs_interview">
+                    <span>
+                        Interview for Job
+                    </span>
+                    <span class="hover">
+                        Interview for Job
+                    </span>
+                </a>
+                <a id="filter-btn" ng-click="tupleInterviewJobs()"
+                   style="right: 360px;"
+                   ng-if="!show_new_jobs_interview">
+                    <span>
+                        New Jobs
+                    </span>
+                    <span class="hover">
+                        New Jobs
+                    </span>
+                </a>
                 <!--a id="filter-btn" style="right: 180px;"
                    ng-click="tupleJobsState()" ng-if="!show_closed_jobs">
                     <span>
