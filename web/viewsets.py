@@ -269,7 +269,7 @@ class MobileLogin(views.APIView):
 
         if account:
             data = json.dumps([{'exist': True,
-                                'sesstion_id': session_id,
+                                'session_id': session_id,
                                 'username': user_obj.username}], separators=(',', ': '))
             return response.Response(data, status=status.HTTP_200_OK)
         else:
