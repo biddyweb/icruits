@@ -52,6 +52,7 @@ from rest_framework import (
     status,
     generics,
     parsers,
+    renderers,
 )
 import json
 from django.contrib.sessions.backends.db import SessionStore
@@ -63,6 +64,7 @@ from django.contrib.auth import (
 from django.http import Http404
 from django.contrib.auth import get_user_model
 from libs.djoser import serializers
+from django.core import serializers as serialize
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 User = get_user_model()
@@ -271,6 +273,9 @@ class MobileLogin(views.APIView):
             data = json.dumps({'exist': True,
                                'session_id': session_id,
                                'username': user_obj.username}, sort_keys=True, indent=4)
+            #return response.Response({'exist': True,
+            #                          'session_id': session_id,
+            #                          'username': user_obj.username}, status=status.HTTP_200_OK)
             return response.Response(data, status=status.HTTP_200_OK)
         else:
             data = json.dumps({'exists': False,
@@ -811,3 +816,19 @@ class PrehiredEmployeeViewSet(viewsets.ModelViewSet):
                       recipient_list=[user_obj.email, ],
                       html_message=email_html)
         return response.Response(status=status.HTTP_201_CREATED)
+
+
+class BlueprintsCandidateHasAppliedViewSet(views.APIView):
+    permission_classes = [
+        permissions.AllowAny,
+    ]
+
+    def post(self, request, format=None):
+        data = json.loads(request.body)
+
+        user_obj = user.objects.filter(email=data.get('username')).first()
+
+        response_data = AppliedBlueprints.objects.filter(candidate=user_obj.id)
+
+        send_data = serialize.serialize('json', response_data)
+        return response.Response(data=send_data, status=status.HTTP_200_OK)

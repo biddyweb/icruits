@@ -33,6 +33,7 @@ from web.viewsets import (
     AppliedBlueprintsViewSet,
     ReviewResultsViewSet,
     PrehiredEmployeeViewSet,
+    BlueprintsCandidateHasAppliedViewSet,
 )
 from libs.djoser.views import (
     RegistrationView,
@@ -101,4 +102,5 @@ urlpatterns = base_urlpatterns + (
     url(r'^mobile-login/$', MobileLogin.as_view(), name='mobile-login'),
     url(r'^test-pilots/$', TestPilotsViewSet.as_view({'get': 'list'}), name='pilots'),
     url(r'^review-results/$', ReviewResultsViewSet.as_view(), name='review-results'),
+    url(r'^mobile-all-blueprints/$', BlueprintsCandidateHasAppliedViewSet.as_view(), name='mobile-all-blueprints'),
 )
