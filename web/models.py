@@ -436,6 +436,9 @@ class AppliedBlueprints(models.Model):
     has_completed_simulation = models.BooleanField(default=False)
     has_failed = models.BooleanField(default=False)
     has_applied = models.BooleanField(default=False)
+    times_tried = models.IntegerField(default=0)
+    times_failed = models.IntegerField(default=0)
+    tasks_completed = models.IntegerField(default=0)
 
     def __unicode__(self):
         return str(self.candidate.username) + " applied to " + str(self.blueprint.name)
