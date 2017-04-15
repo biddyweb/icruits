@@ -6,12 +6,12 @@
     BluprintDetailsCtrl.$inject = ['$scope', '$rootScope', '$cookies', '$state', '$window', 'JobFeed', 'UserInfoRes', 
     'SalaryInfo', 'JobType', 'VisaStatusInfo', 'JobFeedsRes', 'QueueRes', 'QueueInfo', 'UserInfo', 'QueueStackInfo', 
     'AppliedBlueprintsInfo', 'AppliedBlueprintsRes', 'QueueStackRes', 'ReviewResultsRes', 'PrehiredEmpRes',
-    'PrehiredEmpInfo'];
+    'PrehiredEmpInfo', 'HiredEmpRes'];
 
     function BluprintDetailsCtrl ($scope, $rootScope, $cookies, $state, $window, JobFeed, UserInfoRes, 
         SalaryInfo, JobType, VisaStatusInfo, JobFeedsRes, QueueRes, QueueInfo, UserInfo, QueueStackInfo,
         AppliedBlueprintsInfo, AppliedBlueprintsRes, QueueStackRes, ReviewResultsRes, PrehiredEmpRes,
-        PrehiredEmpInfo) {
+        PrehiredEmpInfo, HiredEmpRes) {
 
         $scope.queue_resource = QueueInfo;
 
@@ -121,7 +121,8 @@
                     $scope.has_icruited = first_candidate.has_icruited;
                     $scope.has_accepted = first_candidate.has_accepted;
                     $scope.has_applied = first_candidate.has_applied;
-
+                    $scope.current_queue_id = first_candidate.id;
+                    $scope.current_candidate = first_candidate.candidate;
                 }
             }
         }
@@ -243,6 +244,24 @@
             $scope.published = false;
         };
 
+        $scope.hireEmployee = function () {
+            HiredEmpRes.save({blueprint: $scope.blueprint.id,
+                employee: $scope.current_candidate}, function (response) {
+                $scope.data = response.data;
+            }, function (response) {
+                $scope.errors = response.data;
+            });
+            QueueStackRes.delete({ id: $scope.current_queue_id }, function (response) {
+                $scope.data = response.data;
+                $scope.is_icruited = false;
+                $scope.has_applied = false;
+                $scope.has_interview = false;
+                $scope.has_accepted = false;
+            }, function (response) {
+               $scope.errors = response.data;
+            });
+        };
+
         /*
             JobSeeker BLUEPRINT DETAIL LOGIC
         */
@@ -311,6 +330,8 @@
                 $scope.data = response.data;
                 $scope.is_icruited = false;
                 $scope.has_applied = false;
+                $scope.has_interview = false;
+                $scope.has_accepted = false;
             }, function (response) {
                $scope.errors = response.data;
             });
@@ -367,12 +388,16 @@
     DashboardCtrl.$inject = ['$scope', '$rootScope', '$state', '$cookies', '$window', 'metaTags', 'BluePrints', 'UserInfo',
     'IndustryInfo', 'LocationInfo', 'SalaryInfo', 'ExperienceInfo', 'CompanyTypeInfo', 'WaitIntervalInfo', 'OnJobSuccessInfo',
     'JobTypeInfo', 'JobDurationInfo', 'ExperienceLevelInfo', 'BlueprintTasksInfo', 'VisaStatusInfo', 'UserListInfo', 'Upload', 'CreateBlueprintRes',
-    'DesiredEmployeeRes', 'DesiredEmployeesInfo', 'BlueprintTasksRes' , 'QueueInfo', 'QueueStackInfo', 'AppliedBlueprintsInfo'];
+    'DesiredEmployeeRes', 'DesiredEmployeesInfo', 'BlueprintTasksRes' , 'QueueInfo', 'QueueStackInfo', 'AppliedBlueprintsInfo',
+    'HiredEmpInfo'];
 
     function DashboardCtrl ($scope, $rootScope, $state, $cookies, $window, metaTags, BluePrints, UserInfo,
     IndustryInfo, LocationInfo, SalaryInfo, ExperienceInfo, CompanyTypeInfo, WaitIntervalInfo, OnJobSuccessInfo,
     JobTypeInfo, JobDurationInfo, ExperienceLevelInfo, BlueprintTasksInfo, VisaStatusInfo, UserListInfo, Upload, CreateBlueprintRes,
-    DesiredEmployeeRes, DesiredEmployeesInfo, BlueprintTasksRes, QueueInfo, QueueStackInfo, AppliedBlueprintsInfo) {
+    DesiredEmployeeRes, DesiredEmployeesInfo, BlueprintTasksRes, QueueInfo, QueueStackInfo, AppliedBlueprintsInfo,
+    HiredEmpInfo) {
+
+        $scope.hired_employee_info = HiredEmpInfo;
 
         $scope.queue_resource = QueueInfo;
 
@@ -429,10 +454,11 @@
         $scope.show_icruited_jobs = false;
         $scope.show_has_interview = false;
         $scope.show_is_hired = false;
-        $scope.show_new_jobs = true;
 
+        $scope.show_new_jobs = true;
         $scope.show_new_jobs_icruited = true;
         $scope.show_new_jobs_interview = true;
+        $scope.show_hired_jobs = true;
 
         // tuple show closed/opened jobs logic
         $scope.tupleJobsState = function () {
@@ -509,8 +535,20 @@
                 });
                 $scope.queue_resource[que_key].stacks = $scope.queue_resource[que_key].full_stacks;
             });
-            $scope.blueprints = $scope.queue_resource;
+            $scope.blueprints = [];
+            $scope.hired_blueprints = [];
             $scope.old_res = $scope.queue_resource;
+            angular.forEach($scope.queue_resource, function (value, key) {
+                angular.forEach($scope.hired_employee_info, function (hired_val, hired_key) {
+                    if(value.blueprint !== hired_val.blueprint) {
+                        $scope.blueprints.push(value);
+                    }
+                    if(value.blueprint === hired_val.blueprint && hired_val.employee === $scope.user.id){
+                        $scope.hired_blueprints.push(value);
+                    }
+                });
+            });
+            $scope.queue_resource = $scope.blueprints;
         }
 
         $scope.tupleAppliedJobs = function () {
@@ -607,6 +645,22 @@
                     }
                 });
                 $scope.show_new_jobs_interview = true;
+            }
+        };
+
+        $scope.tupleHiredJobs = function () {
+            if($scope.show_hired_jobs){
+                $scope.blueprints = $scope.hired_blueprints;
+                $scope.show_hired_jobs = false;
+            } else {
+                $scope.blueprints = [];
+                angular.forEach($scope.queue_resource, function (value, key) {
+                    // body...
+                    if(typeof $scope.queue_resource[key].new_job_stacks != 'undefined'){
+                        $scope.blueprints.push(value);
+                    }
+                });
+                $scope.show_hired_jobs = true;
             }
         };
 
@@ -781,19 +835,26 @@
 
         /* END OF WORK ENVIORMENT PHOTO UPLOAD */
 
+        $scope.temp_tasks = [];
+
         /* ADDING BLUEPRINT TASK */
+        $scope.list_blueprint_tasks = [];
         $scope.addTask = function (task) {
-            // body...
-            $scope.make_blueprint_tasks.push(task);
+            // body...z
+            $scope.temp_tasks.push(task);
+            $scope.temp_tasks.push($scope.new_employee);
+            $scope.list_blueprint_tasks.push($scope.temp_tasks);
+            $scope.new_employee = [];
+            $scope.temp_tasks = [];
         };
 
         /* REMOVING BLUEPRINT TASK */
         $scope.removeTask = function (task) {
             // body...
-            angular.forEach($scope.make_blueprint_tasks, function (object, index) {
+            angular.forEach($scope.list_blueprint_tasks, function (object, index) {
                 // body...
                 if(object.name === task) {
-                    $scope.make_blueprint_tasks.splice(index, 1);
+                    $scope.list_blueprint_tasks.splice(index, 1);
                 }
             });
         };
@@ -810,8 +871,7 @@
             // body...
             $scope.send_blueprint = [];
             $scope.send_blueprint.push($scope.make_blueprint);
-            $scope.send_blueprint.push({tasks: $scope.make_blueprint_tasks});
-            $scope.send_blueprint.push({employee: $scope.new_employee});
+            $scope.send_blueprint.push({tasks: $scope.list_blueprint_tasks});
             CreateBlueprintRes.save($scope.send_blueprint, function (response) {
                 // body...
                 setTimeout(function () {
@@ -1151,23 +1211,26 @@
         return {
             restrict: 'A',
             scope: true,
-            template: '<a class="btn add-btn" ' +
-                            'id="addNewRow" ng-click="addNewTaskClick()">' +
-                            '<span id="apply-span">' +
-                                'Add Task' +
-                            '</span>' +
-                            '<span id="apply-span-2" class="hover hide-button">' +
-                                'Add Task' +
-                            '</span>' +
-                      '</a>',
+            template: `<a class='btn add-btn' id='addNewRow' ng-click="clickToClone('hiddenTasks', 'clonedTasks')"><span id='apply-span'>Add Task</span><span id='apply-span-2' class='hover hide-button'>Add Task</span></a>`,
             controller: function ($scope, $element, $compile) {
                 $scope.clicked = 0;
-                $scope.addNewTaskClick = function () {
-                        $('#TasksBlueprint').append($compile($('#hiddenTasks').clone())($scope));
+                /*$scope.addNewTaskClick = function () {
+                        $('#TasksBlueprint').append($compile($('#hiddenTasks:last').clone())($scope));
+                        console.log($scope.new_employee);
                         $('#TasksBlueprint:last button:last').css({
                             display: 'inline'
                         });
-                }
+                        $('#selectTask:last').find("option").val("");
+                        var task = {name: $('#selectTask option:selected').text(), expert: $scope.new_employee, task_status: "Active"};
+                        $scope.addTask(task);
+                }*/
+                $scope.clickToClone = function (sourceId, cloneId) {
+                    var sourceHtml = angular.element(document.getElementById(sourceId)).html();
+                    angular.element(document.getElementById(cloneId)).append(sourceHtml);
+                        $('#TasksBlueprint:last button:last').css({
+                            display: 'inline'
+                        });
+                };
             }
         }
     });

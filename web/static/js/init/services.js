@@ -690,3 +690,15 @@
         return $resource('/api/prehired-employee/ ');
     }
 })();
+
+(function () {
+    'use strict';
+
+    angular.module('app').factory('HiredEmpRes', HiredEmpRes);
+
+    HiredEmpRes.$inject = ['$resource'];
+
+    function HiredEmpRes($resource) {
+        return $resource('/api/hired-employee/ ');
+    }
+})();

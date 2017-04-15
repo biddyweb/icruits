@@ -2043,7 +2043,7 @@ body,
     font-family: Roboto Condensed;
     text-transform: uppercase;
     font-size: 0.8em!important;
-    margin-top: 11px;
+    margin-top: 9px;
     margin-right: 3%;
     border: 0px solid;
     background-color: white;
@@ -2936,4 +2936,161 @@ div .containerDetails {
     margin-right: auto;
     background-color: rgb(250,250,250);
     border: 1px solid rgb(252,252,252);
+}
+
+body,
+.container-wrap-emp,
+.content-wrap-emp {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.content-wrap-emp {
+  -webkit-overflow-scrolling: touch;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+}
+
+.menu-button-emp:hover {
+  opacity: 0.6;
+}
+
+/* Close Button */
+.close-button-emp {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  overflow: hidden;
+  text-indent: 16px;
+  border: none;
+  z-index: 1001;
+  background: transparent;
+  color: transparent;
+}
+
+.close-button-emp::before,
+.close-button-emp::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  background: #95a5a6;
+}
+
+.close-button-emp::before {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.close-button-emp::after {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+/* Menu */
+.menu-wrap-emp {
+  position: absolute;
+  z-index: 1001;
+  width: 300px;
+  height: 100%;
+  font-size: 1.15em;
+  -webkit-transform: translate3d(-300px,0,0);
+  transform: translate3d(-300px,0,0);
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+}
+
+.menu-emp {
+  background-color: #1D1D1F;
+  width: 100%;
+  height: 100%;
+  padding: 2em 1em;
+}
+
+.icon-list-emp {
+    width: 280px;
+    max-height: calc(100% - 10%);
+    overflow-y: auto;
+}
+
+/* Morph Shape */
+.morph-shape-emp {
+  position: absolute;
+  width: 120px;
+  height: 100%;
+  top: 0;
+  right: 0;
+  fill: #373a47;
+  z-index: 1000;
+}
+
+/* Shown menu */
+.show-menu-emp .menu-wrap-emp {
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+.show-menu-emp .content-wrap-emp {
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+  -webkit-transform: translate3d(300px,0,0);
+  transform: translate3d(300px,0,0);
+}
+
+.show-menu-emp .content-emp::before {
+  opacity: 1;
+  -webkit-transition: opacity 0.7s;
+  transition: opacity 0.7s;
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+#sidemenu-emp h3 {
+    font-family: Roboto Condensed;
+    text-transform: uppercase;
+    font-size: 1.6125rem;
+    color: rgb(255, 255, 255);
+    letter-spacing: .43rem;
+    margin: 90px 0 30px 30px;
+    padding: 0;
+}
+
+.menu-wrap-emp a {
+    font-family: Roboto Condensed;
+    text-transform: uppercase;
+    position: relative;
+    color: rgb(180, 180, 180);
+    /*width: 200px;*/
+    height: 40px;
+    line-height: 40px;
+    font-size: 0.725em;
+    transition: all 750ms cubic-bezier(.25,.46,.45,.94);
+    letter-spacing: .33rem;
+}
+
+.menu-wrap-emp a:hover,
+.menu-wrap-emp a:focus {
+    color: rgb(255, 255, 255);
+    transition: all 750ms cubic-bezier(.25,.46,.45,.94);
+    margin-left: 24px;
+}
+
+.dropdown-fix-emp {
+    margin: 0px 30px 5px;
+    padding: 1.3em;
+    color: rgb(255, 255, 255);
+    font-size: 13px;
+    margin-bottom: -30px;
+}
+
+.menu-item-emp {
+    margin: 0 11px 5px;
+    display: block;
+    cursor: pointer;
+    padding: 1.6em;
 }

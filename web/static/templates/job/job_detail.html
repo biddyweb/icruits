@@ -23,12 +23,6 @@
                         </div>
                     </div>
                     <div class="practice-info">
-                        <span><strong>Current Queue :  </strong></span>
-                        <div class="square-info">
-                            <span>NA</span>
-                        </div>
-                    </div>
-                    <div class="practice-info">
                         <span><strong>Visa Status :  </strong></span>
                         <div class="square-info">
                             <span data-ng-bind="visa_status_info.visa"></span>
@@ -101,12 +95,6 @@
                         </div>
                     </div>
                     <div class="practice-info">
-                        <span><strong>Current Queue :  </strong></span>
-                        <div class="square-info">
-                            <span>NA</span>
-                        </div>
-                    </div>
-                    <div class="practice-info">
                         <span><strong>Visa Status :  </strong></span>
                         <div class="square-info">
                             <span data-ng-bind="visa_status_info.visa"></span>
@@ -166,13 +154,6 @@
                                    class="form-control inputSizeFix"
                                    ng-model="blueprint.max_queue" 
                                    required>
-                        </div>
-                    </div>
-                    <div class="practice-info">
-                        <span><strong>Current Queue :  </strong></span>
-                        <div class="square-info"
-                             style="margin-bottom: 10px;">
-                            <span>NA</span>
                         </div>
                     </div>
                     <div class="practice-info">
@@ -244,7 +225,7 @@
                     </div>
                 </div>
                 <a id="blueprint-btn" ng-show="!user.profile_type"
-                   ng-click="SendMail($event)" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && has_applied">
+                   ng-click="SendMail($event)" ng-if="published && blueprint.has_simulator && !blueprint.is_closed">
                     <span id="advanced-span" class="show-button">
                         iCruit
                     </span>
@@ -253,7 +234,7 @@
                     </span>
                 </a>
                 <a id="accept-interview-btn" ng-show="!user.profile_type"
-                   ng-click="inviteToInterview()" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && !has_interview">
+                   ng-click="inviteToInterview()" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && has_applied && !has_interview">
                     <span id="advanced-span" class="show-button">
                         Invite to Interview
                     </span>
@@ -262,7 +243,7 @@
                     </span>
                 </a>
                 <a id="accept-interview-btn" ng-show="!user.profile_type"
-                   ng-click="inviteToInterview()" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && has_interview">
+                   ng-click="hireEmployee()" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && has_interview">
                     <span id="advanced-span" class="show-button">
                         Hire
                     </span>
@@ -271,7 +252,7 @@
                     </span>
                 </a>
                 <a id="reject-interview-btn" ng-show="!user.profile_type"
-                   ng-click="SendMail()" ng-if="published && blueprint.has_simulator && !blueprint.is_closed">
+                   ng-click="exitQueue()" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && has_applied">
                     <span id="advanced-span" class="show-button">
                         Reject
                     </span>
@@ -365,12 +346,6 @@
                         <span><strong>Max Queue :  </strong></span>
                         <div class="square-info">
                             <span data-ng-bind="blueprint.max_queue"></span>
-                        </div>
-                    </div>
-                    <div class="practice-info">
-                        <span><strong>Current Queue :  </strong></span>
-                        <div class="square-info">
-                            <span>NA</span>
                         </div>
                     </div>
                     <div class="practice-info">

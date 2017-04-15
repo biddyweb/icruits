@@ -110,6 +110,9 @@
                 AppliedBlueprintsInfo: function (AppliedBlueprintsRes) {
                     // body...
                     return AppliedBlueprintsRes.query().$promise;
+                },
+                HiredEmpInfo: function (HiredEmpRes) {
+                    return HiredEmpRes.query().$promise;
                 }
             }
         })

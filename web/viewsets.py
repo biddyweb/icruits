@@ -20,6 +20,7 @@ from web.models import (
     DesiredEmployee,
     AppliedBlueprints,
     PrehiredEmployee,
+    HiredEmployee,
 )
 from web.serializers import (
     BlueprintSerializer,
@@ -42,6 +43,7 @@ from web.serializers import (
     QueueStackSerializer,
     AppliedBlueprintsSerializer,
     PrehiredEmployeeSerializer,
+    HiredEmployeeSerializer,
 )
 from rest_framework import (
     viewsets,
@@ -485,7 +487,6 @@ class CreateBlueprintViewSet(viewsets.ModelViewSet):
 
         request_data = request.data[0]
         tasks_data = request.data[1]
-        employee_data = request.data[2]
 
         job_dur = request_data['related_job_duration']
         t_id = request_data['team_id']
@@ -507,8 +508,6 @@ class CreateBlueprintViewSet(viewsets.ModelViewSet):
         remote_w = request_data['remote_work']
 
         tasks = tasks_data['tasks']
-
-        employees = employee_data['employee']
 
         rel_exp = request_data['related_experience']
         rel_visa = request_data['related_visa_status']
@@ -557,22 +556,22 @@ class CreateBlueprintViewSet(viewsets.ModelViewSet):
 
             html_email_content = render_to_string('email_templates/blueprint_created.html', email_context)
 
-            for user_id in str(employees).replace('[', '').replace(']', ''):
+            for task in tasks:
 
-                for task in str(tasks):
-                    task_obj = BlueprintTasks.objects.filter(id=task).first()
+                task_obj = BlueprintTasks.objects.filter(name=task[0]).first()
 
-                    task_obj.desired_employee.add(user_id)
+                for desired_employees in task[1]:
 
-                    blueprint_object.related_tasks.add(task_obj)
+                    user_obj = DesiredEmployee.objects.filter(id=desired_employees).first()
+                    task_obj.desired_employee.add(desired_employees)
 
-                user_obj = DesiredEmployee.objects.filter(id=user_id).first()
+                    send_mail(subject='New Blueprint Created',
+                              message='',
+                              from_email='alek.rajic@icruits.com',
+                              recipient_list=[str(user_obj.email), ],
+                              html_message=html_email_content)
 
-                send_mail(subject='New Blueprint Created',
-                          message='',
-                          from_email='alek.rajic@icruits.com',
-                          recipient_list=[str(user_obj.email), ],
-                          html_message=html_email_content)
+                blueprint_object.related_tasks.add(task_obj)
 
             send_mail(subject='New Blueprint Created',
                       message='',
@@ -616,7 +615,7 @@ class QueueStackViewSet(viewsets.ModelViewSet):
             user_email = instance.candidate.email
             applied_obj = AppliedBlueprints.objects.filter(name_slug=applied_job_name_slug).first()
             Queue.objects.get(stack=instance.id).stack.remove(instance)
-            applied_obj.remove()
+            applied_obj.delete()
             self.perform_destroy(instance)
 
             email_html_context = {
@@ -832,3 +831,11 @@ class BlueprintsCandidateHasAppliedViewSet(views.APIView):
 
         send_data = serialize.serialize('json', response_data)
         return response.Response(data=send_data, status=status.HTTP_200_OK)
+
+
+class HiredEmployeeViewSet(viewsets.ModelViewSet):
+    queryset = HiredEmployee.objects.all()
+    serializer_class = HiredEmployeeSerializer
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]

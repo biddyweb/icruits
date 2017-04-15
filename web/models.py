@@ -391,6 +391,7 @@ class Blueprint(models.Model):
     has_simulator = models.BooleanField(_('Has Simulator'), default=False)
     is_closed = models.BooleanField(_('Is Closed'), default=False)
     video_url = models.CharField(_('Video Url'), max_length=255, blank=True)
+    url = models.CharField(_('Interview Url'), max_length=255, blank=True)
     related_location = models.ForeignKey(Location, related_name="job_location")
     related_industry = models.ForeignKey(Industry, related_name="industry")
     related_company_type = models.ForeignKey(CompanyType, related_name="company_type")
@@ -510,4 +511,14 @@ class PrehiredEmployee(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = 'Pre-hired Employee'
+        verbose_name = 'Interview History'
+
+
+class HiredEmployee(models.Model):
+    blueprint = models.OneToOneField(Blueprint, related_name="related_hired_blueprint", unique=True)
+    employee = models.OneToOneField(user, related_name='related_hired_user', unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Hired History'

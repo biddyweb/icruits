@@ -97,10 +97,10 @@
                 </a>
                 <a id="filter-btn" ng-click="tupleAppliedJobs()" ng-if="!show_new_jobs">
                     <span>
-                        New Jobs
+                        All Jobs
                     </span>
                     <span class="hover">
-                        New Jobs
+                        All Jobs
                     </span>
                 </a>
                 <a id="filter-btn" ng-click="tupleICruitedJobs()"
@@ -117,10 +117,10 @@
                    style="right: 180px;"
                    ng-if="!show_new_jobs_icruited">
                     <span>
-                        New Jobs
+                        All Jobs
                     </span>
                     <span class="hover">
-                        New Jobs
+                        All Jobs
                     </span>
                 </a>
                 <a id="filter-btn" ng-click="tupleInterviewJobs()"
@@ -137,10 +137,30 @@
                    style="right: 360px;"
                    ng-if="!show_new_jobs_interview">
                     <span>
-                        New Jobs
+                        All Jobs
                     </span>
                     <span class="hover">
-                        New Jobs
+                        All Jobs
+                    </span>
+                </a>
+                <a id="filter-btn" ng-click="tupleHiredJobs()"
+                   style="left: 0px;"
+                   ng-if="show_hired_jobs">
+                    <span>
+                        Hired Jobs
+                    </span>
+                    <span class="hover">
+                        Hired Jobs
+                    </span>
+                </a>
+                <a id="filter-btn" ng-click="tupleHiredJobs()"
+                   style="left: 0px;"
+                   ng-if="!show_hired_jobs">
+                    <span>
+                        All Jobs
+                    </span>
+                    <span class="hover">
+                        All Jobs
                     </span>
                 </a>
                 <!--a id="filter-btn" style="right: 180px;"
@@ -168,13 +188,13 @@
 <!-- END OF JOBSEEKER DASHBOARD EXPERIENCE -->
 
 <!-- EMPLOYER DASHBOARD EXPERIENCE -->
-<div class="container-wrap" ng-show="!user.profile_type">
-    <div class="menu-wrap">
-        <nav id="sidemenu" class="menu">
-            <div class="icon-list">
+<div class="container-wrap-emp" ng-show="!user.profile_type">
+    <div class="menu-wrap-emp">
+        <nav id="sidemenu-emp" class="menu-emp">
+            <div class="icon-list-emp">
                 <h3>Filter</h3>
-                <a type="button" class="menu-item" data-toggle="collapse" data-target="#location">Job Location</a>
-                <div id="location" class="collapse dropdown-fix">
+                <a type="button" class="menu-item-emp" data-toggle="collapse" data-target="#location">Job Location</a>
+                <div id="location" class="collapse dropdown-fix-emp">
                     <div ng-repeat="loc in location_info">
                         <label>
                             <input type="checkbox"
@@ -184,8 +204,8 @@
                         </label>
                     </div>
                 </div>
-                <a type="button" class="menu-item" data-toggle="collapse" data-target="#Salary">Salary Range</a>
-                <div id="Salary" class="collapse dropdown-fix">
+                <a type="button" class="menu-item-emp" data-toggle="collapse" data-target="#Salary">Salary Range</a>
+                <div id="Salary" class="collapse dropdown-fix-emp">
                     <div ng-repeat="sal in salary_info">
                         <label>
                             <input type="checkbox"
@@ -195,8 +215,8 @@
                         </label>
                     </div>
                 </div>
-                <a type="button" class="menu-item" data-toggle="collapse" data-target="#Experience">Experience Level</a>
-                <div id="Experience" class="collapse dropdown-fix">
+                <a type="button" class="menu-item-emp" data-toggle="collapse" data-target="#Experience">Experience Level</a>
+                <div id="Experience" class="collapse dropdown-fix-emp">
                     <div ng-repeat="exp in experience_info">
                         <label>
                             <input type="checkbox"
@@ -209,14 +229,14 @@
             </div>
         </nav>
     </div>
-    <span id="open-button" class="menu-white"><span class="label" style="color: rgb(0,0,0);">FILTER</span> </span>
+    <span id="open-button-emp" class="menu-white"><span class="label" style="color: rgb(0,0,0);">FILTER</span> </span>
     <a id="user-nav" class="userNav" onclick="openNav()"><i class="fa fa-user"></i></a>
     <!--div id="userContent" class="userContainer" ng-controller='LogoutCtrl'>
         <a id="btn-2" ng-click="logoutNow()" class="userNavBtn">Logout</a>
     </div-->
 
-    <div class="content-wrap">
-        <div class="content">
+    <div class="content-wrap-emp">
+        <div class="content-emp">
             <nav class="dashHeader text-center navbar navbar-default fixed top"><span>ICRUITS</span></nav>
             <section id="dashboard" style="margin-top: 75px;">
                 <div class="containerSub cf">
@@ -482,10 +502,10 @@
                 <span class="tasksLabel"> Blueprint Task </span>
                 <select class='form-control blueprintTasksInput' 
                         id='selectTask' 
-                        name='blueprint tasks' 
-                        ng-model='make_blueprint_tasks' 
-                        ng-options='option.id*1 as option.name for option in blueprint_tasks'>
-                    <option value='' ng-show='false'></option>
+                        name='blueprint tasks'
+                        ng-model='make_blueprint_tasks'
+                        ng-options='option.id*1 as option.name for option in blueprint_tasks'
+                    <option value=''></option>
                 </select>
                 <div></div>
             </div>
@@ -496,6 +516,7 @@
                     <div ng-repeat="employee in desired_employees_info">
                         <label>
                             <input type='checkbox'
+                                   id="expId"
                                    style="margin-left: 10px;"
                                    class='faChkSqr small'
                                    ng-click="addEmployeeId(employee.id)">
@@ -513,9 +534,21 @@
                 </span>
             </button>
         </div>
+        <div id="clonedTasks">
+
+        </div>
     </div>
     <div id="TasksBlueprint" class="blueprintTasksContainer" style="background-color: rgb(225,225,225); margin-top: -20px; padding-top: 10px;">
         <div add-div-directive style="display: inline;"></div>
+        <!--a class="btn add-btn"
+           id="addNewRow" ng-click="clickToClone('hiddenTasks', 'clonedTasks')">
+            <span id="apply-span">
+                Add Task
+            </span>
+            <span id="apply-span-2" class="hover hide-button">
+                Add Task
+            </span>
+        </a-->
         <a class="btn add-btn" onclick="openCreateTasks()">
             <span id="apply-span">
                 Create Task
@@ -669,18 +702,25 @@
 
     var bodyEl = document.body,
         content = document.querySelector( '.content-wrap' ),
+        content_emp = document.querySelector( '.content-wrap-emp' ),
         openbtn = document.getElementById( 'open-button' ),
+        openbtn_emp = document.getElementById( 'open-button-emp' ),
         closebtn = document.getElementById( 'close-button' ),
-        isOpen = false;
+        closebtn_emp = document.getElementById( 'close-button-emp' ),
+        isOpen = false,
+        isOpenEmp = false;
 
     var filterBtn = document.getElementById('filter-btn');
-
 
     function init() {
         initEvents();
     }
 
     function initEvents() {
+        openbtn_emp.addEventListener( 'click', toggleMenuEmp );
+        if( closebtn_emp ) {
+            closebtn_emp.addEventListener( 'click', toggleMenuEmp );
+        }
         openbtn.addEventListener( 'click', toggleMenu );
         if( closebtn ) {
             closebtn.addEventListener( 'click', toggleMenu );
@@ -689,8 +729,14 @@
         // close the menu element if the target it´s not the menu element or one of its descendants..
         content.addEventListener( 'click', function(ev) {
             var target = ev.target;
-            if( isOpen && target !== openbtn ) {
+            if (isOpen && target !== openbtn) {
                 toggleMenu();
+            }
+        });
+        content_emp.addEventListener( 'click', function(ev) {
+            var target = ev.target;
+            if( isOpenEmp && target !== openbtn_emp ) {
+                toggleMenuEmp();
             }
         } );
     }
@@ -698,19 +744,38 @@
     function toggleMenu() {
         if( isOpen ) {
             classie.remove( bodyEl, 'show-menu' );
-            /*classie.remove(filterBtn, 'hide-button');*/
+            classie.remove(filterBtn, 'hide-button');
             // animate path
         }
         else {
             classie.add( bodyEl, 'show-menu' );
-            /*classie.add(filterBtn, 'hide-button');*/
+            classie.add(filterBtn, 'hide-button');
             // animate path
         }
         isOpen = !isOpen;
     }
 
+    function toggleMenuEmp() {
+        if( isOpenEmp ) {
+            classie.remove( bodyEl, 'show-menu-emp' );
+            /*classie.remove(filterBtn, 'hide-button');*/
+            // animate path
+        }
+        else {
+            classie.add( bodyEl, 'show-menu-emp' );
+            /*classie.add(filterBtn, 'hide-button');*/
+            // animate path
+        }
+        isOpenEmp = !isOpenEmp;
+    }
+
     function fixMenu() {
-        classie.remove(bodyEl, 'show-menu');
+        if(classie.has(bodyEl, 'show-menu')) {
+            classie.remove(bodyEl, 'show-menu');
+        }
+        if(classie.has(bodyEl, 'show-menu-emp')){
+            classie.remove(bodyEl, 'show-menu-emp')
+        }
         /*classie.remove(filterBtn, 'hide-button');*/
     }
 
@@ -742,16 +807,37 @@ $("#addNewRow").click(function(){
 
     // method to push objects into make_blueprint_tasks
     // call angular addTask
+</script-->
+<!--script>
+    $("#selectTask").click(function () {
+        var task = $('#selectTask option:selected').text();
+        angular.element(document.getElementById('selectTask')).scope().addNewTask(task);
+    });
+</script-->
+<script>
+$('#selectTask:last').click(function () {
 
     function addSelectedTask() {
         // body...
-        var userId = $('#expId').val().replace('number:', '');
-        var task = {name: $('#selectTask option:selected').text(), expert: parseInt(userId), task_status: "Active"};
+        var task = $('#selectTask option:selected').text();
         angular.element(document.getElementById('selectTask')).scope().addTask(task);
     }
-    //addSelectedTask();
+
+    addSelectedTask();
 });
-</script-->
+</script>
+<script>
+$('#clonedTasks:last').on('click', '#selectTask',function () {
+
+    function addSelectedTask() {
+        // body...
+        var task = $('#selectTask option:selected').text();
+        angular.element(document.getElementById('selectTask')).scope().addTask(task);
+    }
+
+    addSelectedTask();
+});
+</script>
 <script>
 $("#TasksBlueprint").on('click','.rem-btn',function(){
     var taskId = $(this).parent().parent('tr').find('td:eq(1)').find('input[type=hidden]').val();
@@ -762,7 +848,9 @@ $("#TasksBlueprint").on('click','.rem-btn',function(){
     }
 
     removeSelectedTask(taskId);
-    $(this).parent().parent('div').remove();
+    console.log($(this).parent());
+    $(this).parent().remove();
+    $(this).remove();
 });
 </script>
 
@@ -771,6 +859,16 @@ $("#TasksBlueprint").on('click','.rem-btn',function(){
         // body...
         var size = $('.content-wrap').height();
         $('.menu-wrap').css({
+            'height': size + 'px'
+        });
+    }
+    $(window).on('scroll resize', expandMenu);
+</script>
+<script type="text/javascript">
+    function expandMenu() {
+        // body...
+        var size = $('.content-wrap-emp').height();
+        $('.menu-wrap-emp').css({
             'height': size + 'px'
         });
     }
@@ -797,7 +895,6 @@ $( '.dropdown-menu a' ).on( 'click', function( event ) {
 
    $( event.target ).blur();
       
-   console.log( options );
    return false;
 });
 </script>
