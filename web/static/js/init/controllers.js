@@ -999,9 +999,11 @@
 
     angular.module('app').controller('RegisterCtrl', RegisterCtrl);
 
-    RegisterCtrl.$inject = ['$scope', '$rootScope', '$state', '$window', 'AuthRes', 'metaTags', 'Pilots'];
+    RegisterCtrl.$inject = ['$scope', '$rootScope', '$state', '$window', 'AuthRes', 'metaTags', 'Pilots',
+        'CheckUserRes', 'CheckUserNameRes'];
 
-    function RegisterCtrl($scope, $rootScope, $state, $window, AuthRes, metaTags, Pilots) {
+    function RegisterCtrl($scope, $rootScope, $state, $window, AuthRes, metaTags, Pilots, CheckUserRes,
+    CheckUserNameRes) {
 
         $scope.$emit('metaTagsChanged', metaTags);
 
@@ -1011,22 +1013,143 @@
 
         $scope.complete = false;
 
+        $scope.page_1 = true;
+        $scope.page_2 = false;
+        $scope.page_3 = false;
+        $scope.page_4 = false;
+        $scope.page_5 = false;
+        $scope.page_6 = false;
+
+        $scope.total_pages = '6';
+
+        if($scope.page_1){
+            $scope.current_page = '1';
+        }
+
         $scope.profile_types = [{profile_type: true, label: 'JobSeeker'}, {profile_type: false, label: 'Employer'}];
 
-        $scope.registration = function () {
-            angular.forEach($scope.test_pilots, function (pilot) {
-                if(pilot.email === $scope.reg.email){
+        $scope.prevPage = function () {
+            if($scope.page_2){
+                $scope.page_2 = false;
+                $scope.page_1 = true;
+                $scope.current_page = '1';
+            }
+            if($scope.page_3){
+                $scope.page_3 = false;
+                $scope.page_2 = true;
+                $scope.current_page = '2';
+            }
+            if($scope.page_4){
+                $scope.page_4 = false;
+                $scope.page_3 = true;
+                $scope.current_page = '3';
+            }
+            if($scope.page_5){
+                $scope.page_5 = false;
+                $scope.page_4 = true;
+                $scope.current_page = '4';
+            }
+            if($scope.page_6){
+                $scope.page_6 = false;
+                $scope.page_5 = true;
+                $scope.current_page = '5';
+            }
+        };
 
-                    AuthRes.save($scope.reg, function (resource) {
-                        $scope.complete = true;
-                    }, function (response) {
-                        $scope.errors = response.data;
-                    });
-                }
-                if(pilot.email !== $scope.reg.email){
-                    $state.go('root.non_pilot', { reload: true });
-                }
-            });
+        $scope.checkUsername = function () {
+            if(!$scope.reg.username){
+                $scope.errors = true;
+                $scope.error = "Please fill username";
+            } else {
+                CheckUserNameRes.save($scope.reg, function (response) {
+                    $scope.errors = true;
+                    $scope.error = "User with this username already exists."
+                }, function (response) {
+                    $scope.errors = false;
+                    $scope.page_1 = false;
+                    $scope.page_2 = true;
+                    $scope.current_page = '2';
+                });
+            }
+        };
+
+        $scope.checkEmail = function () {
+            // body...
+            if(!$scope.reg.email){
+                $scope.error = "Please fill email address";
+                $scope.errors = true;
+            } else {
+                $scope.log = {};
+                $scope.log.username = $scope.reg.email;
+                CheckUserRes.save($scope.log, function (response) {
+                    // body...
+                    $scope.errors = true;
+                    $scope.error = "User with this email address already exists.";
+                }, function (response) {
+                    // body...
+                    $scope.errors = false;
+                    $scope.page_2 = false;
+                    $scope.page_3 = true;
+                    $scope.current_page = '3';
+                });
+            }
+        };
+
+        $scope.checkProfileType = function () {
+            if(!angular.isDefined($scope.reg.profile_type)){
+                $scope.errors = true;
+                $scope.error = "Please select profile type.";
+            } else {
+                $scope.errors = false;
+                $scope.page_3 = false;
+                $scope.page_4 = true;
+                $scope.current_page = '4';
+            }
+        };
+
+        $scope.checkPassword = function () {
+            if(!$scope.reg.password){
+                $scope.errors = true;
+                $scope.error = "Please input password."
+            } else {
+                $scope.errors = false;
+                $scope.page_5 = false;
+                $scope.page_6 = true;
+                $scope.current_page = '6';
+            }
+        };
+
+        $scope.checkMobile = function () {
+            if(!$scope.reg.mobile_number){
+                $scope.errors = true;
+                $scope.error = "Please input valid mobile number.";
+            } else {
+                $scope.errors = false;
+                $scope.page_4 = false;
+                $scope.page_5 = true;
+                $scope.current_page = '5';
+            }
+        };
+
+        $scope.registration = function () {
+            if(!$scope.reg.confirm_password){
+                $scope.errors = true;
+                $scope.error = "Please confirm password."
+            } else {
+                $scope.errors = false;
+                angular.forEach($scope.test_pilots, function (pilot) {
+                    if(pilot.email === $scope.reg.email){
+                        AuthRes.save($scope.reg, function (resource) {
+                            $scope.complete = true;
+                        }, function (response) {
+                            $scope.errors = response.data;
+                        });
+                    }
+                    if(pilot.email !== $scope.reg.email){
+                        $state.go('root.non_pilot', { reload: true });
+                    }
+                });
+            }
         };
 
         $rootScope.image = '';
@@ -1109,6 +1232,9 @@
                     setTimeout(function () {
                         $state.go('root.dashboard', {reload: true});
                     }, 500);
+                    $('.progress').css({
+                        width: 100 + '%'
+                    });
                 }
             }
             function loginErrorFn(response) {

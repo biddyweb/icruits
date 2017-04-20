@@ -85,6 +85,18 @@
 (function () {
     'use strict';
 
+    angular.module('app').factory('CheckUserNameRes', CheckUserNameRes);
+
+    CheckUserNameRes.$inject = ['$resource'];
+
+    function CheckUserNameRes($resource) {
+        return $resource('/api/auth/check-username/ ');
+    }
+})();
+
+(function () {
+    'use strict';
+
     angular.module('app').factory('LoginRes', LoginRes);
 
     LoginRes.$inject = ['$cookies', '$http'];

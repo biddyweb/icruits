@@ -6,89 +6,131 @@
         <form id="RegisterForm"
               class="simform"
               autocomplete="off"
-              data-ng-submit="registration()"
               role="form"
               accept-charset="UTF-8">
             <div class="simform-inner">
-                <ol class="questions">
-                    <li>
-                        <span><label for="q1" class="text-center"></label></span>
-                        <input id="q1"
-                               name="q1"
-                               type="text"
-                               class="cleaninput" 
-                               placeholder="Username"
-                               data-ng-model="reg.username"
-                               ng-trim="false" custom-validation>
-                    </li>
-                    <li>
-                        <span><label for="q2" class="text-center"></label></span>
-                        <input id="q2"
-                               name="q2"
-                               type="text"
-                               class="cleaninput" 
-                               placeholder="Email"
-                               data-ng-model="reg.email"
-                               ng-trim="false" custom-validation>
-                    </li>
-                    <li>
-                        <div class="inputHolder" ng-repeat="accType in profile_types">
-                            <label id="q3">
-                                <input class="register-radio" type="radio"
-                                       id="q3"
-                                       name="q3"
-                                       ng-value="accType.profile_type"
-                                       ng-model="reg.profile_type"
-                                       checked/>
-                                   {{ accType.label }}
-                            </label>
-                        </div>
-                    </li>
-                    <li>
-                        <span><label for="q4" class="text-center"></label></span>
-                        <input id="q4"
-                               name="q4"
-                               class="cleaninput" 
-                               type="text"
-                               placeholder="Mobile Number"
-                               ng-model="reg.mobile_number"/>
-                    </li>
-                    <li>
-                        <span><label for="q5" class="text-center"></label></span>
-                        <input id="q5"
-                               name="q5"
-                               type="password"
-                               class="cleaninput" 
-                               placeholder="Password"
-                               ng-model="reg.password" 
-                               ng-trim="false" custom-validation>
-                    </li>
-                    <li>
-                        <span><label for="q6" class="text-center"></label></span>
-                        <input id="q6"
-                               name="q6"
-                               type="password"
-                               class="cleaninput" 
-                               placeholder="Confirm Password"
-                               ng-model="reg.confirm_password"
-                               ng-trim="false" custom-validation>
-                    </li>
-                </ol><!-- /questions -->
-                <div class="controls">
-                    <button class="next-login show" style="top: 5.15em;"></button>
-                    <button class="prev-login" style="top: 5.15em;"></button>
+                <div class="questions" ng-if="page_1">
+                    <span><label for="q1" class="text-center"></label></span>
+                    <input id="q1"
+                           name="q1"
+                           type="text"
+                           class="cleaninput"
+                           placeholder="Username"
+                           data-ng-model="reg.username"
+                           ng-trim="false" custom-validation>
+                    <button class="next-login show" ng-click="checkUsername()" style="top: 5.1em;"></button>
                     <div class="progress"></div>
-                    <span class="number">
-                        <span class="number-current"></span>
-                        <span class="number-total"></span>
+                    <span id="number" class="number">
+                        <span class="number-current" ng-bind="current_page"></span>
+                        <span class="number-total" ng-bind="total_pages"></span>
                     </span>
-                    <span class="error-message"></span>
-                </div><!-- / controls -->
-            </div><!-- /simform-inner -->
-            <a type="submit"
-               class="btn password-btn btn-2 hide"
-               style="position: absolute; max-width: 100%;"
-               ng-click="registration()"><span>Register</span></a>
+                    <div ng-if="errors">
+                        <span class="error-message show" ng-bind="error"></span>
+                    </div>
+                </div>
+                <div class="questions" ng-if="page_2">
+                    <span><label for="q2" class="text-center"></label></span>
+                    <input id="q2"
+                           name="q2"
+                           type="email"
+                           class="cleaninput"
+                           placeholder="Email"
+                           data-ng-model="reg.email"
+                           ng-trim="false" custom-validation>
+                    <button class="next-login show" ng-click="checkEmail()" style="top: 5.1em;"></button>
+                    <button class="prev-login show" ng-click="prevPage()" style="top: 5.1em;"></button>
+                    <div class="progress" style="width: calc(16%)"></div>
+                    <span id="number" class="number">
+                        <span class="number-current" ng-bind="current_page"></span>
+                        <span class="number-total" ng-bind="total_pages"></span>
+                    </span>
+                    <div ng-if="errors">
+                        <span class="error-message show" ng-bind="error"></span>
+                    </div>
+                </div>
+                <div class="questions" ng-if="page_3">
+                    <div class="inputHolder" ng-repeat="accType in profile_types">
+                        <label id="q3">
+                            <input class="register-radio" type="radio"
+                                   id="q3"
+                                   name="q3"
+                                   ng-value="accType.profile_type"
+                                   ng-model="reg.profile_type"
+                                   checked/>
+                            {{ accType.label }}
+                        </label>
+                    </div>
+                    <button class="next-login show" ng-click="checkProfileType()" style="top: 5.1em;"></button>
+                    <button class="prev-login show" ng-click="prevPage()" style="top: 5.1em;"></button>
+                    <div class="progress" style="width: calc(32%)"></div>
+                    <span id="number" class="number">
+                        <span class="number-current" ng-bind="current_page"></span>
+                        <span class="number-total" ng-bind="total_pages"></span>
+                    </span>
+                    <div ng-if="errors">
+                        <span class="error-message show" ng-bind="error"></span>
+                    </div>
+                </div>
+                <div class="questions" ng-if="page_4">
+                    <span><label for="q4" class="text-center"></label></span>
+                    <input id="q4"
+                           name="q4"
+                           class="cleaninput"
+                           type="number"
+                           placeholder="Mobile Number"
+                           ng-model="reg.mobile_number"/>
+                    <button class="next-login show" ng-click="checkMobile()" style="top: 5.1em;"></button>
+                    <button class="prev-login show" ng-click="prevPage()" style="top: 5.1em;"></button>
+                    <div class="progress" style="width: calc(50%)"></div>
+                    <span id="number" class="number">
+                        <span class="number-current" ng-bind="current_page"></span>
+                        <span class="number-total" ng-bind="total_pages"></span>
+                    </span>
+                    <div ng-if="errors">
+                        <span class="error-message show" ng-bind="error"></span>
+                    </div>
+                </div>
+                <div class="questions" ng-if="page_5">
+                    <span><label for="q5" class="text-center"></label></span>
+                    <input id="q5"
+                           name="q5"
+                           type="password"
+                           class="cleaninput"
+                           placeholder="Password"
+                           ng-model="reg.password"
+                           ng-trim="false" custom-validation>
+                    <button class="next-login show" ng-click="checkPassword()" style="top: 5.1em;"></button>
+                    <button class="prev-login show" ng-click="prevPage()" style="top: 5.1em;"></button>
+                    <div class="progress" style="width: calc(66%)"></div>
+                    <span id="number" class="number">
+                        <span class="number-current" ng-bind="current_page"></span>
+                        <span class="number-total" ng-bind="total_pages"></span>
+                    </span>
+                    <div ng-if="errors">
+                        <span class="error-message show" ng-bind="error"></span>
+                    </div>
+                </div>
+                <div class="questions" ng-if="page_6">
+                    <span><label for="q6" class="text-center"></label></span>
+                    <input id="q6"
+                           name="q6"
+                           type="password"
+                           class="cleaninput"
+                           placeholder="Confirm Password"
+                           ng-model="reg.confirm_password"
+                           ng-trim="false" custom-validation>
+                    <button class="next-login show" ng-click="registration()" style="top: 5.1em;"></button>
+                    <button class="prev-login show" ng-click="prevPage()" style="top: 5.1em;"></button>
+                    <div class="progress" style="width: calc(85%)"></div>
+                    <span id="number" class="number">
+                        <span class="number-current" ng-bind="current_page"></span>
+                        <span class="number-total" ng-bind="total_pages"></span>
+                    </span>
+                    <div ng-if="errors">
+                        <span class="error-message show" ng-bind="error"></span>
+                    </div>
+                </div>
+            </div><!-- /questions -->
         </form><!-- /simform -->
     </div>
     <div class="container" ng-if="complete">
@@ -105,24 +147,3 @@
         </a>
     </div>
 </section>
-
-<script>
-    var Form = document.getElementById( 'RegisterForm' );
-
-    new stepsForm( Form, {
-        onSubmit : function( form ) {
-            // hide form
-            classie.addClass( Form.querySelector( '.simform-inner' ), 'hide' );
-            /*
-				form.submit()
-				or
-				AJAX request (maybe show loading indicator while we don't have an answer..)
-				*/
-
-            // let's just simulate something...
-            /*var register = Form.querySelector( '.btn' );
-            classie.addClass( register, 'show' );*/
-            angular.element(Form).scope().registration();
-        }
-    });
-</script>

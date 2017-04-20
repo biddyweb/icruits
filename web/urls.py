@@ -35,6 +35,7 @@ from web.viewsets import (
     PrehiredEmployeeViewSet,
     BlueprintsCandidateHasAppliedViewSet,
     HiredEmployeeViewSet,
+    CheckUsernameViewSet,
 )
 from libs.djoser.views import (
     RegistrationView,
@@ -88,6 +89,7 @@ base_urlpatterns = (
     url(r'^auth/get-jtw-token/$', obtain_jwt_token, name='get-jwt'),
     url(r'^auth/check-jwt-token/$', verify_jwt_token, name='check-jwt-token'),
     url(r'^auth/check-user/$', CheckUserViewSet.as_view(), name='check-user'),
+    url(r'^auth/check-username/$', CheckUsernameViewSet.as_view(), name='check-username'),
     url(r'^auth/activate/$', ActivationView.as_view(), name='activation'),
 )
 
