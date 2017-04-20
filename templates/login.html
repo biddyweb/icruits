@@ -5,64 +5,64 @@
             <div class="item active">
                 <div class="registerWrapper">
                     <span class="animated fadeInLeftBig">Welcome to iCruits</span>
-                    <!--a data-scroll class="btn btn-start animated fadeInUpBig" href="#login">Start now</a-->
                 </div>
             </div>
             <div class="item">
                 <div class="registerWrapper">
                     <span class="animated fadeInLeftBig">Say Hello to Your future</span>
-                    <!--a data-scroll class="btn btn-start animated fadeInUpBig" href="#login">Start now</a-->
                 </div>
             </div>
         </div>
-            <form id="theForm"
-                  class="simform"
-                  autocomplete="off"
-                  data-ng-submit="login()"
-                  role="form"
-                  accept-charset="UTF-8">
-                <div class="simform-inner">
-                    <ol class="questions">
-                        <li>
-                            <input id="username"
-                                   class="cleaninput" 
-                                   name="q1"
-                                   type="text"
-                                   placeholder="Email"
-                                   data-ng-model="log.username"
-                                   ng-trim="false" custom-validation>
-                        </li>
-                        <li>
-                            <input class="cleaninput" 
-                                   type="text"
-                                   onfocus="checkUser()" 
-                                   data-ng-model="log.username"
-                                   readonly>
-                            <input 
-                                   name="q2"
-                                   class="cleaninput" 
-                                   type="password"
-                                   onfocus="checkUser()" 
-                                   placeholder="Password"
-                                   data-ng-model="log.password"
-                                   ng-trim="false" custom-validation>
-                        </li>
-                    </ol><!-- /questions -->
+        <form id="theForm"
+              class="simform"
+              autocomplete="off"
+              role="form"
+              accept-charset="UTF-8">
+            <div class="simform-inner">
+                <div ng-if="page_1" class="questions">
+                    <input id="username"
+                           class="cleaninput"
+                           name="q1"
+                           type="text"
+                           placeholder="Email"
+                           data-ng-model="log.username"
+                           ng-trim="false" custom-validation>
+                    <button class="next-login show" ng-click="checkuser()"></button>
+                    <div class="progress"></div>
+                    <span id="number" class="number">
+                        <span class="number-current" ng-bind="current_page"></span>
+                        <span class="number-total" ng-bind="total_pages"></span>
+                    </span>
+                    <div ng-if="errors">
+                        <span class="error-message show" ng-bind="error"></span>
+                    </div>
+                </div>
+                <div ng-if="page_2" class="questions">
+                    <input class="cleaninput"
+                           type="text"
+                           data-ng-model="log.username"
+                           readonly>
+                    <input name="q2"
+                           class="cleaninput"
+                           type="password"
+                           placeholder="Password"
+                           data-ng-model="log.password"
+                           ng-trim="false" custom-validation>
                     <div class="controls">
-                        <button class="next-login show"></button>
-                        <button class="prev-login"></button>
+                        <button class="next-login show" ng-click="login()"></button>
+                        <button class="prev-login show" ng-click="prevPage()"></button>
                         <div class="progress"></div>
                         <span id="number" class="number">
-                            <span class="number-current"> / </span>
-                            <span class="number-total"></span>
+                            <span class="number-current" ng-bind="current_page"></span>
+                            <span class="number-total" ng-bind="total_pages"></span>
                         </span>
-                        <span id="show-error" class="error-message"></span>
                         <div ng-if="errors">
                             <span class="error-message show" ng-bind="error"></span>
                         </div>
                     </div><!-- / controls -->
-                </div><!-- /simform-inner -->
-                <a type="submit"
+                </div>
+            </div><!-- /simform-inner -->
+                <!--a type="submit"
                    style="position: fixed; left: 20%;" 
                    class="btn-white btn-white-slide animated fadeInUpBig hide text-center"
                    ng-click="login()">    
@@ -70,71 +70,7 @@
                         <rect x="0" y="0" fill="none" width="100%" height="100%"/>
                     </svg>
                     Sign In
-                </a>
-            </form><!-- /simform -->
-
-        <!--a class="left-control" href="#home-slider" data-slide="prev"><i class="fa fa-angle-left"></i></a>
-        <a class="right-control" href="#home-slider" data-slide="next"><i class="fa fa-angle-right"></i></a-->
+                </a-->
+        </form><!-- /simform -->
     </div>
 </header>
-
-<script charset="utf-8" type="text/javascript" src="{% static 'js/stepsForm.js' %}"></script>
-
-<script type="text/javascript">
-
-    function checkUser() {
-        // body...
-        var req = {user: document.getElementById('username').value};
-        angular.element(document.getElementById('username')).scope().checkuser(req);
-    }
-</script>
-
-<script>
-    var theForm = document.getElementById( 'theForm' );
-
-    new stepsForm( theForm, {
-        onSubmit : function( form ) {
-            // hide form
-            // classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
-            /*
-				form.submit()
-				or
-				AJAX request (maybe show loading indicator while we don't have an answer..)
-				*/
-
-            // let's just simulate something...
-            /*var login = theForm.querySelector( '.btn-white' );
-            classie.addClass( login, 'show' );*/
-            angular.element(document.getElementById('username')).scope().login();
-        }
-    });
-</script>
-<script>
-    ///* animation
-var $animation_elements = $('.animation-element');
-var $window = $(window);
-
-function check_if_in_view() {
-    var window_height = $window.height();
-    var window_top_position = $window.scrollTop();
-    var window_bottom_position = (window_top_position + window_height);
-
-    $.each($animation_elements, function() {
-        var $element = $(this);
-        var element_height = $element.outerHeight();
-        var element_top_position = $element.offset().top;
-        var element_bottom_position = (element_top_position + element_height);
-
-        //check to see if this current container is within viewport
-        if ((element_bottom_position >= window_top_position) &&
-            (element_top_position <= window_bottom_position)) {
-            $element.addClass('in-view');
-        } else {
-            $element.removeClass('in-view');
-        }
-    });
-}
-
-$(window).on('scroll resize', check_if_in_view);
-
-</script>

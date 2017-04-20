@@ -1113,7 +1113,7 @@ LOGIN FORM
 }
 
 .questions li.current,
-.no-js .questions li {
+.no-js .questions {
   visibility: visible;
   height: auto;
   -webkit-transition: none;
@@ -1121,12 +1121,12 @@ LOGIN FORM
 }
 
 /* Labels */
-.questions li > span {
+.questions span {
   display: block;
   overflow: hidden;
 }
 
-.questions li > span label {
+.questions span label {
   display: block;
   -webkit-transition: -webkit-transform 0.4s;
   transition: transform 0.4s;

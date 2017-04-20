@@ -224,19 +224,16 @@ class CheckUserViewSet(views.APIView):
     ]
 
     def post(self, request, format=None):
-        data = request.read().replace('"', '').replace('{', '').replace('}', '')
+        data = json.loads(request.body)
 
-        try:
-            user = data.split(':')[1]
+        user_check = data.get('username')
 
-            checkUser = User.objects.filter(email=user)
+        checkUser = User.objects.filter(email=user_check)
 
-            if checkUser:
-                return response.Response(status=status.HTTP_200_OK)
-            else:
-                return response.Response(status=status.HTTP_400_BAD_REQUEST)
-        except:
-            return response.Response(status=status.HTTP_201_CREATED)
+        if checkUser:
+            return response.Response(status=status.HTTP_200_OK)
+        else:
+            return response.Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 class MobileLogin(views.APIView):

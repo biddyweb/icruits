@@ -1042,24 +1042,57 @@
 
     function LoginCtrl($scope, $rootScope, $state, $timeout, LoginRes, JWTTokenRes, CheckUserRes) {
 
+        $scope.page_1 = true;
+        $scope.page_2 = false;
 
-        $scope.checkuser = function (data) {
+        if($scope.page_1){
+            $scope.current_page = '1';
+        }
+        if($scope.page_2){
+            $scope.current_page = '2';
+        }
+        $scope.total_pages = '2';
+
+        $scope.log = {};
+
+        $scope.errors = false;
+
+        $scope.prevPage = function () {
+            $scope.page_1 = true;
+            $scope.page_2 = false;
+            $scope.current_page = '1';
+            if($scope.errors){
+                $scope.errors = false;
+            }
+        };
+
+        $scope.checkuser = function () {
             // body...
-            CheckUserRes.save(data, function (response) {
-                // body...
-            }, function (response) {
-                // body...
-                if(response.status === 400){
-                    setTimeout(function() {
-                        $state.go('root.register', { reload: true });
-                    }, 600);
-                } else {
-                    setTimeout(function () {
-                        // body...
-                        $state.go('root.dashboard', { reload: true });
-                    }, 600)
-                }
-            });
+            if(!$scope.log.username){
+                $scope.error = "Please fill email address";
+                $scope.errors = true;
+            } else {
+                CheckUserRes.save($scope.log, function (response) {
+                    // body...
+                    $scope.page_1 = false;
+                    $scope.page_2 = true;
+                    if($scope.errors){
+                        $scope.errors = false;
+                    }
+                }, function (response) {
+                    // body...
+                    if (response.status === 400) {
+                        setTimeout(function () {
+                            $state.go('root.register', {reload: true});
+                        }, 600);
+                    } else {
+                        setTimeout(function () {
+                            // body...
+                            $state.go('root.dashboard', {reload: true});
+                        }, 600)
+                    }
+                });
+            }
         };
 
         $scope.login = function() {
@@ -1067,20 +1100,17 @@
 
             function loginSuccessFn(response) {
                 // body...
-                console.log(response);
-                if(response.status === "Unauthorized"){
-                    console.log('bad password');
+                console.log(response.status);
+                if (response.status === 400) {
                     $scope.errors = true;
                     $scope.error = "Wrong password";
                 } else {
                     JWTTokenRes.jwt($scope.log.username, $scope.log.password);
                     setTimeout(function () {
-                        $state.go('root.dashboard', { reload: true });
+                        $state.go('root.dashboard', {reload: true});
                     }, 500);
                 }
-
             }
-
             function loginErrorFn(response) {
                 // body...
                 $scope.errors = response.data;

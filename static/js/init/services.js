@@ -107,10 +107,11 @@
                 var expireTime = new Date();
                 expireTime.setDate(expireTime.getTime() + 1);
                 $cookies.put('authenticatedAccount', user, {'expires': expireTime});
+                return response;
             }
 
             function loginFail(response) {
-                return response.data;
+                return response;
             }
         }
 
