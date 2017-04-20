@@ -57,6 +57,9 @@
                             <span class="number-total"></span>
                         </span>
                         <span id="show-error" class="error-message"></span>
+                        <div ng-if="errors">
+                            <span class="error-message show" ng-bind="error"></span>
+                        </div>
                     </div><!-- / controls -->
                 </div><!-- /simform-inner -->
                 <a type="submit"
@@ -92,7 +95,7 @@
     new stepsForm( theForm, {
         onSubmit : function( form ) {
             // hide form
-            classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
+            // classie.addClass( theForm.querySelector( '.simform-inner' ), 'hide' );
             /*
 				form.submit()
 				or

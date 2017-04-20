@@ -303,6 +303,7 @@ class user(AbstractUser):
     updated_at = models.DateTimeField(auto_now=True)
     # false profile type is employeer and true is jobseeker
     profile_type = models.BooleanField(default=False)
+    preference_filter = models.TextField(_('Preference Filter Search'), blank=True)
 
     objects = UserManager()
 
@@ -451,6 +452,9 @@ class AppliedBlueprints(models.Model):
         self.name_slug = str(name_trim).lower() + '-' + str(company_trim).lower()
         super(AppliedBlueprints, self).save(force_insert, force_update, using, update_fields)
 
+    class Meta:
+        verbose_name = 'Applied Blueprint'
+
 
 class QueueStack(models.Model):
     candidate = models.ForeignKey(user, related_name="candidate_name", null=True, blank=True)
@@ -464,6 +468,9 @@ class QueueStack(models.Model):
 
     def __unicode__(self):
         return str(self.candidate_position)
+
+    class Meta:
+        verbose_name = 'Queue Stack'
 
     #@receiver(post_save)
     #def update_position_by_one(**kwargs):

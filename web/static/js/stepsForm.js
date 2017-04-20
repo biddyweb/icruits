@@ -81,7 +81,7 @@
 		if(this.current === 0){
 			if(classie.hasClass( this.ctrlPrev, 'show')){
 				classie.removeClass( this.ctrlPrev, 'show');
-			};
+			}
 		}
 	};
 
@@ -101,8 +101,8 @@
 		// show next question
 		this.ctrlNext.addEventListener( 'click', function( ev ) { 
 			ev.preventDefault();
-			self._nextQuestion(); 
 			classie.addClass( self.ctrlPrev, 'show' );
+			self._nextQuestion();
 		} );
 
 		// show previous question
@@ -144,7 +144,7 @@
 		if(this.current === 0){
 			if(classie.hasClass( this.ctrlPrev, 'show')){
 				classie.removeClass( this.ctrlPrev, 'show');
-			};
+			}
 		}
 
 		this._progress();
@@ -187,7 +187,7 @@
 		else {
 			onEndTransitionFn();
 		}
-	}
+	};
 
 	stepsForm.prototype._nextQuestion = function() {
 		if( !this._validade() ) {
@@ -198,6 +198,7 @@
 		if( this.current === this.questionsCount - 1 ) {
 			this.isFilled = true;
 		}
+
 
 		// clear any previous error messages
 		this._clearError();

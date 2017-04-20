@@ -78,6 +78,16 @@
                                               style="padding-top: 110px;"
                                               data-ng-bind="JobFeed.blueprints[0].name">
                                         </span>
+                                        <span class="nohover center-block"
+                                              style="margin-top: 21px;"
+                                              ng-if="JobFeed.is_published">
+                                            Published
+                                        </span>
+                                        <span class="nohover center-block"
+                                              style="margin-top: 21px;"
+                                              ng-if="!JobFeed.is_published">
+                                            Not Published
+                                        </span>
                                         <span class="hover company center-block"
                                               data-ng-bind="JobFeed.blueprints[0].company_name">
                                         </span>
@@ -193,8 +203,8 @@
         <nav id="sidemenu-emp" class="menu-emp">
             <div class="icon-list-emp">
                 <h3>Filter</h3>
-                <a type="button" class="menu-item-emp" data-toggle="collapse" data-target="#location">Job Location</a>
-                <div id="location" class="collapse dropdown-fix-emp">
+                <a type="button" class="menu-item-emp" data-toggle="collapse" data-target="#location-emp">Job Location</a>
+                <div id="location-emp" class="collapse dropdown-fix-emp">
                     <div ng-repeat="loc in location_info">
                         <label>
                             <input type="checkbox"
@@ -204,8 +214,8 @@
                         </label>
                     </div>
                 </div>
-                <a type="button" class="menu-item-emp" data-toggle="collapse" data-target="#Salary">Salary Range</a>
-                <div id="Salary" class="collapse dropdown-fix-emp">
+                <a type="button" class="menu-item-emp" data-toggle="collapse" data-target="#Salary-emp">Salary Range</a>
+                <div id="Salary-emp" class="collapse dropdown-fix-emp">
                     <div ng-repeat="sal in salary_info">
                         <label>
                             <input type="checkbox"
@@ -215,8 +225,8 @@
                         </label>
                     </div>
                 </div>
-                <a type="button" class="menu-item-emp" data-toggle="collapse" data-target="#Experience">Experience Level</a>
-                <div id="Experience" class="collapse dropdown-fix-emp">
+                <a type="button" class="menu-item-emp" data-toggle="collapse" data-target="#Experience-emp">Experience Level</a>
+                <div id="Experience-emp" class="collapse dropdown-fix-emp">
                     <div ng-repeat="exp in experience_info">
                         <label>
                             <input type="checkbox"

@@ -5,12 +5,24 @@ from django.utils.module_loading import import_string
 
 from rest_framework import exceptions, serializers
 from rest_framework.authtoken.models import Token
-
+import json
 from libs.djoser import constants, utils, settings
 from web.models import ProfileType
 
 
 User = get_user_model()
+
+
+class PreferenceFilterJSONField(serializers.JSONField):
+
+    def to_representation(self, value):
+        try:
+            return json.loads(value)
+        except Exception as e:
+            pass
+
+    def to_internal_value(self, data):
+        return json.dumps(data)
 
 
 class ProfileTypeSerializer(serializers.ModelSerializer):
@@ -22,6 +34,7 @@ class ProfileTypeSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     related_profile_type = ProfileTypeSerializer(many=True, read_only=False, required=False)
+    preference_filter = PreferenceFilterJSONField()
 
     class Meta:
         model = User

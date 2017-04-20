@@ -199,16 +199,29 @@
             }
         };
 
+        $scope.deleteBlueprint = function () {
+            JobFeedsRes.delete({ name_slug: $scope.blueprint.name_slug }, function (response) {
+                $scope.data = response.data;
+                setTimeout(function () {
+                    $state.go('root.dashboard', { reload: true });
+                }, 500);
+            }, function (response) {
+                $scope.errors = response.data;
+            });
+        };
+
         $scope.updateBlueprint = function () {
             // body...
             JobFeedsRes.update({ name_slug: $scope.blueprint.name_slug }, $scope.blueprint, function (response) {
                 // body...
                 $scope.data = response.data;
+                setTimeout(function () {
+                    $window.location.reload();
+                }, 500);
             }, function (response) {
                 // body...
                 $scope.errors = response.data;
             });
-            $window.location.reload();
         };
         $scope.publishBlueprint = function () {
             // body...
@@ -216,6 +229,9 @@
             JobFeedsRes.update({ name_slug: $scope.blueprint.name_slug }, $scope.blueprint, function (response) {
                 // body...
                 $scope.data = response.data;
+                setTimeout(function () {
+                    $state.go('root.dashboard', { reload: true });
+                }, 500);
             }, function (response) {
                 // body...
                 $scope.errors = response.data;
@@ -447,6 +463,7 @@
         $scope.blueprints = [];
         $scope.not_closed_blueprints = [];
         $scope.closed_blueprints = [];
+        $scope.preferenced_filters = [];
 
         $scope.show_closed_jobs = false;
         $scope.show_accepted_jobs = false;
@@ -549,6 +566,11 @@
                 });
             });
             $scope.queue_resource = $scope.blueprints;
+            if(!$scope.user.preference_filter){
+                console.log('no preferences');
+            } else {
+                console.log('has preference');
+            }
         }
 
         $scope.tupleAppliedJobs = function () {
@@ -879,6 +901,7 @@
                 }, 500);
             }, function (response) {
                 // body...
+                $scope.errors = response.data;
             });
         };
 
@@ -986,6 +1009,8 @@
 
         $scope.reg = {};
 
+        $scope.complete = false;
+
         $scope.profile_types = [{profile_type: true, label: 'JobSeeker'}, {profile_type: false, label: 'Employer'}];
 
         $scope.registration = function () {
@@ -993,14 +1018,10 @@
                 if(pilot.email === $scope.reg.email){
 
                     AuthRes.save($scope.reg, function (resource) {
-                        $state.go('root.home', { reload: true });
-                        setTimeout(function() {
-                            $window.location.reload();
-                        }, 600);
+                        $scope.complete = true;
                     }, function (response) {
                         $scope.errors = response.data;
                     });
-
                 }
                 if(pilot.email !== $scope.reg.email){
                     $state.go('root.non_pilot', { reload: true });
@@ -1046,7 +1067,18 @@
 
             function loginSuccessFn(response) {
                 // body...
-                JWTTokenRes.jwt($scope.log.username, $scope.log.password);
+                console.log(response);
+                if(response.status === "Unauthorized"){
+                    console.log('bad password');
+                    $scope.errors = true;
+                    $scope.error = "Wrong password";
+                } else {
+                    JWTTokenRes.jwt($scope.log.username, $scope.log.password);
+                    setTimeout(function () {
+                        $state.go('root.dashboard', { reload: true });
+                    }, 500);
+                }
+
             }
 
             function loginErrorFn(response) {
