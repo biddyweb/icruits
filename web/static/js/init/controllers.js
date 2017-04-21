@@ -855,19 +855,25 @@
             });
         };
 
-        /* END OF WORK ENVIORMENT PHOTO UPLOAD */
+        /* END OF WORK ENVIRONMENT PHOTO UPLOAD */
 
         $scope.temp_tasks = [];
 
         /* ADDING BLUEPRINT TASK */
         $scope.list_blueprint_tasks = [];
         $scope.addTask = function (task) {
-            // body...z
-            $scope.temp_tasks.push(task);
-            $scope.temp_tasks.push($scope.new_employee);
-            $scope.list_blueprint_tasks.push($scope.temp_tasks);
-            $scope.new_employee = [];
-            $scope.temp_tasks = [];
+            // body...
+            $scope.no_employee_task_errors = false;
+            if(angular.isUndefined($scope.new_employee[0])){
+                $scope.no_employee_task_errors = true;
+                $scope.no_employee_task_error = 'Please select employees for task first.'
+            } else {
+                $scope.temp_tasks.push(task);
+                $scope.temp_tasks.push($scope.new_employee);
+                $scope.list_blueprint_tasks.push($scope.temp_tasks);
+                $scope.new_employee = [];
+                $scope.temp_tasks = [];
+            }
         };
 
         /* REMOVING BLUEPRINT TASK */
@@ -891,18 +897,57 @@
         /* CREATING BLUEPRINT */
         $scope.createBlueprint = function () {
             // body...
-            $scope.send_blueprint = [];
-            $scope.send_blueprint.push($scope.make_blueprint);
-            $scope.send_blueprint.push({tasks: $scope.list_blueprint_tasks});
-            CreateBlueprintRes.save($scope.send_blueprint, function (response) {
-                // body...
-                setTimeout(function () {
-                    $window.location.reload();
-                }, 500);
-            }, function (response) {
-                // body...
-                $scope.errors = response.data;
-            });
+            $scope.no_task_errors = false;
+            $scope.no_employee_errors = false;
+            if(angular.isUndefined($scope.list_blueprint_tasks[0])){
+                $scope.no_task_errors = true;
+                $scope.no_task_error = 'Please select task for this blueprint.'
+            } else {
+                angular.forEach($scope.list_blueprint_tasks, function (value, key) {
+                    if(angular.isUndefined(value[1][0])){
+                        $scope.no_employee_errors = true;
+                        $scope.no_employee_error = 'Please select employee for task first.'
+                    }
+                });
+                if(!$scope.no_task_errors && !$scope.no_employee_errors){
+                    if(angular.isUndefined($scope.make_blueprint.work_enviorment)){
+                        $scope.no_work_env_errors = true;
+                        $scope.no_work_env_error = 'Please add work environment picture.'
+                    } else {
+                        $scope.send_blueprint = [];
+                        $scope.send_blueprint.push($scope.make_blueprint);
+                        $scope.send_blueprint.push({tasks: $scope.list_blueprint_tasks});
+                        CreateBlueprintRes.save($scope.send_blueprint, function (response) {
+                            // body...
+                            setTimeout(function () {
+                                $window.location.reload();
+                            }, 500);
+                        }, function (response) {
+                            // body...
+                            $scope.field_errors = true;
+                            $scope.field_error = 'Please fill all blueprint fields.'
+                        });
+                    }
+                }
+            }
+        };
+
+        $scope.closeErrorCanvas = function () {
+            if($scope.no_employee_task_errors){
+                $scope.no_employee_task_errors = false;
+            }
+            if($scope.no_task_errors){
+                $scope.no_task_errors = false;
+            }
+            if($scope.no_employee_errors){
+                $scope.no_employee_errors = false;
+            }
+            if($scope.no_work_env_errors){
+                $scope.no_work_env_errors = false;
+            }
+            if($scope.field_errors){
+                $scope.field_errors = false;
+            }
         };
 
         $scope.desiredEmployee = {};

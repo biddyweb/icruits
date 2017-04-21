@@ -31,6 +31,12 @@ function openBigNav() {
     classie.addClass( adv_btn, 'show-button');
     classie.addClass( adv_btn_span, 'show-button');
     classie.addClass( adv_btn_span_2, 'show-button');
+    $('body').css({
+        'overflow-y': 'hidden'
+    });
+    $('.content-wrap').css({
+        'overflow-y': 'hidden'
+    });
 }
 
 function closeBigNav() {
@@ -47,6 +53,12 @@ function closeBigNav() {
     classie.removeClass( adv_btn, 'show-button');
     classie.removeClass( adv_btn_span, 'show-button');
     classie.removeClass( adv_btn_span_2, 'show-button');
+    $('body').css({
+        'overflow-y': 'auto'
+    });
+    $('.content-wrap').css({
+        'overflow-y': 'auto'
+    });
 }
 
 function openUserCont() {
@@ -68,28 +80,3 @@ function openUserCont() {
         btn2.style.display = 'inline';
     }
 }
-
-function forms() {
-
-    if(document.getElementById('RegisterForm')){
-        var Form = document.getElementById('RegisterForm');
-
-        new stepsForm(Form, {
-            onSubmit: function (form) {
-                // hide form
-                classie.addClass(Form.querySelector('.simform-inner'), 'hide');
-                /*
-                 form.submit()
-                 or
-                 AJAX request (maybe show loading indicator while we don't have an answer..)
-                 */
-
-                // let's just simulate something...
-                var register = Form.querySelector('.btn');
-                classie.addClass(register, 'show');
-            }
-        });
-    }
-}
-
-forms();

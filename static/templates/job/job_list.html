@@ -2,6 +2,8 @@
 <div class="container-wrap" ng-show="user.profile_type">
     <div class="menu-wrap">
         <nav id="sidemenu" class="menu">
+            <a id="close-button-job" class="closebtn">&times;</a>
+            <span class="label-close" style="color: rgb(255,255,255); margin-top: 4px; margin-right: 12px; font-size: 11px">CLOSE</span>
             <div class="icon-list">
                 <h3>Filter</h3>
                 <a type="button" class="menu-item" data-toggle="collapse" data-target="#industry">Industry Type</a>
@@ -78,7 +80,7 @@
                                               style="padding-top: 110px;"
                                               data-ng-bind="JobFeed.blueprints[0].name">
                                         </span>
-                                        <span class="nohover center-block"
+                                        <!--span class="nohover center-block"
                                               style="margin-top: 21px;"
                                               ng-if="JobFeed.is_published">
                                             Published
@@ -87,7 +89,7 @@
                                               style="margin-top: 21px;"
                                               ng-if="!JobFeed.is_published">
                                             Not Published
-                                        </span>
+                                        </span-->
                                         <span class="hover company center-block"
                                               data-ng-bind="JobFeed.blueprints[0].company_name">
                                         </span>
@@ -201,6 +203,8 @@
 <div class="container-wrap-emp" ng-show="!user.profile_type">
     <div class="menu-wrap-emp">
         <nav id="sidemenu-emp" class="menu-emp">
+            <a id="close-button-emp" class="closebtn">&times;</a>
+            <span class="label-close" style="color: rgb(255,255,255); margin-top: 4px; margin-right: 12px; font-size: 11px">CLOSE</span>
             <div class="icon-list-emp">
                 <h3>Filter</h3>
                 <a type="button" class="menu-item-emp" data-toggle="collapse" data-target="#location-emp">Job Location</a>
@@ -239,11 +243,11 @@
             </div>
         </nav>
     </div>
-    <span id="open-button-emp" class="menu-white"><span class="label" style="color: rgb(0,0,0);">FILTER</span> </span>
-    <a id="user-nav" class="userNav" onclick="openNav()"><i class="fa fa-user"></i></a>
     <!--div id="userContent" class="userContainer" ng-controller='LogoutCtrl'>
         <a id="btn-2" ng-click="logoutNow()" class="userNavBtn">Logout</a>
     </div-->
+            <span id="open-button-emp" class="menu-white"><span class="label" style="color: rgb(0,0,0);">FILTER</span> </span>
+            <a id="user-nav" class="userNav" onclick="openNav()"><i class="fa fa-user"></i></a>
 
     <div class="content-wrap-emp">
         <div class="content-emp">
@@ -514,7 +518,7 @@
                         id='selectTask' 
                         name='blueprint tasks'
                         ng-model='make_blueprint_tasks'
-                        ng-options='option.id*1 as option.name for option in blueprint_tasks'
+                        ng-options='option.id*1 as option.name for option in blueprint_tasks'>
                     <option value=''></option>
                 </select>
                 <div></div>
@@ -577,8 +581,8 @@
         </a>
     </div>
     <div class="blueprintContainer" style="margin-top: -10px;">
-            <div class="row" style="background-color: rgb(215,215,215); padding-top: 10px;">
-        <center>
+        <div class="row" style="background-color: rgb(215,215,215); padding-top: 10px;">
+            <center>
                 <div class="previewImage">
                     <img ngf-thumbnail="preview">
                 </div>
@@ -590,13 +594,34 @@
                         Add Work Environment
                     </span>
                 </a>
-        </center>
-            </div>
+            </center>
+        </div>
         <hr class="hrBotTen">
         <hr class="hrBotTen">
     </div>
 </div>
 <!-- END OF FULLSCREEN CANVAS FOR CREATING BLUEPRINT -->
+
+<aside ng-if="no_employee_task_errors || no_task_errors || no_employee_errors || no_work_env_errors || field_errors"
+       id="errorCanvas" class="displayError">
+    <div class="captionError">Input fields error</div>
+    <span class="blueprintError" ng-if="no_employee_task_errors" ng-bind="no_employee_task_error"></span>
+    <span class="blueprintError" ng-if="no_task_errors" ng-bind="no_task_error"></span>
+    <span class="blueprintError" ng-if="no_employee_errors" ng-bind="no_employee_error"></span>
+    <span class="blueprintError" ng-if="no_work_env_errors" ng-bind="no_work_env_error"></span>
+    <span class="blueprintError" ng-if="field_errors" ng-bind="field_error"></span>
+    <a id="back-btn" ng-click="closeErrorCanvas()"
+       style="display: block; margin-left: 5%;
+       bottom: -14px; position: relative;">
+        <span id="advanced-span" class="show-button">
+            x
+        </span>
+        <span id="advanced-span-2" class="hover show-button">
+            x
+        </span>
+    </a>
+</aside>
+
 
 <!-- CREATE TASK CANVAS -->
 <aside id="createTask" class="createTask">
@@ -715,12 +740,11 @@
         content_emp = document.querySelector( '.content-wrap-emp' ),
         openbtn = document.getElementById( 'open-button' ),
         openbtn_emp = document.getElementById( 'open-button-emp' ),
-        closebtn = document.getElementById( 'close-button' ),
+        closebtn = document.getElementById( 'close-button-job' ),
         closebtn_emp = document.getElementById( 'close-button-emp' ),
         isOpen = false,
-        isOpenEmp = false;
-
-    var filterBtn = document.getElementById('filter-btn');
+        isOpenEmp = false,
+        filterBtn = document.getElementById('filter-btn');
 
     function init() {
         initEvents();
@@ -755,11 +779,23 @@
         if( isOpen ) {
             classie.remove( bodyEl, 'show-menu' );
             classie.remove(filterBtn, 'hide-button');
+            $('body').css({
+                'overflow-y': 'hidden'
+            });
+            $('.content-wrap').css({
+                overflow: 'hidden'
+            });
             // animate path
         }
         else {
             classie.add( bodyEl, 'show-menu' );
             classie.add(filterBtn, 'hide-button');
+            $('body').css({
+                overflow: 'auto'
+            });
+            $('.content-wrap').css({
+                overflow: 'auto'
+            });
             // animate path
         }
         isOpen = !isOpen;
@@ -770,10 +806,26 @@
             classie.remove( bodyEl, 'show-menu-emp' );
             /*classie.remove(filterBtn, 'hide-button');*/
             // animate path
+            $('body').css({
+                'overflow-y': 'auto',
+                'overflow-x': 'auto'
+            });
+            $('.content-wrap').css({
+                'overflow-y': 'auto',
+                'overflow-x': 'auto'
+            });
         }
         else {
             classie.add( bodyEl, 'show-menu-emp' );
             /*classie.add(filterBtn, 'hide-button');*/
+            $('body').css({
+                'overflow-y': 'hidden',
+                'overflow-x': 'hidden'
+            });
+            $('.content-wrap').css({
+                'overflow-y': 'hidden',
+                'overflow-x': 'hidden'
+            });
             // animate path
         }
         isOpenEmp = !isOpenEmp;
