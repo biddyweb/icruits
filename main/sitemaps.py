@@ -18,7 +18,7 @@ class HomeSitemap(Sitemap):
 
 
 class BlueprintSitemap(Sitemap):
-    priority = full
+    priority = half
     changefreq = 'never'
 
     def items(self):
@@ -26,7 +26,7 @@ class BlueprintSitemap(Sitemap):
 
 
 class HelpSitemap(Sitemap):
-    priority = full
+    priority = half
     changefreq = 'never'
 
     def items(self):
@@ -34,3 +34,59 @@ class HelpSitemap(Sitemap):
 
     def location(self, page):
         return '/' + page
+
+
+class DashboardSitemap(Sitemap):
+    priority = half
+    changefreq = 'never'
+
+    def items(self):
+        return ['dashboard']
+
+    def location(self, page):
+        return '/' + page
+
+
+class ProfileSitemap(Sitemap):
+    priority = half
+    changefreq = 'never'
+
+    def items(self):
+        return ['profile']
+
+    def location(self, page):
+        return '/' + page
+
+
+class RegisterSitemap(Sitemap):
+    priority = half
+    changefreq = 'never'
+
+    def items(self):
+        return ['register']
+
+    def location(self, page):
+        return '/' + page
+
+
+class ActivateSitemap(Sitemap):
+    priority = half
+    changefreq = 'never'
+
+    def items(self):
+        return ['activate']
+
+    def location(self, page):
+        return '/' + page + '/?params'
+
+
+class NotPilotSitemap(Sitemap):
+    priority = half
+    changefreq = 'never'
+
+    def items(self):
+        return ['not-approved']
+
+    def location(self, page):
+        return '/' + page
+

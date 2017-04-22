@@ -56,7 +56,7 @@ User = get_user_model()
 
 
 router = routers.DefaultRouter()
-router.register(r'job', JobFeedViewSet, base_name='job')
+router.register(r'job', JobFeedViewSet, base_name='dashboard')
 router.register(r'help', HelpViewSet, base_name='help')
 router.register(r'queue', QueueViewSet, base_name='queue')
 router.register(r'location', LocationViewSet, base_name='location')
@@ -85,12 +85,12 @@ base_urlpatterns = (
     url(r'^auth/password/reset/confirm/$', PasswordResetConfirmView.as_view(), name='password/reset/confirm'),
     url(r'^auth/login/$', LoginViewSet.as_view(), name='login_'),
     url(r'^auth/logout/$', LogoutViewSet.as_view(), name='logout_'),
-    url(r'^auth/whoami/$', UserViewSet.as_view(), name='whoami'),
+    url(r'^auth/whoami/$', UserViewSet.as_view(), name='profile'),
     url(r'^auth/get-jtw-token/$', obtain_jwt_token, name='get-jwt'),
     url(r'^auth/check-jwt-token/$', verify_jwt_token, name='check-jwt-token'),
     url(r'^auth/check-user/$', CheckUserViewSet.as_view(), name='check-user'),
     url(r'^auth/check-username/$', CheckUsernameViewSet.as_view(), name='check-username'),
-    url(r'^auth/activate/$', ActivationView.as_view(), name='activation'),
+    url(r'^auth/activate/$', ActivationView.as_view(), name='activate'),
 )
 
 urlpatterns = base_urlpatterns + (

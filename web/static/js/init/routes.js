@@ -117,7 +117,7 @@
             }
         })
         .state('root.blueprint', {
-            url: '/blueprint/:name_slug/',
+            url: '/job/:name_slug/',
             controller: 'BluprintDetailsCtrl',
             templateUrl: '/static/templates/job/job_detail.html',
             resolve: {
@@ -230,14 +230,3 @@
         });
     }
 })();
-
-
-
-
-
-
-
-
-
-
-

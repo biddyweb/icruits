@@ -27,12 +27,22 @@ from main.sitemaps import (
     HomeSitemap,
     BlueprintSitemap,
     HelpSitemap,
+    DashboardSitemap,
+    ProfileSitemap,
+    RegisterSitemap,
+    ActivateSitemap,
+    NotPilotSitemap,
 )
 
 sitemaps = {
     'home': HomeSitemap,
     'jobs': BlueprintSitemap,
     'help': HelpSitemap,
+    'dashboard': DashboardSitemap,
+    'profile': ProfileSitemap,
+    'register': RegisterSitemap,
+    'activate': ActivateSitemap,
+    'not_pilot': NotPilotSitemap,
 }
 
 admin.autodiscover()

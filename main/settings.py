@@ -26,7 +26,7 @@ SECRET_KEY = '_y9$^um+y-yc!rxj8t@%2v%zk1#@fw=b&deutl4tr+r9*3oqgj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['polar-wave-49918.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['icruits.herokuapp.com', '127.0.0.1']
 
 # Application definition
 
@@ -180,7 +180,7 @@ JWT_AUTH = {
 }
 
 DJOSER = {
-    'DOMAIN': 'https://polar-wave-49918.herokuapp.com',
+    'DOMAIN': 'https://icruits.herokuapp.com',
     'SITE_NAME': 'iCruits',
     'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/?params={uid}?{token}',
     'ACTIVATION_URL': 'activate/?params={uid}?{token}',
