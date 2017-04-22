@@ -21,7 +21,8 @@ module.exports = function (grunt) {
 
         uglify: {
             dist: {
-                src: ['web/static/js/init/*.js'],
+                src: ['web/static/js/init/controllers.js', 'web/static/js/init/main.js',
+                      'web/static/js/init/routes.js', 'web/static/js/init/services.js'],
                 dest: 'web/static/js/init/main.min.js'
             }
         },
@@ -37,9 +38,9 @@ module.exports = function (grunt) {
 
         copy: {
             dist: {
-                cwd: ['web/static/img'],
+                cwd: 'web/static/img',
                 src: ['**/*'],
-                dest: ['web/static/dist/img/'],
+                dest: 'web/static/dist/img/',
                 expand: true
             }
         },
