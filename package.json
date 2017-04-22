@@ -19,6 +19,6 @@
     "tough-cookie": "^2.3.2"
   },
   "scripts": {
-    "postinstall": "grunt default"
+    "postinstall": "grunt default --force"
   }
 }
