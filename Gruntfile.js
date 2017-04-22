@@ -12,7 +12,7 @@ module.exports = function (grunt) {
         concat: {
             dist: {
                 src: ['web/static/js/**/*.js'],
-                dest: ['web/static/dist/js/build/concated.js']
+                dest: 'web/static/dist/js/build/concated.js'
             },
             options: {
                 separator: ';'
@@ -22,14 +22,14 @@ module.exports = function (grunt) {
         uglify: {
             dist: {
                 src: ['web/static/js/init/*.js'],
-                dest: ['web/static/js/init/main.min.js']
+                dest: 'web/static/js/init/main.min.js'
             }
         },
 
         cssmin: {
             dist: {
                 src: ['web/static/style/css/main.css'],
-                dest: ['web/static/style/css/main.min.css']
+                dest: 'web/static/style/css/main.min.css'
             }
         },
 
