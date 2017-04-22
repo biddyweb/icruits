@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'web.middleware.PrerenderMiddleware',
     'libs.djadmin.middleware.DJMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -202,4 +203,44 @@ REST_FRAMEWORK = {
     #'DEFAULT_AUTHENTICATION_CLASSES': [
     #    'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     #],
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'filter_ignorable_404_urls': {
+            '()': 'django_libs.utils_log.FilterIgnorable404URLs'
+        }
+    },
+    'formatters': {
+        'verbose': {
+            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt': "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        }
+    },
+    'handlers': {
+        'file_prerender': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'prerender.log',
+            'formatter': 'simple'
+        },
+        'mail_admins': {
+            'level': 'WARNING',
+            'filters': [
+                'filter_ignorable_404_urls',
+            ],
+            'class': 'django.utils.log.AdminEmailHandler'
+        }
+    },
+    'loggers': {
+        'prerender': {
+            'handlers': ['file_prerender'],
+            'level': 'INFO'
+        }
+    }
 }
