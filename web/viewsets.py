@@ -636,6 +636,11 @@ class QueueStackViewSet(viewsets.ModelViewSet):
             user_email = instance.candidate.email
             applied_obj = AppliedBlueprints.objects.filter(name_slug=applied_job_name_slug).first()
             Queue.objects.get(stack=instance.id).stack.remove(instance)
+            queue_obj = Queue.objects.get(stack=instance.id)
+            pos = 0
+            for stack in queue_obj.stack.all():
+                stack.candidate_position = pos
+                pos += 1
             applied_obj.delete()
             self.perform_destroy(instance)
 

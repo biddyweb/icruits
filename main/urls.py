@@ -43,7 +43,7 @@ sitemaps = {
     'home': HomeSitemap,
     #'help': HelpSitemap,
     'dashboard': DashboardSitemap,
-    #'jobs': BlueprintSitemap,
+    'jobs': BlueprintSitemap,
 }
 
 admin.autodiscover()
