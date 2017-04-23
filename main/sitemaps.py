@@ -77,7 +77,7 @@ class ActivateSitemap(Sitemap):
         return ['activate']
 
     def location(self, page):
-        return '/' + page + '/?params'
+        return '/' + page
 
 
 class NotPilotSitemap(Sitemap):

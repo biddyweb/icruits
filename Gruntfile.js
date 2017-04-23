@@ -70,8 +70,8 @@ module.exports = function (grunt) {
             }
         },
 
-        // ZA herohu
-        html_snapshots: {
+        // for heroku
+        /*html_snapshots: {
             // options for all targets
             source: "https://icruits.herokuapp.com/robots.txt",
             options: {
@@ -92,9 +92,32 @@ module.exports = function (grunt) {
                     outputDir: "snapshots/release"
                 }
             }
-        }
+        }*/
 
         // za lokal host
+        // for heroku
+        html_snapshots: {
+            // options for all targets
+            source: "http://127.0.0.1:8000/robots.txt",
+            options: {
+                input: "sitemap",
+                source: "http://127.0.0.1:8000/sitemap.xml",
+                hostname: "http://127.0.0.1:8000",
+                outputDirClean: "true"
+            },
+            // the debug target
+            debug: {
+                options: {
+                    outputDir: "templates/snapshots/"
+                }
+            },
+            // the release target
+            release: {
+                options: {
+                    outputDir: "snapshots/release"
+                }
+            }
+        }
 
     });
 

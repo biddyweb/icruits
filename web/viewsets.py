@@ -63,7 +63,10 @@ from django.contrib.auth import (
     login,
     authenticate,
 )
-from django.http import Http404
+from django.http import (
+    Http404,
+    HttpResponse
+)
 from django.contrib.auth import get_user_model
 from libs.djoser import serializers
 from django.core import serializers as serialize
@@ -877,3 +880,14 @@ class HiredEmployeeViewSet(viewsets.ModelViewSet):
     permission_classes = [
         permissions.IsAuthenticated,
     ]
+
+
+def RobotsView(request):
+
+    response_text = ""
+    http_host = request.get_host()
+
+    if http_host:
+        response_text = "User-agent: *\nDisallow: /"
+
+    return HttpResponse(response_text, content_type="text/plain")

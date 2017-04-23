@@ -33,16 +33,17 @@ from main.sitemaps import (
     ActivateSitemap,
     NotPilotSitemap,
 )
+from web.viewsets import RobotsView
 
 sitemaps = {
-    'home': HomeSitemap,
-    'jobs': BlueprintSitemap,
-    'help': HelpSitemap,
-    'dashboard': DashboardSitemap,
     'profile': ProfileSitemap,
     'register': RegisterSitemap,
     'activate': ActivateSitemap,
     'not_pilot': NotPilotSitemap,
+    'home': HomeSitemap,
+    #'help': HelpSitemap,
+    'dashboard': DashboardSitemap,
+    #'jobs': BlueprintSitemap,
 }
 
 admin.autodiscover()
@@ -53,7 +54,7 @@ urlpatterns = [
     url(r'^api/seo/', include('seo.urls')),
     url(r'^$', TemplateView.as_view(template_name='main.html'), name="home"),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
-    url(r'^robots\.txt$', herokuapp_robots_view, name='robots'),
+    url(r'^robots\.txt$', RobotsView, name='robots'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

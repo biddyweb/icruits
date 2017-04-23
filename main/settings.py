@@ -24,9 +24,11 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '_y9$^um+y-yc!rxj8t@%2v%zk1#@fw=b&deutl4tr+r9*3oqgj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-ALLOWED_HOSTS = ['icruits.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
+
+DEBUG = True
 
 # Application definition
 
