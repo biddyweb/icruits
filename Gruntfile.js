@@ -71,39 +71,16 @@ module.exports = function (grunt) {
         },
 
         // for heroku
-        /*html_snapshots: {
+        html_snapshots: {
             // options for all targets
             source: "https://icruits.herokuapp.com/robots.txt",
             options: {
                 input: "sitemap",
                 source: "https://icruits.herokuapp.com/sitemap.xml",
                 hostname: "https://icruits.herokuapp.com",
-                outputDirClean: "true"
-            },
-            // the debug target
-            debug: {
-                options: {
-                    outputDir: "templates/snapshots/"
-                }
-            },
-            // the release target
-            release: {
-                options: {
-                    outputDir: "snapshots/release"
-                }
-            }
-        }*/
-
-        // za lokal host
-        // for heroku
-        html_snapshots: {
-            // options for all targets
-            source: "http://127.0.0.1:8000/robots.txt",
-            options: {
-                input: "sitemap",
-                source: "http://127.0.0.1:8000/sitemap.xml",
-                hostname: "http://127.0.0.1:8000",
-                outputDirClean: "true"
+                outputDirClean: "true",
+                processLimit: 5,
+                timeout: 20000
             },
             // the debug target
             debug: {
@@ -118,6 +95,32 @@ module.exports = function (grunt) {
                 }
             }
         }
+
+        // za lokal host
+        /*html_snapshots: {
+            // options for all targets
+            source: "http://127.0.0.1:8000/robots.txt",
+            options: {
+                input: "sitemap",
+                source: "http://127.0.0.1:8000/sitemap.xml",
+                hostname: "http://127.0.0.1:8000",
+                outputDirClean: "true",
+                processLimit: 5,
+                timeout: 20000
+            },
+            // the debug target
+            debug: {
+                options: {
+                    outputDir: "templates/snapshots/"
+                }
+            },
+            // the release target
+            release: {
+                options: {
+                    outputDir: "snapshots/release"
+                }
+            }
+        }*/
 
     });
 
