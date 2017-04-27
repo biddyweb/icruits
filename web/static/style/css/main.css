@@ -383,6 +383,7 @@ VERY IMPORTANT!!!!
 /*span.hover {
   top: 100%!important
 }*/
+/* dash items */
 .job-item span.hover{
     display: block;
     font-family: Roboto Condensed;
@@ -445,6 +446,78 @@ VERY IMPORTANT!!!!
     z-index: 999999999;
     color: rgb(102, 178, 255);
     letter-spacing: .1875rem;
+}
+/*******************************************************
+                NEW DASHBOARD ITEM
+*******************************************************/
+.dashboardItem {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: table;
+}
+.dashboardItem h1 {
+  -webkit-transition: opacity 0.5s ease;
+  -moz-transition: opacity 0.5s ease;
+  -ms-transition: opacity 0.5s ease;
+  -o-transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  word-spacing: 9999999px;
+  line-height: normal;
+}
+.dashboardItem .inner {
+  position: relative;
+  display: table-cell;
+  height: 100%;
+  vertical-align: top;
+  cursor: pointer;
+}
+.dashboardItem .inner h1 {
+  font-size: 32px;
+  font-size: 2rem;
+  color: white;
+  padding: 10px 20px;
+}
+.dashboardItem .inner .queueNumber {
+    position: absolute;
+    bottom: 5px;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 80px 80px;
+    border-color: transparent transparent #1b93d1 transparent;
+    line-height: 0px;
+    _border-color: #000000 #000000 #1b93d1 #000000;
+    _filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+}
+.dashboardItem .inner .jobHeader {
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 0;
+    font-size: 2em !important;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    left: 10px;
+    padding-top: 0;
+    text-align: right;
 }
 /*
    MENU BUTTON FOR SMALL OFFCANVAS SCREEN

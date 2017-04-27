@@ -257,14 +257,19 @@
                     <div class="row">
                         <div class="col-sm-3"
                              data-ng-repeat="JobFeed in blueprints | filter:industryFilter | filter:locationFilter | filter:salaryFilter | filter:experienceFilter">
-                            <div class="job-item text-center" ng-show="!show_closed_jobs">
-                                <div class="hover-bg hover-bg-articles">
-                                    <a data-ui-sref="root.blueprint({name_slug: JobFeed.name_slug})">
+                            <div class="dashboardItem text-center" ng-show="!show_closed_jobs">
+                                <div class="inner">
+                                        <span class="nohover center-block"
+
+                                              data-ng-bind="JobFeed.name">
+                                        </span>
+                                    <iframe width="100%" height="200" frameborder="0" src="https://www.youtube.com/embed/1pP3_yNtvrE"></iframe>
+                                    <div class="queueNumber"></div>
+                                    <h1 class="jobHeader" data-ng-bind="JobFeed.max_queue"></h1>
+                                    <!--a data-ui-sref="root.blueprint({name_slug: JobFeed.name_slug})">
                                         <!--img class="img-responsive"
                                                 data-ng-src="{{ JobFeed.image }}" alt=""-->
-                                        <div class="hover-text">
-                                            <span class="lead" data-ng-bind="JobFeed.max_queue"></span>
-                                        </div>
+                                              <!--span class="lead" data-ng-bind="JobFeed.max_queue"></span>
                                         <img class="img-circle img-thumbnail" src="">
                                         <span class="nohover center-block"
                                               style="padding-top: 105px;"
@@ -283,7 +288,7 @@
                                         <span class="hover company center-block"
                                               data-ng-bind="JobFeed.company_name">
                                         </span>
-                                    </a>
+                                    </a-->
                                 </div>
                             </div>
                             <div class="job-item text-center" ng-show="show_closed_jobs">
