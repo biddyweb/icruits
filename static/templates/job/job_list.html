@@ -67,33 +67,37 @@
                     <div class="row">
                         <div class="col-sm-3"
                              data-ng-repeat="JobFeed in blueprints | filter:industryFilter | filter:locationFilter | filter:salaryFilter | filter:experienceFilter">
-                            <div class="job-item text-center">
-                                <div class="hover-bg hover-bg-articles">
-                                    <a data-ui-sref="root.blueprint({name_slug: JobFeed.blueprints[0].name_slug})">
-                                        <!--img class="img-responsive"
-                                                data-ng-src="{{ JobFeed.image }}" alt=""-->
-                                        <div class="hover-text">
-                                            <span class="lead" data-ng-bind="JobFeed.stacks[JobFeed.stacks.length - 1].candidate_position"></span>
+                            <div class="dashboardItem text-center blueprintItem" ng-if="user.profile_type">
+                                <div class="inner">
+                                    <span class="nohover center-block blueprintTitle"
+                                          data-ng-bind="JobFeed.name">
+                                    </span>
+                                    <video width="100%" height="200px" preload="metadata">
+                                        <source src="{{ JobFeed.blueprints[0].video_url }}" type="video/mp4">
+                                    </video>
+                                    <div class="queueNumber"></div>
+                                    <h1 class="jobHeader" data-ng-bind="JobFeed.max_queue"></h1>
+                                    <div class="overlay">
+                                        <div class="overlay-content">
+                                            <div class="blueprint-info">
+                                                <h3 data-ng-bind="JobFeed.blueprints[0].name"></h3>
+                                                <h3 data-ng-bind="JobFeed.blueprints[0].max_queue"></h3>
+                                                <p data-ng-bind="JobFeed.blueprints[0].company_name"></p>
+                                            </div>
+                                            <div class="blueprint-overview">
+                                                <span class="blueprint-link">
+                                                    <a data-ui-sref="root.blueprint({name_slug: JobFeed.blueprints[0].name_slug})">
+                                                        <i class="fa fa-link"></i>
+                                                    </a>
+                                                </span>
+                                                <span class="blueprint-expand">
+                                                    <a href='#'>
+                                                        <i class="fa fa-search-plus"></i>
+                                                    </a>
+                                                </span>
+                                            </div>
                                         </div>
-                                        <img class="img-circle img-thumbnail" src="">
-                                        <span class="nohover center-block"
-                                              style="padding-top: 110px;"
-                                              data-ng-bind="JobFeed.blueprints[0].name">
-                                        </span>
-                                        <!--span class="nohover center-block"
-                                              style="margin-top: 21px;"
-                                              ng-if="JobFeed.is_published">
-                                            Published
-                                        </span>
-                                        <span class="nohover center-block"
-                                              style="margin-top: 21px;"
-                                              ng-if="!JobFeed.is_published">
-                                            Not Published
-                                        </span-->
-                                        <span class="hover company center-block"
-                                              data-ng-bind="JobFeed.blueprints[0].company_name">
-                                        </span>
-                                    </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -257,62 +261,71 @@
                     <div class="row">
                         <div class="col-sm-3"
                              data-ng-repeat="JobFeed in blueprints | filter:industryFilter | filter:locationFilter | filter:salaryFilter | filter:experienceFilter">
-                            <div class="dashboardItem text-center" ng-show="!show_closed_jobs">
+                            <div class="dashboardItem text-center blueprintItem" ng-if="!show_closed_jobs && !user.profile_type">
                                 <div class="inner">
-                                        <span class="nohover center-block"
-
-                                              data-ng-bind="JobFeed.name">
-                                        </span>
-                                    <iframe width="100%" height="200" frameborder="0" src="https://www.youtube.com/embed/1pP3_yNtvrE"></iframe>
+                                    <span class="nohover center-block blueprintTitle"
+                                          data-ng-bind="JobFeed.name">
+                                    </span>
+                                    <video width="100%" height="200px" preload="metadata">
+                                        <source src="{{ JobFeed.video_url }}" type="video/mp4">
+                                    </video>
                                     <div class="queueNumber"></div>
                                     <h1 class="jobHeader" data-ng-bind="JobFeed.max_queue"></h1>
-                                    <!--a data-ui-sref="root.blueprint({name_slug: JobFeed.name_slug})">
-                                        <!--img class="img-responsive"
-                                                data-ng-src="{{ JobFeed.image }}" alt=""-->
-                                              <!--span class="lead" data-ng-bind="JobFeed.max_queue"></span>
-                                        <img class="img-circle img-thumbnail" src="">
-                                        <span class="nohover center-block"
-                                              style="padding-top: 105px;"
-                                              data-ng-bind="JobFeed.name">
-                                        </span>
-                                        <span class="nohover center-block"
-                                              style="margin-top: 21px;"
-                                              ng-if="JobFeed.is_published">
-                                            Published
-                                        </span>
-                                        <span class="nohover center-block"
-                                              style="margin-top: 21px;"
-                                              ng-if="!JobFeed.is_published">
-                                            Not Published
-                                        </span>
-                                        <span class="hover company center-block"
-                                              data-ng-bind="JobFeed.company_name">
-                                        </span>
-                                    </a-->
+                                    <div class="overlay">
+                                        <div class="overlay-content">
+                                            <div class="blueprint-info">
+                                                <h3 data-ng-bind="JobFeed.name"></h3>
+                                                <h3 data-ng-bind="JobFeed.max_queue"></h3>
+                                                <p data-ng-bind="JobFeed.company_name"></p>
+                                            </div>
+                                            <div class="blueprint-overview">
+                                                <span class="blueprint-link">
+                                                    <a data-ui-sref="root.blueprint({name_slug: JobFeed.name_slug})">
+                                                        <i class="fa fa-link"></i>
+                                                    </a>
+                                                </span>
+                                                <span class="blueprint-expand">
+                                                    <a href='#'>
+                                                        <i class="fa fa-search-plus"></i>
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="job-item text-center" ng-show="show_closed_jobs">
-                                <div class="hover-bg hover-bg-articles">
-                                    <a data-ui-sref="root.blueprint({name_slug: JobFeed.name_slug})">
-                                        <!--img class="img-responsive"
-                                                data-ng-src="{{ JobFeed.image }}" alt=""-->
-                                        <div class="hover-text">
-                                            <span class="lead" data-ng-bind="JobFeed.max_queue"></span>
+                            <div class="dashboardItem text-center blueprintItem" ng-if="show_closed_jobs && !user.profile_type">
+                                <div class="inner">
+                                    <span class="nohover center-block blueprintTitle"
+                                          data-ng-bind="JobFeed.name">
+                                    </span>
+                                    <video width="100%" height="200px" preload="metadata">
+                                        <source src="{{ JobFeed.video_url }}" type="video/mp4">
+                                    </video>
+                                    <div class="queueNumber"></div>
+                                    <h1 class="jobHeader" data-ng-bind="JobFeed.max_queue"></h1>
+                                    <div class="overlay">
+                                        <div class="overlay-content">
+                                            <div class="blueprint-info">
+                                                <h3 data-ng-bind="JobFeed.name"></h3>
+                                                <h3 data-ng-bind="JobFeed.max_queue"></h3>
+                                                <p data-ng-bind="JobFeed.company_name"></p>
+                                            </div>
+                                            <div class="blueprint-overview">
+                                                <span class="blueprint-link">
+                                                    <a href="#"
+                                                       data-ui-sref="root.blueprint({name_slug: JobFeed.name_slug})">
+                                                        <i class="fa fa-link"></i>
+                                                    </a>
+                                                </span>
+                                                <span class="blueprint-expand">
+                                                    <a href="#">
+                                                        <i class="fa fa-search-plus"></i>
+                                                    </a>
+                                                </span>
+                                            </div>
                                         </div>
-                                        <img class="img-circle img-thumbnail" src="">
-                                        <span class="nohover center-block"
-                                              style="padding-top: 105px;"
-                                              data-ng-bind="JobFeed.name">
-                                        </span>
-                                        <span class="nohover center-block"
-                                              style="margin-top: 21px;"
-                                              ng-if="JobFeed.is_closed">
-                                            Closed Job
-                                        </span>
-                                        <span class="hover company center-block"
-                                              data-ng-bind="JobFeed.company_name">
-                                        </span>
-                                    </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

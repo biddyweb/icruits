@@ -451,50 +451,52 @@ VERY IMPORTANT!!!!
                 NEW DASHBOARD ITEM
 *******************************************************/
 .dashboardItem {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  -o-box-sizing: border-box;
-  box-sizing: border-box;
-  float: left;
-  width: 100%;
-  height: 200px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  display: table;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: table;
+    background: black;
+    margin-top: 20px;
 }
 .dashboardItem h1 {
-  -webkit-transition: opacity 0.5s ease;
-  -moz-transition: opacity 0.5s ease;
-  -ms-transition: opacity 0.5s ease;
-  -o-transition: opacity 0.5s ease;
-  transition: opacity 0.5s ease;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -ms-box-sizing: border-box;
-  -o-box-sizing: border-box;
-  box-sizing: border-box;
-  width: 100%;
-  text-align: left;
-  word-spacing: 9999999px;
-  line-height: normal;
+    -webkit-transition: opacity 0.5s ease;
+    -moz-transition: opacity 0.5s ease;
+    -ms-transition: opacity 0.5s ease;
+    -o-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    word-spacing: 9999999px;
+    line-height: normal;
 }
 .dashboardItem .inner {
-  position: relative;
-  display: table-cell;
-  height: 100%;
-  vertical-align: top;
-  cursor: pointer;
+    position: relative;
+    display: table-cell;
+    height: 100%;
+    vertical-align: top;
+    cursor: default;
 }
 .dashboardItem .inner h1 {
-  font-size: 32px;
-  font-size: 2rem;
-  color: white;
-  padding: 10px 20px;
+    font-size: 32px;
+    font-size: 2rem;
+    color: white;
+    padding: 10px 20px;
 }
 .dashboardItem .inner .queueNumber {
     position: absolute;
-    bottom: 5px;
+    bottom: 0;
     right: 0;
     width: 0;
     height: 0;
@@ -507,7 +509,7 @@ VERY IMPORTANT!!!!
 }
 .dashboardItem .inner .jobHeader {
     position: absolute;
-    bottom: 0;
+    bottom: -5px;
     padding-bottom: 0;
     font-size: 2em !important;
     -webkit-box-sizing: border-box;
@@ -519,6 +521,108 @@ VERY IMPORTANT!!!!
     padding-top: 0;
     text-align: right;
 }
+
+.dashboardItem .inner .blueprintTitle {
+    background-color: rgb(240, 240, 240);
+    color: rgb(0, 0, 0);
+    height: 30px;
+    font-size: 1.25em;
+    padding-top: 0.165em;
+    -webkit-transition: opacity 0.5s ease;
+    -moz-transition: opacity 0.5s ease;
+    -ms-transition: opacity 0.5s ease;
+    -o-transition: opacity 0.5s ease;
+    transition: opacity 0.5s ease;
+}
+
+#dashboard .overlay {
+    background-color: #000;
+    color: #fff;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 0;
+    position: absolute;
+    text-align: center;
+    opacity: 0;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.overlay .overlay-content {
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+
+.overlay .overlay-text {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.overlay .blueprint-info {
+    opacity: 0;
+    margin-bottom: 75px;
+    margin-top: -75px;
+    -webkit-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+}
+
+.overlay .blueprint-info h3 {
+    top: 20px;
+    color: rgb(255, 255, 255);
+}
+
+.blueprint-overview a {
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+    display: inline-block;
+    margin-top: 20px;
+    margin-right: 5px;
+}
+
+.blueprint-overview a:hover {
+    color: #1b93d1;
+    cursor: pointer;
+}
+
+.blueprint-overview .blueprint-expand {
+    margin-bottom: 250px;
+    margin-left: -250px;
+}
+
+.blueprint-img {
+    height: 200px;
+    width: 100%;
+}
+
+.blueprint-overview .blueprint-expand {
+    -webkit-transition: all 0.8s ease-in-out;
+    transition: all 0.8s ease-in-out;
+}
+
+#dashboard .blueprintItem:hover .overlay {
+    opacity: 1;
+    bottom: 0;
+    height: 100%;
+}
+
+#dashboard .blueprintItem:hover .blueprint-overview .blueprint-expand {
+    margin-top: 0;
+    margin-left: 0;
+}
+
+#dashboard .blueprintItem:hover .overlay .blueprint-info {
+    opacity: 1;
+    margin-bottom:0;
+    margin-top:0;
+}
+
 /*
    MENU BUTTON FOR SMALL OFFCANVAS SCREEN
  */
