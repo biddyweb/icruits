@@ -61,7 +61,7 @@
 
     <div class="content-wrap">
         <div class="content">
-            <nav class="dashHeader text-center navbar navbar-default fixed top"><span>ICRUITS</span></nav>
+            <nav class="dashHeader text-center navbar navbar-default fixed top"><span style="color: black">I</span><span style="color: #1b93d1">C</span><span style="color: black">RUITS</span></nav>
             <section id="dashboard" style="margin-top: 75px;">
                 <div class="containerSub cf">
                     <div class="row">
@@ -70,18 +70,18 @@
                             <div class="dashboardItem text-center blueprintItem" ng-if="user.profile_type">
                                 <div class="inner">
                                     <span class="nohover center-block blueprintTitle"
-                                          data-ng-bind="JobFeed.name">
+                                          data-ng-bind="JobFeed.blueprints[0].name">
                                     </span>
                                     <video width="100%" height="200px" preload="metadata">
                                         <source src="{{ JobFeed.blueprints[0].video_url }}" type="video/mp4">
                                     </video>
                                     <div class="queueNumber"></div>
-                                    <h1 class="jobHeader" data-ng-bind="JobFeed.max_queue"></h1>
+                                    <h1 class="jobHeader" data-ng-bind="JobFeed.stacks[JobFeed.stacks.length - 1].candidate_position"></h1>
                                     <div class="overlay">
                                         <div class="overlay-content">
                                             <div class="blueprint-info">
                                                 <h3 data-ng-bind="JobFeed.blueprints[0].name"></h3>
-                                                <h3 data-ng-bind="JobFeed.blueprints[0].max_queue"></h3>
+                                                <h3 data-ng-bind="JobFeed.stacks[JobFeed.stacks.length - 1].candidate_position"></h3>
                                                 <p data-ng-bind="JobFeed.blueprints[0].company_name"></p>
                                             </div>
                                             <div class="blueprint-overview">
@@ -255,7 +255,7 @@
 
     <div class="content-wrap-emp">
         <div class="content-emp">
-            <nav class="dashHeader text-center navbar navbar-default fixed top"><span>ICRUITS</span></nav>
+            <nav class="dashHeader text-center navbar navbar-default fixed top"><span style="color: black">I</span><span style="color: #1b93d1">C</span><span style="color: black">RUITS</span></nav>
             <section id="dashboard" style="margin-top: 75px;">
                 <div class="containerSub cf">
                     <div class="row">
