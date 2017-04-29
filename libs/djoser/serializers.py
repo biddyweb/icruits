@@ -34,7 +34,7 @@ class ProfileTypeSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     related_profile_type = ProfileTypeSerializer(many=True, read_only=False, required=False)
-    preference_filter = PreferenceFilterJSONField()
+    # preference_filter = PreferenceFilterJSONField(required=False)
 
     class Meta:
         model = User

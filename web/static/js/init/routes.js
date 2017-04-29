@@ -227,6 +227,17 @@
                     }).$promise;
                 }
             }
+        }).state('root.intro', {
+            url: '/intro/:name_slug/',
+            controller: 'IntroCtrl',
+            templateUrl: '/static/templates/job/intro.html',
+            resolve: {
+                JobFeed: function (JobFeedsRes, $stateParams) {
+                    return JobFeedsRes.get({
+                        name_slug: $stateParams.name_slug
+                    }).$promise;
+                }
+            }
         });
     }
 })();

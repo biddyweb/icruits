@@ -1414,3 +1414,16 @@
     }
 })();
 
+(function () {
+    "use strict";
+
+    angular.module('app').controller('IntroCtrl', IntroCtrl);
+
+    IntroCtrl.$inject = ['$scope', '$rootScope', 'JobFeed'];
+
+    function IntroCtrl($scope, $rootScope, JobFeed) {
+        $scope.blueprint = JobFeed;
+
+        $rootScope.image = '';
+    }
+})();

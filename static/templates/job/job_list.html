@@ -51,6 +51,14 @@
                     </div>
                 </div>
             </div>
+            <div class="social-container">
+                <div class="social-fb">
+                    <a href="www.facebook.com" style="margin-left: 0;"><i class="fa fa-facebook"></i></a>
+                </div>
+                <div class="social-twitter">
+                    <a href="www.twitter.com" style="margin-left: 0;"><i class="fa fa-twitter"></i></a>
+                </div>
+            </div>
         </nav>
     </div>
     <span id="open-button" class="menu-white"><span class="label" style="color: rgb(0,0,0);">FILTER</span> </span>
@@ -81,7 +89,9 @@
                                         <div class="overlay-content">
                                             <div class="blueprint-info">
                                                 <h3 data-ng-bind="JobFeed.blueprints[0].name"></h3>
-                                                <h3 data-ng-bind="JobFeed.stacks[JobFeed.stacks.length - 1].candidate_position"></h3>
+                                                <h3 data-ng-bind="JobFeed.stacks[JobFeed.stacks.length - 1].candidate_position"
+                                                    style="font-size: 2em">
+                                                </h3>
                                                 <p data-ng-bind="JobFeed.blueprints[0].company_name"></p>
                                             </div>
                                             <div class="blueprint-overview">
@@ -91,7 +101,7 @@
                                                     </a>
                                                 </span>
                                                 <span class="blueprint-expand">
-                                                    <a href='#'>
+                                                    <a data-ui-sref="root.intro({name_slug: JobFeed.blueprints[0].name_slug})">
                                                         <i class="fa fa-search-plus"></i>
                                                     </a>
                                                 </span>
@@ -103,82 +113,98 @@
                         </div>
                     </div>
                 </div>
-                <a id="filter-btn" ng-click="tupleAppliedJobs()" ng-if="show_new_jobs">
-                    <span>
-                        Applied Jobs
-                    </span>
-                    <span class="hover">
-                        Applied Jobs
-                    </span>
-                </a>
-                <a id="filter-btn" ng-click="tupleAppliedJobs()" ng-if="!show_new_jobs">
-                    <span>
-                        All Jobs
-                    </span>
-                    <span class="hover">
-                        All Jobs
-                    </span>
-                </a>
-                <a id="filter-btn" ng-click="tupleICruitedJobs()"
-                   style="right: 180px;"
-                   ng-if="show_new_jobs_icruited">
-                    <span>
-                        iCruited Jobs
-                    </span>
-                    <span class="hover">
-                        iCruited Jobs
-                    </span>
-                </a>
-                <a id="filter-btn" ng-click="tupleICruitedJobs()"
-                   style="right: 180px;"
-                   ng-if="!show_new_jobs_icruited">
-                    <span>
-                        All Jobs
-                    </span>
-                    <span class="hover">
-                        All Jobs
-                    </span>
-                </a>
-                <a id="filter-btn" ng-click="tupleInterviewJobs()"
-                   style="right: 360px;"
-                   ng-if="show_new_jobs_interview">
-                    <span>
-                        Interview for Job
-                    </span>
-                    <span class="hover">
-                        Interview for Job
-                    </span>
-                </a>
-                <a id="filter-btn" ng-click="tupleInterviewJobs()"
-                   style="right: 360px;"
-                   ng-if="!show_new_jobs_interview">
-                    <span>
-                        All Jobs
-                    </span>
-                    <span class="hover">
-                        All Jobs
-                    </span>
-                </a>
-                <a id="filter-btn" ng-click="tupleHiredJobs()"
-                   style="left: 0px;"
-                   ng-if="show_hired_jobs">
-                    <span>
-                        Hired Jobs
-                    </span>
-                    <span class="hover">
-                        Hired Jobs
-                    </span>
-                </a>
-                <a id="filter-btn" ng-click="tupleHiredJobs()"
-                   style="left: 0px;"
-                   ng-if="!show_hired_jobs">
-                    <span>
-                        All Jobs
-                    </span>
-                    <span class="hover">
-                        All Jobs
-                    </span>
-                </a>
+                <div id="dashboardBtn1">
+                    <a id="filter-btn" ng-click="tupleAppliedJobs()" ng-if="show_new_jobs">
+                        <span>
+                            Applied Jobs
+                        </span>
+                        <span class="hover">
+                            Applied Jobs
+                        </span>
+                    </a>
+                </div>
+                <div id="dashboardBtn2">
+                    <a id="filter-btn" ng-click="tupleAppliedJobs()" ng-if="!show_new_jobs">
+                        <span>
+                            All Jobs
+                        </span>
+                        <span class="hover">
+                            All Jobs
+                        </span>
+                    </a>
+                </div>
+                <div id="dashboardBtn3">
+                    <a id="filter-btn" ng-click="tupleICruitedJobs()"
+                       style="right: 180px;"
+                       ng-if="show_new_jobs_icruited">
+                        <span>
+                            iCruited Jobs
+                        </span>
+                        <span class="hover">
+                            iCruited Jobs
+                        </span>
+                    </a>
+                </div>
+                <div id="dashboardBtn4">
+                    <a id="filter-btn" ng-click="tupleICruitedJobs()"
+                       style="right: 180px;"
+                       ng-if="!show_new_jobs_icruited">
+                        <span>
+                            All Jobs
+                        </span>
+                        <span class="hover">
+                            All Jobs
+                        </span>
+                    </a>
+                </div>
+                <div id="dashboardBtn5">
+                    <a id="filter-btn" ng-click="tupleInterviewJobs()"
+                       style="right: 360px;"
+                       ng-if="show_new_jobs_interview">
+                        <span>
+                            Interview for Job
+                        </span>
+                        <span class="hover">
+                            Interview for Job
+                        </span>
+                    </a>
+                </div>
+                <div id="dashboardBtn6">
+                    <a id="filter-btn" ng-click="tupleInterviewJobs()"
+                       style="right: 360px;"
+                       ng-if="!show_new_jobs_interview">
+                        <span>
+                            All Jobs
+                        </span>
+                        <span class="hover">
+                            All Jobs
+                        </span>
+                    </a>
+                </div>
+                <div id="dashboardBtn7">
+                    <a id="filter-btn" ng-click="tupleHiredJobs()"
+                       style="left: 0px;"
+                       ng-if="show_hired_jobs">
+                        <span>
+                            Hired Jobs
+                        </span>
+                        <span class="hover">
+                            Hired Jobs
+                        </span>
+                    </a>
+                </div>
+                <div id="dashboardBtn8">
+                    <a id="filter-btn" ng-click="tupleHiredJobs()"
+                       style="left: 0px;"
+                       ng-if="!show_hired_jobs">
+                        <span>
+                            All Jobs
+                        </span>
+                        <span class="hover">
+                            All Jobs
+                        </span>
+                    </a>
+                </div>
                 <!--a id="filter-btn" style="right: 180px;"
                    ng-click="tupleJobsState()" ng-if="!show_closed_jobs">
                     <span>
@@ -245,13 +271,21 @@
                     </div>
                 </div>
             </div>
+            <div class="social-container-emp">
+                <div class="social-fb-emp">
+                    <a href="www.facebook.com" style="margin-left: 0;"><i class="fa fa-facebook"></i></a>
+                </div>
+                <div class="social-twitter-emp">
+                    <a href="www.twitter.com" style="margin-left: 0;"><i class="fa fa-twitter"></i></a>
+                </div>
+            </div>
         </nav>
     </div>
     <!--div id="userContent" class="userContainer" ng-controller='LogoutCtrl'>
         <a id="btn-2" ng-click="logoutNow()" class="userNavBtn">Logout</a>
     </div-->
-            <span id="open-button-emp" class="menu-white"><span class="label" style="color: rgb(0,0,0);">FILTER</span> </span>
-            <a id="user-nav" class="userNav" onclick="openNav()"><i class="fa fa-user"></i></a>
+    <span id="open-button-emp" class="menu-white"><span class="label" style="color: rgb(0,0,0);">FILTER</span></span>
+    <a id="user-nav-emp" class="userNav" onclick="openNav()"><i class="fa fa-user"></i></a>
 
     <div class="content-wrap-emp">
         <div class="content-emp">
@@ -275,7 +309,7 @@
                                         <div class="overlay-content">
                                             <div class="blueprint-info">
                                                 <h3 data-ng-bind="JobFeed.name"></h3>
-                                                <h3 data-ng-bind="JobFeed.max_queue"></h3>
+                                                <h3 data-ng-bind="JobFeed.max_queue" style="font-size: 2em"></h3>
                                                 <p data-ng-bind="JobFeed.company_name"></p>
                                             </div>
                                             <div class="blueprint-overview">
@@ -285,7 +319,7 @@
                                                     </a>
                                                 </span>
                                                 <span class="blueprint-expand">
-                                                    <a href='#'>
+                                                    <a data-ui-sref="root.intro({name_slug: JobFeed.name_slug})">
                                                         <i class="fa fa-search-plus"></i>
                                                     </a>
                                                 </span>
@@ -319,7 +353,7 @@
                                                     </a>
                                                 </span>
                                                 <span class="blueprint-expand">
-                                                    <a href="#">
+                                                    <a data-ui-sref="root.intro({name_slug: JobFeed.name_slug})">
                                                         <i class="fa fa-search-plus"></i>
                                                     </a>
                                                 </span>
@@ -331,32 +365,38 @@
                         </div>
                     </div>
                 </div>
-                <a id="filter-btn" onclick="openBigNav()">
-                    <span>
-                        Create Blueprint
-                    </span>
-                    <span class="hover">
-                        Create Blueprint
-                    </span>
-                </a>
-                <a id="filter-btn" style="right: 180px;"
-                   ng-click="tupleJobsState()" ng-if="!show_closed_jobs">
-                    <span>
-                        Closed Jobs
-                    </span>
-                    <span class="hover">
-                        Closed Jobs
-                    </span>
-                </a>
-                <a id="filter-btn" style="right: 180px;"
-                   ng-click="tupleJobsState()" ng-if="show_closed_jobs">
-                    <span>
-                        Opened Jobs
-                    </span>
-                    <span class="hover">
-                        Opened Jobs
-                    </span>
-                </a>
+                <div id="dashboard-emp-btn1">
+                    <a id="filter-btn" onclick="openBigNav()">
+                        <span>
+                            Create Blueprint
+                        </span>
+                        <span class="hover">
+                            Create Blueprint
+                        </span>
+                    </a>
+                </div>
+                <div id="dashboard-emp-btn2">
+                    <a id="filter-btn" style="right: 180px;"
+                       ng-click="tupleJobsState()" ng-if="!show_closed_jobs">
+                        <span>
+                            Closed Jobs
+                        </span>
+                        <span class="hover">
+                            Closed Jobs
+                        </span>
+                    </a>
+                </div>
+                <div id="dashboard-emp-btn3">
+                    <a id="filter-btn" style="right: 180px;"
+                       ng-click="tupleJobsState()" ng-if="show_closed_jobs">
+                        <span>
+                            Opened Jobs
+                        </span>
+                        <span class="hover">
+                            Opened Jobs
+                        </span>
+                    </a>
+                </div>
             </section>
         </div>
     </div>
@@ -367,10 +407,10 @@
 <div id="myNav" class="overlay-offcanvas">
     <a id="back-btn" class="hide-button" onclick="closeBigNav()">
         <span id="advanced-span" class="show-button">
-            x
+            &times;
         </span>
         <span id="advanced-span-2" class="hover show-button">
-            x
+            &times;
         </span>
     </a>
     <a id="apply-btn" class="hide-button" ng-click="createBlueprint()">
@@ -519,9 +559,9 @@
                    class="form-control inputSizeFix"
                    ng-model="make_blueprint.max_queue" 
                    required>
-            <span class="new blueprintLabel"> Download Url </span>
+            <span class="new blueprintLabel"> Interview Url </span>
             <input type="text" 
-                   name="download url"
+                   name="interview url"
                    class="form-control inputSizeFix"
                    ng-model="make_blueprint.url" 
                    required>
@@ -632,10 +672,10 @@
        style="display: block; margin-left: 5%;
        bottom: -14px; position: relative;">
         <span id="advanced-span" class="show-button">
-            x
+            &times;
         </span>
         <span id="advanced-span-2" class="hover show-button">
-            x
+            &times;
         </span>
     </a>
 </aside>
@@ -674,10 +714,10 @@
        style="display: block; margin-left: 5%;
        bottom: 55px; position: relative;">
         <span id="advanced-span" class="show-button">
-            x
+            &times;
         </span>
         <span id="advanced-span-2" class="hover show-button">
-            x
+            &times;
         </span>
     </a>
 </aside>
@@ -729,10 +769,10 @@
        style="display: block; margin-left: 5%;
        bottom: 55px; position: relative;">
         <span id="advanced-span" class="show-button">
-            x
+            &times;
         </span>
         <span id="advanced-span-2" class="hover show-button">
-            x
+            &times;
         </span>
     </a>
 </aside>
@@ -762,7 +802,19 @@
         closebtn_emp = document.getElementById( 'close-button-emp' ),
         isOpen = false,
         isOpenEmp = false,
-        filterBtn = document.getElementById('filter-btn');
+        userBtn = document.getElementById('user-nav'),
+        userBtnEmp = document.getElementById('user-nav-emp'),
+        empBtn1 = document.getElementById('dashboard-emp-btn1'),
+        empBtn2 = document.getElementById('dashboard-emp-btn2'),
+        empBtn3 = document.getElementById('dashboard-emp-btn3'),
+        seekBtn1 = document.getElementById('dashboardBtn1'),
+        seekBtn2 = document.getElementById('dashboardBtn2'),
+        seekBtn3 = document.getElementById('dashboardBtn3'),
+        seekBtn4 = document.getElementById('dashboardBtn4'),
+        seekBtn5 = document.getElementById('dashboardBtn5'),
+        seekBtn6 = document.getElementById('dashboardBtn6'),
+        seekBtn7 = document.getElementById('dashboardBtn7'),
+        seekBtn8 = document.getElementById('dashboardBtn8');
 
     function init() {
         initEvents();
@@ -796,23 +848,43 @@
     function toggleMenu() {
         if( isOpen ) {
             classie.remove( bodyEl, 'show-menu' );
-            classie.remove(filterBtn, 'hide-button');
+            classie.remove( userBtn, 'hide-button' );
+            classie.remove( seekBtn1, 'hide-button' );
+            classie.remove( seekBtn2, 'hide-button' );
+            classie.remove( seekBtn3, 'hide-button' );
+            classie.remove( seekBtn4, 'hide-button' );
+            classie.remove( seekBtn5, 'hide-button' );
+            classie.remove( seekBtn6, 'hide-button' );
+            classie.remove( seekBtn7, 'hide-button' );
+            classie.remove( seekBtn8, 'hide-button' );
             $('body').css({
-                'overflow-y': 'hidden'
+                'overflow-y': 'auto',
+                'overflow-x': 'auto'
             });
             $('.content-wrap').css({
-                overflow: 'hidden'
+                'overflow-y': 'hidden',
+                'overflow-x': 'auto'
             });
             // animate path
         }
         else {
             classie.add( bodyEl, 'show-menu' );
-            classie.add(filterBtn, 'hide-button');
+            classie.add( userBtn, 'hide-button' );
+            classie.add( seekBtn1, 'hide-button' );
+            classie.add( seekBtn2, 'hide-button' );
+            classie.add( seekBtn3, 'hide-button' );
+            classie.add( seekBtn4, 'hide-button' );
+            classie.add( seekBtn5, 'hide-button' );
+            classie.add( seekBtn6, 'hide-button' );
+            classie.add( seekBtn7, 'hide-button' );
+            classie.add( seekBtn8, 'hide-button' );
             $('body').css({
-                overflow: 'auto'
+                'overflow-y': 'auto',
+                'overflow-x': 'hidden'
             });
             $('.content-wrap').css({
-                overflow: 'auto'
+                'overflow-y': 'hidden',
+                'overflow-x': 'hidden'
             });
             // animate path
         }
@@ -822,6 +894,10 @@
     function toggleMenuEmp() {
         if( isOpenEmp ) {
             classie.remove( bodyEl, 'show-menu-emp' );
+            classie.remove( userBtnEmp, 'hide-button' );
+            classie.remove( empBtn1 , 'hide-button' );
+            classie.remove( empBtn2 , 'hide-button' );
+            classie.remove( empBtn3 , 'hide-button' );
             /*classie.remove(filterBtn, 'hide-button');*/
             // animate path
             $('body').css({
@@ -835,9 +911,13 @@
         }
         else {
             classie.add( bodyEl, 'show-menu-emp' );
+            classie.add( userBtnEmp, 'hide-button' );
+            classie.add( empBtn1, 'hide-button' );
+            classie.add( empBtn2, 'hide-button' );
+            classie.add( empBtn3, 'hide-button' );
             /*classie.add(filterBtn, 'hide-button');*/
             $('body').css({
-                'overflow-y': 'hidden',
+                'overflow-y': 'auto',
                 'overflow-x': 'hidden'
             });
             $('.content-wrap').css({
@@ -937,22 +1017,23 @@ $("#TasksBlueprint").on('click','.rem-btn',function(){
 <script type="text/javascript">
     function expandMenu() {
         // body...
-        var size = $('.content-wrap').height();
+        var pos = $(window).scrollTop();
         $('.menu-wrap').css({
-            'height': size + 'px'
+            'height': pos + 'px'
         });
     }
-    $(window).on('scroll resize', expandMenu);
+    $(window).on('ready scroll resize', expandMenu);
 </script>
 <script type="text/javascript">
     function expandMenu() {
         // body...
-        var size = $('.content-wrap-emp').height();
+
+        var pos = $(window).scrollTop();
         $('.menu-wrap-emp').css({
-            'height': size + 'px'
+            'top': pos + 'px'
         });
     }
-    $(window).on('scroll resize', expandMenu);
+    $(window).on('ready scroll resize', expandMenu);
 </script>
 
 <script type="text/javascript">
