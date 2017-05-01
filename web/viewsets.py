@@ -908,6 +908,12 @@ class BlueprintsCandidateHasAppliedViewSet(views.APIView):
     permission_classes = [
         permissions.AllowAny,
     ]
+    parser_classes = [
+        parsers.JSONParser,
+    ]
+    renderer_classes = [
+        renderers.JSONRenderer,
+    ]
 
     def post(self, request, format=None):
         data = json.loads(request.body)
