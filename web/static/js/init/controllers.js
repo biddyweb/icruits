@@ -405,13 +405,13 @@
     'IndustryInfo', 'LocationInfo', 'SalaryInfo', 'ExperienceInfo', 'CompanyTypeInfo', 'WaitIntervalInfo', 'OnJobSuccessInfo',
     'JobTypeInfo', 'JobDurationInfo', 'ExperienceLevelInfo', 'BlueprintTasksInfo', 'VisaStatusInfo', 'UserListInfo', 'Upload', 'CreateBlueprintRes',
     'DesiredEmployeeRes', 'DesiredEmployeesInfo', 'BlueprintTasksRes' , 'QueueInfo', 'QueueStackInfo', 'AppliedBlueprintsInfo',
-    'HiredEmpInfo'];
+    'HiredEmpInfo', 'UserInfoRes'];
 
     function DashboardCtrl ($scope, $rootScope, $state, $cookies, $window, metaTags, BluePrints, UserInfo,
     IndustryInfo, LocationInfo, SalaryInfo, ExperienceInfo, CompanyTypeInfo, WaitIntervalInfo, OnJobSuccessInfo,
     JobTypeInfo, JobDurationInfo, ExperienceLevelInfo, BlueprintTasksInfo, VisaStatusInfo, UserListInfo, Upload, CreateBlueprintRes,
     DesiredEmployeeRes, DesiredEmployeesInfo, BlueprintTasksRes, QueueInfo, QueueStackInfo, AppliedBlueprintsInfo,
-    HiredEmpInfo) {
+    HiredEmpInfo, UserInfoRes) {
 
         $scope.hired_employee_info = HiredEmpInfo;
 
@@ -476,6 +476,14 @@
         $scope.show_new_jobs_icruited = true;
         $scope.show_new_jobs_interview = true;
         $scope.show_hired_jobs = true;
+
+        $scope.industryIncludes = [];
+
+        $scope.locationIncludes = [];
+
+        $scope.salaryIncludes = [];
+
+        $scope.experienceIncludes = [];
 
         // tuple show closed/opened jobs logic
         $scope.tupleJobsState = function () {
@@ -567,9 +575,30 @@
             });
             $scope.queue_resource = $scope.blueprints;
             if(!$scope.user.preference_filter){
-                console.log('no preferences');
+                $scope.user.preference_filter = [];
             } else {
-                console.log('has preference');
+                if(angular.isUndefined($scope.user.preference_filter.industryIncludes)) {
+                    $scope.user.preference_filter.industryIncludes = [];
+                }
+                if(angular.isUndefined($scope.user.preference_filter.locationIncludes)) {
+                    $scope.user.preference_filter.locationIncludes = [];
+                }
+                if(angular.isUndefined($scope.user.preference_filter.salaryIncludes)) {
+                    $scope.user.preference_filter.salaryIncludes = [];
+                }
+                if(angular.isUndefined($scope.user.preference_filter.experienceIncludes)) {
+                    $scope.user.preference_filter.experienceIncludes = [];
+                }
+                if($scope.user.preference_filter.industryIncludes){
+                    angular.forEach($scope.user.preference_filter.industryIncludes, function (value, key) {
+                        $scope.FilterIndustry(value);
+                    });
+                }
+                if($scope.user.preference_filter.locationIncludes){
+                    angular.forEach($scope.user.preference_filter.locationIncludes, function (value, key) {
+                        $scope.FilterLocation(value);
+                    });
+                }
             }
         }
 
@@ -705,22 +734,17 @@
 
         /* FILTER PART */
 
-        $scope.industryIncludes = [];
-
-        $scope.locationIncludes = [];
-
-        $scope.salaryIncludes = [];
-
-        $scope.experienceIncludes = [];
-
         $scope.FilterIndustry = function (filter) {
             // body...
             var i = $.inArray(filter, $scope.industryIncludes);
             if(i > -1 ){
                 $scope.industryIncludes.splice(i, 1);
+                $scope.user.preference_filter.industryIncludes.splice(i, 1);
             } else {
                 $scope.industryIncludes.push(filter);
+                $scope.user.preference_filter.industryIncludes.push(filter);
             }
+            UserInfoRes.update($scope.user);
         };
 
         $scope.industryFilter = function (blueprints) {

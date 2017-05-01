@@ -383,70 +383,6 @@ VERY IMPORTANT!!!!
 /*span.hover {
   top: 100%!important
 }*/
-/* dash items */
-.job-item span.hover{
-    display: block;
-    font-family: Roboto Condensed;
-    text-transform: uppercase;
-    letter-spacing: .2875rem;
-    text-indent: 0;
-    text-shadow: 0 0 white;
-    text-rendering: auto;
-    -webkit-font-smoothing: initial;
-    height: 52px;
-    line-height: 52px;
-    padding: 0;
-    visibility: hidden;
-    background: rgba(0,0,0,0);
-    opacity: 0;
-    color: #1D1D1F;
-    transition: all 750ms cubic-bezier(.25,.46,.45,.94);
-    position: absolute;
-    font-size: 0.825em;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    bottom: 0;
-}
-
-.job-item span.nohover{
-    display: block;
-    font-family: Roboto Condensed;
-    text-transform: uppercase;
-    letter-spacing: .1875rem;
-    text-indent: 0;
-    text-shadow: 0 0 white;
-    text-rendering: auto;
-    -webkit-font-smoothing: initial;
-    height: 52px;
-    line-height: 52px;
-    padding: 0;
-    background: rgba(0,0,0,0);
-    color: #1D1D1F;
-    transition: all 750ms cubic-bezier(.25,.46,.45,.94);
-    bottom: 20px;
-    /* position: absolute; */
-    font-size: 0.725em;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-}
-
-.job-item:hover span.hover.name {
-    opacity: 1;
-    visibility: visible;
-    transition: all 750ms cubic-bezier(.55,.085,.68,.53);
-    z-index: 999999999;
-}
-
-.job-item:hover span.hover.company {
-    opacity: 1;
-    visibility: visible;
-    transition: all 750ms cubic-bezier(.55,.085,.68,.53);
-    z-index: 999999999;
-    color: rgb(102, 178, 255);
-    letter-spacing: .1875rem;
-}
 /*******************************************************
                 NEW DASHBOARD ITEM
 *******************************************************/
@@ -1347,7 +1283,7 @@ LOGIN FORM
     display: inline-block;
     position: relative;
     font-family: Roboto Condensed;
-    text-shadow: 1px 1px grey;
+    /*text-shadow: 1px 1px grey;*/
     font-size: .725rem;
     letter-spacing: .125rem;
     background: 0 0;
@@ -1365,6 +1301,7 @@ LOGIN FORM
     -ms-transition: all 0.8s ease;
     -o-transition: all 0.8s ease;
     transition: all 0.8s ease;
+    font-weight: 600;
 }
 
 .questions input:focus {
@@ -1908,46 +1845,12 @@ input, textarea, select, button, meter, progress {
     margin-left: 33px;
     margin-top: 15px;
 }
-.job-item .hover-bg {
-    margin: 0 auto;
-  height: 280px;
-  overflow: hidden;
-  position: relative;
-}
-.job-item .hover-bg-articles {
-    margin-top: 1em;
-    margin-left: auto;
-    margin-right: auto;    
-    height: 200px;
-    width: 100%;
-    transition: all 750ms cubic-bezier(.25,.46,.45,.94);
-    border: 1px solid rgb(235,235,235);
-}
-.job-item .hover-bg-articles:hover {
-    background-color: rgb(245,245,245);
-    border: 1px solid rgb(0,0,0);
-    opacity: 1;
-    visibility: visible;
-    transition: all 750ms cubic-bezier(.25,.46,.45,.94);
-}
+
 .lead {
     font-family: Roboto Condensed;
     color: rgb(0,0,0);
     font-size: 2em;
 }
-.hover-bg .hover-text {
-  position: absolute;
-  text-align: center;
-  margin: 0 auto;
-  color: #ffffff;
-  /*background: rgba(0, 0, 0, 0.66);*/
-  padding: 5.3em 0;
-  height: 100%;
-  width: 100%;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
 body,
 .container-wrap, 
 .content-wrap {
