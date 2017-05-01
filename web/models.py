@@ -388,7 +388,8 @@ class Blueprint(models.Model):
     remote_work = models.CharField(_('Remote Work'), max_length=255)
     max_queue = models.IntegerField(_('Max Queue'), default=10)
     company_name = models.CharField(_('Company Name'), max_length=255)
-    work_enviorment = models.ImageField(upload_to="img/work-enviorment/")
+    work_enviorment = models.ImageField(upload_to="img/work-enviorment/1")
+    work_enviorment_2 = models.ImageField(upload_to="img/work-enviorment/2", blank=True)
     has_simulator = models.BooleanField(_('Has Simulator'), default=False)
     is_closed = models.BooleanField(_('Is Closed'), default=False)
     video_url = models.CharField(_('Video Url'), max_length=255, blank=True)
@@ -501,7 +502,18 @@ class Queue(models.Model):
 
 
 class WorkEnviorment(models.Model):
-    image = ResizedImageField(size=[300, 600], crop=['middle', 'center'], upload_to='img/work-enviorment/temp/')
+    image = ResizedImageField(size=[300, 600], crop=['middle', 'center'], upload_to='img/work-enviorment/temp/1/')
+    session = models.CharField(max_length=511)
+
+    def __unicode__(self):
+        return self.session
+
+    class Meta:
+        verbose_name = 'Work Environment'
+
+
+class WorkEnviorment2(models.Model):
+    image = ResizedImageField(size=[300, 600], crop=['middle', 'center'], upload_to='img/work-enviorment/temp/2/')
     session = models.CharField(max_length=511)
 
     def __unicode__(self):

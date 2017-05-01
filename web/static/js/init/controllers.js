@@ -599,6 +599,16 @@
                         $scope.FilterLocation(value);
                     });
                 }
+                if($scope.user.preference_filter.salaryIncludes){
+                    angular.forEach($scope.user.preference_filter.salaryIncludes, function (value, key) {
+                        $scope.FilterSalary(value);
+                    });
+                }
+                if($scope.user.preference_filter.experienceIncludes){
+                    angular.forEach($scope.user.preference_filter.experienceIncludes, function (value, key) {
+                        $scope.FilterExperience(value);
+                    });
+                }
             }
         }
 
@@ -860,6 +870,9 @@
 
         /* WORK ENVIORMENT UPLOAD PHOTO */
 
+        $scope.work_env1 = true;
+        $scope.work_env2 = false;
+
         $scope.upload = function (file) {
             // body...
             if(!file){
@@ -871,6 +884,27 @@
             }).success(function (data, status, headers, config) {
                 // body...
                 $scope.make_blueprint.work_enviorment = data.image;
+                $scope.preview = data.image;
+                $scope.errors = null;
+                $scope.work_env1 = false;
+                $scope.work_env2 = true;
+            }).errors(function (data, status, headers, config) {
+                // body...
+                $scope.errors = data;
+            });
+        };
+
+        $scope.upload2 = function (file) {
+            // body...
+            if(!file){
+                return;
+            }
+            Upload.upload({
+                url: '/api/work-enviorment2/',
+                file: file
+            }).success(function (data, status, headers, config) {
+                // body...
+                $scope.make_blueprint.work_enviorment2 = data.image;
                 $scope.preview = data.image;
                 $scope.errors = null;
             }).errors(function (data, status, headers, config) {
@@ -938,19 +972,24 @@
                         $scope.no_work_env_errors = true;
                         $scope.no_work_env_error = 'Please add work environment picture.'
                     } else {
-                        $scope.send_blueprint = [];
-                        $scope.send_blueprint.push($scope.make_blueprint);
-                        $scope.send_blueprint.push({tasks: $scope.list_blueprint_tasks});
-                        CreateBlueprintRes.save($scope.send_blueprint, function (response) {
-                            // body...
-                            setTimeout(function () {
-                                $window.location.reload();
-                            }, 500);
-                        }, function (response) {
-                            // body...
-                            $scope.field_errors = true;
-                            $scope.field_error = 'Please fill all blueprint fields.'
-                        });
+                        if(angular.isUndefined($scope.make_blueprint.work_enviorment2)) {
+                            $scope.no_work_env_errors = true;
+                            $scope.no_work_env_error = 'Please add another work environment picture.'
+                        } else {
+                            $scope.send_blueprint = [];
+                            $scope.send_blueprint.push($scope.make_blueprint);
+                            $scope.send_blueprint.push({tasks: $scope.list_blueprint_tasks});
+                            CreateBlueprintRes.save($scope.send_blueprint, function (response) {
+                                // body...
+                                setTimeout(function () {
+                                    $window.location.reload();
+                                }, 500);
+                            }, function (response) {
+                                // body...
+                                $scope.field_errors = true;
+                                $scope.field_error = 'Please fill all blueprint fields.'
+                            });
+                        }
                     }
                 }
             }

@@ -21,6 +21,7 @@ from web.models import (
     AppliedBlueprints,
     PrehiredEmployee,
     HiredEmployee,
+    WorkEnviorment2,
 )
 from rest_framework import serializers
 from libs.djoser.serializers import UserSerializer
@@ -149,6 +150,7 @@ class BlueprintSerializer(serializers.ModelSerializer):
     blueprint_tasks = BlueprintTasksSerializer(many=True, read_only=True)
     job_location = LocationSerializer(many=False, read_only=True)
     work_enviorment = CustomImageField()
+    work_enviorment_2 = CustomImageField()
     visa_status = VisaSerializer(many=False, read_only=True)
 
     class Meta:
@@ -197,6 +199,13 @@ class WorkEnviormentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WorkEnviorment
+        fields = '__all__'
+
+
+class WorkEnviorment2Serializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = WorkEnviorment2
         fields = '__all__'
 
 

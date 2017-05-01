@@ -644,12 +644,20 @@
                 <div class="previewImage">
                     <img ngf-thumbnail="preview">
                 </div>
-                <a class="btn advanced-btn" ngf-select="upload($file)">
+                <a class="btn advanced-btn" ngf-select="upload($file)" ng-if="work_env1">
                     <span id="apply-span">
                         Add Work Environment
                     </span>
                     <span id="apply-span-2" class="hover hide-button">
                         Add Work Environment
+                    </span>
+                </a>
+                <a class="btn advanced-btn" ngf-select="upload2($file)" ng-if="work_env2">
+                    <span id="apply-span">
+                        Add Another Environment
+                    </span>
+                    <span id="apply-span-2" class="hover hide-button">
+                        Add Another Environment
                     </span>
                 </a>
             </center>

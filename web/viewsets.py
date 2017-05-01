@@ -21,6 +21,7 @@ from web.models import (
     AppliedBlueprints,
     PrehiredEmployee,
     HiredEmployee,
+    WorkEnviorment2,
 )
 from web.serializers import (
     BlueprintSerializer,
@@ -44,6 +45,7 @@ from web.serializers import (
     AppliedBlueprintsSerializer,
     PrehiredEmployeeSerializer,
     HiredEmployeeSerializer,
+    WorkEnviorment2Serializer,
 )
 from rest_framework import (
     viewsets,
@@ -464,6 +466,43 @@ class WorkEnviormentViewSet(viewsets.ModelViewSet):
             return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class WorkEnviorment2ViewSet(viewsets.ModelViewSet):
+    queryset = WorkEnviorment2.objects.all()
+    serializer_class = WorkEnviorment2Serializer
+    permission_classes = [
+        permissions.AllowAny,
+    ]
+    parser_classes = [
+        parsers.MultiPartParser,
+    ]
+
+    def create(self, request, *args, **kwargs):
+
+        if not request.session.exists(request.session.session_key):
+            request.session.create()
+
+        image = request.data['file']
+
+        serializer = WorkEnviorment2Serializer(data={'image': image,
+                                                    'session': request.session.session_key})
+
+        if serializer.is_valid():
+
+            self.perform_create(serializer)
+
+            _old_session = WorkEnviorment2.objects.filter(session=request.session.session_key).first()
+
+            if _old_session:
+                self.perform_destroy(_old_session)
+
+            _headers = self.get_success_headers(serializer.data)
+
+            return response.Response(serializer.data, status=status.HTTP_201_CREATED,
+                                     headers=_headers)
+        else:
+            return response.Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 class TestPilotsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = TestPilots.objects.all()
     serializer_class = TestPilotsSerializer
@@ -519,6 +558,7 @@ class CreateBlueprintViewSet(viewsets.ModelViewSet):
         comapny_n = request_data['company_name']
         rel_ind = request_data['related_industry']
         work_env = request_data['work_enviorment']
+        work_env2 = request_data['work_enviorment2']
         rel_loc = request_data['related_location']
         fun = request_data['function']
         rel_sal = request_data['related_salary']
@@ -547,6 +587,7 @@ class CreateBlueprintViewSet(viewsets.ModelViewSet):
                                                'max_queue': max_q,
                                                'company_name': comapny_n,
                                                'work_enviorment': work_env,
+                                               'work_enviorment_2': work_env2,
                                                'related_location': rel_loc,
                                                'related_industry': rel_ind,
                                                'related_company_type': company_t,

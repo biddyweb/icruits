@@ -218,7 +218,7 @@
                 <div class="half-container-left">
                     <div id="detail-img">
                         <img class="img-responsive center-block" src="{{ blueprint.work_enviorment }}">
-                        <img class="img-responsive center-block" style="margin-top: 150px;" src="https://placehold.it/200x400.jpg">
+                        <img class="img-responsive center-block" style="margin-top: 150px;" src="{{ blueprint.work_enviorment_2 }}">
                     </div>
                     <div id="simulator-results">
                         <span>Your simulator results</span>
@@ -419,7 +419,7 @@
             </div>
             <div class="half-container-left">
                 <img class="img-responsive center-block" src="{{ blueprint.work_enviorment }}">
-                <img class="img-responsive center-block" style="margin-top: 150px;" src="https://placehold.it/200x400.jpg">
+                <img class="img-responsive center-block" style="margin-top: 150px;" src="{{ blueprint.work_enviorment_2 }}">
             </div>
             <a id="black-filter-btn" ng-show="user.profile_type" ng-if="!has_applied" ng-click="applyForBlueprint()"
                style="font-size: 1.1em">
