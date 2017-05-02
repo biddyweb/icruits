@@ -18,7 +18,4 @@
     "node-fs-extra": "^0.8.2",
     "tough-cookie": "^2.3.2"
   }
-  /*"scripts": {
-    "postinstall": "grunt default --force"
-  }*/
 }
