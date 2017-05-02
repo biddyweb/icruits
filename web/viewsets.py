@@ -774,6 +774,7 @@ class AppliedBlueprintsViewSet(viewsets.ModelViewSet):
     def update(self, request, *args, **kwargs):
         try:
             instance = self.get_object()
+            """
             try:
                 has_failed = request.data['has_failed']
                 instance.has_failed = has_failed
@@ -809,10 +810,11 @@ class AppliedBlueprintsViewSet(viewsets.ModelViewSet):
                 instance.tasks_completed = tasks_completed
             except:
                 instance.tasks_completed = 0
+            """
 
             instance.save()
 
-            if has_completed_simulation and not has_failed:
+            if instance.has_completed_simulation and not instance.has_failed:
                 que_obj = Queue.objects.filter(blueprint=instance.blueprint.id).first()
                 user_obj = user.objects.filter(id=instance.candidate.id).first()
                 last_position = que_obj.stack.last().candidate_position
