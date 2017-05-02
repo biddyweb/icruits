@@ -796,19 +796,19 @@ class AppliedBlueprintsViewSet(viewsets.ModelViewSet):
                 times_tried = request.data['times_tried']
                 instance.times_tried = times_tried
             except:
-                pass
+                instance.times_tried = 0
 
             try:
                 times_failed = request.data['times_failed']
                 instance.times_failed = times_failed
             except:
-                pass
+                instance.times_failed = 0
 
             try:
                 tasks_completed = request.data['tasks_completed']
                 instance.tasks_completed = tasks_completed
             except:
-                pass
+                instance.tasks_completed = 0
 
             instance.save()
 
