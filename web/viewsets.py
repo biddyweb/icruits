@@ -778,15 +778,13 @@ class AppliedBlueprintsViewSet(viewsets.ModelViewSet):
                 has_failed = request.data['has_failed']
                 instance.has_failed = has_failed
             except:
-                has_failed = False
-                instance.has_failed = has_failed
+                has_failed = instance.has_failed
 
             try:
                 has_completed_simulation = request.data['has_completed']
                 instance.has_completed_simulation = has_completed_simulation
             except:
-                has_completed_simulation = True
-                instance.has_completed_simulation = has_completed_simulation
+                has_completed_simulation = instance.has_completed_simulation
 
             try:
                 simulator_results = request.data['results']
@@ -798,19 +796,19 @@ class AppliedBlueprintsViewSet(viewsets.ModelViewSet):
                 times_tried = request.data['times_tried']
                 instance.times_tried = times_tried
             except:
-                instance.times_tried = 0
+                pass
 
             try:
                 times_failed = request.data['times_failed']
                 instance.times_failed = times_failed
             except:
-                instance.times_failed = 0
+                pass
 
             try:
                 tasks_completed = request.data['tasks_completed']
                 instance.tasks_completed = tasks_completed
             except:
-                instance.tasks_completed = 0
+                pass
 
             instance.save()
 
