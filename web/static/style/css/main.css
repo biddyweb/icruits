@@ -423,6 +423,8 @@ VERY IMPORTANT!!!!
     height: 100%;
     vertical-align: top;
     cursor: default;
+    background-color: white;
+    border: 1px solid rgb(240, 240, 240);
 }
 .dashboardItem .inner h1 {
     font-size: 32px;
@@ -438,11 +440,12 @@ VERY IMPORTANT!!!!
     height: 0;
     border-style: solid;
     border-width: 0 0 80px 80px;
-    border-color: transparent transparent #1b93d1 transparent;
+    border-color: transparent transparent rgb(240, 240, 240) transparent;
     line-height: 0px;
     _border-color: #000000 #000000 #1b93d1 #000000;
     _filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
 }
+
 .dashboardItem .inner .jobHeader {
     position: absolute;
     bottom: -5px;
@@ -457,13 +460,14 @@ VERY IMPORTANT!!!!
     padding-top: 0;
     text-align: right;
     font-family: "Roboto Condensed";
+    color: rgb(0,0,0);
 }
 
 .dashboardItem .inner .blueprintTitle {
     background-color: rgb(240, 240, 240);
     color: rgb(0, 0, 0);
-    height: 30px;
-    font-size: 1.25em;
+    height: 42px;
+    font-size: 1.55em;
     padding-top: 0.165em;
     -webkit-transition: opacity 0.5s ease;
     -moz-transition: opacity 0.5s ease;
@@ -471,7 +475,7 @@ VERY IMPORTANT!!!!
     -o-transition: opacity 0.5s ease;
     transition: opacity 0.5s ease;
     font-family: "Roboto Condensed";
-    font-weight: lighter;
+    font-weight: 100;
 }
 
 #dashboard .overlay {
@@ -511,6 +515,7 @@ VERY IMPORTANT!!!!
 .overlay .blueprint-info h3 {
     top: 20px;
     color: rgb(255, 255, 255);
+    font-size: 1.55em;
 }
 
 .blueprint-overview a {
