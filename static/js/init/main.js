@@ -20,9 +20,9 @@
             }
         } else {
             $http.defaults.headers.common.Authorization = '';
-            setTimeout(function() {
-                $state.go('root.home', { reload: true });
-            }, 600);
+            //setTimeout(function() {
+            //    $state.go('root.home', { reload: true });
+            //}, 600);
         }
         $rootScope.$on("$locationChangeSuccess", function(){
             $timeout(function() {

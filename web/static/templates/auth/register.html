@@ -1,3 +1,4 @@
+<nav class="dashHeader text-center navbar navbar-default fixed top"><span style="color: black">I</span><span style="color: #1b93d1">C</span><span style="color: black">RUITS</span></nav>
 <section id="pages">
     <div class="container" ng-if="!complete">
           <span class="registerWrapper">
@@ -50,7 +51,7 @@
                 </div>
                 <div class="questions" ng-if="page_3">
                     <div class="inputHolder" ng-repeat="accType in profile_types">
-                        <label id="q3">
+                        <label id="q3" style="font-weight: normal;">
                             <input class="register-radio" type="radio"
                                    id="q3"
                                    name="q3"
@@ -134,8 +135,9 @@
         </form><!-- /simform -->
     </div>
     <div class="container" ng-if="complete">
-        <span class="sentEmail">
-            Please activate your account. Email with activation link has been sent to your email address.
+        <span class="sentEmail" style="width: 75%">
+            Please activate your account. <br>
+            Email with activation link has been sent to your email address.
         </span>
         <a id="back-btn" data-ui-sref="root.home">
             <span id="advanced-span" class="show-button">

@@ -62,10 +62,7 @@
         </nav>
     </div>
     <span id="open-button" class="menu-white"><span class="label" style="color: rgb(0,0,0);">FILTER</span> </span>
-    <a id="user-nav" class="userNav" onclick="openNav()"><i class="fa fa-user"></i></a>
-    <!--div id="userContent" class="userContainer" ng-controller='LogoutCtrl'>
-        <a id="btn-2" ng-click="logoutNow()" class="userNavBtn">Logout</a>
-    </div-->
+    <span id="user-nav" class="user-menu" onclick="openNav()"><span class="label" style="color: rgb(0,0,0);">SETTINGS</span></span>
 
     <div class="content-wrap">
         <div class="content">
@@ -281,11 +278,8 @@
             </div>
         </nav>
     </div>
-    <!--div id="userContent" class="userContainer" ng-controller='LogoutCtrl'>
-        <a id="btn-2" ng-click="logoutNow()" class="userNavBtn">Logout</a>
-    </div-->
     <span id="open-button-emp" class="menu-white"><span class="label" style="color: rgb(0,0,0);">FILTER</span></span>
-    <a id="user-nav-emp" class="userNav" onclick="openNav()"><i class="fa fa-user"></i></a>
+    <span id="user-nav-emp" class="user-menu" onclick="openNav()"><span class="label" style="color: rgb(0,0,0);">SETTINGS</span></span>
 
     <div class="content-wrap-emp">
         <div class="content-emp">
@@ -570,43 +564,45 @@
     </div>
     <div id="TasksBlueprint" class="blueprintTasksContainer" style="background-color: rgb(225,225,225); margin-bottom: 15px; padding-bottom: 10px;">
         <div id="hiddenTasks">
-            <div id='tasks'>
-                <span class="tasksLabel"> Blueprint Task </span>
-                <select class='form-control blueprintTasksInput' 
-                        id='selectTask' 
-                        name='blueprint tasks'
-                        ng-model='make_blueprint_tasks'
-                        ng-options='option.id*1 as option.name for option in blueprint_tasks'>
-                    <option value=''></option>
-                </select>
-                <div></div>
+            <div id="tasksContainer">
+                <div id='tasks'>
+                    <span class="tasksLabel"> Blueprint Task </span>
+                    <select class='form-control blueprintTasksInput'
+                            id='selectTask'
+                            name='blueprint tasks'
+                            ng-model='make_blueprint_tasks'
+                            ng-options='option.id*1 as option.name for option in blueprint_tasks'>
+                        <option value=''></option>
+                    </select>
+                    <div></div>
+                </div>
+                <div id='refs'>
+                    <span class="tasksLabel" style="padding-right: 25%;"> Employee </span>
+                    <span class='form-control blueprintRefsInput' data-toggle='dropdown'>Select</span>
+                    <ul class='dropdown-menu refsFix'>
+                        <div ng-repeat="employee in desired_employees_info">
+                            <label>
+                                <input type='checkbox'
+                                       id="employee.id"
+                                       style="margin-left: 10px;"
+                                       class='faChkSqr small'
+                                       ng-click="addEmployeeId(employee.id)">
+                                <span style="cursor: pointer;" data-ng-bind="employee.email"></span></br/>
+                            </label>
+                        </div>
+                    </ul>
+                </div>
+                <button class='btn rem-btn'>
+                    <span id='apply-span' class='apply-span'>
+                        Remove
+                    </span>
+                    <span id='apply-span-2' class='hover hide-button'>
+                        Remove
+                    </span>
+                </button>
             </div>
-            <div id='refs'>
-                <span class="tasksLabel" style="padding-right: 25%;"> Employee </span>
-                <span class='form-control blueprintRefsInput' data-toggle='dropdown'>Select</span>
-                <ul class='dropdown-menu refsFix'>
-                    <div ng-repeat="employee in desired_employees_info">
-                        <label>
-                            <input type='checkbox'
-                                   id="expId"
-                                   style="margin-left: 10px;"
-                                   class='faChkSqr small'
-                                   ng-click="addEmployeeId(employee.id)">
-                            <span style="cursor: pointer;" data-ng-bind="employee.email"></span></br/>
-                        </label>
-                    </div>
-                </ul>
-            </div>
-            <button class='btn rem-btn'>
-                <span id='apply-span' class='apply-span'>
-                    Remove
-                </span>
-                <span id='apply-span-2' class='hover hide-button'>
-                    Remove
-                </span>
-            </button>
         </div>
-        <div id="clonedTasks">
+        <div id="clonedTasks" style="display: inherit;">
 
         </div>
     </div>
@@ -983,28 +979,17 @@ $("#addNewRow").click(function(){
     });
 </script-->
 <script>
-$('#selectTask:last').click(function () {
-
-    function addSelectedTask() {
+    function assignTasks() {
         // body...
-        var task = $('#selectTask option:selected').text();
+        var task = $('#selectTask:last option:selected').text();
         angular.element(document.getElementById('selectTask')).scope().addTask(task);
     }
-
-    addSelectedTask();
-});
 </script>
 <script>
-$('#clonedTasks:last').on('click', '#selectTask',function () {
-
-    function addSelectedTask() {
-        // body...
-        var task = $('#selectTask option:selected').text();
-        angular.element(document.getElementById('selectTask')).scope().addTask(task);
+    function assignEmployee(id) {
+        console.log('hey');
+        angular.element(document.getElementById('selectTask')).scope().addEmployeeId(id);
     }
-
-    addSelectedTask();
-});
 </script>
 <script>
 $("#TasksBlueprint").on('click','.rem-btn',function(){
@@ -1016,13 +1001,12 @@ $("#TasksBlueprint").on('click','.rem-btn',function(){
     }
 
     removeSelectedTask(taskId);
-    console.log($(this).parent());
     $(this).parent().remove();
     $(this).remove();
 });
 </script>
 
-<script type="text/javascript">
+<!--script type="text/javascript">
     function expandMenu() {
         // body...
         var pos = $(window).scrollTop();
@@ -1031,7 +1015,7 @@ $("#TasksBlueprint").on('click','.rem-btn',function(){
         });
     }
     $(window).on('ready scroll resize', expandMenu);
-</script>
+</script-->
 <script type="text/javascript">
     function expandMenu() {
         // body...

@@ -916,6 +916,8 @@
         /* END OF WORK ENVIRONMENT PHOTO UPLOAD */
 
         $scope.temp_tasks = [];
+        $scope.enable_assign = true;
+        $scope.enable_add = false;
 
         /* ADDING BLUEPRINT TASK */
         $scope.list_blueprint_tasks = [];
@@ -931,6 +933,7 @@
                 $scope.list_blueprint_tasks.push($scope.temp_tasks);
                 $scope.new_employee = [];
                 $scope.temp_tasks = [];
+                $scope.enable_add = true;
             }
         };
 
@@ -1036,6 +1039,7 @@
 
         $scope.addEmployeeId = function (id) {
             // body...
+            console.log('heye');
             var i = $.inArray(id, $scope.new_employee);
             if(i > -1 ){
                 $scope.new_employee.splice(i, 1);
@@ -1107,10 +1111,10 @@
 
     angular.module('app').controller('RegisterCtrl', RegisterCtrl);
 
-    RegisterCtrl.$inject = ['$scope', '$rootScope', '$state', '$window', 'AuthRes', 'metaTags', 'Pilots',
+    RegisterCtrl.$inject = ['$scope', '$rootScope', '$state', 'AuthRes', 'metaTags', 'Pilots',
         'CheckUserRes', 'CheckUserNameRes'];
 
-    function RegisterCtrl($scope, $rootScope, $state, $window, AuthRes, metaTags, Pilots, CheckUserRes,
+    function RegisterCtrl($scope, $rootScope, $state, AuthRes, metaTags, Pilots, CheckUserRes,
     CheckUserNameRes) {
 
         $scope.$emit('metaTagsChanged', metaTags);
@@ -1245,18 +1249,22 @@
                 $scope.error = "Please confirm password."
             } else {
                 $scope.errors = false;
+                $scope.is_pilot = false;
                 angular.forEach($scope.test_pilots, function (pilot) {
                     if(pilot.email === $scope.reg.email){
-                        AuthRes.save($scope.reg, function (resource) {
-                            $scope.complete = true;
-                        }, function (response) {
-                            $scope.errors = response.data;
-                        });
-                    }
-                    if(pilot.email !== $scope.reg.email){
-                        $state.go('root.non_pilot', { reload: true });
+                        $scope.is_pilot = true;
                     }
                 });
+                if($scope.is_pilot){
+                    AuthRes.save($scope.reg, function (response) {
+                        $scope.complete = true;
+                        $scope.data = response;
+                    }, function (response) {
+                        $scope.errors = response.data;
+                    });
+                } else {
+                    $state.go('root.non_pilot', { reload: true });
+                }
             }
         };
 
@@ -1269,9 +1277,9 @@
 
     angular.module('app').controller('LoginCtrl', LoginCtrl);
 
-    LoginCtrl.$inject = ['$scope', '$rootScope', '$state', '$timeout', 'LoginRes', 'JWTTokenRes', 'CheckUserRes'];
+    LoginCtrl.$inject = ['$scope', '$rootScope', '$state', 'LoginRes', 'JWTTokenRes', 'CheckUserRes'];
 
-    function LoginCtrl($scope, $rootScope, $state, $timeout, LoginRes, JWTTokenRes, CheckUserRes) {
+    function LoginCtrl($scope, $rootScope, $state, LoginRes, JWTTokenRes, CheckUserRes) {
 
         $scope.page_1 = true;
         $scope.page_2 = false;

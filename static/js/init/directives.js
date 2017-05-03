@@ -8,7 +8,9 @@
         return {
             restrict: 'A',
             scope: true,
-            template: `<a class='btn add-btn' id='addNewRow' ng-click="clickToClone('hiddenTasks', 'clonedTasks')"><span id='apply-span'>Add Task</span><span id='apply-span-2' class='hover hide-button'>Add Task</span></a>`,
+            template: `<a ng-show='enable_add' class='btn add-btn' id='addNewRow' ng-click="clickToClone('hiddenTasks', 'clonedTasks')">
+                       <span id='apply-span'>Add Task</span><span id='apply-span-2' class='hover hide-button'>Add Task</span></a>
+<a ng-show='!enable_add' class='btn add-btn' id='assignTask' onclick="assignTasks()" ng-click="switchBtns()"><span id='apply-span'>Assign Task</span><span id='apply-span-2' class='hover hide-button'>Assign Task</span></a>`,
             controller: function ($scope, $element, $compile) {
                 $scope.clicked = 0;
                 /*$scope.addNewTaskClick = function () {
@@ -24,9 +26,15 @@
                 $scope.clickToClone = function (sourceId, cloneId) {
                     var sourceHtml = angular.element(document.getElementById(sourceId)).html();
                     angular.element(document.getElementById(cloneId)).append(sourceHtml);
-                        $('#TasksBlueprint:last button:last').css({
-                            display: 'inline'
-                        });
+                    $('#TasksBlueprint:last button:last').css({
+                        display: 'inline'
+                    });
+                    $scope.enable_add = false;
+                };
+                $scope.switchBtns = function () {
+                    if(!$scope.no_employee_task_errors){
+                        console.log('oke');
+                    }
                 };
             }
         }
