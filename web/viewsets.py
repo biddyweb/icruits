@@ -298,9 +298,6 @@ class MobileLogin(views.APIView):
             data = json.dumps({'exist': True,
                                'session_id': session_id,
                                'username': user_obj.username}, sort_keys=True, indent=4)
-            #return response.Response({'exist': True,
-            #                          'session_id': session_id,
-            #                          'username': user_obj.username}, status=status.HTTP_200_OK)
             return response.Response(data, status=status.HTTP_200_OK)
         else:
             data = json.dumps({'exists': False,
@@ -718,6 +715,9 @@ class AppliedBlueprintsViewSet(viewsets.ModelViewSet):
         serializer = AppliedBlueprintsSerializer(data={'candidate': related_candidate,
                                                        'blueprint': related_blueprint,
                                                        'has_applied': True})
+
+        if 'Linux' in request.META.get('HTTP_USER_AGENT'):
+            print 'yes'
 
         if serializer.is_valid():
             self.perform_create(serializer)

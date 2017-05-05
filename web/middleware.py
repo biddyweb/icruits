@@ -13,7 +13,13 @@ class PrerenderMiddleware(MiddlewareMixin):
     def _is_bot(request):
         is_google = '_escaped_fragment_' in request.GET
         user_agent = request.META.get('HTTP_USER_AGENT', '')
-        return is_google or re.search('baiduspider|'
+        return is_google or re.search('GoogleBot|'
+                                      'Bingbot|'
+                                      'Slurp|'
+                                      'YandexBot|'
+                                      'Exabot|'
+                                      'DuckDuckBot|'
+                                      'baiduspider|'
                                       'twitterbot|'
                                       'facebookexternalhit/1.1|'
                                       'rogerbot|linkedinbot|'

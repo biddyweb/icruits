@@ -555,20 +555,20 @@
     .advanced-btn {
     	left: 60px;
     }
-	.social-fb, .social-fb-emp {
-		width: 145px;
-		padding-left: 65px;
-	}
-	.social-twitter, .social-twitter-emp {
-		width: 145px;
-		padding-left: 65px;
-	}
-    .user-menu {
-        right: 0;
+    .social-twitter, .social-twitter-emp {
+        width: 131px;
+        padding-left: 55px;
+    }
+    .social-fb, .social-fb-emp {
+        width: 131px;
+        padding-left: 55px;
     }
     .profileContainer {
-        margin-top: 10%;
+        margin-top: 0;
         width: 100%;
+    }
+    .user-menu {
+        right: 0;
     }
     .userFields {
         display: block;
