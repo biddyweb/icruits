@@ -274,7 +274,7 @@
                 </a>
                 <a id="black-filter-btn" ng-show="!user.profile_type"
                    ng-click="publishBlueprint()" ng-if="!published && !blueprint.has_simulator"
-                   style="right: 180px; font-size: 1.2em">
+                   class="blackFilter180R" style="font-size: 1.2em">
                     <span id="advanced-span" class="show-button">
                         Publish Blueprint
                     </span>
@@ -283,7 +283,8 @@
                     </span>
                 </a>
                 <a id="blueprint-btn" ng-show="!user.profile_type" 
-                   ng-click="previewBlueprint()" ng-if="!published && editable && !blueprint.has_simulator" style="left: 50px;">
+                   ng-click="previewBlueprint()" ng-if="!published && editable && !blueprint.has_simulator"
+                   class="preview50L">
                     <span id="advanced-span" class="show-button">
                         Preview Blueprint
                     </span>
@@ -301,7 +302,8 @@
                     </span>
                 </a>
                 <a id="blueprint-btn" ng-show="!user.profile_type"
-                   ng-click="deleteBlueprint()" ng-if="!published && editable && !blueprint.has_simulator" style="left: 230px;">
+                   ng-click="deleteBlueprint()" ng-if="!published && editable && !blueprint.has_simulator"
+                   class="blueprint230L">
                     <span id="advanced-span" class="show-button">
                         Delete Blueprint
                     </span>
@@ -309,13 +311,23 @@
                         Delete Blueprint
                     </span>
                 </a>
-                <a id="black-back-btn" data-ui-sref="root.dashboard" style="font-size: 1.2em;">
+                <a id="black-back-btn" data-ui-sref="root.dashboard"
+                   class="back100T" style="font-size: 1.2em;" ng-if="!published">
                     <span id="advanced-span" class="show-button">
                         &times;
                     </span>
                     <span id="advanced-span-2" class="hover show-button">
                         &times;
                     </span>            
+                </a>
+                <a id="black-back-btn" data-ui-sref="root.dashboard"
+                   class="" style="font-size: 1.2em;" ng-if="published">
+                    <span id="advanced-span" class="show-button">
+                        &times;
+                    </span>
+                    <span id="advanced-span-2" class="hover show-button">
+                        &times;
+                    </span>
                 </a>
             </div>
         </div>

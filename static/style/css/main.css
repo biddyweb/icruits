@@ -1042,6 +1042,7 @@ VERY IMPORTANT!!!!
 
 /* Input field */
 .questions input {
+    padding-right: 80px;
     display: inline-block;
     position: relative;
     font-family: Roboto Condensed;
@@ -1834,6 +1835,13 @@ body,
     padding: 1.6em;
 }
 
+.filter180R {
+    right: 180px !important;
+}
+.filter360R {
+    right: 360px !important;
+}
+
 #filter-btn {
     background: rgb(243,243,245);
     border-top: 1px solid #FFF;
@@ -1949,7 +1957,7 @@ body,
 
 .blueprintRefsInput {
     display: inherit;
-    width: 76%;
+    width: 100%;
     font-family: Roboto Condensed;
     text-transform: uppercase;
     font-size: 0.8em!important;
@@ -2526,8 +2534,21 @@ div .containerDetails {
     display: block;
 }
 
+.blueprint230L {
+    left: 230px!important;
+}
+
+.blackFilter180R {
+    right: 180px!important;
+}
+
+.preview50L {
+    left: 50px!important;
+}
+
 #blueprint-btn {
     border-top: 1px solid #FFF;
+    background-color: rgb(240,240,240);
     border-left: 1px solid #FFF;
     width: 180px;
     height: 50px;
@@ -2931,6 +2952,7 @@ div .containerDetails {
 }
 
 .profileContainer {
+    margin-top: 15%;
     width: 450px;
     margin-left: auto;
     margin-right: auto;

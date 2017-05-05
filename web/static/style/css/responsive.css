@@ -4,6 +4,13 @@
 }
 
 /* md */
+@media (max-width: 912px) {
+    .blueprintTasksContainer {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 0;
+    }
+}
 @media (min-width: 992px) and (max-width: 1199px) {
 /*	.blueprintTasksInput {
 		width: 550px;
@@ -15,6 +22,11 @@
 }
 
 /* sm */
+@media (max-width: 845px) {
+    .half-container-right {
+        left: 55%!important;
+    }
+}
 @media (min-width: 768px) and (max-width: 991px) {
  	.navbar-right li a {
 		font-size: 12px;
@@ -51,6 +63,22 @@
 }
 
 /* xs */
+@media (max-width: 787px) {
+    #blueprint-btn {
+        width: 150px;
+    }
+    .blueprint230L {
+        left: 200px!important;
+    }
+}
+@media (max-width: 771px) {
+    .blueprintTasksContainer {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        display: inline-block;
+    }
+}
 @media (max-width: 767px) {
 	body {
 		font-size: 14px;
@@ -232,8 +260,8 @@
 		float: none !important;
 	}
     .half-container-right {
-		width: 90%;
-	    position: inherit;
+        width: 80%;
+        position: inherit;
 	    margin-left: 20%;
 	    margin-right: auto;
 	    padding-right: 20%;
@@ -274,8 +302,8 @@
 		margin-right: auto;
 	}
 	.blueprintTasksInput {
-		width: 420px;
-		margin-left: auto;
+		width: 320px;
+		margin-left: 5%;
     	margin-right: auto;
 	}
 	.blueprintRefFix {
@@ -292,13 +320,103 @@
     	margin-right: auto;
 	}
 }
-
+@media (max-width: 736px) {
+    #filter-btn {
+        width: 150px;
+    }
+    .filter180R {
+        right: 150px !important;
+    }
+    .filter360R {
+        right: 300px !important;
+    }
+}
+@media (max-width: 727px) {
+    #black-filter-btn {
+        width: 150px;
+    }
+    .blackFilter180R {
+        right: 150px!important;
+    }
+    .add-btn {
+        width: 150px;
+        margin-left: 5%;
+    }
+}
+@media (max-width: 720px) {
+    .blueprintRefsInput {
+        margin-left: auto;
+        width: 90%;
+    }
+}
+@media (max-width: 668px) {
+    .blueprint230L {
+        left: 0!important;
+        bottom: 50px!important;
+    }
+}
+@media (max-width: 616px) {
+    .filter180R {
+        right: 0 !important;
+        bottom: 50px !important;
+    }
+    .filter360R {
+        right: 150px !important;
+    }
+}
+@media (max-width: 575px) {
+    .add-btn {
+        margin-left: 3%;
+    }
+}
+@media (max-width: 518px) {
+    .blackFilter180R {
+        right: -1px!important;
+        bottom: 50px!important;
+    }
+}
+@media (max-width: 466px) {
+    .filter360R {
+        left: 0 !important;
+        bottom: 50px !important;
+    }
+}
+@media (max-width: 367px) {
+    .blueprint230L {
+        bottom: 50px!important;
+    }
+    .preview50L {
+        left: 0!important;
+        bottom: 0!important;
+    }
+    .back100T {
+        bottom: 100px!important;
+    }
+}
 @media only screen and (max-width: 950px) {
 	.blueprint-name {
 		font-size: 1.5em;
 	}
 }
-
+@media only screen and (max-width: 405px) {
+    .square-info {
+        margin-bottom: 40px!important;
+        margin-left: 0!important;
+        margin-top: 0!important;
+    }
+    .practice-info span {
+        display: block;
+        position: relative;
+    }
+    .square-info input, .square-info select {
+        width: 300px!important;
+    }
+}
+@media (max-width: 335px) {
+    .half-container-right {
+        margin-left: 10%;
+    }
+}
 @media only screen and (max-width: 640px) {
 	.blueprintContainer {
 		width: 350px;
@@ -317,14 +435,17 @@
     	width: 444px;
     }
     .blueprintTasksInput {
-    	width: 50%;
+    	width: 100%;
     }
     .blueprintRefFix {
     	width: 150px;
     }
     .advanced-btn {
-    	width: 160px;
     	left: 50px;
+    }
+    .blueprintDesc {
+        margin-left: 5%;
+        margin-top: 5px;
     }
 }
 
@@ -426,14 +547,38 @@
         display: none;
     }
     .blueprintTasksInput {
-    	width: 50%;
+    	width: 100%;
     }
     .blueprintRefFix {
     	width: 150px;
     }
     .advanced-btn {
-    	width: 130px;
     	left: 60px;
+    }
+	.social-fb, .social-fb-emp {
+		width: 145px;
+		padding-left: 65px;
+	}
+	.social-twitter, .social-twitter-emp {
+		width: 145px;
+		padding-left: 65px;
+	}
+    .user-menu {
+        right: 0;
+    }
+    .profileContainer {
+        margin-top: 10%;
+        width: 100%;
+    }
+    .userFields {
+        display: block;
+        margin-left: 10%;
+    }
+    .bigUserInput {
+        margin-left: 10%!important;
+    }
+    .half-container-right {
+        margin-left: 10%;
     }
 }
 @media only screen and (max-width: 360px){
@@ -452,7 +597,7 @@
         text-align: center;
     }
     .simform {
-    	max-width: 200px;
+    	max-width: 240px;
     }
     .inputHolder {
     	width: 100%;
@@ -479,14 +624,15 @@
     	font-size: 66%;
     }
     .half-container-right {
-    	width: 90%;
+        width: 85%;
     	position: inherit;
-    	margin-left: 13%;
+    	margin-left: 10%;
     	margin-right: auto;
     	padding-right: 15%;
 	}
 	.blueprintTasksInput {
-    	width: 45%;
+    	width: 100%;
+        margin-left: 8%;
 	}
 	.blueprintRefFix {
     	width: 150px;
@@ -494,6 +640,46 @@
 	.advanced-btn {
 		left: 0;
 	}
+    .user-menu {
+        right: -10px;
+    }
+    .square-info input, .square-info select {
+        width: 250px!important;
+    }
+    .add-btn {
+        margin-left: 25%;
+    }
+}
+@media (max-width: 330px) {
+    .blueprintLabel {
+        display: block;
+    }
+    .blueprintName {
+        width: 90%!important;
+        margin-left: 6%!important;
+    }
+    .blueprintDesc {
+        width: 90%!important;
+        margin-left: 6%!important;
+    }
+    .blueprintCompany {
+        width: 70%!important;
+        margin-left: 6%!important;
+    }
+    .blueprintTeamID {
+        width: 45%!important;
+        margin-left: 6%!important;
+    }
+    .blueprintInput {
+        width: 50%!important;
+        margin-left: 6%!important;
+    }
+    .inputSizeFix {
+        margin-left: 6%!important;
+    }
+    .simform {
+        max-width: 200px;
+    }
 }
 @media only screen and (max-width: 320px){
     h1 {
