@@ -434,14 +434,14 @@
                     </div>
                 </div>
             </div>
-            <div id="detailImages" class="half-container-left">
+            <div id="detailImagesSeeker" class="half-container-left">
                 <img class="img-responsive center-block"
                      src="{{ blueprint.work_enviorment }}">
                 <img class="img-responsive center-block"
                      style="margin-top: 150px;"
                      src="{{ blueprint.work_enviorment_2 }}">
             </div>
-            <div id="videoDetails">
+            <div id="videoDetailsSeeker">
                 <video width="100%" height="100%" preload="metadata" controls>
                     <source src="{{ blueprint.video_url }}" type="video/mp4">
                 </video>
@@ -500,20 +500,31 @@
 </div>
 <!-- END OF JOBSEEKER BLUEPRINT DETAILS EXPERIENCE -->
 <script type="text/javascript">
-    var elementTop = $('.half-container-left'),
-        videoEl = $('#videoDetails'),
-        videoTop = (elementTop.outerHeight(true) * 9 + elementTop.offset().top);
-
-    videoEl.css({
-        'position': 'relative',
-        'top': videoTop,
-        'margin-bottom': '55px'
-    });
-    var rightEl = $('.half-container-right'),
-        rightElMove = $('.half-container-right'),
-        scrollFrom = (videoTop - rightEl.outerHeight(true) - 200);
     function moveDiv() {
-        console.log(scrollFrom);
+    var elementTop = $('#detailImages'),
+        elementTopSeeker = $('#detailImagesSeeker'),
+        videoEl = $('#videoDetails'),
+        videoElSeeker = $('#videoDetailsSeeker');
+
+    var rightEl = $('.half-container-right'),
+        rightElMove = $('.half-container-right');
+        //scrollFrom = (videoTop - rightEl.outerHeight(true) - 200);
+
+        if(typeof elementTop.offset() !== "undefined") {
+            videoEl.css({
+                'position': 'relative',
+                'top': (elementTop.outerHeight(true) + elementTop.offset().top) + 'px',
+                'margin-bottom': '55px'
+            });
+        }
+        if(typeof elementTopSeeker.offset() !== "undefined") {
+            videoElSeeker.css({
+                'position': 'relative',
+                'top': (elementTopSeeker.outerHeight(true) + elementTopSeeker.offset().top) + 'px',
+                'margin-bottom': '55px'
+            });
+        }
+        /*console.log(scrollFrom);
         console.log($(window).scrollTop());
         if($(window).scrollTop() === scrollFrom) {
             console.log(scrollFrom);
@@ -522,7 +533,7 @@
                 'position': 'absolute',
                 'top': scrollFrom + 'px'
             });
-        }
+        }*/
     }
-    $(window).on('scroll resize', moveDiv);
+    $(document).on('load scroll resize', moveDiv);
 </script>

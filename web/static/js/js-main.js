@@ -263,5 +263,5 @@ function expandMenu() {
     });
 }
 
-$(window).on('ready scroll resize', expandMenuEmp);
-//$(window).on('ready scroll resize', expandMenu);
+$(document).on('load scroll resize', expandMenuEmp);
+$(document).on('load scroll resize', expandMenu);
