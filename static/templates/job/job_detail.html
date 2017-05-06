@@ -429,9 +429,17 @@
                     </div>
                 </div>
             </div>
-            <div class="half-container-left">
-                <img class="img-responsive center-block" src="{{ blueprint.work_enviorment }}">
-                <img class="img-responsive center-block" style="margin-top: 150px;" src="{{ blueprint.work_enviorment_2 }}">
+            <div id="detailImages" class="half-container-left">
+                <img class="img-responsive center-block"
+                     src="{{ blueprint.work_enviorment }}">
+                <img class="img-responsive center-block"
+                     style="margin-top: 150px;"
+                     src="{{ blueprint.work_enviorment_2 }}">
+            </div>
+            <div id="videoDetails">
+                <video width="100%" height="100%" preload="metadata" controls>
+                    <source src="{{ blueprint.video_url }}" type="video/mp4">
+                </video>
             </div>
             <a id="black-filter-btn" ng-show="user.profile_type" ng-if="!has_applied" ng-click="applyForBlueprint()"
                style="font-size: 1.1em">
@@ -486,3 +494,30 @@
     </section>
 </div>
 <!-- END OF JOBSEEKER BLUEPRINT DETAILS EXPERIENCE -->
+<script type="text/javascript">
+    var elementTop = $('.half-container-left'),
+        videoEl = $('#videoDetails'),
+        videoTop = (elementTop.outerHeight(true) * 9 + elementTop.offset().top);
+
+    videoEl.css({
+        'position': 'relative',
+        'top': videoTop,
+        'margin-bottom': '55px'
+    });
+    var rightEl = $('.half-container-right'),
+        rightElMove = $('.half-container-right'),
+        scrollFrom = (videoTop - rightEl.outerHeight(true) - 200);
+    function moveDiv() {
+        console.log(scrollFrom);
+        console.log($(window).scrollTop());
+        if($(window).scrollTop() === scrollFrom) {
+            console.log(scrollFrom);
+            console.log('okey');
+            rightElMove.css({
+                'position': 'absolute',
+                'top': scrollFrom + 'px'
+            });
+        }
+    }
+    $(window).on('scroll resize', moveDiv);
+</script>
