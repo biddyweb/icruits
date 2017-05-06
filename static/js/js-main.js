@@ -124,7 +124,10 @@ function switch2Row(dash) {
     $('.blueprint-overview a').css({
         height: '57px',
         width: '57px',
-        'padding-top': '0.2em'
+        'padding-top': '0.2em',
+        'margin-top': '45px',
+        'margin-left': '35px',
+        'margin-right': '35px'
     });
     for (var item=0; dash.length; item++) {
         if(typeof dash[item] === "undefined") {
@@ -164,7 +167,10 @@ function switch4Row(dash) {
     $('.blueprint-overview a').css({
         height: '50px',
         width: '50px',
-        'padding-top': '0'
+        'padding-top': '0',
+        'margin-top': '20px',
+        'margin-right': '5px',
+        'margin-left': '5px'
     });
     for (var item=0; dash.length; item++) {
         if(typeof dash[item] === "undefined") {

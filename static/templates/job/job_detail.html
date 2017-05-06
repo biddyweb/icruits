@@ -215,7 +215,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="half-container-left">
+                <div id="detailImages" class="half-container-left">
                     <div id="detail-img">
                         <img class="img-responsive center-block" src="{{ blueprint.work_enviorment }}">
                         <img class="img-responsive center-block" style="margin-top: 150px;" src="{{ blueprint.work_enviorment_2 }}">
@@ -223,6 +223,11 @@
                     <div id="simulator-results">
                         <span>Your simulator results</span>
                     </div>
+                </div>
+                <div id="videoDetails">
+                    <video width="100%" height="100%" preload="metadata" controls>
+                        <source src="{{ blueprint.video_url }}" type="video/mp4">
+                    </video>
                 </div>
                 <a id="black-filter-btn" ng-show="!user.profile_type"
                    ng-click="SendMail($event)" ng-if="published && blueprint.has_simulator && !blueprint.is_closed"
