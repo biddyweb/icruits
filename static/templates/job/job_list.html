@@ -69,8 +69,8 @@
             <nav class="dashHeader text-center navbar navbar-default fixed top"><span style="color: black">I</span><span style="color: #1b93d1">C</span><span style="color: black">RUITS</span></nav>
             <section id="dashboard" style="margin-top: 75px;">
                 <div class="containerSub cf">
-                    <div class="row">
-                        <div class="col-sm-3"
+                    <div id="dashItemSeeker" class="row">
+                        <div id="seekerItems" class="col-sm-3"
                              data-ng-repeat="JobFeed in blueprints | filter:industryFilter | filter:locationFilter | filter:salaryFilter | filter:experienceFilter">
                             <div class="dashboardItem text-center blueprintItem" ng-if="user.profile_type">
                                 <div class="inner">
@@ -286,8 +286,8 @@
             <nav class="dashHeader text-center navbar navbar-default fixed top"><span style="color: black">I</span><span style="color: #1b93d1">C</span><span style="color: black">RUITS</span></nav>
             <section id="dashboard" style="margin-top: 75px;">
                 <div class="containerSub cf">
-                    <div class="row">
-                        <div class="col-sm-3"
+                    <div id="dashItemEmp" class="row">
+                        <div id="employerItems" class="col-sm-3"
                              data-ng-repeat="JobFeed in blueprints | filter:industryFilter | filter:locationFilter | filter:salaryFilter | filter:experienceFilter">
                             <div class="dashboardItem text-center blueprintItem" ng-if="!show_closed_jobs && !user.profile_type">
                                 <div class="inner">
@@ -577,7 +577,7 @@
                     <div></div>
                 </div>
                 <div id='refs'>
-                    <span class="tasksLabel" style="padding-right: 25%;"> Employee </span>
+                    <span class="tasksLabel" style="/*padding-right: 25%;*/"> Employee </span>
                     <span class='form-control blueprintRefsInput' data-toggle='dropdown'>Select</span>
                     <ul class='dropdown-menu refsFix'>
                         <div ng-repeat="employee in desired_employees_info">
@@ -791,7 +791,19 @@
     </div>
     <!--a data-ui-sref="root.dashboard">Dashboard</a-->
     <a data-ui-sref="root.profile" data-ng-class="{active: state.includes('root.profile')}" class="menu-item" style="padding-top: 40px;">Profile</a>
-    <a href='' class="menu-item" ng-click="logoutNow()">Logout</a>
+    <a class="menu-item" data-toggle="collapse" data-target="#toggleViews">Display</a>
+    <div id="toggleViews" class="collapse dropdown-fix">
+        <span id="mobilePlatform">Mobile Display</span>
+        <div id="pcDisplay">
+            <a class="row1inLine" ng-if="!user.profile_type" onclick="employerSelect1Row()"></a>
+            <a class="row1inLine" ng-if="user.profile_type" onclick="seekerSelect1Row()"></a>
+            <a class="row2inLine" ng-if="!user.profile_type" onclick="employerSelect2Row()"></a>
+            <a class="row2inLine" ng-if="user.profile_type" onclick="seekerSelect2Row()"></a>
+            <a class="row4inLine" ng-if="!user.profile_type" onclick="employerSelect4Row()"></a>
+            <a class="row4inLine" ng-if="user.profile_type" onclick="seekerSelect4Row()"></a>
+        </div>
+    </div>
+    <a href='' class="menu-item" style="margin-top: 2em;" ng-click="logoutNow()">Logout</a>
 </aside>
 <!-- END OF SMALL CANVAS MENU -->
 
@@ -1006,28 +1018,6 @@ $("#TasksBlueprint").on('click','.rem-btn',function(){
 });
 </script>
 
-<!--script type="text/javascript">
-    function expandMenu() {
-        // body...
-        var pos = $(window).scrollTop();
-        $('.menu-wrap').css({
-            'height': pos + 'px'
-        });
-    }
-    $(window).on('ready scroll resize', expandMenu);
-</script-->
-<script type="text/javascript">
-    function expandMenu() {
-        // body...
-
-        var pos = $(window).scrollTop();
-        $('.menu-wrap-emp').css({
-            'top': pos + 'px'
-        });
-    }
-    $(window).on('ready scroll resize', expandMenu);
-</script>
-
 <script type="text/javascript">
 var options = [];
 
@@ -1053,14 +1043,6 @@ $( '.dropdown-menu a' ).on( 'click', function( event ) {
 </script>
 
 <script type="text/javascript">
-    function openCreateTasks() {
-    // body...
-        document.getElementById("createTask").style.visibility = "visible";
-        document.getElementById("createTask").style.opacity = "1";
-    }
-</script>
-
-<script type="text/javascript">
     function CreateTasks() {
     // body...
         document.getElementById("createTask").style.visibility = "hidden";
@@ -1070,32 +1052,10 @@ $( '.dropdown-menu a' ).on( 'click', function( event ) {
 </script>
 
 <script type="text/javascript">
-    function closeCreateTasks() {
-        document.getElementById("createTask").style.visibility = "hidden";
-        document.getElementById("createTask").style.opacity = "0";
-    }
-</script>
-
-<script type="text/javascript">
-    function openCreateEmployee() {
-    // body...
-        document.getElementById("createEmployee").style.visibility = "visible";
-        document.getElementById("createEmployee").style.opacity = "1";
-    }
-</script>
-
-<script type="text/javascript">
     function CreateEmployee() {
     // body...
         document.getElementById("createEmployee").style.visibility = "hidden";
         document.getElementById("createEmployee").style.opacity = "0";
         angular.element(document.getElementById('createEmployee')).scope().createDesiredEmployee();
-    }
-</script>
-
-<script type="text/javascript">
-    function closeCreateEmployee() {
-        document.getElementById("createEmployee").style.visibility = "hidden";
-        document.getElementById("createEmployee").style.opacity = "0";
     }
 </script>

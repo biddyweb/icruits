@@ -429,9 +429,9 @@ VERY IMPORTANT!!!!
     height: 0;
     border-style: solid;
     border-width: 0 0 80px 80px;
-    border-color: transparent transparent rgb(240, 240, 240) transparent;
+    border-color: transparent transparent rgb(250, 250, 250) transparent;
     line-height: 0px;
-    _border-color: #000000 #000000 #1b93d1 #000000;
+    _border-color: #000000 #000000 rgb(250, 250, 250) #000000;
     _filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
 }
 
@@ -453,7 +453,7 @@ VERY IMPORTANT!!!!
 }
 
 .dashboardItem .inner .blueprintTitle {
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(250, 250, 250);
     color: rgb(0, 0, 0);
     height: 42px;
     font-size: 1.55em;
@@ -468,8 +468,8 @@ VERY IMPORTANT!!!!
 }
 
 #dashboard .overlay {
-    background-color: #000;
-    color: #fff;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     left: 0;
     right: 0;
     top: 0;
@@ -479,6 +479,7 @@ VERY IMPORTANT!!!!
     opacity: 0;
     -webkit-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
+    font-weight: 100;
 }
 
 .overlay .overlay-content {
@@ -486,6 +487,7 @@ VERY IMPORTANT!!!!
     height: 100%;
     width: 100%;
     font-family: "Roboto Condensed";
+    border: 1px solid rgb(0, 0, 0);
 }
 
 .overlay .overlay-text {
@@ -503,8 +505,9 @@ VERY IMPORTANT!!!!
 
 .overlay .blueprint-info h3 {
     top: 20px;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     font-size: 1.55em;
+    font-weight: 100;
 }
 
 .blueprint-overview a {
@@ -514,7 +517,7 @@ VERY IMPORTANT!!!!
     width: 50px;
     line-height: 50px;
     border-radius: 50%;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(245, 245, 245);
     display: inline-block;
     margin-top: 20px;
     margin-right: 5px;
@@ -713,6 +716,60 @@ VERY IMPORTANT!!!!
     transition: all 750ms cubic-bezier(.25,.46,.45,.94);
     margin-left: 24px;
 }
+
+#pcDisplay {
+    height: 120px;
+    transition: all 750ms cubic-bezier(.25,.46,.45,.94);
+}
+
+.row4inLine {
+    background-image: url(../../img/itemrow4grey.svg);
+    width: 30px!important;
+    height: 30px!important;
+    position: fixed !important;
+    margin-top: 90px;
+    cursor: pointer;
+}
+
+.row2inLine {
+    background-image: url(../../img/itemrow2grey.svg);
+    width: 30px!important;
+    height: 30px!important;
+    position: fixed !important;
+    cursor: pointer;
+    margin-top: 45px!important;
+}
+
+.row1inLine {
+    background-image: url(../../img/itemrow1grey.svg);
+    width: 30px!important;
+    height: 30px!important;
+    position: fixed !important;
+    cursor: pointer;
+}
+
+.row4inLine:hover,
+.row4inLine:focus {
+    color: rgb(255, 255, 255);
+    transition: all 750ms cubic-bezier(.25,.46,.45,.94);
+    margin-left: 0!important;
+    background-image: url(../../img/itemrow4white.svg)!important;
+}
+.row2inLine:hover,
+.row2inLine:focus {
+    color: rgb(255, 255, 255);
+    transition: all 750ms cubic-bezier(.25,.46,.45,.94);
+    margin-left: 0!important;
+    background-image: url(../../img/itemrow2white.svg)!important;
+}
+.row1inLine:hover,
+.row1inLine:focus {
+    color: rgb(255, 255, 255);
+    transition: all 750ms cubic-bezier(.25,.46,.45,.94);
+    margin-left: 0!important;
+    background-image: url(../../img/itemrow1white.svg)!important;
+}
+
 
 .sidenav .closebtn {
     position: absolute;
@@ -1490,6 +1547,7 @@ input, textarea, select, button, meter, progress {
     width: 100%;
     padding-left: 20px;
     padding-right: 20px;
+    margin-bottom: 55px;
 }
 
 .containerSub:last-of-type {
@@ -1711,7 +1769,7 @@ body,
 .icon-list {
     width: 280px;
     max-height: 90%;
-    height: 85%;
+    height: 70%;
     overflow-y: auto;
 }
 
