@@ -515,6 +515,7 @@
             // jobseeker queue data
             angular.forEach($scope.queue_resource, function (que_value, que_key) {
                 // body...
+                console.log($scope.queue_resource);
                 $scope.queue_resource[que_key].blueprints = [];
                 $scope.queue_resource[que_key].stacks = [];
                 $scope.queue_resource[que_key].full_stacks = [];
@@ -563,16 +564,22 @@
             $scope.blueprints = [];
             $scope.hired_blueprints = [];
             $scope.old_res = $scope.queue_resource;
-            angular.forEach($scope.queue_resource, function (value, key) {
-                angular.forEach($scope.hired_employee_info, function (hired_val, hired_key) {
-                    if(value.blueprint !== hired_val.blueprint) {
-                        $scope.blueprints.push(value);
-                    }
-                    if(value.blueprint === hired_val.blueprint && hired_val.employee === $scope.user.id){
-                        $scope.hired_blueprints.push(value);
-                    }
+            if(angular.isUndefined($scope.hired_employee_info[0])){
+                angular.forEach($scope.queue_resource, function (value, key) {
+                     $scope.blueprints.push(value);
                 });
-            });
+            } else {
+                angular.forEach($scope.queue_resource, function (value, key) {
+                    angular.forEach($scope.hired_employee_info, function (hired_val, hired_key) {
+                        if(value.blueprint !== hired_val.blueprint) {
+                            $scope.blueprints.push(value);
+                        }
+                        if(value.blueprint === hired_val.blueprint && hired_val.employee === $scope.user.id){
+                            $scope.hired_blueprints.push(value);
+                        }
+                    });
+                });
+            }
             $scope.queue_resource = $scope.blueprints;
             if(!$scope.user.preference_filter){
                 $scope.user.preference_filter = [];
