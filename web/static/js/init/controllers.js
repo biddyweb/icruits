@@ -515,7 +515,6 @@
             // jobseeker queue data
             angular.forEach($scope.queue_resource, function (que_value, que_key) {
                 // body...
-                console.log($scope.queue_resource);
                 $scope.queue_resource[que_key].blueprints = [];
                 $scope.queue_resource[que_key].stacks = [];
                 $scope.queue_resource[que_key].full_stacks = [];

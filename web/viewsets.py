@@ -778,21 +778,21 @@ class AppliedBlueprintsViewSet(viewsets.ModelViewSet):
             try:
                 has_failed = request.data['has_failed']
                 instance.has_failed = has_failed
-            except:
+            except Http404:
                 has_failed = False
                 instance.has_failed = has_failed
 
             try:
                 has_completed_simulation = request.data['has_completed']
                 instance.has_completed_simulation = has_completed_simulation
-            except:
+            except Http404:
                 has_completed_simulation = False
                 instance.has_completed_simulation = has_completed_simulation
 
             try:
                 simulator_results = request.data['results']
                 instance.simulator_results = simulator_results
-            except:
+            except Http404:
                 pass
 
             times_tried = request.data['times_tried']
