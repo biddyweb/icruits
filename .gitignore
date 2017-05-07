@@ -1,6 +1,5 @@
-db.sqlite3
 ./static/
-./node_modules/
+node_modules/
 .idea/
 node_modules/.staging/
 node_modules/bl/node_modules/
