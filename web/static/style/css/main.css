@@ -4,16 +4,6 @@
 ********************************************************/
 
 @charset "UTF-8";
-@font-face {
-  font-weight: normal;
-  font-style: normal;
-  font-family: 'icomoon';
-  src:url('../fonts/fonts/icomoon/icomoon.eot?-9heso');
-  src:url('../fonts/fonts/icomoon/icomoon.eot?#iefix-9heso') format('embedded-opentype'),
-    url('../fonts/fonts/icomoon/icomoon.woff?-9heso') format('woff'),
-    url('../fonts/fonts/icomoon/icomoon.ttf?-9heso') format('truetype'),
-    url('../fonts/fonts/icomoon/icomoon.svg?-9heso#icomoon') format('svg');
-}
 menu {
     display: block
 }
