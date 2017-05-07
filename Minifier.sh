@@ -17,3 +17,7 @@ rm -f web/static/style/css/main.min.css
 uglifycss web/static/style/css/main.css > web/static/style/css/main.min.css
 rm -f web/static/style/css/responsive.min.css
 uglifycss web/static/style/css/responsive.css > web/static/style/css/responsive.min.css
+rm -f web/static/style/css/main.min.scss
+uglifycss web/static/style/css/main.scss > web/static/style/css/main.min.scss
+rm -f web/static/style/css/responsive.min.scss
+uglifycss web/static/style/css/responsive.scss > web/static/style/css/responsive.min.scss
