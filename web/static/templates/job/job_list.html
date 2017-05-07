@@ -13,7 +13,7 @@
                             <input type="checkbox"
                                    class="faChkRnd"
                                    ng-click="FilterIndustry(ind.id)">
-                            <span class="checkbox-label">{{ ind.type_industry }}</span></br/>
+                            <span class="checkbox-label">{{ ind.type_industry }}</span><br>
                         </label>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                             <input type="checkbox"
                                    class="faChkRnd"
                                    ng-click="FilterLocation(loc.id)"/>
-                            <span class="checkbox-label">{{ loc.location }}</span></br/>
+                            <span class="checkbox-label">{{ loc.location }}</span><br>
                         </label>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                             <input type="checkbox"
                                    class="faChkRnd"
                                    ng-click="FilterSalary(sal.id)"/>
-                            <span class="checkbox-label">{{ sal.sal_range }}</span></br/>
+                            <span class="checkbox-label">{{ sal.sal_range }}</span><br>
                         </label>
                     </div>
                 </div>
@@ -46,17 +46,17 @@
                             <input type="checkbox"
                                    class="faChkRnd"
                                    ng-click="FilterExperience(exp.id)"/>
-                            <span class="checkbox-label">{{ exp.experience_level }}</span></br/>
+                            <span class="checkbox-label">{{ exp.experience_level }}</span><br>
                         </label>
                     </div>
                 </div>
             </div>
             <div class="social-container">
                 <div class="social-fb">
-                    <a href="www.facebook.com" style="margin-left: 0;"><i class="fa fa-facebook"></i></a>
+                    <a href="https://www.facebook.com/pages/iCruits/1548586008772579" style="margin-left: 0;"><i class="fa fa-facebook"></i></a>
                 </div>
                 <div class="social-twitter">
-                    <a href="www.twitter.com" style="margin-left: 0;"><i class="fa fa-twitter"></i></a>
+                    <a href="https://twitter.com/icruits?lang=en" style="margin-left: 0;"><i class="fa fa-twitter"></i></a>
                 </div>
             </div>
         </nav>
@@ -180,7 +180,7 @@
                 </div>
                 <div id="dashboardBtn7">
                     <a id="filter-btn" ng-click="tupleHiredJobs()"
-                       style="left: 0px;"
+                       style="left: 0;"
                        ng-if="show_hired_jobs">
                         <span>
                             Hired Jobs
@@ -192,7 +192,7 @@
                 </div>
                 <div id="dashboardBtn8">
                     <a id="filter-btn" ng-click="tupleHiredJobs()"
-                       style="left: 0px;"
+                       style="left: 0;"
                        ng-if="!show_hired_jobs">
                         <span>
                             All Jobs
@@ -241,7 +241,7 @@
                             <input type="checkbox"
                                    class="faChkRnd"
                                    ng-click="FilterLocation(loc.id)"/>
-                            <span class="checkbox-label">{{ loc.location }}</span></br/>
+                            <span class="checkbox-label">{{ loc.location }}</span><br>
                         </label>
                     </div>
                 </div>
@@ -252,7 +252,7 @@
                             <input type="checkbox"
                                    class="faChkRnd"
                                    ng-click="FilterSalary(sal.id)"/>
-                            <span class="checkbox-label">{{ sal.sal_range }}</span></br/>
+                            <span class="checkbox-label">{{ sal.sal_range }}</span><br>
                         </label>
                     </div>
                 </div>
@@ -263,17 +263,17 @@
                             <input type="checkbox"
                                    class="faChkRnd"
                                    ng-click="FilterExperience(exp.id)"/>
-                            <span class="checkbox-label">{{ exp.experience_level }}</span></br/>
+                            <span class="checkbox-label">{{ exp.experience_level }}</span><br>
                         </label>
                     </div>
                 </div>
             </div>
             <div class="social-container-emp">
                 <div class="social-fb-emp">
-                    <a href="www.facebook.com" style="margin-left: 0;"><i class="fa fa-facebook"></i></a>
+                    <a href="https://www.facebook.com/pages/iCruits/1548586008772579" style="margin-left: 0;"><i class="fa fa-facebook"></i></a>
                 </div>
                 <div class="social-twitter-emp">
-                    <a href="www.twitter.com" style="margin-left: 0;"><i class="fa fa-twitter"></i></a>
+                    <a href="https://twitter.com/icruits?lang=en" style="margin-left: 0;"><i class="fa fa-twitter"></i></a>
                 </div>
             </div>
         </nav>
@@ -421,6 +421,7 @@
             <input type="text" 
                    class="form-control blueprintInput blueprintName" 
                    name="name"
+                   title="blueprint name"
                    ng-model="make_blueprint.name"
                    required>
         </div>
@@ -436,6 +437,7 @@
             <span class="new blueprintLabel"> Company Name </span>
             <input type="text" 
                    name="company name"
+                   title="company name"
                    class="form-control blueprintInput blueprintCompany"
                    ng-model="make_blueprint.company_name"
                    required>
@@ -444,6 +446,7 @@
             <span class="new blueprintLabel"> Team ID </span>
             <input type="text" 
                    name="team id"
+                   title="team id"
                    class="form-control blueprintTeamID"
                    ng-model="make_blueprint.team_id" 
                    required>
@@ -467,6 +470,7 @@
             <span class="new blueprintLabel marginBlueprint"> Job Function </span>
             <input type="text" 
                    name="job function"
+                   title="job function"
                    class="form-control inputSizeFix"
                    ng-model="make_blueprint.function" 
                    required>
@@ -523,13 +527,15 @@
         <!--hr class="hrTopTen"-->
         <div class="row" style="background-color: rgb(235,235,235); padding-top: 15px; padding-bottom: 5px;">
             <span class="new blueprintLabel"> Qualification </span>
-            <input type="text" 
+            <input type="text"
+                   title="qualification"
                    class="form-control blueprintInput inputSizeFix"
                    name="professional qualifications"
                    ng-model="make_blueprint.professional_qualifications"
                    required>
             <span class="new blueprintLabel"> Practice Limit </span>
-            <input type="number" 
+            <input type="number"
+                   title="practice limit"
                    name="practice limit"
                    class="form-control inputSizeFix"
                    ng-model="make_blueprint.practice_limit" 
@@ -537,6 +543,7 @@
             <span class="new blueprintLabel"> Remote Work </span>
             <input type="text" 
                    name="remote work"
+                   title="remote work"
                    class="form-control inputSizeFix"
                    ng-model="make_blueprint.remote_work" 
                    required>
@@ -550,11 +557,13 @@
             <span class="new blueprintLabel"> Max Queue </span>
             <input type="number" 
                    name="max queue"
+                   title="max queue"
                    class="form-control inputSizeFix"
                    ng-model="make_blueprint.max_queue" 
                    required>
             <span class="new blueprintLabel"> Interview Url </span>
-            <input type="text" 
+            <input type="text"
+                   title="interview url"
                    name="interview url"
                    class="form-control inputSizeFix"
                    ng-model="make_blueprint.url" 
@@ -689,7 +698,8 @@
 <aside id="createTask" class="createTask">
     <span class="tasksLabel"> Blueprint Task </span>
     <input class='form-control createTaskInput' 
-           id='selectTask' 
+           id='selectTask'
+           title="blueprint task"
            name='blueprint tasks' 
            ng-model='newBlueprintTask.name'> 
     <span class="tasksLabel" style="padding-top: 15px;"> Job Function </span>
@@ -701,7 +711,8 @@
         <option value='' ng-show='false'></option>
     </select-->
     <input class='form-control createTaskInput' 
-           id='selectTask' 
+           id='selectTask'
+           title="job function"
            name='blueprint tasks' 
            ng-model='newBlueprintTask.function'> 
     <a class="btn add-btn" onclick="CreateTasks()"
@@ -734,12 +745,14 @@
     <input class='form-control createTaskInput' 
            id='selectTask' 
            type="text" 
-           name='blueprint tasks' 
+           name='blueprint tasks'
+           title="first name"
            ng-model='desiredEmployee.first_name' 
            style="margin-top: 15px; width: 90%; margin-left: 5%;">
     <span class="tasksLabel" style="padding-top: 10px;"> Last Name </span>
     <input class='form-control createTaskInput' 
-           id='selectTask' 
+           id='selectTask'
+           title="last name"
            name='blueprint tasks' 
            type="text" 
            ng-model='desiredEmployee.last_name' 
@@ -747,14 +760,16 @@
     <span class="tasksLabel" style="padding-top: 10px;"> Email </span>
     <input class='form-control createTaskInput' 
            id='selectTask'
-           type="text"  
+           title="email"
+           type="email"
            name='blueprint tasks' 
            ng-model='desiredEmployee.email' 
            style="margin-top: 15px; width: 90%; margin-left: 5%;">           
     <span class="tasksLabel" style="padding-top: 10px;"> Phone Number </span>
     <input class='form-control createTaskInput' 
            id='selectTask'
-           type="text"  
+           type="number"
+           title="phone number"
            name='blueprint tasks' 
            ng-model='desiredEmployee.phone_number' 
            style="margin-top: 15px; width: 90%; margin-left: 5%;">
