@@ -51,18 +51,15 @@
         <link rel="shortcut icon" href="{% static 'img/new-logo-64.ico' %}" type="image/x-icon">
         <link rel="icon" href="{% static 'img/new-logo-64.ico' %}" type="image/x-icon">
 
-        {% compress js %}
         <!-- JQuery -->
         <script charset="utf-8" type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
         <script async charset="utf-8" type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-        {% endcompress %}
         <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0PvWbQ_5XXQdB2uPgHetSW5eqbp_18uI&libraries=places"></script>
         <script async charset="utf-8" type="text/javascript" src="{% static 'js/modernizr.custom.js' %}"></script>
         <script async charset="utf-8" type="text/javascript" src="{% static 'js/classie.min.js' %}"></script>
    </head>
 
     <body ng-controller="SeoCtrl">
-        {% compress js %}
         <script charset="utf-8" type="text/javascript">
             window.twttr = (function(d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0],
@@ -80,10 +77,8 @@
                 return t;
             }(document, "script", "twitter-wjs"));
         </script>
-        {% endcompress %}
 
         <div id="fb-root"></div>
-        {% compress js %}
         <script charset="utf-8" type="text/javascript">
 
             window.fbAsyncInit = function() {
@@ -103,7 +98,6 @@
                 fjs.parentNode.insertBefore(js, fjs);
            }(document, 'script', 'facebook-jssdk'));
         </script>
-        {% endcompress %}
         <!--.preloader-->
         <div class="preloader"> <i class="fa fa-circle-o-notch fa-spin"></i></div>
         <!--/.preloader-->    
