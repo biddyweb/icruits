@@ -7,8 +7,8 @@ rm -f web/static/js/init/controllers.min.js
 uglifyjs web/static/js/init/controllers.js -o web/static/js/init/controllers.min.js  -p 5 -c -m
 rm -f web/static/js/init/main.min.js
 uglifyjs web/static/js/init/main.js -o web/static/js/init/main.min.js  -p 5 -c -m
-rm -f web/static/js/init/routes.min.js
-uglifyjs web/static/js/init/routes.js -o web/static/js/init/routes.min.js  -p 5 -c -m
+#rm -f web/static/js/init/routes.min.js
+#uglifyjs web/static/js/init/routes.js -o web/static/js/init/routes.min.js  -p 5 -c -m
 rm -f web/static/js/init/services.min.js
 uglifyjs web/static/js/init/services.js -o web/static/js/init/services.min.js  -p 5 -c -m
 rm -f web/static/js/js-main.min.js
