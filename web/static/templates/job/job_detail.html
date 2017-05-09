@@ -244,7 +244,7 @@
                     </span>
                 </a>
                 <a id="accept-interview-btn" ng-show="!user.profile_type"
-                   ng-click="inviteToInterview()" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && has_applied && !has_interview">
+                   ng-click="inviteToInterview()" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && !has_interview">
                     <span id="advanced-span" class="show-button">
                         Invite to Interview
                     </span>
