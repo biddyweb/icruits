@@ -821,7 +821,23 @@
     <a href='' class="menu-item" style="margin-top: 2em;" ng-click="logoutNow()">Logout</a>
 </aside>
 <!-- END OF SMALL CANVAS MENU -->
-
+<script type="text/javascript">
+/*=================================================
+                Check display size
+==================================================*/
+function checkSize() {
+    var mobPlat = document.getElementById('mobilePlatform'),
+        pcPlat = document.getElementById('pcDisplay');
+    if($(window).width() < 767 ){
+        mobPlat.style.display = 'block';
+        pcPlat.style.display = 'none';
+    } else {
+        mobPlat.style.display = 'none';
+        pcPlat.style.display = 'block';
+    }
+}
+$(document).ready(checkSize);
+</script>
 <script type="text/javascript">
 
     var bodyEl = document.body,

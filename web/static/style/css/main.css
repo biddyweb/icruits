@@ -707,11 +707,25 @@ VERY IMPORTANT!!!!
     margin-left: 24px;
 }
 
+#pcDisplayEmp {
+    height: 120px;
+    transition: all 750ms cubic-bezier(.25,.46,.45,.94);
+    display: none;
+}
+
 #pcDisplay {
+    display: none;
     height: 120px;
     transition: all 750ms cubic-bezier(.25,.46,.45,.94);
 }
 
+#mobilePlatform {
+    display: none;
+}
+
+#mobilePlatformEmp {
+    display: none;
+}
 .row4inLine {
     background-image: url(../../img/itemrow4grey.svg);
     width: 30px!important;

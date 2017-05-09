@@ -517,14 +517,14 @@
         if(typeof elementTop.offset() !== "undefined") {
             videoEl.css({
                 'position': 'relative',
-                'top': (elementTop.outerHeight(true) + elementTop.offset().top) + 'px',
+                'top': (elementTop.outerHeight(true) * 9 + elementTop.offset().top) + 'px',
                 'margin-bottom': '55px'
             });
         }
         if(typeof elementTopSeeker.offset() !== "undefined") {
             videoElSeeker.css({
                 'position': 'relative',
-                'top': (elementTopSeeker.outerHeight(true) + elementTopSeeker.offset().top) + 'px',
+                'top': (elementTopSeeker.outerHeight(true) * 9 + elementTopSeeker.offset().top) + 'px',
                 'margin-bottom': '55px'
             });
         }
@@ -539,5 +539,6 @@
             });
         }*/
     }
-    $(window).on('load scroll resize', moveDiv);
+    //$(window).on('load scroll resize', moveDiv);
+    $(document).ready(moveDiv);
 </script>

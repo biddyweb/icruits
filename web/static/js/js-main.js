@@ -214,29 +214,7 @@ function seekerSelect4Row() {
     switch4Row(dash);
 }
 
-/*=================================================
-                Check display size
-==================================================*/
-function checkSize() {
-    var mobPlat = $('#mobilePlatform'),
-        pcPlat = $('#pcDisplay');
-    if($(window).width() < 767 ){
-        mobPlat.css({
-            display: 'block'
-        });
-        pcPlat.css({
-            display: 'none'
-        });
-    } else {
-        mobPlat.css({
-            display: 'none'
-        });
-        pcPlat.css({
-            display: 'block'
-        });
-    }
-}
-$(window).on('load resize', checkSize);
+
 
 /*=======================================================
             Activate/Deactivate Canvas Menus
