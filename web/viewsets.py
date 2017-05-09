@@ -673,8 +673,8 @@ class QueueStackViewSet(viewsets.ModelViewSet):
             applied_job_name_slug = str(name_trim).lower() + '-' + str(company_trim).lower()
             user_email = instance.candidate.email
             applied_obj = AppliedBlueprints.objects.filter(name_slug=applied_job_name_slug).first()
-            Queue.objects.get(stack=instance.id).stack.remove(instance)
             queue_obj = Queue.objects.get(stack=instance.id)
+            Queue.objects.get(stack=instance.id).stack.remove(instance)
             pos = 0
             for stack in queue_obj.stack.all():
                 stack.candidate_position = pos
@@ -783,14 +783,14 @@ class AppliedBlueprintsViewSet(viewsets.ModelViewSet):
                 instance.has_failed = has_failed
 
             try:
-                has_completed_simulation = request.data['has_completed']
+                has_completed_simulation = request.data['has_completed_simulation']
                 instance.has_completed_simulation = has_completed_simulation
             except Http404:
                 has_completed_simulation = False
                 instance.has_completed_simulation = has_completed_simulation
 
             try:
-                simulator_results = request.data['results']
+                simulator_results = request.data['simulator_results']
                 instance.simulator_results = simulator_results
             except Http404:
                 pass

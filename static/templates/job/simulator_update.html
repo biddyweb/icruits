@@ -1,0 +1,85 @@
+<nav class="dashHeader text-center navbar navbar-default fixed top"><span style="color: black">I</span><span style="color: #1b93d1">C</span><span style="color: black">RUITS</span></nav>
+<section id="dashboard" style="margin-top: 75px;">
+    <div class="container">
+        <div ng-if="!updated">
+            <div class="simulatorUpdates">
+                <p>
+                    This is temporary webpage to manually update DB. <br>
+                </p>
+                <span style="display: block"> Simulator Results </span>
+                <input type="text"
+                       title="simulator results"
+                       name="Simulator Results"
+                       class="cleaninput bigUserInput"
+                       ng-model="simulator_update.simulator_results">
+                <span style="display: block"> Times tried simulation</span>
+                <input type="text"
+                       title="times Tried"
+                       name="Times Tried Simulation"
+                       class="cleaninput bigUserInput"
+                       ng-model="simulator_update.times_tried"
+                       style="width: 100px!important; display: block!important;">
+                <span style="display: block"> Times Failed Simulation</span>
+                <input type="text"
+                       title="times failed simulation"
+                       name="Times Failed Simulation"
+                       class="cleaninput bigUserInput"
+                       ng-model="simulator_update.times_failed"
+                       style="width: 100px!important; display: block!important;">
+                <span style="display: block"> Tasks Completed </span>
+                <input type="text"
+                       title="tasks completed"
+                       name="Simulator Tasks Completed"
+                       class="cleaninput bigUserInput"
+                       ng-model="simulator_update.tasks_completed"
+                       style="width: 100px!important; display: block!important;">
+                <span style="display: block"> Has applicant failed simulator? </span>
+                <div class="inputHolder" style="margin-top: 20px;" ng-repeat="hasFailed in failed_simulation">
+                    <label style="font-weight: normal;">
+                        <input class="register-radio" type="radio"
+                               id="q1"
+                               name="q1"
+                               ng-value="hasFailed.value"
+                               ng-model="simulator_update.has_failed"
+                               checked/>
+                        {{ hasFailed.label }}
+                    </label>
+                </div>
+                <span style="display: block"> Has applicant completed simulator? </span>
+                <div class="inputHolder" style="margin-top: 20px;" ng-repeat="hasCompleted in completed_simulation">
+                    <label style="font-weight: normal;">
+                        <input class="register-radio" type="radio"
+                               id="q2"
+                               name="q2"
+                               ng-value="hasCompleted.value"
+                               ng-model="simulator_update.has_completed_simulation"
+                               checked/>
+                        {{ hasCompleted.label }}
+                    </label>
+                </div>
+                <a id="black-filter-btn" ng-click="Update()"
+                   style="font-size: 1.1em">
+                    <span id="advanced-span" class="show-button">
+                        Update
+                    </span>
+                    <span id="advanced-span-2" class="hover show-button">
+                        Update
+                    </span>
+                </a>
+            </div>
+        </div>
+        <div ng-if="updated">
+            <div class="sentEmail">
+                You have successfully updated DB table.
+            </div>
+        </div>
+        <a id="black-back-btn" data-ui-sref="root.dashboard" style="font-size: 1.2em;">
+            <span id="advanced-span" class="show-button">
+                &times;
+            </span>
+            <span id="advanced-span-2" class="hover show-button">
+                &times;
+            </span>            
+        </a>
+    </div>
+</section>

@@ -3208,3 +3208,9 @@ body,
     cursor: pointer;
     padding: 1.6em;
 }
+
+.simulatorUpdates {
+    display: inline-block;
+    margin-top: 40px;
+    margin-left: 33%;
+}

@@ -238,6 +238,17 @@
                     }).$promise;
                 }
             }
+        }).state('root.update_blueprint', {
+            url: '/simulator/update/:name_slug/',
+            controller: 'SimulatorUpdateCtrl',
+            templateUrl: '/static/templates/job/simulator_update.html',
+            resolve: {
+                UpdateSim: function (AppliedBlueprintsRes, $stateParams) {
+                    return AppliedBlueprintsRes.get({
+                        name_slug: $stateParams.name_slug
+                    }).$promise;
+                }
+            }
         });
     }
 })();

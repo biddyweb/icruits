@@ -515,7 +515,6 @@
             // jobseeker queue data
             angular.forEach($scope.queue_resource, function (que_value, que_key) {
                 // body...
-                console.log($scope.queue_resource);
                 $scope.queue_resource[que_key].blueprints = [];
                 $scope.queue_resource[que_key].stacks = [];
                 $scope.queue_resource[que_key].full_stacks = [];
@@ -1416,7 +1415,7 @@
     function ProfileCtrl($rootScope, $scope, metaTags, UserInfo, UserInfoRes) {
         // body...
 
-        $scope.$on('metaTagsChanged', metaTags);
+        $scope.$emit('metaTagsChanged', metaTags);
 
         $scope.user_info = UserInfo;
 
@@ -1443,7 +1442,7 @@
     ActivationCtrl.$inject = ['$scope', '$rootScope', '$window', '$state', 'metaTags', 'params', 'ActivationRes'];
 
     function ActivationCtrl($scope, $rootScope, $window, $state, metaTags, params, ActivationRes) {
-        $scope.$on('metaTagsChanged', metaTags);
+        $scope.$emit('metaTagsChanged', metaTags);
 
         var uid = params.split("?")[0],
             token = params.split("?")[1],
@@ -1479,7 +1478,7 @@
     NonPilotCtrl.$inject = ['$scope', '$rootScope', '$state', '$window', 'metaTags'];
 
     function NonPilotCtrl($scope, $rootScope, $state, $window, metaTags) {
-        $scope.$on('metaTagsChanged', metaTags);
+        $scope.$emit('metaTagsChanged', metaTags);
 
         $scope.backToHome = function () {
             $state.go('root.home', { reload: true });
@@ -1500,7 +1499,43 @@
     IntroCtrl.$inject = ['$scope', '$rootScope', 'JobFeed'];
 
     function IntroCtrl($scope, $rootScope, JobFeed) {
+        $scope.$emit('metaTagsChanged', {
+            title: JobFeed.name,
+            description: 'Preview employer video intro'
+        });
         $scope.blueprint = JobFeed;
+
+        $rootScope.image = '';
+    }
+})();
+
+(function () {
+    "use strict";
+
+    angular.module('app').controller('SimulatorUpdateCtrl', SimulatorUpdateCtrl);
+
+    SimulatorUpdateCtrl.$inject = ['$scope', '$rootScope', 'UpdateSim', 'AppliedBlueprintsRes'];
+
+    function SimulatorUpdateCtrl($scope, $rootScope, UpdateSim, AppliedBlueprintsRes) {
+        $scope.$emit('metaTagsChanged', {
+            title: 'Simulator Updater',
+            description: 'Manual updating simulator performances, reviews.'
+        });
+        $scope.simulator_update = UpdateSim;
+        $scope.updated = false;
+
+        $scope.completed_simulation = [{value: true, label: 'Has Completed'}, {value: false, label: 'Has Not Completed'}];
+        $scope.failed_simulation = [{value: true, label: 'Has Failed'}, {value: false, label: 'Has Not Failed'}];
+
+        $scope.Update = function () {
+            AppliedBlueprintsRes.update({ name_slug: $scope.simulator_update.name_slug },
+                $scope.simulator_update, function (response) {
+                    $scope.data = response;
+                    $scope.updated = true;
+                }, function (response) {
+                    $scope.errors = response.data;
+                });
+        };
 
         $rootScope.image = '';
     }
