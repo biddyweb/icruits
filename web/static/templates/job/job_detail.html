@@ -234,7 +234,7 @@
                     </video>
                 </div>
                 <a id="black-filter-btn" ng-show="!user.profile_type"
-                   ng-click="SendMail($event)" ng-if="published && blueprint.has_simulator && !blueprint.is_closed"
+                   ng-click="SendMail($event)" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && !has_applied"
                    style="font-size: 1.2em;">
                     <span id="advanced-span" class="show-button">
                         iCruit
@@ -244,7 +244,7 @@
                     </span>
                 </a>
                 <a id="accept-interview-btn" ng-show="!user.profile_type"
-                   ng-click="inviteToInterview()" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && !has_interview">
+                   ng-click="inviteToInterview()" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && has_applied && !has_interview">
                     <span id="advanced-span" class="show-button">
                         Invite to Interview
                     </span>

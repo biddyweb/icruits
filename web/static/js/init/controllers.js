@@ -134,12 +134,14 @@
 
             if(!check_person_in_queue){
                 var first_candidate = $scope.blueprint_queue[0].stacks[1].candidate,
+                    stack_id = $scope.blueprint_queue[0].stacks[1].id,
                     elementAccept = angular.element($('#accept-interview-btn')),
                     elementReject = angular.element($('#reject-interview-btn')),
                     elementiCruit = angular.element(event.target),
                     send_mail_context = {
                         blueprint: $scope.blueprint.id,
-                        user: first_candidate
+                        user: first_candidate,
+                        stack: stack_id
                     },
                     elementImg = angular.element($('#detail-img')),
                     elementResults = angular.element($('#simulator-results'));

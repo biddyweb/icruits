@@ -834,6 +834,7 @@ class ReviewResultsViewSet(views.APIView):
         try:
             blueprint_id = request.data['blueprint']
             user_id = request.data['user']
+            stack_id = request.data['stack']
         except:
             return response.Response(status=status.HTTP_404_NOT_FOUND)
 
