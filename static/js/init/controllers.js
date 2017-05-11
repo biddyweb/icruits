@@ -350,6 +350,7 @@
                 $scope.has_applied = false;
                 $scope.has_interview = false;
                 $scope.has_accepted = false;
+                $state.go('root.dashboard', { reload: true });
             }, function (response) {
                $scope.errors = response.data;
             });
@@ -508,9 +509,41 @@
                     $scope.closed_blueprints.push(value);
                 }
             });
+            angular.forEach($scope.queue_resource, function (value, key) {
+                $scope.queue_resource[key].stacks = [];
+                angular.forEach(value.stack, function (current_que_stack_value, current_que_stack_key) {
+                    // body...
+                    angular.forEach($scope.queue_stack_resource, function (que_stack_value, que_stack_key) {
+                        // body...
+                        if (current_que_stack_value === que_stack_value.id) {
+                            $scope.queue_resource[key].stacks.push(que_stack_value);
+                        }
+                    });
+                });
+            });
             if($scope.show_closed_jobs){
+                angular.forEach($scope.closed_blueprints, function (value, key) {
+                    $scope.closed_blueprints[key].queue_pos = {};
+                    angular.forEach($scope.queue_resource, function (que_val, que_key) {
+                        if($scope.queue_resource.blueprint === value.id){
+                            $scope.closed_blueprints[key].queue_pos = que_val.stacks[que_val.stacks.length - 1].candidate_position;
+                        } else {
+                            $scope.closed_blueprints[key].queue_pos = '-';
+                        }
+                    });
+                });
                 $scope.blueprints = $scope.closed_blueprints;
             } else {
+                angular.forEach($scope.not_closed_blueprints, function (value, key) {
+                    $scope.not_closed_blueprints[key].queue_pos = {};
+                    angular.forEach($scope.queue_resource, function (que_val, que_key) {
+                        if(que_val.blueprint === value.id){
+                            $scope.not_closed_blueprints[key].queue_pos = que_val.stacks[que_val.stacks.length - 1].candidate_position;
+                        } else {
+                            $scope.not_closed_blueprints[key].queue_pos = '-';
+                        }
+                    });
+                });
                 $scope.blueprints = $scope.not_closed_blueprints;
             }
         } else {
@@ -1412,9 +1445,9 @@
 
     angular.module('app').controller('ProfileCtrl', ProfileCtrl);
 
-    ProfileCtrl.$inject = ['$rootScope', '$scope', 'metaTags', 'UserInfo', 'UserInfoRes'];
+    ProfileCtrl.$inject = ['$rootScope', '$scope', '$state', 'metaTags', 'UserInfo', 'UserInfoRes'];
 
-    function ProfileCtrl($rootScope, $scope, metaTags, UserInfo, UserInfoRes) {
+    function ProfileCtrl($rootScope, $scope, $state, metaTags, UserInfo, UserInfoRes) {
         // body...
 
         $scope.$emit('metaTagsChanged', metaTags);
@@ -1426,6 +1459,7 @@
             UserInfoRes.update($scope.user_info, function (response) {
                 // body...
                 $scope.data = response;
+                $state.go('root.dashboard', { reload: true });
             }, function (response) {
                 // body...
                 $scope.errors = response.data;
@@ -1516,9 +1550,9 @@
 
     angular.module('app').controller('SimulatorUpdateCtrl', SimulatorUpdateCtrl);
 
-    SimulatorUpdateCtrl.$inject = ['$scope', '$rootScope', 'UpdateSim', 'AppliedBlueprintsRes'];
+    SimulatorUpdateCtrl.$inject = ['$scope', '$rootScope', '$state', 'UpdateSim', 'AppliedBlueprintsRes'];
 
-    function SimulatorUpdateCtrl($scope, $rootScope, UpdateSim, AppliedBlueprintsRes) {
+    function SimulatorUpdateCtrl($scope, $rootScope, $state, UpdateSim, AppliedBlueprintsRes) {
         $scope.$emit('metaTagsChanged', {
             title: 'Simulator Updater',
             description: 'Manual updating simulator performances, reviews.'
@@ -1534,6 +1568,7 @@
                 $scope.simulator_update, function (response) {
                     $scope.data = response;
                     $scope.updated = true;
+                    $state.go('root.dashboard', { reload: true });
                 }, function (response) {
                     $scope.errors = response.data;
                 });

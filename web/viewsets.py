@@ -813,8 +813,7 @@ class AppliedBlueprintsViewSet(viewsets.ModelViewSet):
                 last_position += 1
                 new_stack = QueueStack(candidate=user_obj,
                                        candidate_position=last_position,
-                                       has_applied=False,
-                                       has_icruited=True)
+                                       has_applied=True)
                 new_stack.save()
 
                 que_obj.stack.add(new_stack)
@@ -840,6 +839,10 @@ class ReviewResultsViewSet(views.APIView):
 
         user_obj = user.objects.filter(id=user_id).first()
         blueprint_obj = Blueprint.objects.filter(id=blueprint_id).first()
+        queue_stack_obj = QueueStack.objects.filter(id=stack_id).first()
+        queue_stack_obj.has_applied = False
+        queue_stack_obj.has_icruited = True
+        queue_stack_obj.save()
         send_to = user_obj.email
         email_html_context = {
             'username': user_obj.username,
@@ -868,11 +871,14 @@ class PrehiredEmployeeViewSet(viewsets.ModelViewSet):
         user_id = request.data['user_id']
         blueprint_id = request.data['blueprint_id']
 
+        print blueprint_id
+
         stack_obj = QueueStack.objects.filter(id=que_stack).first()
         candidate = stack_obj.candidate.id
 
         user_obj = user.objects.filter(id=candidate).first()
         blueprint_obj = Blueprint.objects.filter(id=blueprint_id).first()
+        company_email = blueprint_obj.related_user.email
 
         serializer = PrehiredEmployeeSerializer(data={'blueprint': blueprint_id,
                                                       'employee': candidate})
@@ -888,13 +894,25 @@ class PrehiredEmployeeViewSet(viewsets.ModelViewSet):
                 'blueprint': blueprint_obj.name,
                 'username': user_obj.username
             }
+            email_html_context_employer = {
+                'username': user_obj.username,
+                'email': user_obj.email
+            }
             email_html = render_to_string('email_templates/accept_interview.html', email_html_context)
+            employer_email_html = render_to_string('email_templates/employer_accept_interview.html',
+                                                   email_html_context_employer)
             send_mail(subject='Incoming Interview',
                       message='',
                       from_email='alek.rajic@icruits.com',
                       recipient_list=[user_obj.email, ],
                       html_message=email_html)
-        return response.Response(status=status.HTTP_201_CREATED)
+            send_mail(subject='Set up Interview',
+                      message='',
+                      from_email='alek.rajic@icruits.com',
+                      recipient_list=[company_email, ],
+                      html_message=employer_email_html)
+            return response.Response(data=serializer.data, status=status.HTTP_201_CREATED)
+        return response.Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class BlueprintsCandidateHasAppliedViewSet(views.APIView):

@@ -298,12 +298,12 @@
                                         <source src="{{ JobFeed.video_url }}" type="video/mp4">
                                     </video>
                                     <div class="queueNumber"></div>
-                                    <h1 class="jobHeader" data-ng-bind="JobFeed.max_queue"></h1>
+                                    <h1 class="jobHeader" data-ng-bind="JobFeed.queue_pos"></h1>
                                     <div class="overlay">
                                         <div class="overlay-content">
                                             <div class="blueprint-info">
                                                 <h3 data-ng-bind="JobFeed.name"></h3>
-                                                <h3 data-ng-bind="JobFeed.max_queue" style="font-size: 2.2em"></h3>
+                                                <h3 data-ng-bind="JobFeed.queue_pos" style="font-size: 2.2em"></h3>
                                                 <p data-ng-bind="JobFeed.company_name"></p>
                                             </div>
                                             <div class="blueprint-overview">
