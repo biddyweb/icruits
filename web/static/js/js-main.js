@@ -253,7 +253,7 @@ function expandMenu() {
     // body...
     var pos = $(window).scrollTop();
     $('.menu-wrap').css({
-        'height': pos + 'px'
+        'top': pos + 'px'
     });
 }
 
