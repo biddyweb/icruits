@@ -524,8 +524,8 @@ class WorkEnviorment2(models.Model):
 
 
 class PrehiredEmployee(models.Model):
-    blueprint = models.OneToOneField(Blueprint, related_name="related_blueprint_id", unique=True)
-    employee = models.OneToOneField(user, related_name='related_user_id', unique=True)
+    blueprint = models.ForeignKey(Blueprint, related_name="related_blueprint_id")
+    employee = models.ForeignKey(user, related_name='related_user_id')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -534,8 +534,8 @@ class PrehiredEmployee(models.Model):
 
 
 class HiredEmployee(models.Model):
-    blueprint = models.OneToOneField(Blueprint, related_name="related_hired_blueprint", unique=True)
-    employee = models.OneToOneField(user, related_name='related_hired_user', unique=True)
+    blueprint = models.ForeignKey(Blueprint, related_name="related_hired_blueprint")
+    employee = models.ForeignKey(user, related_name='related_hired_user')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

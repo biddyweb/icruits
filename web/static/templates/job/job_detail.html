@@ -61,7 +61,7 @@
                     <div class="practice-info" ng-if="blueprint_in_queue && blueprint.has_simulator && !blueprint.is_closed">
                         <span>Queue :  </span>
                         <div class="square-info">
-                            <span data-ng-bind="current_queue"></span>
+                            <span data-ng-bind="blueprint_queue[0].stacks[blueprint_queue[0].stacks.length - 1].candidate_position"></span>
                         </div>
                     </div>
                     <div class="practice-info" ng-if="blueprint.has_simulator && blueprint.is_closed">
@@ -412,25 +412,31 @@
                             <span data-ng-bind="job_type.employment"></span>
                         </div>
                     </div>
+                    <div class="practice-info" ng-if="!can_apply">
+                        <span>Status: </span>
+                        <div class="square-info">
+                            <span>Waiting for simulator</span>
+                        </div>
+                    </div>
                     <div class="practice-info" ng-if="has_applied && !is_icruited && !has_interview">
                         <span>Status :  </span>
                         <div class="square-info">
                             <span>Applied</span>
                         </div>
                     </div>
-                    <div class="practice-info" ng-if="has_applied && is_icruited">
+                    <div class="practice-info" ng-if="!has_applied && is_icruited">
                         <span>Status :  </span>
                         <div class="square-info">
                             <span>iCruited</span>
                         </div>
                     </div>
-                    <div class="practice-info" ng-if="has_applied && has_interview">
+                    <div class="practice-info" ng-if="!has_applied && has_interview">
                         <span>Status :  </span>
                         <div class="square-info">
                             <span>Ready for Interview</span>
                         </div>
                     </div>
-                    <div class="practice-info" ng-if="has_applied && is_icruited || has_applied && has_interview">
+                    <div class="practice-info" ng-if="!has_applied && is_icruited || !has_applied && has_interview">
                         <span>Your Queue :  </span>
                         <div class="square-info">
                             <span data-ng-bind="current_queue"></span>
@@ -450,7 +456,7 @@
                     <source src="{{ blueprint.video_url }}" type="video/mp4">
                 </video>
             </div>
-            <a id="black-filter-btn" ng-show="user.profile_type" ng-if="!has_applied" ng-click="applyForBlueprint()"
+            <a id="black-filter-btn" ng-show="user.profile_type" ng-if="can_apply && !has_applied && !has_applied_in_queue" ng-click="applyForBlueprint()"
                style="font-size: 1.1em">
                 <span id="advanced-span" class="show-button">
                     Apply
@@ -468,7 +474,7 @@
                     un-iCruit
                 </span>
             </a>
-             <a id="blueprint-btn" ng-show="user.profile_type" ng-if="is_icruited || has_interview" ng-click="exitQueue()">
+             <a id="blueprint-btn" ng-show="user.profile_type" ng-if="has_applied_in_queue || is_icruited || has_interview" ng-click="exitQueue()">
                 <span id="advanced-span" class="show-button">
                     un-iCruit
                 </span>
@@ -503,6 +509,24 @@
     </section>
 </div>
 <!-- END OF JOBSEEKER BLUEPRINT DETAILS EXPERIENCE -->
+
+<!-- ERROR DISPLAYING HANDLER -->
+<aside ng-if="reached_max_queue"
+       id="errorCanvasDetails" class="displayError">
+    <div class="captionErrorDetails">Error</div>
+    <span class="blueprintError" ng-if="reached_max_queue" data-ng-bind="reached_max_queue_error"></span>
+    <a id="back-btn" ng-click="closeErrorCanvasDetails()"
+       style="display: block; margin-left: 5%;
+       bottom: -14px; position: relative;">
+        <span id="advanced-span" class="show-button">
+            &times;
+        </span>
+        <span id="advanced-span-2" class="hover show-button">
+            &times;
+        </span>
+    </a>
+</aside>
+
 <script type="text/javascript">
     function moveDiv() {
     var elementTop = $('#detailImages'),

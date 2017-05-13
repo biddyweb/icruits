@@ -726,13 +726,15 @@ VERY IMPORTANT!!!!
 #mobilePlatformEmp {
     display: none;
 }
+
 .row4inLine {
     background-image: url(../../img/itemrow4grey.svg);
     width: 30px!important;
     height: 30px!important;
     position: fixed !important;
-    margin-top: 90px;
+    /*margin-top: 90px;*/
     cursor: pointer;
+    margin-top: 45px!important;
 }
 
 .row2inLine {
@@ -741,7 +743,7 @@ VERY IMPORTANT!!!!
     height: 30px!important;
     position: fixed !important;
     cursor: pointer;
-    margin-top: 45px!important;
+    /*margin-top: 45px!important;*/
 }
 
 .row1inLine {
@@ -2533,6 +2535,16 @@ body,
     text-transform: uppercase;
 }
 
+.captionErrorDetails {
+    position: relative;
+    width: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 1px;
+    top: 5px;
+    text-transform: uppercase;
+}
+
 /************************************************
                 DETAILS PAGE
 ************************************************/
@@ -3027,7 +3039,7 @@ body,
 .content-wrap-emp {
     width: 100%;
     height: 100%;
-    position: absolute;
+    /*position: absolute;*/
 }
 
 .content-wrap-emp {

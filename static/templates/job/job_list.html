@@ -283,7 +283,7 @@
 
     <div class="content-wrap-emp">
         <div class="content-emp">
-            <nav class="dashHeader text-center navbar navbar-default fixed top"><span style="color: black">I</span><span style="color: #1b93d1">C</span><span style="color: black">RUITS</span></nav>
+            <nav id="dashIcruitsEmp" class="dashHeader text-center navbar navbar-default fixed top"><span style="color: black">I</span><span style="color: #1b93d1">C</span><span style="color: black">RUITS</span></nav>
             <section id="dashboard" style="margin-top: 75px;">
                 <div class="containerSub cf">
                     <div id="dashItemEmp" class="row">
@@ -810,8 +810,8 @@
     <div id="toggleViews" class="collapse dropdown-fix">
         <span id="mobilePlatform">Mobile Display</span>
         <div id="pcDisplay">
-            <a class="row1inLine" ng-if="!user.profile_type" onclick="employerSelect1Row()"></a>
-            <a class="row1inLine" ng-if="user.profile_type" onclick="seekerSelect1Row()"></a>
+            <!--a class="row1inLine" ng-if="!user.profile_type" onclick="employerSelect1Row()"></-a>
+            <a class="row1inLine" ng-if="user.profile_type" onclick="seekerSelect1Row()"></a-->
             <a class="row2inLine" ng-if="!user.profile_type" onclick="employerSelect2Row()"></a>
             <a class="row2inLine" ng-if="user.profile_type" onclick="seekerSelect2Row()"></a>
             <a class="row4inLine" ng-if="!user.profile_type" onclick="employerSelect4Row()"></a>
@@ -861,7 +861,8 @@ $(document).ready(checkSize);
         seekBtn5 = document.getElementById('dashboardBtn5'),
         seekBtn6 = document.getElementById('dashboardBtn6'),
         seekBtn7 = document.getElementById('dashboardBtn7'),
-        seekBtn8 = document.getElementById('dashboardBtn8');
+        seekBtn8 = document.getElementById('dashboardBtn8'),
+        dashEmp = document.getElementById('dashIcruitsEmp');
 
     function init() {
         initEvents();
@@ -955,6 +956,7 @@ $(document).ready(checkSize);
                 'overflow-y': 'auto',
                 'overflow-x': 'auto'
             });
+            dashEmp.style.top = '0'
         }
         else {
             classie.add( bodyEl, 'show-menu-emp' );
@@ -972,6 +974,7 @@ $(document).ready(checkSize);
                 'overflow-x': 'hidden'
             });
             // animate path
+            dashEmp.style.top = '-75px'
         }
         isOpenEmp = !isOpenEmp;
     }

@@ -679,6 +679,7 @@ class QueueStackViewSet(viewsets.ModelViewSet):
             for stack in queue_obj.stack.all():
                 stack.candidate_position = pos
                 pos += 1
+                stack.save()
             applied_obj.delete()
             self.perform_destroy(instance)
 
@@ -720,10 +721,23 @@ class AppliedBlueprintsViewSet(viewsets.ModelViewSet):
             print 'yes'
 
         if serializer.is_valid():
-            self.perform_create(serializer)
 
             user_obj = user.objects.filter(id=related_candidate).first()
             blueprint = Blueprint.objects.filter(id=related_blueprint).first()
+
+            try:
+                que_obj = Queue.objects.filter(blueprint=blueprint.id).first()
+                max_persons = blueprint.max_queue
+                count = 0
+                for stack in que_obj.stack.all():
+                    count += 1
+                if max_persons < count:
+                    return response.Response(data={'error': 'Maximum queue number for this blueprint reached.'},
+                                             status=status.HTTP_400_BAD_REQUEST)
+            except:
+                pass
+
+            self.perform_create(serializer)
 
             email_context = {
                 'username': str(user_obj.username).capitalize(),
