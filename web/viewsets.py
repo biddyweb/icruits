@@ -22,6 +22,7 @@ from web.models import (
     PrehiredEmployee,
     HiredEmployee,
     WorkEnviorment2,
+    WaitingListToEnterStack,
 )
 from web.serializers import (
     BlueprintSerializer,
@@ -46,6 +47,7 @@ from web.serializers import (
     PrehiredEmployeeSerializer,
     HiredEmployeeSerializer,
     WorkEnviorment2Serializer,
+    WaitingListToEnterStackSerializer,
 )
 from rest_framework import (
     viewsets,
@@ -666,6 +668,7 @@ class QueueStackViewSet(viewsets.ModelViewSet):
 
         try:
             instance = self.get_object()
+            blueprint_instance = Queue.objects.get(stack=instance.id).blueprint.id
             blueprint_name = Queue.objects.get(stack=instance.id).blueprint.name
             username = instance.candidate.username
             name_trim = ''.join(e for e in username if e.isalnum())
@@ -694,6 +697,10 @@ class QueueStackViewSet(viewsets.ModelViewSet):
                       from_email='alek.rajic@icruits.com',
                       recipient_list=[user_email, ],
                       html_message=html_email)
+
+            max_queue = blueprint_instance.max_queue
+            waiting_list = WaitingListToEnterStack.objects.filter(blueprint=blueprint_instance)
+            print waiting_list
 
         except Http404:
             pass
@@ -823,14 +830,45 @@ class AppliedBlueprintsViewSet(viewsets.ModelViewSet):
             if instance.has_completed_simulation and not instance.has_failed:
                 que_obj = Queue.objects.filter(blueprint=instance.blueprint.id).first()
                 user_obj = user.objects.filter(id=instance.candidate.id).first()
-                last_position = que_obj.stack.last().candidate_position
-                last_position += 1
-                new_stack = QueueStack(candidate=user_obj,
-                                       candidate_position=last_position,
-                                       has_applied=True)
-                new_stack.save()
+                max_queue = que_obj.blueprint.max_queue
+                blueprint_name = que_obj.blueprint.name
+                username = user_obj.username
+                user_email = user_obj.email
+                blueprint_obj = que_obj.blueprint.id
+                count = 0
+                for stack in que_obj.stack.all():
+                    count += 1
+                if max_queue < count:
+                    message_context = {
+                        'username': str(username).capitalize(),
+                        'blueprint': str(blueprint_name).capitalize()
+                    }
+                    html_message = render_to_string('email_templates/in_wait_list.html', message_context)
+                    candidate_wishlist = WaitingListToEnterStack(blueprint=blueprint_obj,
+                                                                 employee=user_obj.id)
+                    candidate_wishlist.save()
+                    send_mail(subject="Maximum Queue Reached",
+                              message='',
+                              from_email='alek.rajic@icruits.com',
+                              recipient_list=[user_email, ],
+                              html_message=html_message)
+                    return response.Response(data={'error': 'Maximum queue number reached. '
+                                                            'You will be placed in waiting list '
+                                                            'until next available slot'},
+                                             status=status.HTTP_201_CREATED)
+                else:
+                    last_position = que_obj.stack.last().candidate_position
+                    last_position += 1
+                    new_stack = QueueStack(candidate=user_obj,
+                                           candidate_position=last_position,
+                                           has_applied=True)
+                    new_stack.save()
 
-                que_obj.stack.add(new_stack)
+                    que_obj.stack.add(new_stack)
+                    return response.Response(data={'success', 'You have successfully entered queue.'},
+                                             status=status.HTTP_201_CREATED)
+            else:
+                return response.Response(status=status.HTTP_200_OK)
 
         except Http404:
             pass

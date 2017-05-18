@@ -551,16 +551,28 @@
                             $scope.closed_blueprints[key].queue_pos = que_val.stacks[que_val.stacks.length - 1].candidate_position;
                         }
                     });
-                    if(!angular.isNumber($scope.not_closed_blueprints[key].queue_pos)){
-                        $scope.not_closed_blueprints[key].queue_pos = '-';
+                    if(!angular.isNumber($scope.closed_blueprints[key].queue_pos)){
+                        $scope.closed_blueprints[key].queue_pos = '-';
                     }
+                });
+                angular.forEach($scope.closed_blueprints, function (value, key) {
+                    angular.forEach($scope.salary_info, function (salary_value, salary_key) {
+                        if(value.related_salary === salary_value.id){
+                            $scope.closed_blueprints[key].salary_range = salary_value.sal_range;
+                        }
+                    });
+                    angular.forEach($scope.location_info, function (location_value, location_key) {
+                        if(value.related_location === location_value.id){
+                            $scope.closed_blueprints[key].current_location = location_value.location;
+                        }
+                    });
                 });
                 $scope.blueprints = $scope.closed_blueprints;
             } else {
                 angular.forEach($scope.not_closed_blueprints, function (value, key) {
                     $scope.not_closed_blueprints[key].queue_pos = {};
                     angular.forEach($scope.queue_resource, function (que_val, que_key) {
-                        if (value.is_published && Number(que_val.blueprint) === Number(value.id)) {
+                        if(value.is_published && Number(que_val.blueprint) === Number(value.id)) {
                             $scope.not_closed_blueprints[key].queue_pos = que_val.stacks[que_val.stacks.length - 1].candidate_position;
                         }
                     });
@@ -568,13 +580,24 @@
                         $scope.not_closed_blueprints[key].queue_pos = '-';
                     }
                 });
+                angular.forEach($scope.not_closed_blueprints, function (value, key) {
+                    angular.forEach($scope.salary_info, function (salary_value, salary_key) {
+                        if(value.related_salary === salary_value.id){
+                            $scope.not_closed_blueprints[key].salary_range = salary_value.sal_range;
+                        }
+                    });
+                    angular.forEach($scope.location_info, function (location_value, location_key) {
+                        if(value.related_location === location_value.id){
+                            $scope.not_closed_blueprints[key].current_location = location_value.location;
+                        }
+                    });
+                });
                 $scope.blueprints = $scope.not_closed_blueprints;
             }
         } else {
             // jobseeker queue data
             angular.forEach($scope.queue_resource, function (que_value, que_key) {
                 // body...
-                $scope.queue_resource[que_key].blueprints = [];
                 $scope.queue_resource[que_key].stacks = [];
                 $scope.queue_resource[que_key].full_stacks = [];
                 $scope.queue_resource[que_key].accepted_stacks = [];
@@ -587,7 +610,17 @@
                 angular.forEach($scope.blueprint_resource, function (blueprint_value, blueprint_key) {
                     // body...
                     if(que_value.blueprint === blueprint_value.id){
-                        $scope.queue_resource[que_key].blueprints.push(blueprint_value);
+                        $scope.queue_resource[que_key].blueprints = blueprint_value;
+                    }
+                });
+                angular.forEach($scope.location_info, function (location_value, location_key){
+                    if($scope.queue_resource[que_key].blueprints.related_location === location_value.id){
+                        $scope.queue_resource[que_key].blueprints.current_location = location_value.location;
+                    }
+                });
+                angular.forEach($scope.salary_info, function (salary_value, salary_key){
+                    if($scope.queue_resource[que_key].blueprints.related_salary === salary_value.id){
+                        $scope.queue_resource[que_key].blueprints.salary_range = salary_value.sal_range;
                     }
                 });
                 angular.forEach(que_value.stack, function (current_que_stack_value, current_que_stack_key) {
@@ -686,8 +719,7 @@
                         if(blu_value.blueprint !== value.blueprint && value.candidate === $scope.user.id){
                             console.log('here');
                             $scope.make_tmp_blueprints[key] = {};
-                            $scope.make_tmp_blueprints[key].blueprints = [];
-                            $scope.make_tmp_blueprints[key].blueprints.push(blu_value.blueprints[0]);
+                            $scope.make_tmp_blueprints[key].blueprints = blu_value.blueprints;
                             $scope.make_tmp_blueprints[key].stacks = [];
                             $scope.make_tmp_blueprints[key].stacks = blu_value.stacks;
                         }
@@ -751,7 +783,7 @@
                     // body...
                     angular.forEach($scope.queue_resource, function (stack_value, stack_key) {
                         // body...
-                        if(value.candidate === $scope.user.id && value.blueprint === stack_value.blueprints[0].id){
+                        if(value.candidate === $scope.user.id && value.blueprint === stack_value.blueprints.id){
                             angular.forEach(stack_value.stacks, function (get_val, get_key) {
                                 if(get_val.has_interview){
                                     $scope.blueprints.push(stack_value);
@@ -1379,6 +1411,7 @@
                     // body...
                     $scope.page_1 = false;
                     $scope.page_2 = true;
+                    $scope.current_page = '2';
                     if($scope.errors){
                         $scope.errors = false;
                     }

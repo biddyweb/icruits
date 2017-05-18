@@ -8,10 +8,10 @@ menu {
     display: block
 }
 html {
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     -ms-text-size-adjust:100%;
     -webkit-text-size-adjust:100%;
-    text-shadow: 1px 1px grey;
+    /*text-shadow: 1px 1px grey;*/
 }
 h1, h2, h3, h4, h5, h6 {
   color: #333;
@@ -105,7 +105,7 @@ input.faChkSqr:after {
 }
 
 .checkbox-label {
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-size: 0.85em;
     bottom: 0.2em;
     text-transform: uppercase;
@@ -144,7 +144,7 @@ input.faChkSqr:after span.checkbox-label {
 
 #refs > ul > div > label > span {
     cursor: pointer;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-weight: lighter;
     margin-left: 10px;
 }
@@ -365,6 +365,9 @@ VERY IMPORTANT!!!!
 /*******************************************************
                 NEW DASHBOARD ITEM
 *******************************************************/
+.dashboardCompanyName {
+    color: forestgreen;
+}
 .dashboardItem {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -373,7 +376,7 @@ VERY IMPORTANT!!!!
     box-sizing: border-box;
     float: left;
     width: 100%;
-    height: 200px;
+    height: 280px;
     background-size: cover;
     background-repeat: no-repeat;
     display: table;
@@ -435,15 +438,16 @@ VERY IMPORTANT!!!!
     -ms-box-sizing: border-box;
     -o-box-sizing: border-box;
     box-sizing: border-box;
-    left: 0.4em;
-    padding-top: 0;
+    right: 0.3em;
+    width: 20%;
+    padding-right: 0;
     text-align: right;
-    font-family: "Roboto Condensed";
+    font-family: "Andale Mono";
     color: rgb(0,0,0);
 }
 
 .dashboardItem .inner .blueprintTitle {
-    background-color: rgb(250, 250, 250);
+    /*background-color: rgb(250, 250, 250);*/
     color: rgb(0, 0, 0);
     height: 42px;
     font-size: 1.55em;
@@ -453,8 +457,26 @@ VERY IMPORTANT!!!!
     -ms-transition: opacity 0.5s ease;
     -o-transition: opacity 0.5s ease;
     transition: opacity 0.5s ease;
-    font-family: "Roboto Condensed";
+    font-family: "Andale Mono";
     font-weight: 100;
+}
+
+.dashboardLocation {
+    display: inline;
+    position: absolute;
+    left: 0;
+    margin-top: 1em;
+    margin-left: 15%;
+    color: rgb(100, 100, 100);
+}
+
+.dashboardSalary {
+    display: inline;
+    position: absolute;
+    right: 0;
+    margin-top: 1em;
+    margin-right: 15%;
+    color: rgb(100, 100, 100);
 }
 
 #dashboard .overlay {
@@ -476,7 +498,7 @@ VERY IMPORTANT!!!!
     display: table;
     height: 100%;
     width: 100%;
-    font-family: "Roboto Condensed";
+    font-family: "Andale Mono";
     border: 1px solid rgb(240, 240, 240);
 }
 
@@ -586,7 +608,7 @@ VERY IMPORTANT!!!!
     font-weight: normal;
     display: block;
     position: absolute;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     text-transform: uppercase;
     letter-spacing: .1875rem;
     text-indent: 0;
@@ -599,7 +621,7 @@ VERY IMPORTANT!!!!
     background: rgba(0,0,0,0);
     opacity: 0;
     visibility: hidden;
-    color: #1D1D1F;
+    /*color: #1D1D1F;*/
     transition: all 250ms cubic-bezier(.25,.46,.45,.94)
 }
 
@@ -607,7 +629,7 @@ VERY IMPORTANT!!!!
     font-weight: normal;
     display: block;
     position: absolute;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     text-transform: uppercase;
     letter-spacing: .1875rem;
     text-indent: 0;
@@ -620,7 +642,7 @@ VERY IMPORTANT!!!!
     background: rgba(0,0,0,0);
     opacity: 0;
     visibility: hidden;
-    color: #1D1D1F;
+    /*color: #1D1D1F;*/
     transition: all 250ms cubic-bezier(.25,.46,.45,.94)
 }
 
@@ -635,7 +657,7 @@ VERY IMPORTANT!!!!
 }
 
 .menu-white {
-    background-image: url(../../img/menu.svg);
+    background-image: url(../../img/menu-white.png);
     width: 72px;
     height: 52px;
     background-size: 18px 14px;
@@ -644,7 +666,7 @@ VERY IMPORTANT!!!!
 }
 
 .user-menu {
-    background-image: url(../../img/menu.svg);
+    background-image: url(../../img/menu-white.png);
     width: 72px;
     height: 52px;
     background-size: 18px 14px;
@@ -681,14 +703,14 @@ VERY IMPORTANT!!!!
     z-index: 124141241241241;
     top: 0;
     right: 0;
-    background-color: rgb(40, 40, 40);
+    background-color: #1D1D1F;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
 }
 
 .sidenav a {
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     text-transform: uppercase;
     position: relative;
     color: rgb(180, 180, 180);
@@ -776,18 +798,17 @@ VERY IMPORTANT!!!!
     background-image: url(../../img/itemrow1white.svg)!important;
 }
 
-
 .sidenav .closebtn {
     position: absolute;
     top: 10px;
     right: 25px;
-    font-size: 36px;
+    font-size: 36px!important;
     margin-left: 50px;
     z-index: 202020202;
 }
 
 #sidenav h3 {
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     text-transform: uppercase;
     font-size: 1.6125rem;
     color: rgb(255, 255, 255);
@@ -840,8 +861,8 @@ VERY IMPORTANT!!!!
     display: block;
     position: absolute;
     font-size: 0.8em;
-    font-family: Roboto Condensed;
-    text-shadow: 1px 1px grey;
+    font-family: "Andale Mono";
+    /*text-shadow: 1px 1px grey;*/
     text-transform: uppercase;
     letter-spacing: .1875rem;
     text-indent: 0;
@@ -950,8 +971,8 @@ VERY IMPORTANT!!!!
 .nav-tab {
     color: #028fcc;
     font-size: 16px;
-    font-family: Roboto Condensed;
-    text-shadow: 1px 1px grey;
+    font-family: "Andale Mono";
+    /*text-shadow: 1px 1px grey;*/
     line-height: 45px;
     position: absolute;
     text-transform: uppercase;
@@ -1108,7 +1129,7 @@ VERY IMPORTANT!!!!
     padding-right: 80px;
     display: inline-block;
     position: relative;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-size: .725rem;
     letter-spacing: .125rem;
     background: 0 0;
@@ -1353,7 +1374,7 @@ VERY IMPORTANT!!!!
     color: rgb(0, 0, 0);
     font-style: italic;
     font-size: 0.3em;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     left: 1.45em;
     text-shadow: 1px 1px grey;
 }
@@ -1412,7 +1433,7 @@ VERY IMPORTANT!!!!
 .inputHolder {
     width: 50%;
     font-size: 12px;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     display: inline-block;
     text-transform: uppercase;
     bottom: 1em;
@@ -1446,10 +1467,8 @@ input[type=search], textarea {
     -webkit-appearance: none;
     -webkit-border-radius: 0;
     background-color: #FFF;
-    font-family: Roboto Condensed;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #ccc;
+    font-family: "Andale Mono";
+    border: 1px solid #ccc;
     box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
     color: rgba(0,0,0,.75);
     display: block;
@@ -1503,8 +1522,8 @@ input, textarea, select, button, meter, progress {
     text-transform: uppercase;
     color: #000000;
     font-size: 1.825em;
-    font-family: Roboto Condensed;
-    text-shadow: 1px 1px grey;
+    font-family: "Andale Mono";
+    /*text-shadow: 1px 1px grey;*/
     margin-bottom: 30px;
     z-index: 151515;
     letter-spacing: 0.405em;
@@ -1521,17 +1540,18 @@ input, textarea, select, button, meter, progress {
     left: 0;
     width: 100%;
     height: 75px;
-    background-color: rgb(245, 245, 245);
-    color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: rgb(255, 255, 255);
     margin: 0 auto;
     z-index: 10;
+    cursor: default;
 }
 
 .dashHeader span {
     margin-top: 38px;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-size: 1.525em;
-    text-shadow: 1px 1px grey;
+    /*text-shadow: 1px 1px grey;*/
     top: 1em;
     position: relative;
     letter-spacing: 0.325em;
@@ -1667,7 +1687,7 @@ input, textarea, select, button, meter, progress {
 }
 
 .lead {
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     color: rgb(0,0,0);
     font-size: 2em;
 }
@@ -1691,7 +1711,7 @@ body,
 
 /* Close Button */
 #sidemenu a {
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     text-transform: uppercase;
     position: relative;
     color: rgb(180, 180, 180);
@@ -1724,7 +1744,7 @@ body,
 }
 
 #sidemenu-emp a {
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     text-transform: uppercase;
     position: relative;
     color: rgb(180, 180, 180);
@@ -1773,7 +1793,7 @@ body,
 }
 
 .icon-list {
-    width: 280px;
+    width: 292px;
     max-height: 90%;
     height: 70%;
     overflow-y: auto;
@@ -1790,7 +1810,7 @@ body,
     height: 50px;
     width: 147px;
     border: 1px solid rgb(55,55,55);
-    margin-left: -10px;
+    margin-left: -15px;
     padding-left: 65px;
     padding-top: 7px;
     font-size: 1.5em;
@@ -1807,7 +1827,7 @@ body,
 .social-twitter {
     display: inline-block;
     height: 50px;
-    width: 146px;
+    width: 149px;
     border: 1px solid rgb(55,55,55);
     padding-left: 65px;
     padding-top: 7px;
@@ -1855,7 +1875,7 @@ body,
 }
 
 #sidemenu h3 {
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     text-transform: uppercase;
     font-size: 1.6125rem;
     color: rgb(255, 255, 255);
@@ -1865,7 +1885,7 @@ body,
 }
 
 .menu-wrap a {
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     text-transform: uppercase;
     position: relative;
     color: rgb(180, 180, 180);
@@ -1935,7 +1955,7 @@ body,
     top: 2.150em;
     color: rgb(0, 0, 0);
     text-transform: uppercase;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-size: 0.66em;
 }
 #filter-btn span.hover {
@@ -1992,7 +2012,7 @@ body,
     margin-top: 10px;
     display: inline;
     width: 260px;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     text-transform: uppercase;
     margin-top: 10px;
 }
@@ -2007,7 +2027,7 @@ body,
 .blueprintTasksInput {
     display: inline;
     width: 100%;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     text-transform: uppercase;
     font-size: 0.8em!important;
     margin-top: 7px;
@@ -2022,7 +2042,7 @@ body,
 .blueprintRefsInput {
     display: inherit;
     width: 100%;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     text-transform: uppercase;
     font-size: 0.8em!important;
     margin-top: 9px;
@@ -2045,7 +2065,7 @@ body,
 .blueprintLabel {
     display: inline-block;
     margin-left: 20px;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     text-transform: uppercase;
     width: 150px;
     position: relative;
@@ -2053,7 +2073,7 @@ body,
 
 .blueprintDesc {
     width: 70%;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-size: 1em!important;
     height: 60px;
 }
@@ -2071,7 +2091,7 @@ body,
 .blueprintRefFix {
     display: inline;
     width: 100%;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     text-transform: uppercase;
     font-size: 0.8em!important;
     margin-top: 10px;
@@ -2079,7 +2099,7 @@ body,
 
 .blueprintHiddenFix {
     display: inline!important;
-    font-family: Roboto Condensed!important;
+    font-family: "Andale Mono"!important;
     text-transform: uppercase;
     font-size: 0.8em!important;
     background-color: rgb(255,255,255)!important;
@@ -2093,7 +2113,7 @@ body,
 .hiddenRefFix {
     display: inline!important;
     width: 100%!important;
-    font-family: Roboto Condensed!important;
+    font-family: "Andale Mono"!important;
     text-transform: uppercase;
     font-size: 0.8em!important;
     margin-top: 2.5px!important;
@@ -2118,7 +2138,7 @@ body,
 .blueprintTeamID {
     width: 100px!important; 
     display: inline!important;
-    font-family: Roboto Condensed!important;
+    font-family: "Andale Mono"!important;
     text-transform: uppercase!important;
     font-size: 0.8em!important;
 }
@@ -2145,7 +2165,7 @@ body,
 .blueprintDescription {
     display: inline-block;
     margin-left: 20px;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     text-transform: uppercase;
     width: 150px;
     position: relative;
@@ -2154,7 +2174,7 @@ body,
 .blueprintInput {
     display: inline;
     width: 150px;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     text-transform: uppercase;
     font-size: 0.8em!important;
 }
@@ -2166,7 +2186,7 @@ body,
 
 .blueprintRadioLabel {
     font-weight: normal;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     text-transform: uppercase;
 }
 
@@ -2205,7 +2225,7 @@ body,
     top: 2.150em;
     color: rgb(0, 0, 0);
     text-transform: uppercase;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-size: 0.66em;
 }
 
@@ -2256,7 +2276,7 @@ body,
     top: 1.150em;
     color: rgb(0, 0, 0);
     text-transform: uppercase;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-size: 0.66em;
 }
 .advanced-btn span.hover {
@@ -2309,7 +2329,7 @@ body,
     top: 0.650em;
     color: rgb(0, 0, 0);
     text-transform: uppercase;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-size: 0.66em;
 }
 .add-btn span.hover {
@@ -2363,7 +2383,7 @@ body,
     top: 0.650em;
     color: rgb(255, 255, 255);
     text-transform: uppercase;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-size: 0.66em;
 }
 
@@ -2403,7 +2423,7 @@ body,
     width: 25%;
     max-width: 25%;
     display: inline-block;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-size: x-small;
     margin-left: auto;
     margin-right: 10%;
@@ -2411,7 +2431,7 @@ body,
 }
 
 .filter-label {
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     color: white;
     text-transform: uppercase;
     position: relative;
@@ -2437,7 +2457,7 @@ body,
 .tasksLabel {
     margin-left: auto;
     margin-right: auto;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     text-transform: uppercase;
     width: 1008px;
     text-align: center;
@@ -2480,7 +2500,7 @@ body,
 .createTaskInput {
     display: inline;
     width: 90%;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     text-transform: uppercase;
     font-size: 0.8em!important;
     margin-top: 10px;
@@ -2582,12 +2602,12 @@ div .containerDetails {
     width: 85%;
     max-height: 150px;
     overflow-y: auto;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-size: 1.1em;
 }
 
 .blueprint-name {
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-size: 2em;
     text-transform: uppercase;
     color: rgb(0, 0, 0);
@@ -2597,7 +2617,7 @@ div .containerDetails {
 
 .practice-info {
     text-transform: uppercase;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-size: 1.0em;
 }
 
@@ -2652,7 +2672,7 @@ div .containerDetails {
     top: 2.5em;
     color: rgb(0, 0, 0);
     text-transform: uppercase;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-size: 0.66em;
 }
 
@@ -2708,7 +2728,7 @@ div .containerDetails {
     top: 2.5em;
     color: rgb(0, 0, 0);
     text-transform: uppercase;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-size: 0.66em;
 }
 
@@ -2764,7 +2784,7 @@ div .containerDetails {
     top: 2.5em;
     color: rgb(0, 0, 0);
     text-transform: uppercase;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-size: 0.66em;
 }
 
@@ -2818,7 +2838,7 @@ div .containerDetails {
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
     color: rgb(0, 0, 0);
     text-transform: uppercase;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-size: 1.5em;
     top: 0.45em;
 }
@@ -2855,12 +2875,12 @@ div .containerDetails {
     text-align: center;
     cursor: pointer;
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
-    background-color: #1b93d1;
+    background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
 }
 
 #black-back-btn:hover {
-    background-color: rgb(0,0,0);
+    background-color: rgb(230, 230, 230);
     letter-spacing:.25rem;
 }
 
@@ -2873,7 +2893,7 @@ div .containerDetails {
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
     color: rgb(255, 255, 255);
     text-transform: uppercase;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-size: 1.5em;
     top: 0.45em;
 }
@@ -2896,10 +2916,11 @@ div .containerDetails {
     opacity: 1;
     letter-spacing: .35rem;
     font-size: 1.5em;
+    color: rgb(0, 0, 0);
 }
 
 #black-filter-btn {
-    background-color: #1b93d1;
+    background-color: rgb(0, 0, 0);
     width: 180px;
     height: 50px;
     text-decoration: none;
@@ -2912,8 +2933,8 @@ div .containerDetails {
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
 }
 #black-filter-btn:hover {
-    background-color: rgb(0, 0, 0);
-    letter-spacing:.25rem
+    background-color: rgb(230,230,230);
+    letter-spacing:.25rem;
 }
 #black-filter-btn span {
     pointer-events: none;
@@ -2925,7 +2946,7 @@ div .containerDetails {
     top: 2.150em;
     color: rgb(255, 255, 255);
     text-transform: uppercase;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-size: 0.66em;
 }
 #black-filter-btn span.hover {
@@ -2943,6 +2964,7 @@ div .containerDetails {
     visibility: visible;
     opacity: 1;
     letter-spacing: .35rem;
+    color: rgb(0, 0, 0);
 }
 
 .details-img {
@@ -2959,7 +2981,7 @@ div .containerDetails {
     margin-right: auto;
     max-height: 150px;
     overflow-y: auto;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-size: 1.0em;
     padding-left: 18.4em;
 }
@@ -2970,7 +2992,7 @@ div .containerDetails {
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-size: 1.5em;
     text-transform: uppercase;
     width: 480px;
@@ -2980,9 +3002,15 @@ div .containerDetails {
 /**************************************************************************
                                 PROFILE PAGE
 **************************************************************************/
+.profilePage span {
+    position: relative;
+    width: 195px;
+    font-size: 2.2em;
+    margin-top: 130px;
+}
 
 .userpageFonts {
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     font-size: 1.2em;
     text-transform: uppercase;
 }
@@ -2992,9 +3020,9 @@ div .containerDetails {
 }
 
 .userTypeFont {
-    font-size: 0.8em;
+    font-size: 1em;
     margin-top: 10px;
-    margin-left: 10%;
+    margin-left: 33%;
     margin-right: auto;
 }
 
@@ -3009,9 +3037,12 @@ div .containerDetails {
 }
 
 .bigUserInput {
-    width: 60%!important;
-    display: inline-block!important;
-    font-size: 1.1em!important;
+    width: 33% !important;
+    display: inline-block !important;
+    font-size: .8em !important;
+    font-weight: normal !important;
+    color: rgb(0,0,0)!important;
+    padding-right: 0 !important;
 }
 
 .bigUserInput:focus {
@@ -3019,18 +3050,20 @@ div .containerDetails {
 }
 
 .userFields {
-    display: inline-block;
-    width: 30%;
+    display: inline-block !important;
+    width: 20%;
     text-transform: uppercase;
-    font-family: roboto condensed;
+    font-family: "Andale Mono";
+    top: 0.5em!important;
+    position: relative;
 }
 
 .profileContainer {
-    margin-top: 15%;
-    width: 450px;
+    margin-top: 60px;
+    /*width: 450px;*/
     margin-left: auto;
     margin-right: auto;
-    background-color: rgb(250,250,250);
+    background-color: rgb(235,235,235);
     border: 1px solid rgb(252,252,252);
 }
 
@@ -3127,7 +3160,7 @@ body,
     height: 50px;
     width: 147px;
     border: 1px solid rgb(55,55,55);
-    margin-left: -10px;
+    margin-left: -15px;
     padding-left: 65px;
     padding-top: 7px;
     font-size: 1.5em;
@@ -3144,7 +3177,7 @@ body,
 .social-twitter-emp {
     display: inline-block;
     height: 50px;
-    width: 146px;
+    width: 149px;
     border: 1px solid rgb(55,55,55);
     padding-left: 65px;
     padding-top: 7px;
@@ -3192,7 +3225,7 @@ body,
 }
 
 #sidemenu-emp h3 {
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     text-transform: uppercase;
     font-size: 1.6125rem;
     color: rgb(255, 255, 255);
@@ -3202,7 +3235,7 @@ body,
 }
 
 .menu-wrap-emp a {
-    font-family: Roboto Condensed;
+    font-family: "Andale Mono";
     text-transform: uppercase;
     position: relative;
     color: rgb(180, 180, 180);

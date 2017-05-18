@@ -1,6 +1,96 @@
 /* lg */ 
-@media (min-width: 1200px) {
-
+@media (min-width: 1400px) {
+	.user-menu span.label {
+		font-size: inherit;
+		margin-top: 1px;
+	}
+	.menu-white span.label {
+		font-size: inherit;
+		margin-top: 1px;
+	}
+	.dashHeader span {
+		font-size: 2em;
+		top: 0.6em;
+	}
+	#sidemenu h3 {
+		font-size: 2rem;
+	}
+	#sidemenu a {
+		font-size: 1.0em;
+	}
+	#sidenav h3 {
+		font-size: 2rem;
+	}
+	#sidenav a {
+		font-size: 1.0em;
+	}
+	.label-close {
+		margin-top: -2px!important;
+		font-size: 1.0em;
+	}
+	.label-close-filter {
+		margin-top: -4px!important;
+		font-size: 0.9em!important;
+	}
+	input.faChkRnd:checked:after, input.faChkRnd:after {
+		font-size: 24px;
+	}
+    .checkbox-label {
+        font-size: 0.999em;
+        bottom: 0.35em;
+        left: 1.5em;
+    }
+    .dashboardItem .inner span {
+        font-size: 1.2em;
+    }
+    .dashboardItem .inner .blueprintTitle {
+        font-size: 2em;
+        margin-bottom: 15px;
+    }
+    .dashboardItem .inner .jobHeader {
+        font-size: 2.2em!important;
+    }
+    .icon-list {
+        width: 298px;
+        margin-left: -14px;
+    }
+    #filter-btn span {
+        font-size: 0.85em;
+        top: 1.550em;
+    }
+    #filter-btn:not(.disabled):not([disabled]):not(.active):hover>span {
+        top: -0.830em;
+    }
+    #filter-btn:not(.disabled):not([disabled]):not(.active):hover>span.hover {
+        top: 1.550em;
+    }
+    #black-filter-btn span {
+        font-size: 0.85em;
+        top: 1.560em;
+    }
+    #black-filter-btn:not(.disabled):not([disabled]):not(.active):hover>span {
+        top: -0.830em;
+    }
+    #black-filter-btn:not(.disabled):not([disabled]):not(.active):hover>span.hover {
+        top: 1.560em;
+    }
+    #black-back-btn span {
+        font-size: 1.7em!important;
+        top: 0.30em;
+    }
+    #black-back-btn:not(.disabled):not([disabled]):not(.active):hover>span {
+        top: -0.4em;
+    }
+    #black-back-btn:not(.disabled):not([disabled]):not(.active):hover>span.hover {
+        top: 0.30em;
+        font-size: 1.7em!important;
+    }
+    .registerWrapper {
+        font-size: 2.525em;
+    }
+    .simform {
+        top: 11.50em;
+    }
 }
 
 /* md */

@@ -1,6 +1,6 @@
 <!-- EMPLOYER BLUEPRINT DETAILS EXPERIENCE -->
 <div ng-if="!user.profile_type">
-    <nav class="dashHeader text-center navbar navbar-default fixed top"><span style="color: black">I</span><span style="color: #1b93d1">C</span><span style="color: black">RUITS</span></nav>
+    <nav class="dashHeader text-center fixed top"><span>ICRUITS</span></nav>
     <section id="dashboard" style="margin-top: 75px;">
         <!-- NEW JOB EMPLOYER VIEW EXPERIENCE -->
         <div ng-if="!sent_mail">
@@ -321,7 +321,7 @@
                     </span>
                 </a>
                 <a id="black-back-btn" data-ui-sref="root.dashboard"
-                   class="back100T" style="font-size: 1.2em;" ng-if="!published">
+                   class="back100T" style="font-size: 1em;" ng-if="!published">
                     <span id="advanced-span" class="show-button">
                         &times;
                     </span>
@@ -330,7 +330,7 @@
                     </span>            
                 </a>
                 <a id="black-back-btn" data-ui-sref="root.dashboard"
-                   class="" style="font-size: 1.2em;" ng-if="published">
+                   class="" style="font-size: 1em;" ng-if="published">
                     <span id="advanced-span" class="show-button">
                         &times;
                     </span>
@@ -344,7 +344,7 @@
             <span class="sentEmail">
                 Your Email has been successfully sent!
             </span>
-            <a id="black-back-btn" data-ui-sref="root.dashboard" style="font-size: 1.2em;">
+            <a id="black-back-btn" data-ui-sref="root.dashboard" style="font-size: 1em;">
                 <span id="advanced-span" class="show-button">
                     &times;
                 </span>
@@ -360,7 +360,7 @@
 
 <!-- JOBSEEKER BLUEPRINT DETAILS EXPERIENCE -->
 <div ng-if="user.profile_type">
-    <nav class="dashHeader text-center navbar navbar-default fixed top"><span style="color: black">I</span><span style="color: #1b93d1">C</span><span style="color: black">RUITS</span></nav>
+    <nav class="dashHeader text-center navbar fixed top"><span>ICRUITS</span></nav>
     <section id="dashboard" style="margin-top: 75px;">
         <!-- NEW JOB VIEW EXPERIENCE -->
         <div ng-if="!sent_mail">
@@ -457,7 +457,7 @@
                 </video>
             </div>
             <a id="black-filter-btn" ng-show="user.profile_type" ng-if="can_apply && !has_applied && !has_applied_in_queue" ng-click="applyForBlueprint()"
-               style="font-size: 1.1em">
+               style="font-size: 1em">
                 <span id="advanced-span" class="show-button">
                     Apply
                 </span>
@@ -498,7 +498,7 @@
             </span>
         </div>
         <!-- END OF NEW JOB VIEW EXPERIENCE -->
-        <a id="black-back-btn" data-ui-sref="root.dashboard" style="font-size: 1.2em;">
+        <a id="black-back-btn" data-ui-sref="root.dashboard" style="font-size: 1em;">
             <span id="advanced-span" class="show-button">
                 &times;
             </span>

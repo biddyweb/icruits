@@ -3,7 +3,7 @@
     <div class="menu-wrap">
         <nav id="sidemenu" class="menu">
             <a id="close-button-job" class="closebtn">&times;</a>
-            <span class="label-close" style="color: rgb(255,255,255); margin-top: 4px; margin-right: 12px; font-size: 11px">CLOSE</span>
+            <span class="label-close label-close-filter" style="color: rgb(255,255,255); margin-top: 4px; margin-right: 12px; font-size: 11px">CLOSE</span>
             <div class="icon-list">
                 <h3>Filter</h3>
                 <a type="button" class="menu-item" data-toggle="collapse" data-target="#industry">Industry Type</a>
@@ -61,12 +61,12 @@
             </div>
         </nav>
     </div>
-    <span id="open-button" class="menu-white"><span class="label" style="color: rgb(0,0,0);">FILTER</span> </span>
-    <span id="user-nav" class="user-menu" onclick="openNav()"><span class="label" style="color: rgb(0,0,0);">SETTINGS</span></span>
+    <span id="open-button" class="menu-white"><span class="label">FILTER</span> </span>
+    <span id="user-nav" class="user-menu" onclick="openNav()"><span class="label">SETTINGS</span></span>
 
     <div class="content-wrap">
         <div class="content">
-            <nav class="dashHeader text-center navbar navbar-default fixed top"><span style="color: black">I</span><span style="color: #1b93d1">C</span><span style="color: black">RUITS</span></nav>
+            <nav class="dashHeader text-center fixed top"><span>ICRUITS</span></nav>
             <section id="dashboard" style="margin-top: 75px;">
                 <div class="containerSub cf">
                     <div id="dashItemSeeker" class="row">
@@ -74,15 +74,23 @@
                              data-ng-repeat="JobFeed in blueprints | filter:industryFilter | filter:locationFilter | filter:salaryFilter | filter:experienceFilter">
                             <div class="dashboardItem text-center blueprintItem" ng-if="user.profile_type">
                                 <div class="inner">
-                                    <span class="nohover center-block blueprintTitle"
-                                          data-ng-bind="JobFeed.blueprints[0].name">
-                                    </span>
-                                    <video width="100%" height="200px" preload="metadata">
-                                        <source src="{{ JobFeed.blueprints[0].video_url }}" type="video/mp4">
+                                    <a data-ui-sref="root.blueprint({name_slug: JobFeed.blueprints.name_slug})">
+                                        <span class="nohover center-block blueprintTitle"
+                                              data-ng-bind="JobFeed.blueprints.name">
+                                        </span>
+                                        <span style="color: rgb(100, 100, 100)">@ <span class="dashboardCompanyName"
+                                                      data-ng-bind="JobFeed.blueprints.company_name"></span></span>
+                                        <div class="row">
+                                            <span class="dashboardLocation" data-ng-bind="JobFeed.blueprints.current_location"></span>
+                                            <span class="dashboardSalary" data-ng-bind="JobFeed.blueprints.salary_range"></span>
+                                        </div>
+                                    </a>
+                                    <video width="100%" height="200px" preload="metadata" style="margin-top: 45px;">
+                                        <source src="{{ JobFeed.blueprints.video_url }}" type="video/mp4">
                                     </video>
                                     <div class="queueNumber"></div>
                                     <h1 class="jobHeader" data-ng-bind="JobFeed.stacks[JobFeed.stacks.length - 1].candidate_position"></h1>
-                                    <div class="overlay">
+                                    <!--div class="overlay">
                                         <div class="overlay-content">
                                             <div class="blueprint-info">
                                                 <h3 data-ng-bind="JobFeed.blueprints[0].name"></h3>
@@ -104,7 +112,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div-->
                                 </div>
                             </div>
                         </div>
@@ -231,7 +239,7 @@
     <div class="menu-wrap-emp">
         <nav id="sidemenu-emp" class="menu-emp">
             <a id="close-button-emp" class="closebtn">&times;</a>
-            <span class="label-close" style="color: rgb(255,255,255); margin-top: 4px; margin-right: 12px; font-size: 11px">CLOSE</span>
+            <span class="label-close label-close-filter" style="color: rgb(255,255,255); margin-top: 4px; margin-right: 12px; font-size: 11px">CLOSE</span>
             <div class="icon-list-emp">
                 <h3>Filter</h3>
                 <a type="button" class="menu-item-emp" data-toggle="collapse" data-target="#location-emp">Job Location</a>
@@ -278,12 +286,12 @@
             </div>
         </nav>
     </div>
-    <span id="open-button-emp" class="menu-white"><span class="label" style="color: rgb(0,0,0);">FILTER</span></span>
-    <span id="user-nav-emp" class="user-menu" onclick="openNav()"><span class="label" style="color: rgb(0,0,0);">SETTINGS</span></span>
+    <span id="open-button-emp" class="menu-white"><span class="label">FILTER</span></span>
+    <span id="user-nav-emp" class="user-menu" onclick="openNav()"><span class="label">SETTINGS</span></span>
 
     <div class="content-wrap-emp">
         <div class="content-emp">
-            <nav id="dashIcruitsEmp" class="dashHeader text-center navbar navbar-default fixed top"><span style="color: black">I</span><span style="color: #1b93d1">C</span><span style="color: black">RUITS</span></nav>
+            <nav id="dashIcruitsEmp" class="dashHeader text-center fixed top"><span>ICRUITS</span></nav>
             <section id="dashboard" style="margin-top: 75px;">
                 <div class="containerSub cf">
                     <div id="dashItemEmp" class="row">
@@ -291,15 +299,23 @@
                              data-ng-repeat="JobFeed in blueprints | filter:industryFilter | filter:locationFilter | filter:salaryFilter | filter:experienceFilter">
                             <div class="dashboardItem text-center blueprintItem" ng-if="!show_closed_jobs && !user.profile_type">
                                 <div class="inner">
-                                    <span class="nohover center-block blueprintTitle"
-                                          data-ng-bind="JobFeed.name">
-                                    </span>
-                                    <video width="100%" height="200px" preload="metadata">
+                                    <a data-ui-sref="root.blueprint({name_slug: JobFeed.name_slug})">
+                                        <span class="nohover center-block blueprintTitle"
+                                              data-ng-bind="JobFeed.name">
+                                        </span>
+                                        <span style="color: rgb(100, 100, 100)">@ <span class="dashboardCompanyName"
+                                                      data-ng-bind="JobFeed.company_name"></span></span>
+                                        <div class="row">
+                                            <span class="dashboardLocation" data-ng-bind="JobFeed.current_location"></span>
+                                            <span class="dashboardSalary" data-ng-bind="JobFeed.salary_range"></span>
+                                        </div>
+                                    </a>
+                                    <video width="100%" height="200px" preload="metadata" controls style="margin-top: 45px;">
                                         <source src="{{ JobFeed.video_url }}" type="video/mp4">
                                     </video>
                                     <div class="queueNumber"></div>
                                     <h1 class="jobHeader" data-ng-bind="JobFeed.queue_pos"></h1>
-                                    <div class="overlay">
+                                    <!--div class="overlay">
                                         <div class="overlay-content">
                                             <div class="blueprint-info">
                                                 <h3 data-ng-bind="JobFeed.name"></h3>
@@ -319,7 +335,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div-->
                                 </div>
                             </div>
                             <div class="dashboardItem text-center blueprintItem" ng-if="show_closed_jobs && !user.profile_type">
@@ -799,7 +815,7 @@
 
 <!-- SMALL CANVAS MENU -->
 <aside id="sidenav" class="sidenav" ng-controller='LogoutCtrl'>
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="javascript:void(0)" class="closebtn closenav" onclick="closeNav()">&times;</a>
     <span class="label-close" style="color: rgb(255,255,255); margin-top: 3px; margin-right: 12px;">CLOSE</span>
     <div class="">
         <h3 data-ng-bind="user.username"></h3>

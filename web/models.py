@@ -541,3 +541,12 @@ class HiredEmployee(models.Model):
 
     class Meta:
         verbose_name = 'Hired History'
+
+
+class WaitingListToEnterStack(models.Model):
+    blueprint = models.ForeignKey(Blueprint, related_name="related_blueprint_model")
+    employee = models.ForeignKey(user, related_name="related_user_model")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Waiting List'
