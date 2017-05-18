@@ -241,6 +241,10 @@
             }, function (response) {
                 // body...
                 $scope.errors = response.data;
+                setTimeout(function () {
+                    $state.go('root.dashboard', { reload: true });
+                    $window.location.reload();
+                }, 500);
             });
 
             var queue_data = {blueprint: $scope.blueprint.id};
@@ -863,7 +867,7 @@
                 return blueprints;
             } else {
                 if($scope.industryIncludes.length > 0){
-                    if ($.inArray(blueprints.blueprints[0].related_industry, $scope.industryIncludes) < 0)
+                    if ($.inArray(blueprints.blueprints.related_industry, $scope.industryIncludes) < 0)
                         return;
                 }
                 return blueprints;                
@@ -890,7 +894,7 @@
                 return blueprints;                
             } else {
                 if($scope.locationIncludes.length > 0){
-                    if ($.inArray(blueprints.blueprints[0].related_location, $scope.locationIncludes) < 0)
+                    if ($.inArray(blueprints.blueprints.related_location, $scope.locationIncludes) < 0)
                         return;
                 }
                 return blueprints;                
@@ -917,7 +921,7 @@
                 return blueprints;                
             } else {
                 if($scope.salaryIncludes.length > 0){
-                    if ($.inArray(blueprints.blueprints[0].related_salary, $scope.salaryIncludes) < 0)
+                    if ($.inArray(blueprints.blueprints.related_salary, $scope.salaryIncludes) < 0)
                         return;
                 }
                 return blueprints;                
@@ -944,7 +948,7 @@
                 return blueprints;                
             } else {
                 if($scope.experienceIncludes.length > 0){
-                    if ($.inArray(blueprints.blueprints[0].related_experience, $scope.experienceIncludes) < 0)
+                    if ($.inArray(blueprints.blueprints.related_experience, $scope.experienceIncludes) < 0)
                         return;
                 }
                 return blueprints;                

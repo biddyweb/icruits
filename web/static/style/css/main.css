@@ -368,6 +368,7 @@ VERY IMPORTANT!!!!
 .dashboardCompanyName {
     color: forestgreen;
 }
+
 .dashboardItem {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -383,6 +384,7 @@ VERY IMPORTANT!!!!
     background: black;
     margin-top: 20px;
 }
+
 .dashboardItem h1 {
     -webkit-transition: opacity 0.5s ease;
     -moz-transition: opacity 0.5s ease;
@@ -399,6 +401,7 @@ VERY IMPORTANT!!!!
     word-spacing: 9999999px;
     line-height: normal;
 }
+
 .dashboardItem .inner {
     position: relative;
     display: table-cell;
@@ -408,12 +411,51 @@ VERY IMPORTANT!!!!
     background-color: white;
     border: 1px solid rgb(240, 240, 240);
 }
+
+.dashboardItem .inner .play-button-outer {
+    margin-top: 33%;
+    margin-left: -10px;
+    width: 10em;
+    height: 10em;
+    /*background-color: rgba(0, 0, 0, .25);*/
+    cursor: pointer;
+    position: absolute;
+    z-index: 2;
+}
+
+.dashboardItem .inner .play-button {
+    margin: 0 auto;
+    top: 25%;
+    position: relative;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 1.7em 0 1.7em 2.7em;
+    border-color: transparent transparent transparent rgb(230, 230, 230);
+    opacity: .75;
+    cursor: pointer;
+}
+    /*border-width: 2.5em 0 2.5em 5em;*/
+.dashboardItem .inner img {
+    margin-top: 65px!important;
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
+    transition: all 250ms cubic-bezier(.25,.46,.45,.94)
+}
+
+.dashboardItem .inner:hover img{
+    filter: none; /* IE6-9 */
+    -webkit-filter: grayscale(0); /* Chrome 19+ & Safari 6+ */
+    transition: all 250ms cubic-bezier(.25,.46,.45,.94)
+}
+
 .dashboardItem .inner h1 {
     font-size: 32px;
     font-size: 2rem;
     color: white;
     padding: 10px 20px;
 }
+
 .dashboardItem .inner .queueNumber {
     position: absolute;
     bottom: 0;
@@ -2196,23 +2238,24 @@ body,
 }
 
 #apply-btn {
-    border-top: 1px solid #fff;
-    border-left: 1px solid #fff;
+    border-top: 1px solid rgb(255, 255, 255);
+    border-left: 1px solid rgb(255, 255, 255);
     width: 180px;
     height: 50px;
     text-decoration: none;
-    letter-spacing: .25rem;
+    letter-spacing: 0.25rem;
     position: fixed;
-    right: 0px;
-    bottom: 0px;
+    right: 0;
+    bottom: 0;
     text-align: center;
+    background-color: rgb(240, 240, 240);
     cursor: pointer;
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
 }
 
 #apply-btn:hover {
-    background-color:#FFF;
-    letter-spacing:.25rem
+    background-color: rgb(255, 255, 255);
+    letter-spacing: 0.25rem
 }
 
 #apply-btn span { 

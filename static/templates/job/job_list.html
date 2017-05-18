@@ -85,9 +85,12 @@
                                             <span class="dashboardSalary" data-ng-bind="JobFeed.blueprints.salary_range"></span>
                                         </div>
                                     </a>
-                                    <video width="100%" height="200px" preload="metadata" style="margin-top: 45px;">
-                                        <source src="{{ JobFeed.blueprints.video_url }}" type="video/mp4">
-                                    </video>
+                                    <a data-ui-sref="root.intro({name_slug: JobFeed.blueprints.name_slug})">
+                                        <div class="play-button-outer">
+                                            <div class="play-button"></div>
+                                        </div>
+                                    </a>
+                                    <img class="img-responsive" src="{{ JobFeed.blueprints.video_png }}">
                                     <div class="queueNumber"></div>
                                     <h1 class="jobHeader" data-ng-bind="JobFeed.stacks[JobFeed.stacks.length - 1].candidate_position"></h1>
                                     <!--div class="overlay">
@@ -310,9 +313,12 @@
                                             <span class="dashboardSalary" data-ng-bind="JobFeed.salary_range"></span>
                                         </div>
                                     </a>
-                                    <video width="100%" height="200px" preload="metadata" controls style="margin-top: 45px;">
-                                        <source src="{{ JobFeed.video_url }}" type="video/mp4">
-                                    </video>
+                                    <a data-ui-sref="root.intro({name_slug: JobFeed.name_slug})">
+                                        <div class="play-button-outer">
+                                            <div class="play-button"></div>
+                                        </div>
+                                    </a>
+                                    <img class="img-responsive" src="{{ JobFeed.video_png }}">
                                     <div class="queueNumber"></div>
                                     <h1 class="jobHeader" data-ng-bind="JobFeed.queue_pos"></h1>
                                     <!--div class="overlay">
@@ -577,7 +583,7 @@
                    class="form-control inputSizeFix"
                    ng-model="make_blueprint.max_queue" 
                    required>
-            <span class="new blueprintLabel"> Interview Url </span>
+            <span class="new blueprintLabel"> Company Url </span>
             <input type="text"
                    title="interview url"
                    name="interview url"

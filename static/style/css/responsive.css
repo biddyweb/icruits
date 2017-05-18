@@ -64,6 +64,16 @@
     #filter-btn:not(.disabled):not([disabled]):not(.active):hover>span.hover {
         top: 1.550em;
     }
+    #apply-btn span {
+        font-size: 0.85em;
+        top: 1.550em;
+    }
+    #apply-btn:not(.disabled):not([disabled]):not(.active):hover>span {
+        top: -0.830em;
+    }
+    #apply-btn:not(.disabled):not([disabled]):not(.active):hover>span.hover {
+        top: 1.550em;
+    }
     #black-filter-btn span {
         font-size: 0.85em;
         top: 1.560em;
@@ -85,12 +95,53 @@
         top: 0.30em;
         font-size: 1.7em!important;
     }
+    #back-btn span {
+        font-size: 1.7em!important;
+        top: 0.30em;
+    }
+    #back-btn:not(.disabled):not([disabled]):not(.active):hover>span {
+        top: -0.4em;
+    }
+    #back-btn:not(.disabled):not([disabled]):not(.active):hover>span.hover {
+        top: 0.30em;
+        font-size: 1.7em!important;
+    }
     .registerWrapper {
         font-size: 2.525em;
     }
     .simform {
         top: 11.50em;
     }
+	.dashboardItem .inner .play-button-outer {
+		margin-left: 30px;
+	}
+	.dashboardItem .inner img {
+		margin-top: 65px!important;
+	}
+}
+@media (min-width: 1400px) and (max-width: 1665px) {
+	.dashboardItem .inner img {
+		min-height: 230px;
+	}
+	.dashboardItem .inner .play-button-outer {
+		margin-top: 40%!important;
+	}
+}
+@media (min-width: 1666px) {
+	.dashboardItem .inner img {
+		min-height: 270px;
+	}
+	.dashboardItem .inner .play-button-outer {
+		margin-top: 33%!important;
+	}
+}
+@media (min-width: 1155px) and (max-width: 1399px) {
+	.dashboardItem .inner img {
+		min-height: 200px;
+	}
+	.dashboardItem .inner .play-button-outer {
+		margin-top: 40%!important;
+	}
 }
 
 /* md */
