@@ -293,6 +293,7 @@
         */
 
         if($scope.user.profile_type) {
+            $scope.people_in_queue = $scope.blueprint_queue[0].stacks[$scope.blueprint_queue[0].stacks.length - 1 ].candidate_position;
             $scope.has_applied = false;
             $scope.is_icruited = false;
             $scope.has_accepted = false;

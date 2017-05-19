@@ -329,42 +329,53 @@
             <div class="containerDetails">
                 <div class="blueprint-name" data-ng-bind="blueprint.name"></div>
                 <div class="half-container-right" ng-if="published">
-                    <!--div class="details-description">
-                        <div data-ng-bind="blueprint.description"></div>
-                    </div-->
-                    <div class="square-info green-color">
+                    <div class="square-info green-circle">
                         <span class="practice-info" data-ng-bind="visa_status_info.visa"></span>
+                        <span class="practice-info green-color">Required</span>
                     </div>
-                    <div class="square-info">
+                    <div class="square-info orange-circle">
                         <span class="practice-info" data-ng-bind="blueprint.professional_qualifications"></span>
+                        <span class="practice-info orange-color">Required</span>
                     </div>
-                    <div class="square-info">
+                    <div class="square-info blue-circle">
                         <span class="practice-info" data-ng-bind="blueprint.remote_work"></span>
+                        <span class="practice-info blue-color">Remote</span>
                     </div>
-                    <div class="square-info">
+                    <div class="square-info red-circle">
                         <span class="practice-info" data-ng-bind="job_type.employment"></span>
+                        <span class="practice-info red-color">Type</span>
                     </div>
                 </div>
                 <div class="half-container-right"></div>
                 <div class="half-container-right" ng-if="published">
-                    <div class="square-info">
+                    <div class="square-info blue-circle">
                         <span class="practice-info" data-ng-bind="job_salary.sal_range"></span>
+                        <span class="practice-info blue-color">Salary</span>
                     </div>
-                    <div class="square-info">
+                    <div class="square-info red-circle">
                         <span class="practice-info" data-ng-bind="blueprint.max_queue"></span>
+                        <span class="practice-info red-color">Can Apply</span>
+                    </div>
+                    <div class="square-info orange-circle">
+                        <span class="practice-info" data-ng-bind="people_in_queue"></span>
+                        <span class="practice-info orange-color">Applied</span>
                     </div>
                     <div ng-if="!has_applied && is_icruited || !has_applied && has_interview">
-                        <div class="square-info">
+                        <div class="square-info green-circle">
                             <span class="practice-info" data-ng-bind="current_queue"></span>
+                            <span class="practice-info green-color">Place</span>
                         </div>
                     </div>
                 </div>
             </div>
             <div id="detailImagesSeeker" class="half-container-left">
-                <img class="img-responsive center-block"
+                <img id="detail-img" class="img-responsive"
                      src="{{ blueprint.work_enviorment }}">
-                <img class="img-responsive center-block"
-                     style="margin-top: 150px;"
+                <a href="{{ blueprint.url }}" class="company-url">Visit us</a>
+                <div class="details-description">
+                    <span data-ng-bind="blueprint.description"></span>
+                </div>
+                <img id="detail-img" class="img-responsive no-bottom-marg"
                      src="{{ blueprint.work_enviorment_2 }}">
             </div>
             <div class="dashFooter">
@@ -395,7 +406,7 @@
                         un-iCruit
                     </span>
                 </a>
-                 <a id="blueprint-btn" ng-show="user.profile_type" style="right: 180px;"
+                 <a id="blueprint-btn" ng-show="user.profile_type" class="blackFilter180R"
                     ng-if="has_interview" ng-click="onInterview()">
                     <span id="advanced-span" class="show-button">
                         Interview
@@ -404,7 +415,7 @@
                         Interview
                     </span>
                 </a>
-                <a id="black-back-btn" data-ui-sref="root.dashboard" style="font-size: 1em;">
+                <a id="black-back-btn" data-ui-sref="root.dashboard">
                     <span id="advanced-span" class="show-button">
                         &times;
                     </span>
@@ -419,7 +430,7 @@
                 Thank you for applying. <br>
                 iCruits team will contact you.
             </span>
-            <a id="black-back-btn" data-ui-sref="root.dashboard" style="font-size: 1em;">
+            <a id="black-back-btn" data-ui-sref="root.dashboard">
                 <span id="advanced-span" class="show-button">
                     &times;
                 </span>

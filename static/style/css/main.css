@@ -48,16 +48,48 @@ header {
   background-color: #017fb5;
 }
 
-.red-color {
+.red-circle {
     border-color: rgb(255, 0, 0)!important;
+    color: rgb(255, 0, 0)!important;
+}
+
+.red-color {
+    color: rgb(255, 0, 0)!important;
+    font-size: 1em!important;
+    display: block;
+}
+
+.green-circle {
+    border-color: forestgreen!important;
+    color: forestgreen!important;
 }
 
 .green-color {
-    border-color: rgb(0, 255, 0)!important;
+    color: forestgreen!important;
+    font-size: 1em!important;
+    display: block;
+}
+
+.orange-circle {
+    border-color: rgb(255, 125, 0)!important;
+    color: rgb(255, 125, 0)!important;
 }
 
 .orange-color {
-    border-color: rgb(255, 125, 0)!important;
+    color: rgb(255, 125, 0)!important;
+    font-size: 1em!important;
+    display: block;
+}
+
+.blue-circle {
+    border-color: #017fb5!important;
+    color: #017fb5!important;
+}
+
+.blue-color {
+    color: #017fb5!important;
+    font-size: 1em!important;
+    display: block;
 }
 
 .navbar-nav li a:hover, 
@@ -454,6 +486,8 @@ VERY IMPORTANT!!!!
     -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
     transition: all 250ms cubic-bezier(.25,.46,.45,.94);
     opacity: 0.8;
+    width: 80%;
+    margin-left: 10%;
 }
 
 .dashboardItem .inner:hover img{
@@ -2648,12 +2682,48 @@ div .containerDetails {
 .half-container-left {
     width: 100%;
     position: relative;
-    margin-bottom: 70px;
     display: inline-block;
+    text-align: center;
 }
 
 #detail-img {
     display: block;
+    width: 100%;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    transition: all .35s cubic-bezier(.455,.03,.515,.955);
+}
+
+#detail-img:hover {
+    opacity: 0.9;
+    transition: all .35s cubic-bezier(.455,.03,.515,.955);
+}
+
+#detail-img:hover ~ .company-url {
+    visibility: visible;
+    opacity: 1;
+    transition: all .35s cubic-bezier(.455,.03,.515,.955);
+}
+
+.company-url {
+    color: rgb(0, 0, 0);
+    margin-left: -3.8%;
+    position: absolute;
+    top: 200px;
+    font-size: 1.2em;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .35s cubic-bezier(.455,.03,.515,.955);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.company-url:hover {
+    color: rgb(0, 0, 0);
+    visibility: visible;
+    opacity: 1;
+    transition: all .35s cubic-bezier(.455,.03,.515,.955);
+    letter-spacing: 0.25em;
 }
 
 #simulator-results {
@@ -2667,8 +2737,11 @@ div .containerDetails {
     position: relative;
 }
 
+.no-bottom-marg {
+    margin-bottom: 0!important;
+}
+
 .details-description {
-    margin-top: 2em;
     width: 85%;
     max-height: 150px;
     overflow-y: auto;
@@ -2692,7 +2765,7 @@ div .containerDetails {
     text-transform: uppercase;
     font-family: "Andale Mono";
     font-size: 1.5em;
-    top: 53px;
+    top: 47px;
     position: relative;
     color: rgb(0, 0, 0);
 }
@@ -3016,10 +3089,12 @@ div .containerDetails {
     cursor: pointer;
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
 }
+
 #black-filter-btn:hover {
     background-color: rgb(230,230,230);
     letter-spacing:.25rem;
 }
+
 #black-filter-btn span {
     pointer-events: none;
     display: block;
@@ -3033,28 +3108,25 @@ div .containerDetails {
     font-family: "Andale Mono";
     font-size: 0.66em;
 }
+
 #black-filter-btn span.hover {
     top: 100%;
     visibility: hidden;
     opacity: 0;
 }
+
 #black-filter-btn:not(.disabled):not([disabled]):not(.active):hover>span {
     top: -1.150em;
     visibility: hidden;
     opacity: 0;
 }
+
 #black-filter-btn:not(.disabled):not([disabled]):not(.active):hover>span.hover{
     top: 2.150em;
     visibility: visible;
     opacity: 1;
     letter-spacing: .35rem;
     color: rgb(0, 0, 0);
-}
-
-.details-img {
-    display: inline;
-    max-width: 100%;
-    height: auto;
 }
 
 .current-queue-info {
