@@ -432,7 +432,7 @@ VERY IMPORTANT!!!!
     height: 0;
     border-style: solid;
     border-width: 1.7em 0 1.7em 2.7em;
-    border-color: transparent transparent transparent rgb(230, 230, 230);
+    border-color: transparent transparent transparent rgb(180, 180, 180);
     opacity: .75;
     cursor: pointer;
 }
@@ -2692,6 +2692,8 @@ div .containerDetails {
     float: left;
     margin-left: 10px;
     margin-right: 10px;
+    margin-bottom: 20px;
+    cursor: default;
 }
 
 .blueprint230L {
