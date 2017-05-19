@@ -48,6 +48,18 @@ header {
   background-color: #017fb5;
 }
 
+.red-color {
+    border-color: rgb(255, 0, 0)!important;
+}
+
+.green-color {
+    border-color: rgb(0, 255, 0)!important;
+}
+
+.orange-color {
+    border-color: rgb(255, 125, 0)!important;
+}
+
 .navbar-nav li a:hover, 
 .navbar-nav li a:focus {
   outline:none;
@@ -347,7 +359,6 @@ a:hover {
 .navbar-brand h1 {
   margin-top: 5px;
 }
-
 
 /*Presets*/
 
@@ -2652,7 +2663,7 @@ div .containerDetails {
 .half-container-right {
     margin-left: auto;
     margin-right: auto;
-    width: 600px;
+    width: 640px;
     position: relative;
 }
 
@@ -2669,7 +2680,7 @@ div .containerDetails {
     font-family: "Andale Mono";
     font-size: 3em;
     text-transform: uppercase;
-    color: #000;
+    color: rgb(0, 0, 0);
     letter-spacing: 2px;
     text-align: center;
     cursor: default;
@@ -2680,20 +2691,24 @@ div .containerDetails {
 .practice-info {
     text-transform: uppercase;
     font-family: "Andale Mono";
-    font-size: 1.0em;
+    font-size: 1.5em;
+    top: 53px;
+    position: relative;
+    color: rgb(0, 0, 0);
 }
 
 .square-info {
-    height: 120px;
-    width: 120px;
+    height: 140px;
+    width: 140px;
     display: block;
     border: 1px solid rgb(0, 0, 0);
-    border-radius: 60px;
+    border-radius: 70px;
     float: left;
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 20px;
     cursor: default;
+    text-align: center;
 }
 
 .blueprint230L {

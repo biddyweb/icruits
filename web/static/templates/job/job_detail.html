@@ -332,29 +332,26 @@
                     <!--div class="details-description">
                         <div data-ng-bind="blueprint.description"></div>
                     </div-->
-                    <div class="square-info">
-                        <span class="practice-info" data-ng-bind="blueprint.practice_limit"></span>
-                    </div>
-                    <div class="square-info">
-                        <span class="practice-info" data-ng-bind="blueprint.max_queue"></span>
-                    </div>
-                    <div class="square-info">
+                    <div class="square-info green-color">
                         <span class="practice-info" data-ng-bind="visa_status_info.visa"></span>
                     </div>
                     <div class="square-info">
                         <span class="practice-info" data-ng-bind="blueprint.professional_qualifications"></span>
                     </div>
-                </div>
-                <div class="half-container-right"></div>
-                <div class="half-container-right" ng-if="published">
                     <div class="square-info">
                         <span class="practice-info" data-ng-bind="blueprint.remote_work"></span>
                     </div>
                     <div class="square-info">
+                        <span class="practice-info" data-ng-bind="job_type.employment"></span>
+                    </div>
+                </div>
+                <div class="half-container-right"></div>
+                <div class="half-container-right" ng-if="published">
+                    <div class="square-info">
                         <span class="practice-info" data-ng-bind="job_salary.sal_range"></span>
                     </div>
                     <div class="square-info">
-                        <span class="practice-info" data-ng-bind="job_type.employment"></span>
+                        <span class="practice-info" data-ng-bind="blueprint.max_queue"></span>
                     </div>
                     <div ng-if="!has_applied && is_icruited || !has_applied && has_interview">
                         <div class="square-info">
