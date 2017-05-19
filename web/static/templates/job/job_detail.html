@@ -326,44 +326,57 @@
     <section id="dashboard">
         <!-- NEW JOB VIEW EXPERIENCE -->
         <div ng-if="!sent_mail">
-            <div class="containerDetails">
-                <div class="blueprint-name" data-ng-bind="blueprint.name"></div>
-                <div class="half-container-right" ng-if="published">
-                    <div class="square-info green-circle">
-                        <span class="practice-info" data-ng-bind="visa_status_info.visa"></span>
-                        <span class="practice-info green-color">Required</span>
-                    </div>
-                    <div class="square-info orange-circle">
-                        <span class="practice-info" data-ng-bind="blueprint.professional_qualifications"></span>
-                        <span class="practice-info orange-color">Required</span>
-                    </div>
-                    <div class="square-info blue-circle">
-                        <span class="practice-info" data-ng-bind="blueprint.remote_work"></span>
-                        <span class="practice-info blue-color">Remote</span>
-                    </div>
-                    <div class="square-info red-circle">
-                        <span class="practice-info" data-ng-bind="job_type.employment"></span>
-                        <span class="practice-info red-color">Type</span>
-                    </div>
-                </div>
-                <div class="half-container-right"></div>
-                <div class="half-container-right" ng-if="published">
-                    <div class="square-info blue-circle">
-                        <span class="practice-info" data-ng-bind="job_salary.sal_range"></span>
-                        <span class="practice-info blue-color">Salary</span>
-                    </div>
-                    <div class="square-info red-circle">
-                        <span class="practice-info" data-ng-bind="blueprint.max_queue"></span>
-                        <span class="practice-info red-color">Can Apply</span>
-                    </div>
-                    <div class="square-info orange-circle">
-                        <span class="practice-info" data-ng-bind="people_in_queue"></span>
-                        <span class="practice-info orange-color">Applied</span>
-                    </div>
-                    <div ng-if="!has_applied && is_icruited || !has_applied && has_interview">
+            <div class="blueprint-name" data-ng-bind="blueprint.name"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3" ng-if="published">
                         <div class="square-info green-circle">
-                            <span class="practice-info" data-ng-bind="current_queue"></span>
-                            <span class="practice-info green-color">Place</span>
+                            <span class="practice-info" data-ng-bind="visa_status_info.visa"></span>
+                            <span class="practice-info green-color">Required</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3" ng-if="published">
+                        <div class="square-info orange-circle">
+                            <span class="practice-info" data-ng-bind="blueprint.professional_qualifications"></span>
+                            <span class="practice-info orange-color">Required</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3" ng-if="published">
+                        <div class="square-info blue-circle">
+                            <span class="practice-info" data-ng-bind="blueprint.remote_work"></span>
+                            <span class="practice-info blue-color">Remote</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3" ng-if="published">
+                        <div class="square-info red-circle">
+                            <span class="practice-info" data-ng-bind="job_type.employment"></span>
+                            <span class="practice-info red-color">Type</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3" ng-if="published">
+                        <div class="square-info blue-circle">
+                            <span class="practice-info" data-ng-bind="job_salary.sal_range"></span>
+                            <span class="practice-info blue-color">Salary</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3" ng-if="published">
+                        <div class="square-info red-circle">
+                            <span class="practice-info" data-ng-bind="blueprint.max_queue"></span>
+                            <span class="practice-info red-color">Can Apply</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3" ng-if="published">
+                        <div class="square-info orange-circle">
+                            <span class="practice-info" data-ng-bind="people_in_queue"></span>
+                            <span class="practice-info orange-color">Applied</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3" ng-if="published">
+                        <div ng-if="!has_applied && is_icruited || !has_applied && has_interview">
+                            <div class="square-info green-circle">
+                                <span class="practice-info" data-ng-bind="current_queue"></span>
+                                <span class="practice-info green-color">Place</span>
+                            </div>
                         </div>
                     </div>
                 </div>

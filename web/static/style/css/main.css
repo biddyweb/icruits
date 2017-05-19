@@ -2719,7 +2719,7 @@ div .containerDetails {
     visibility: visible;
     opacity: 1;
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
-    letter-spacing: 0.25em;
+    /*letter-spacing: 0.25em;*/
     text-decoration: underline;
     cursor: pointer;
 }
@@ -2776,13 +2776,8 @@ div .containerDetails {
 
 .square-info {
     height: 140px;
-    width: 140px;
-    display: block;
-    border: 1px solid rgb(0, 0, 0);
-    border-radius: 70px;
-    float: left;
-    margin-left: 10px;
-    margin-right: 10px;
+    width: 100%;
+    border: 2px solid rgb(0, 0, 0);
     margin-bottom: 20px;
     cursor: default;
     text-align: center;
