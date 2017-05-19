@@ -49,7 +49,7 @@ header {
 }
 
 .red-circle {
-    border-color: rgb(255, 0, 0)!important;
+    /*border-color: rgb(255, 0, 0)!important;*/
     color: rgb(255, 0, 0)!important;
 }
 
@@ -60,7 +60,7 @@ header {
 }
 
 .green-circle {
-    border-color: forestgreen!important;
+    /*border-color: forestgreen!important;*/
     color: forestgreen!important;
 }
 
@@ -71,7 +71,7 @@ header {
 }
 
 .orange-circle {
-    border-color: rgb(255, 125, 0)!important;
+    /*border-color: rgb(255, 125, 0)!important;*/
     color: rgb(255, 125, 0)!important;
 }
 
@@ -82,7 +82,7 @@ header {
 }
 
 .blue-circle {
-    border-color: #017fb5!important;
+    /*border-color: #017fb5!important;*/
     color: #017fb5!important;
 }
 
@@ -2694,11 +2694,6 @@ div .containerDetails {
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
 }
 
-#detail-img:hover {
-    opacity: 0.9;
-    transition: all .35s cubic-bezier(.455,.03,.515,.955);
-}
-
 #detail-img:hover ~ .company-url {
     visibility: visible;
     opacity: 1;
@@ -2709,13 +2704,14 @@ div .containerDetails {
     color: rgb(0, 0, 0);
     margin-left: -3.8%;
     position: absolute;
-    top: 200px;
+    top: 230px;
     font-size: 1.2em;
     visibility: hidden;
     opacity: 0;
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
     letter-spacing: 0.2em;
     text-transform: uppercase;
+    text-decoration: underline;
 }
 
 .company-url:hover {
@@ -2724,6 +2720,8 @@ div .containerDetails {
     opacity: 1;
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
     letter-spacing: 0.25em;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 #simulator-results {
@@ -2742,11 +2740,17 @@ div .containerDetails {
 }
 
 .details-description {
-    width: 85%;
-    max-height: 150px;
-    overflow-y: auto;
+    background-color: rgb(240, 240, 240);
+    /* width: 85%; */
+    height: 100px;
+    /* overflow-y: auto; */
     font-family: "Andale Mono";
-    font-size: 1.1em;
+    font-size: 1.4em;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 20px;
+    margin-left: 1%;
+    margin-right: 1%;
 }
 
 .blueprint-name {
