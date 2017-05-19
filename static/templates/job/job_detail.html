@@ -5,121 +5,87 @@
         <!-- NEW JOB EMPLOYER VIEW EXPERIENCE -->
         <div ng-if="!sent_mail">
             <div class="containerDetails">
+                <div class="blueprint-name" data-ng-bind="blueprint.name"></div>
                 <div class="half-container-right" ng-if="published">
-                    <div class="blueprint-name" data-ng-bind="blueprint.name"></div>
-                    <div class="details-description">
+                    <!--div class="details-description">
                         <div data-ng-bind="blueprint.description"></div>
-                    </div>
+                    </div-->
                     <div class="practice-info" style="margin-top: 2em;">
-                        <span>Practice limit :  </span>
                         <div class="square-info">
                             <span data-ng-bind="blueprint.practice_limit"></span>
                         </div>
                     </div>
                     <div class="practice-info">
-                        <span>Max Queue :  </span>
                         <div class="square-info">
                             <span data-ng-bind="blueprint.max_queue"></span>
                         </div>
                     </div>
                     <div class="practice-info">
-                        <span>Visa Status :  </span>
                         <div class="square-info">
                             <span data-ng-bind="visa_status_info.visa"></span>
                         </div>
                     </div>
                     <div class="practice-info">
-                        <span>Minimum Education :  </span>
                         <div class="square-info">
                             <span data-ng-bind="blueprint.professional_qualifications"></span>
                         </div>
                     </div>
                     <div class="practice-info">                                
-                        <span>Remote Work :  </span>
                         <div class="square-info">
                             <span data-ng-bind="blueprint.remote_work"></span>
                         </div>
                     </div>
                     <div class="practice-info">
-                        <span>Salary Range :  </span>
                         <div class="square-info">
                             <span data-ng-bind="job_salary.sal_range"></span>
                         </div>
                     </div>
                     <div class="practice-info">
-                        <span>Job Type :  </span>
                         <div class="square-info">
                             <span data-ng-bind="job_type.employment"></span>
                         </div>
                     </div>
                     <div class="practice-info" ng-if="blueprint_in_queue && blueprint.has_simulator && !blueprint.is_closed">
-                        <span>Status :  </span>
-                        <div class="square-info">
-                            <span>Active in Queue</span>
-                        </div>
-                    </div>
-                    <div class="practice-info" ng-if="blueprint_in_queue && blueprint.has_simulator && !blueprint.is_closed">
-                        <span>Queue :  </span>
                         <div class="square-info">
                             <span data-ng-bind="blueprint_queue[0].stacks[blueprint_queue[0].stacks.length - 1].candidate_position"></span>
                         </div>
                     </div>
-                    <div class="practice-info" ng-if="blueprint.has_simulator && blueprint.is_closed">
-                        <span>Status :  </span>
-                        <div class="square-info">
-                            <span>Job Closed</span>
-                        </div>
-                    </div>
-                    <div class="practice-info" ng-if="!blueprint.has_simulator && blueprint.is_published">
-                        <span>Status :  </span>
-                        <div class="square-info">
-                            <span>Waiting for Job Simulator</span>
-                        </div>
-                    </div>
                 </div>
                 <div class="half-container-right" ng-if="!published && blueprint.has_simulator">
-                    <div class="blueprint-name" data-ng-bind="blueprint.name"></div>
-                    <div class="details-description">
+                    <!--div class="details-description">
                         <div data-ng-bind="blueprint.description"></div>
-                    </div>
+                    </div-->
                     <div class="practice-info" style="margin-top: 2em;">
-                        <span>Practice limit :  </span>
                         <div class="square-info">
                             <span data-ng-bind="blueprint.practice_limit"></span>
                         </div>
                     </div>
                     <div class="practice-info">
-                        <span>Max Queue :  </span>
                         <div class="square-info">
                             <span data-ng-bind="blueprint.max_queue"></span>
                         </div>
                     </div>
                     <div class="practice-info">
-                        <span>Visa Status :  </span>
                         <div class="square-info">
                             <span data-ng-bind="visa_status_info.visa"></span>
                         </div>
                     </div>
                     <div class="practice-info">
-                        <span>Minimum Education :  </span>
                         <div class="square-info">
                             <span data-ng-bind="blueprint.professional_qualifications"></span>
                         </div>
                     </div>
                     <div class="practice-info">
-                        <span>Remote Work :  </span>
                         <div class="square-info">
                             <span data-ng-bind="blueprint.remote_work"></span>
                         </div>
                     </div>
                     <div class="practice-info">
-                        <span>Salary Range :  </span>
                         <div class="square-info">
                             <span data-ng-bind="job_salary.sal_range"></span>
                         </div>
                     </div>
                     <div class="practice-info">
-                        <span>Job Type :  </span>
                         <div class="square-info">
                             <span data-ng-bind="job_type.employment"></span>
                         </div>
@@ -128,7 +94,6 @@
                 <div class="half-container-right" 
                      ng-if="!published && !blueprint.has_simulator"
                      style="top: 80px;">
-                    <div class="blueprint-name" data-ng-bind="blueprint.name"></div>
                     <div class="details-description">
                         <textarea name="description" 
                                ng-model="blueprint.description"
@@ -228,116 +193,113 @@
                         <span>Your simulator results</span>
                     </div>
                 </div>
-                <div id="videoDetails">
-                    <video width="100%" height="100%" preload="metadata" controls>
-                        <source src="{{ blueprint.video_url }}" type="video/mp4">
-                    </video>
+                <div class="dashFooter">
+                    <a id="black-filter-btn" ng-show="!user.profile_type"
+                       ng-click="SendMail($event)" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && has_applied"
+                       style="font-size: 1.2em;">
+                        <span id="advanced-span" class="show-button">
+                            iCruit
+                        </span>
+                        <span id="advanced-span-2" class="hover show-button">
+                            iCruit
+                        </span>
+                    </a>
+                    <a id="accept-interview-btn" ng-show="!user.profile_type"
+                       ng-click="inviteToInterview()" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && is_icruited && !has_applied && !has_interview">
+                        <span id="advanced-span" class="show-button">
+                            Invite to Interview
+                        </span>
+                        <span id="advanced-span-2" class="hover show-button">
+                            Invite to Interview
+                        </span>
+                    </a>
+                    <a id="accept-interview-btn" ng-show="!user.profile_type"
+                       ng-click="hireEmployee()" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && has_interview">
+                        <span id="advanced-span" class="show-button">
+                            Hire
+                        </span>
+                        <span id="advanced-span-2" class="hover show-button">
+                            Hire
+                        </span>
+                    </a>
+                    <a id="reject-interview-btn" ng-show="!user.profile_type"
+                       ng-click="exitQueue()" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && has_interview">
+                        <span id="advanced-span" class="show-button">
+                            Reject
+                        </span>
+                        <span id="advanced-span-2" class="hover show-button">
+                            Reject
+                        </span>
+                    </a>
+                    <!--div add-buttons-directive ng-if="published && blueprint.has_simulator && !blueprint.is_closed"></div-->
+                    <a id="black-filter-btn" ng-show="!user.profile_type"
+                       ng-click="updateBlueprint()" ng-if="!published && !blueprint.has_simulator"
+                       style="font-size: 1.2em; border-left: 1px solid white;">
+                        <span id="advanced-span" class="show-button">
+                            Update Blueprint
+                        </span>
+                        <span id="advanced-span-2" class="hover show-button">
+                            Update Blueprint
+                        </span>
+                    </a>
+                    <a id="black-filter-btn" ng-show="!user.profile_type"
+                       ng-click="publishBlueprint()" ng-if="!published && !blueprint.has_simulator"
+                       class="blackFilter180R" style="font-size: 1.2em">
+                        <span id="advanced-span" class="show-button">
+                            Publish Blueprint
+                        </span>
+                        <span id="advanced-span-2" class="hover show-button">
+                            Publish Blueprint
+                        </span>
+                    </a>
+                    <a id="blueprint-btn" ng-show="!user.profile_type"
+                       ng-click="previewBlueprint()" ng-if="!published && editable && !blueprint.has_simulator"
+                       class="preview50L">
+                        <span id="advanced-span" class="show-button">
+                            Preview Blueprint
+                        </span>
+                        <span id="advanced-span-2" class="hover show-button">
+                            Preview Blueprint
+                        </span>
+                    </a>
+                    <a id="blueprint-btn" ng-show="!user.profile_type"
+                       ng-click="editBlueprint()" ng-if="published && editable && !blueprint.has_simulator" style="left: 50px;">
+                        <span id="advanced-span" class="show-button">
+                            Edit Blueprint
+                        </span>
+                        <span id="advanced-span-2" class="hover show-button">
+                            Edit Blueprint
+                        </span>
+                    </a>
+                    <a id="blueprint-btn" ng-show="!user.profile_type"
+                       ng-click="deleteBlueprint()" ng-if="!published && editable && !blueprint.has_simulator"
+                       class="blueprint230L">
+                        <span id="advanced-span" class="show-button">
+                            Delete Blueprint
+                        </span>
+                        <span id="advanced-span-2" class="hover show-button">
+                            Delete Blueprint
+                        </span>
+                    </a>
+                    <a id="black-back-btn" data-ui-sref="root.dashboard"
+                       class="back100T" style="font-size: 1em;" ng-if="!published">
+                        <span id="advanced-span" class="show-button">
+                            &times;
+                        </span>
+                        <span id="advanced-span-2" class="hover show-button">
+                            &times;
+                        </span>
+                    </a>
+                    <a id="black-back-btn" data-ui-sref="root.dashboard"
+                       class="" style="font-size: 1em;" ng-if="published">
+                        <span id="advanced-span" class="show-button">
+                            &times;
+                        </span>
+                        <span id="advanced-span-2" class="hover show-button">
+                            &times;
+                        </span>
+                    </a>
                 </div>
-                <a id="black-filter-btn" ng-show="!user.profile_type"
-                   ng-click="SendMail($event)" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && has_applied"
-                   style="font-size: 1.2em;">
-                    <span id="advanced-span" class="show-button">
-                        iCruit
-                    </span>
-                    <span id="advanced-span-2" class="hover show-button">
-                        iCruit
-                    </span>
-                </a>
-                <a id="accept-interview-btn" ng-show="!user.profile_type"
-                   ng-click="inviteToInterview()" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && is_icruited && !has_applied && !has_interview">
-                    <span id="advanced-span" class="show-button">
-                        Invite to Interview
-                    </span>
-                    <span id="advanced-span-2" class="hover show-button">
-                        Invite to Interview
-                    </span>
-                </a>
-                <a id="accept-interview-btn" ng-show="!user.profile_type"
-                   ng-click="hireEmployee()" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && has_interview">
-                    <span id="advanced-span" class="show-button">
-                        Hire
-                    </span>
-                    <span id="advanced-span-2" class="hover show-button">
-                        Hire
-                    </span>
-                </a>
-                <a id="reject-interview-btn" ng-show="!user.profile_type"
-                   ng-click="exitQueue()" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && has_interview">
-                    <span id="advanced-span" class="show-button">
-                        Reject
-                    </span>
-                    <span id="advanced-span-2" class="hover show-button">
-                        Reject
-                    </span>
-                </a>
-                <!--div add-buttons-directive ng-if="published && blueprint.has_simulator && !blueprint.is_closed"></div-->
-                <a id="black-filter-btn" ng-show="!user.profile_type"
-                   ng-click="updateBlueprint()" ng-if="!published && !blueprint.has_simulator"
-                   style="font-size: 1.2em; border-left: 1px solid white;">
-                    <span id="advanced-span" class="show-button">
-                        Update Blueprint
-                    </span>
-                    <span id="advanced-span-2" class="hover show-button">
-                        Update Blueprint
-                    </span>
-                </a>
-                <a id="black-filter-btn" ng-show="!user.profile_type"
-                   ng-click="publishBlueprint()" ng-if="!published && !blueprint.has_simulator"
-                   class="blackFilter180R" style="font-size: 1.2em">
-                    <span id="advanced-span" class="show-button">
-                        Publish Blueprint
-                    </span>
-                    <span id="advanced-span-2" class="hover show-button">
-                        Publish Blueprint
-                    </span>
-                </a>
-                <a id="blueprint-btn" ng-show="!user.profile_type" 
-                   ng-click="previewBlueprint()" ng-if="!published && editable && !blueprint.has_simulator"
-                   class="preview50L">
-                    <span id="advanced-span" class="show-button">
-                        Preview Blueprint
-                    </span>
-                    <span id="advanced-span-2" class="hover show-button">
-                        Preview Blueprint
-                    </span>
-                </a>
-                <a id="blueprint-btn" ng-show="!user.profile_type" 
-                   ng-click="editBlueprint()" ng-if="published && editable && !blueprint.has_simulator" style="left: 50px;">
-                    <span id="advanced-span" class="show-button">
-                        Edit Blueprint
-                    </span>
-                    <span id="advanced-span-2" class="hover show-button">
-                        Edit Blueprint
-                    </span>
-                </a>
-                <a id="blueprint-btn" ng-show="!user.profile_type"
-                   ng-click="deleteBlueprint()" ng-if="!published && editable && !blueprint.has_simulator"
-                   class="blueprint230L">
-                    <span id="advanced-span" class="show-button">
-                        Delete Blueprint
-                    </span>
-                    <span id="advanced-span-2" class="hover show-button">
-                        Delete Blueprint
-                    </span>
-                </a>
-                <a id="black-back-btn" data-ui-sref="root.dashboard"
-                   class="back100T" style="font-size: 1em;" ng-if="!published">
-                    <span id="advanced-span" class="show-button">
-                        &times;
-                    </span>
-                    <span id="advanced-span-2" class="hover show-button">
-                        &times;
-                    </span>            
-                </a>
-                <a id="black-back-btn" data-ui-sref="root.dashboard"
-                   class="" style="font-size: 1em;" ng-if="published">
-                    <span id="advanced-span" class="show-button">
-                        &times;
-                    </span>
-                    <span id="advanced-span-2" class="hover show-button">
-                        &times;
-                    </span>
-                </a>
             </div>
         </div>
         <div ng-if="sent_mail">
@@ -361,85 +323,42 @@
 <!-- JOBSEEKER BLUEPRINT DETAILS EXPERIENCE -->
 <div ng-if="user.profile_type">
     <nav class="dashHeader text-center navbar fixed top"><span>ICRUITS</span></nav>
-    <section id="dashboard" style="margin-top: 75px;">
+    <section id="dashboard">
         <!-- NEW JOB VIEW EXPERIENCE -->
         <div ng-if="!sent_mail">
             <div class="containerDetails">
+                <div class="blueprint-name" data-ng-bind="blueprint.name"></div>
                 <div class="half-container-right" ng-if="published">
-                    <div class="blueprint-name" data-ng-bind="blueprint.name"></div>
-                    <div class="details-description">
+                    <!--div class="details-description">
                         <div data-ng-bind="blueprint.description"></div>
+                    </div-->
+                    <div class="square-info">
+                        <span class="practice-info" data-ng-bind="blueprint.practice_limit"></span>
                     </div>
-                    <div class="practice-info" style="margin-top: 2em;">
-                        <span>Practice limit :  </span>
-                        <div class="square-info">
-                            <span data-ng-bind="blueprint.practice_limit"></span>
-                        </div>
+                    <div class="square-info">
+                        <span class="practice-info" data-ng-bind="blueprint.max_queue"></span>
                     </div>
-                    <div class="practice-info">
-                        <span>Max Queue :  </span>
-                        <div class="square-info">
-                            <span data-ng-bind="blueprint.max_queue"></span>
-                        </div>
+                    <div class="square-info">
+                        <span class="practice-info" data-ng-bind="visa_status_info.visa"></span>
                     </div>
-                    <div class="practice-info">
-                        <span>Visa Status :  </span>
-                        <div class="square-info">
-                            <span data-ng-bind="visa_status_info.visa"></span>
-                        </div>
+                    <div class="square-info">
+                        <span class="practice-info" data-ng-bind="blueprint.professional_qualifications"></span>
                     </div>
-                    <div class="practice-info">
-                        <span>Minimum Education :  </span>
-                        <div class="square-info">
-                            <span data-ng-bind="blueprint.professional_qualifications"></span>
-                        </div>
+                </div>
+                <div class="half-container-right"></div>
+                <div class="half-container-right" ng-if="published">
+                    <div class="square-info">
+                        <span class="practice-info" data-ng-bind="blueprint.remote_work"></span>
                     </div>
-                    <div class="practice-info">                                
-                        <span>Remote Work :  </span>
-                        <div class="square-info">
-                            <span data-ng-bind="blueprint.remote_work"></span>
-                        </div>
+                    <div class="square-info">
+                        <span class="practice-info" data-ng-bind="job_salary.sal_range"></span>
                     </div>
-                    <div class="practice-info">
-                        <span>Salary Range :  </span>
-                        <div class="square-info">
-                            <span data-ng-bind="job_salary.sal_range"></span>
-                        </div>
+                    <div class="square-info">
+                        <span class="practice-info" data-ng-bind="job_type.employment"></span>
                     </div>
-                    <div class="practice-info">
-                        <span>Job Type :  </span>
+                    <div ng-if="!has_applied && is_icruited || !has_applied && has_interview">
                         <div class="square-info">
-                            <span data-ng-bind="job_type.employment"></span>
-                        </div>
-                    </div>
-                    <div class="practice-info" ng-if="!can_apply">
-                        <span>Status: </span>
-                        <div class="square-info">
-                            <span>Waiting for simulator</span>
-                        </div>
-                    </div>
-                    <div class="practice-info" ng-if="has_applied && !is_icruited && !has_interview">
-                        <span>Status :  </span>
-                        <div class="square-info">
-                            <span>Applied</span>
-                        </div>
-                    </div>
-                    <div class="practice-info" ng-if="!has_applied && is_icruited">
-                        <span>Status :  </span>
-                        <div class="square-info">
-                            <span>iCruited</span>
-                        </div>
-                    </div>
-                    <div class="practice-info" ng-if="!has_applied && has_interview">
-                        <span>Status :  </span>
-                        <div class="square-info">
-                            <span>Ready for Interview</span>
-                        </div>
-                    </div>
-                    <div class="practice-info" ng-if="!has_applied && is_icruited || !has_applied && has_interview">
-                        <span>Your Queue :  </span>
-                        <div class="square-info">
-                            <span data-ng-bind="current_queue"></span>
+                            <span class="practice-info" data-ng-bind="current_queue"></span>
                         </div>
                     </div>
                 </div>
@@ -451,61 +370,67 @@
                      style="margin-top: 150px;"
                      src="{{ blueprint.work_enviorment_2 }}">
             </div>
-            <div id="videoDetailsSeeker">
-                <video width="100%" height="100%" preload="metadata" controls>
-                    <source src="{{ blueprint.video_url }}" type="video/mp4">
-                </video>
+            <div class="dashFooter">
+                <a id="black-filter-btn" ng-show="user.profile_type"
+                   ng-if="can_apply && !has_applied && !has_applied_in_queue"
+                   ng-click="applyForBlueprint()">
+                    <span id="advanced-span" class="show-button">
+                        Apply
+                    </span>
+                    <span id="advanced-span-2" class="hover show-button">
+                        Apply
+                    </span>
+                </a>
+                <a id="blueprint-btn" ng-show="user.profile_type"
+                   ng-if="has_applied && !has_interview" ng-click="unapplyFromBlueprint()">
+                    <span id="advanced-span" class="show-button">
+                        un-iCruit
+                    </span>
+                    <span id="advanced-span-2" class="hover show-button">
+                        un-iCruit
+                    </span>
+                </a>
+                 <a id="blueprint-btn" ng-show="user.profile_type" ng-if="has_applied_in_queue || is_icruited || has_interview" ng-click="exitQueue()">
+                    <span id="advanced-span" class="show-button">
+                        un-iCruit
+                    </span>
+                    <span id="advanced-span-2" class="hover show-button">
+                        un-iCruit
+                    </span>
+                </a>
+                 <a id="blueprint-btn" ng-show="user.profile_type" style="right: 180px;"
+                    ng-if="has_interview" ng-click="onInterview()">
+                    <span id="advanced-span" class="show-button">
+                        Interview
+                    </span>
+                    <span id="advanced-span-2" class="hover show-button">
+                        Interview
+                    </span>
+                </a>
+                <a id="black-back-btn" data-ui-sref="root.dashboard" style="font-size: 1em;">
+                    <span id="advanced-span" class="show-button">
+                        &times;
+                    </span>
+                    <span id="advanced-span-2" class="hover show-button">
+                        &times;
+                    </span>
+                </a>
             </div>
-            <a id="black-filter-btn" ng-show="user.profile_type" ng-if="can_apply && !has_applied && !has_applied_in_queue" ng-click="applyForBlueprint()"
-               style="font-size: 1em">
-                <span id="advanced-span" class="show-button">
-                    Apply
-                </span>
-                <span id="advanced-span-2" class="hover show-button">
-                    Apply
-                </span>
-            </a>
-            <a id="blueprint-btn" ng-show="user.profile_type"
-               ng-if="has_applied && !has_interview" ng-click="unapplyFromBlueprint()">
-                <span id="advanced-span" class="show-button">
-                    un-iCruit
-                </span>
-                <span id="advanced-span-2" class="hover show-button">
-                    un-iCruit
-                </span>
-            </a>
-             <a id="blueprint-btn" ng-show="user.profile_type" ng-if="has_applied_in_queue || is_icruited || has_interview" ng-click="exitQueue()">
-                <span id="advanced-span" class="show-button">
-                    un-iCruit
-                </span>
-                <span id="advanced-span-2" class="hover show-button">
-                    un-iCruit
-                </span>
-            </a>
-             <a id="blueprint-btn" ng-show="user.profile_type" style="right: 180px;"
-                ng-if="has_interview" ng-click="onInterview()">
-                <span id="advanced-span" class="show-button">
-                    Interview
-                </span>
-                <span id="advanced-span-2" class="hover show-button">
-                    Interview
-                </span>
-            </a>
         </div>
         <div ng-if="sent_mail">
             <span class="sentEmail" style="width: 325px;">
                 Email has been sent to you!
             </span>
+            <a id="black-back-btn" data-ui-sref="root.dashboard" style="font-size: 1em;">
+                <span id="advanced-span" class="show-button">
+                    &times;
+                </span>
+                <span id="advanced-span-2" class="hover show-button">
+                    &times;
+                </span>
+            </a>
         </div>
         <!-- END OF NEW JOB VIEW EXPERIENCE -->
-        <a id="black-back-btn" data-ui-sref="root.dashboard" style="font-size: 1em;">
-            <span id="advanced-span" class="show-button">
-                &times;
-            </span>
-            <span id="advanced-span-2" class="hover show-button">
-                &times;
-            </span>            
-        </a>
     </section>
 </div>
 <!-- END OF JOBSEEKER BLUEPRINT DETAILS EXPERIENCE -->
@@ -526,43 +451,3 @@
         </span>
     </a>
 </aside>
-
-<script type="text/javascript">
-    function moveDiv() {
-    var elementTop = $('#detailImages'),
-        elementTopSeeker = $('#detailImagesSeeker'),
-        videoEl = $('#videoDetails'),
-        videoElSeeker = $('#videoDetailsSeeker');
-
-    var rightEl = $('.half-container-right'),
-        rightElMove = $('.half-container-right');
-        //scrollFrom = (videoTop - rightEl.outerHeight(true) - 200);
-
-        if(typeof elementTop.offset() !== "undefined") {
-            videoEl.css({
-                'position': 'relative',
-                'top': (elementTop.outerHeight(true) * 9 + elementTop.offset().top) + 'px',
-                'margin-bottom': '55px'
-            });
-        }
-        if(typeof elementTopSeeker.offset() !== "undefined") {
-            videoElSeeker.css({
-                'position': 'relative',
-                'top': (elementTopSeeker.outerHeight(true) * 9 + elementTopSeeker.offset().top) + 'px',
-                'margin-bottom': '55px'
-            });
-        }
-        /*console.log(scrollFrom);
-        console.log($(window).scrollTop());
-        if($(window).scrollTop() === scrollFrom) {
-            console.log(scrollFrom);
-            console.log('okey');
-            rightElMove.css({
-                'position': 'absolute',
-                'top': scrollFrom + 'px'
-            });
-        }*/
-    }
-    //$(window).on('load scroll resize', moveDiv);
-    $(document).ready(moveDiv);
-</script>

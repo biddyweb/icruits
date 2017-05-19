@@ -55,6 +55,7 @@ header {
   text-decoration:none;  
   background: transparent;
 }
+
 /***************************************************************
                   CHECKBOX STYLING
 ***************************************************************/
@@ -431,7 +432,7 @@ VERY IMPORTANT!!!!
     height: 0;
     border-style: solid;
     border-width: 1.7em 0 1.7em 2.7em;
-    border-color: transparent transparent transparent rgb(230, 230, 230);
+    border-color: transparent transparent transparent rgb(180, 180, 180);
     opacity: .75;
     cursor: pointer;
 }
@@ -440,13 +441,15 @@ VERY IMPORTANT!!!!
     margin-top: 65px!important;
     filter: gray; /* IE6-9 */
     -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
-    transition: all 250ms cubic-bezier(.25,.46,.45,.94)
+    transition: all 250ms cubic-bezier(.25,.46,.45,.94);
+    opacity: 0.8;
 }
 
 .dashboardItem .inner:hover img{
     filter: none; /* IE6-9 */
     -webkit-filter: grayscale(0); /* Chrome 19+ & Safari 6+ */
-    transition: all 250ms cubic-bezier(.25,.46,.45,.94)
+    transition: all 250ms cubic-bezier(.25,.46,.45,.94);
+    opacity: 1;
 }
 
 .dashboardItem .inner h1 {
@@ -519,6 +522,10 @@ VERY IMPORTANT!!!!
     margin-top: 1em;
     margin-right: 15%;
     color: rgb(100, 100, 100);
+}
+
+#dashboard {
+    margin-top: 75px;
 }
 
 #dashboard .overlay {
@@ -1599,6 +1606,17 @@ input, textarea, select, button, meter, progress {
     letter-spacing: 0.325em;
 }
 
+.dashFooter {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    height: 52px;
+    background-color: rgba(255, 255, 255, 1);
+    border-top: 1px solid rgba(0, 0, 0, 0.3)
+}
+
 /*clearfixes*/
 
 .cf:before,
@@ -1615,11 +1633,11 @@ input, textarea, select, button, meter, progress {
     width: 100%;
     padding-left: 20px;
     padding-right: 20px;
-    margin-bottom: 55px;
+    margin-bottom: 70px;
 }
 
 .containerSub:last-of-type {
-    padding-top: 0px;
+    padding-top: 0;
     width: 100%;
 }
 
@@ -2617,11 +2635,10 @@ div .containerDetails {
 }
 
 .half-container-left {
-    width: 50%;
-    position: absolute;
-    left: 10%;
-    top: 25%;
-    padding-right: 10%;
+    width: 100%;
+    position: relative;
+    margin-bottom: 70px;
+    display: inline-block;
 }
 
 #detail-img {
@@ -2633,11 +2650,10 @@ div .containerDetails {
 }
 
 .half-container-right {
-    width: 39%;
-    position: fixed;
-    left: 60%;
-    top: 20%;
-    /* padding-right: 5%; */
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+    position: relative;
 }
 
 .details-description {
@@ -2651,11 +2667,14 @@ div .containerDetails {
 
 .blueprint-name {
     font-family: "Andale Mono";
-    font-size: 2em;
+    font-size: 3em;
     text-transform: uppercase;
-    color: rgb(0, 0, 0);
+    color: #000;
     letter-spacing: 2px;
-    margin-top: 1em;
+    text-align: center;
+    cursor: default;
+    margin-top: 150px;
+    margin-bottom: 75px;
 }
 
 .practice-info {
@@ -2665,10 +2684,16 @@ div .containerDetails {
 }
 
 .square-info {
-    margin-top: -1.4em;
-    height: 30px;
-    margin-left: 180px;/* 150px; */
+    height: 120px;
+    width: 120px;
     display: block;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 60px;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    cursor: default;
 }
 
 .blueprint230L {
@@ -2937,7 +2962,7 @@ div .containerDetails {
     color: rgb(255, 255, 255);
     text-transform: uppercase;
     font-family: "Andale Mono";
-    font-size: 1.5em;
+    font-size: 1.6em;
     top: 0.45em;
 }
 
@@ -2969,8 +2994,9 @@ div .containerDetails {
     text-decoration: none;
     letter-spacing: .25rem;
     position: fixed;
-    right: 0px;
-    bottom: 0px;
+    right: 0;
+    bottom: 0;
+    font-size: 1.1em;
     text-align: center;
     cursor: pointer;
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
@@ -3047,7 +3073,7 @@ div .containerDetails {
 **************************************************************************/
 .profilePage span {
     position: relative;
-    width: 195px;
+    width: 161px;
     font-size: 2.2em;
     margin-top: 130px;
 }

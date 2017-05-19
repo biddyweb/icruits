@@ -121,116 +121,118 @@
                         </div>
                     </div>
                 </div>
-                <div id="dashboardBtn1">
-                    <a id="filter-btn" ng-click="tupleAppliedJobs()" ng-if="show_new_jobs">
+                <div class="dashFooter">
+                    <div id="dashboardBtn1">
+                        <a id="filter-btn" ng-click="tupleAppliedJobs()" ng-if="show_new_jobs">
+                            <span>
+                                Applied Jobs
+                            </span>
+                            <span class="hover">
+                                Applied Jobs
+                            </span>
+                        </a>
+                    </div>
+                    <div id="dashboardBtn2">
+                        <a id="filter-btn" ng-click="tupleAppliedJobs()" ng-if="!show_new_jobs">
+                            <span>
+                                All Jobs
+                            </span>
+                            <span class="hover">
+                                All Jobs
+                            </span>
+                        </a>
+                    </div>
+                    <div id="dashboardBtn3">
+                        <a id="filter-btn" ng-click="tupleICruitedJobs()"
+                           class="filter180R"
+                           ng-if="show_new_jobs_icruited">
+                            <span>
+                                iCruited Jobs
+                            </span>
+                            <span class="hover">
+                                iCruited Jobs
+                            </span>
+                        </a>
+                    </div>
+                    <div id="dashboardBtn4">
+                        <a id="filter-btn" ng-click="tupleICruitedJobs()"
+                           class="filter180R"
+                           ng-if="!show_new_jobs_icruited">
+                            <span>
+                                All Jobs
+                            </span>
+                            <span class="hover">
+                                All Jobs
+                            </span>
+                        </a>
+                    </div>
+                    <div id="dashboardBtn5">
+                        <a id="filter-btn" ng-click="tupleInterviewJobs()"
+                           class="filter360R"
+                           ng-if="show_new_jobs_interview">
+                            <span>
+                                Interview for Job
+                            </span>
+                            <span class="hover">
+                                Interview for Job
+                            </span>
+                        </a>
+                    </div>
+                    <div id="dashboardBtn6">
+                        <a id="filter-btn" ng-click="tupleInterviewJobs()"
+                           class="filter360R"
+                           ng-if="!show_new_jobs_interview">
+                            <span>
+                                All Jobs
+                            </span>
+                            <span class="hover">
+                                All Jobs
+                            </span>
+                        </a>
+                    </div>
+                    <div id="dashboardBtn7">
+                        <a id="filter-btn" ng-click="tupleHiredJobs()"
+                           style="left: 0;"
+                           ng-if="show_hired_jobs">
+                            <span>
+                                Hired Jobs
+                            </span>
+                            <span class="hover">
+                                Hired Jobs
+                            </span>
+                        </a>
+                    </div>
+                    <div id="dashboardBtn8">
+                        <a id="filter-btn" ng-click="tupleHiredJobs()"
+                           style="left: 0;"
+                           ng-if="!show_hired_jobs">
+                            <span>
+                                All Jobs
+                            </span>
+                            <span class="hover">
+                                All Jobs
+                            </span>
+                        </a>
+                    </div>
+                    <!--a id="filter-btn" style="right: 180px;"
+                       ng-click="tupleJobsState()" ng-if="!show_closed_jobs">
                         <span>
-                            Applied Jobs
+                            Closed Jobs
                         </span>
                         <span class="hover">
-                            Applied Jobs
+                            Closed Jobs
                         </span>
                     </a>
-                </div>
-                <div id="dashboardBtn2">
-                    <a id="filter-btn" ng-click="tupleAppliedJobs()" ng-if="!show_new_jobs">
+                    <a id="filter-btn" style="right: 180px;"
+                       ng-click="tupleJobsState()" ng-if="show_closed_jobs">
                         <span>
-                            All Jobs
+                            Opened Jobs
                         </span>
                         <span class="hover">
-                            All Jobs
+                            Opened Jobs
                         </span>
-                    </a>
+                    </a-->
                 </div>
-                <div id="dashboardBtn3">
-                    <a id="filter-btn" ng-click="tupleICruitedJobs()"
-                       class="filter180R"
-                       ng-if="show_new_jobs_icruited">
-                        <span>
-                            iCruited Jobs
-                        </span>
-                        <span class="hover">
-                            iCruited Jobs
-                        </span>
-                    </a>
-                </div>
-                <div id="dashboardBtn4">
-                    <a id="filter-btn" ng-click="tupleICruitedJobs()"
-                       class="filter180R"
-                       ng-if="!show_new_jobs_icruited">
-                        <span>
-                            All Jobs
-                        </span>
-                        <span class="hover">
-                            All Jobs
-                        </span>
-                    </a>
-                </div>
-                <div id="dashboardBtn5">
-                    <a id="filter-btn" ng-click="tupleInterviewJobs()"
-                       class="filter360R"
-                       ng-if="show_new_jobs_interview">
-                        <span>
-                            Interview for Job
-                        </span>
-                        <span class="hover">
-                            Interview for Job
-                        </span>
-                    </a>
-                </div>
-                <div id="dashboardBtn6">
-                    <a id="filter-btn" ng-click="tupleInterviewJobs()"
-                       class="filter360R"
-                       ng-if="!show_new_jobs_interview">
-                        <span>
-                            All Jobs
-                        </span>
-                        <span class="hover">
-                            All Jobs
-                        </span>
-                    </a>
-                </div>
-                <div id="dashboardBtn7">
-                    <a id="filter-btn" ng-click="tupleHiredJobs()"
-                       style="left: 0;"
-                       ng-if="show_hired_jobs">
-                        <span>
-                            Hired Jobs
-                        </span>
-                        <span class="hover">
-                            Hired Jobs
-                        </span>
-                    </a>
-                </div>
-                <div id="dashboardBtn8">
-                    <a id="filter-btn" ng-click="tupleHiredJobs()"
-                       style="left: 0;"
-                       ng-if="!show_hired_jobs">
-                        <span>
-                            All Jobs
-                        </span>
-                        <span class="hover">
-                            All Jobs
-                        </span>
-                    </a>
-                </div>
-                <!--a id="filter-btn" style="right: 180px;"
-                   ng-click="tupleJobsState()" ng-if="!show_closed_jobs">
-                    <span>
-                        Closed Jobs
-                    </span>
-                    <span class="hover">
-                        Closed Jobs
-                    </span>
-                </a>
-                <a id="filter-btn" style="right: 180px;"
-                   ng-click="tupleJobsState()" ng-if="show_closed_jobs">
-                    <span>
-                        Opened Jobs
-                    </span>
-                    <span class="hover">
-                        Opened Jobs
-                    </span>
-                </a-->
             </section>
         </div>
     </div>
@@ -381,37 +383,39 @@
                         </div>
                     </div>
                 </div>
-                <div id="dashboard-emp-btn1">
-                    <a id="filter-btn" onclick="openBigNav()">
-                        <span>
-                            Create Blueprint
-                        </span>
-                        <span class="hover">
-                            Create Blueprint
-                        </span>
-                    </a>
-                </div>
-                <div id="dashboard-emp-btn2">
-                    <a id="filter-btn" style="left: 0;"
-                       ng-click="tupleJobsState()" ng-if="!show_closed_jobs">
-                        <span>
-                            Closed Jobs
-                        </span>
-                        <span class="hover">
-                            Closed Jobs
-                        </span>
-                    </a>
-                </div>
-                <div id="dashboard-emp-btn3">
-                    <a id="filter-btn" style="right: 180px;"
-                       ng-click="tupleJobsState()" ng-if="show_closed_jobs">
-                        <span>
-                            Opened Jobs
-                        </span>
-                        <span class="hover">
-                            Opened Jobs
-                        </span>
-                    </a>
+                <div class="dashFooter">
+                    <div id="dashboard-emp-btn1">
+                        <a id="filter-btn" onclick="openBigNav()">
+                            <span>
+                                Create Blueprint
+                            </span>
+                            <span class="hover">
+                                Create Blueprint
+                            </span>
+                        </a>
+                    </div>
+                    <div id="dashboard-emp-btn2">
+                        <a id="filter-btn" style="left: 0;"
+                           ng-click="tupleJobsState()" ng-if="!show_closed_jobs">
+                            <span>
+                                Closed Jobs
+                            </span>
+                            <span class="hover">
+                                Closed Jobs
+                            </span>
+                        </a>
+                    </div>
+                    <div id="dashboard-emp-btn3">
+                        <a id="filter-btn" style="left: 0;"
+                           ng-click="tupleJobsState()" ng-if="show_closed_jobs">
+                            <span>
+                                Opened Jobs
+                            </span>
+                            <span class="hover">
+                                Opened Jobs
+                            </span>
+                        </a>
+                    </div>
                 </div>
             </section>
         </div>

@@ -534,11 +534,6 @@
         bottom: 100px!important;
     }
 }
-@media only screen and (max-width: 950px) {
-	.blueprint-name {
-		font-size: 1.5em;
-	}
-}
 @media only screen and (max-width: 405px) {
     .square-info {
         margin-bottom: 40px!important;

@@ -140,7 +140,7 @@
 		min-height: 200px;
 	}
 	.dashboardItem .inner .play-button-outer {
-		margin-top: 40%!important;
+		margin-top: 35%!important;
 	}
 }
 
@@ -533,11 +533,6 @@
     .back100T {
         bottom: 100px!important;
     }
-}
-@media only screen and (max-width: 950px) {
-	.blueprint-name {
-		font-size: 1.5em;
-	}
 }
 @media only screen and (max-width: 405px) {
     .square-info {
