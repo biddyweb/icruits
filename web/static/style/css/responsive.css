@@ -10,6 +10,10 @@
 	}
 }
 @media (min-width: 1400px) {
+    .details-description {
+        font-size: 1.6em;
+        padding-bottom: 21px;
+    }
 	.container {
 		width: 1370px;
 	}
@@ -134,26 +138,27 @@
 }
 @media (min-width: 1400px) and (max-width: 1665px) {
 	.dashboardItem .inner img {
-		min-height: 230px;
+		min-height: 130px;
 	}
 	.dashboardItem .inner .play-button-outer {
-		margin-top: 40%!important;
+		margin-top: 100px !important;
 	}
 }
 @media (min-width: 1666px) {
 	.dashboardItem .inner img {
-		min-height: 270px;
+		min-height: 150px;
 	}
 	.dashboardItem .inner .play-button-outer {
-		margin-top: 33%!important;
+		margin-top: 110px !important;
+		margin-left: 40px;
 	}
 }
 @media (min-width: 1155px) and (max-width: 1399px) {
 	.dashboardItem .inner img {
-		min-height: 200px;
+		min-height: 105px;
 	}
 	.dashboardItem .inner .play-button-outer {
-		margin-top: 35%!important;
+		margin-top: 87px!important;
 	}
 }
 

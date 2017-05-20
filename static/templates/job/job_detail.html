@@ -331,51 +331,51 @@
                 <div class="row">
                     <div class="col-sm-3" ng-if="published">
                         <div class="square-info green-circle">
-                            <span class="practice-info" data-ng-bind="visa_status_info.visa"></span>
-                            <span class="practice-info green-color">Required</span>
+                            <span class="practice-info green-color info-centered" data-ng-bind="visa_status_info.visa"></span>
+                            <!--span class="practice-info green-color">Required</span-->
                         </div>
                     </div>
                     <div class="col-sm-3" ng-if="published">
                         <div class="square-info orange-circle">
-                            <span class="practice-info" data-ng-bind="blueprint.professional_qualifications"></span>
-                            <span class="practice-info orange-color">Required</span>
+                            <span class="practice-info orange-color info-centered" data-ng-bind="blueprint.professional_qualifications"></span>
+                            <!--span class="practice-info orange-color">Required</span-->
                         </div>
                     </div>
                     <div class="col-sm-3" ng-if="published">
                         <div class="square-info blue-circle">
-                            <span class="practice-info" data-ng-bind="blueprint.remote_work"></span>
-                            <span class="practice-info blue-color">Remote</span>
+                            <span class="practice-info blue-color info-centered" data-ng-bind="blueprint.remote_work"></span>
+                            <!--span class="practice-info blue-color">Remote</span-->
                         </div>
                     </div>
                     <div class="col-sm-3" ng-if="published">
                         <div class="square-info red-circle">
-                            <span class="practice-info" data-ng-bind="job_type.employment"></span>
-                            <span class="practice-info red-color">Type</span>
+                            <span class="practice-info red-color info-centered" data-ng-bind="job_type.employment"></span>
+                            <!--span class="practice-info red-color">Type</span-->
                         </div>
                     </div>
                     <div class="col-sm-3" ng-if="published">
                         <div class="square-info blue-circle">
-                            <span class="practice-info" data-ng-bind="job_salary.sal_range"></span>
-                            <span class="practice-info blue-color">Salary</span>
+                            <span class="practice-info blue-color info-centered" data-ng-bind="job_salary.sal_range"></span>
+                            <!--span class="practice-info blue-color">Salary</span-->
                         </div>
                     </div>
                     <div class="col-sm-3" ng-if="published">
                         <div class="square-info red-circle">
-                            <span class="practice-info" data-ng-bind="blueprint.max_queue"></span>
-                            <span class="practice-info red-color">Can Apply</span>
+                            <span class="practice-info red-color" data-ng-bind="blueprint.max_queue"></span>
+                            <span class="practice-info info-small">Queue Limit</span>
                         </div>
                     </div>
                     <div class="col-sm-3" ng-if="published">
                         <div class="square-info orange-circle">
-                            <span class="practice-info" data-ng-bind="people_in_queue"></span>
-                            <span class="practice-info orange-color">Applied</span>
+                            <span class="practice-info orange-color" data-ng-bind="people_in_queue"></span>
+                            <span class="practice-info info-small">Applied</span>
                         </div>
                     </div>
                     <div class="col-sm-3" ng-if="published">
                         <div ng-if="!has_applied && is_icruited || !has_applied && has_interview">
                             <div class="square-info green-circle">
-                                <span class="practice-info" data-ng-bind="current_queue"></span>
-                                <span class="practice-info green-color">Place</span>
+                                <span class="practice-info green-color" data-ng-bind="current_queue"></span>
+                                <span class="practice-info info-small">Your Queue</span>
                             </div>
                         </div>
                     </div>
