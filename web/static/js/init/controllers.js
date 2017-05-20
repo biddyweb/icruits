@@ -43,6 +43,8 @@
 
         $scope.is_hired = false;
 
+        $scope.sent_apply_mail = false;
+
         $scope.blueprint_in_queue = false;
 
         $scope.reached_max_queue = false;
@@ -339,8 +341,7 @@
             };
             AppliedBlueprintsRes.save($scope.apply_for_blueprint_data, function (response) {
                 // body...
-                $window.location.reload();
-                $scope.sent_mail = true;
+                $scope.sent_apply_mail = true;
             }, function (response) {
                 // body...
                 $scope.errors = response.data;
@@ -389,6 +390,10 @@
         $scope.closeErrorCanvasDetails = function () {
             if($scope.reached_max_queue){
                 $scope.reached_max_queue = false;
+            }
+            if($scope.sent_apply_mail){
+                $scope.sent_apply_mail = false;
+                $window.location.reload();
             }
         };
 

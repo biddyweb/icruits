@@ -327,56 +327,55 @@
         <!-- NEW JOB VIEW EXPERIENCE -->
         <div ng-if="!sent_mail">
             <div class="blueprint-name" data-ng-bind="blueprint.name"></div>
+            <div id="circleColumn" class="container">
+                <div class="center-block" ng-if="published">
+                    <div ng-if="!has_applied && is_icruited || !has_applied && has_interview">
+                        <div class="circle-info green-circle">
+                            <span class="circle-fonts" data-ng-bind="current_queue"></span>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="published">
+                    <div class="circle-info orange-circle">
+                        <span class="circle-fonts" data-ng-bind="people_in_queue"></span>
+                    </div>
+                </div>
+                <div ng-if="published">
+                    <div class="circle-info red-circle">
+                        <span class="circle-fonts" data-ng-bind="blueprint.max_queue"></span>
+                    </div>
+                </div>
+            </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-3" ng-if="published">
-                        <div class="square-info green-circle">
-                            <span class="practice-info green-color info-centered" data-ng-bind="visa_status_info.visa"></span>
+                    <div class="col-sm-2" ng-if="published">
+                        <div class="square-info">
+                            <span class="practice-info info-centered" data-ng-bind="visa_status_info.visa"></span>
                             <!--span class="practice-info green-color">Required</span-->
                         </div>
                     </div>
-                    <div class="col-sm-3" ng-if="published">
-                        <div class="square-info orange-circle">
-                            <span class="practice-info orange-color info-centered" data-ng-bind="blueprint.professional_qualifications"></span>
+                    <div class="col-sm-2" ng-if="published">
+                        <div class="square-info">
+                            <span class="practice-info info-centered" data-ng-bind="blueprint.professional_qualifications"></span>
                             <!--span class="practice-info orange-color">Required</span-->
                         </div>
                     </div>
-                    <div class="col-sm-3" ng-if="published">
-                        <div class="square-info blue-circle">
-                            <span class="practice-info blue-color info-centered" data-ng-bind="blueprint.remote_work"></span>
+                    <div class="col-sm-2" ng-if="published">
+                        <div class="square-info">
+                            <span class="practice-info info-centered" data-ng-bind="blueprint.remote_work"></span>
                             <!--span class="practice-info blue-color">Remote</span-->
                         </div>
                     </div>
-                    <div class="col-sm-3" ng-if="published">
-                        <div class="square-info red-circle">
-                            <span class="practice-info red-color info-centered" data-ng-bind="job_type.employment"></span>
+                    <div class="col-sm-2" ng-if="published">
+                        <div class="square-info">
+                            <span class="practice-info info-centered" data-ng-bind="job_type.employment"></span>
                             <!--span class="practice-info red-color">Type</span-->
                         </div>
                     </div>
-                    <div class="col-sm-3" ng-if="published">
-                        <div class="square-info blue-circle">
-                            <span class="practice-info blue-color info-centered" data-ng-bind="job_salary.sal_range"></span>
+                    <div class="col-sm-2" ng-if="published">
+                        <div class="square-info">
+                            <span class="practice-info info-centered" data-ng-bind="job_salary.sal_range"></span>
                             <!--span class="practice-info blue-color">Salary</span-->
-                        </div>
-                    </div>
-                    <div class="col-sm-3" ng-if="published">
-                        <div class="square-info red-circle">
-                            <span class="practice-info red-color" data-ng-bind="blueprint.max_queue"></span>
-                            <span class="practice-info info-small">Queue Limit</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-3" ng-if="published">
-                        <div class="square-info orange-circle">
-                            <span class="practice-info orange-color" data-ng-bind="people_in_queue"></span>
-                            <span class="practice-info info-small">Applied</span>
-                        </div>
-                    </div>
-                    <div class="col-sm-3" ng-if="published">
-                        <div ng-if="!has_applied && is_icruited || !has_applied && has_interview">
-                            <div class="square-info green-circle">
-                                <span class="practice-info green-color" data-ng-bind="current_queue"></span>
-                                <span class="practice-info info-small">Your Queue</span>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -458,10 +457,12 @@
 <!-- END OF JOBSEEKER BLUEPRINT DETAILS EXPERIENCE -->
 
 <!-- ERROR DISPLAYING HANDLER -->
-<aside ng-if="reached_max_queue"
+<aside ng-if="reached_max_queue || sent_apply_mail"
        id="errorCanvasDetails" class="displayError">
-    <div class="captionErrorDetails">Error</div>
+    <div class="captionErrorDetails" ng-if="reached_max_queue">Error</div>
     <span class="blueprintError" ng-if="reached_max_queue" data-ng-bind="reached_max_queue_error"></span>
+    <div class="captionApplyDetails" ng-if="sent_apply_mail">Thank you for applying.</div>
+    <div class="applyDetails" ng-if="sent_apply_mail">iCruits team will contact you.</div>
     <a id="back-btn" ng-click="closeErrorCanvasDetails()"
        style="display: block; margin-left: 5%;
        bottom: -14px; position: relative;">
@@ -473,3 +474,7 @@
         </span>
     </a>
 </aside>
+
+<script type="text/javascript">
+    $('#circleColumn').css({'margin-left': ($(window).width() - 510) / 2 + 'px','width': '540px'});
+</script>

@@ -50,7 +50,11 @@ header {
 
 .red-circle {
     /*border-color: rgb(255, 0, 0)!important;*/
-    color: rgb(255, 0, 0)!important;
+    background: red; /* For browsers that do not support gradients */
+    background: -webkit-radial-gradient(rgba(255,0,0,0.5),rgba(255,0,0,1),rgba(255,0,0,0)); /*Safari 5.1-6*/
+    background: -o-radial-gradient(rgba(255,0,0,0.5),rgba(255,0,0,1),rgba(255,0,0,0)); /*Opera 11.1-12*/
+    background: -moz-radial-gradient(rgba(255,0,0,0.5),rgba(255,0,0,1),rgba(255,0,0,0)); /*Fx 3.6-15*/
+    background: radial-gradient(rgba(255,0,0,0.5),rgba(255,0,0,1),rgba(255,0,0,0)); /*Standard*/
 }
 
 .red-color {
@@ -60,7 +64,11 @@ header {
 
 .green-circle {
     /*border-color: forestgreen!important;*/
-    color: forestgreen!important;
+    background: forestgreen; /* For browsers that do not support gradients */
+    background: -webkit-radial-gradient(rgba(34,139,34,0.7),rgba(34,139,34,1),rgba(34,139,34,0.5)); /*Safari 5.1-6*/
+    background: -o-radial-gradient(rgba(34,139,34,0.7),rgba(34,139,34,1),rgba(34,139,34,0.5)); /*Opera 11.1-12*/
+    background: -moz-radial-gradient(rgba(34,139,34,0.7),rgba(34,139,34,1),rgba(34,139,34,0.5)); /*Fx 3.6-15*/
+    background: radial-gradient(rgba(34,139,34,0.7),rgba(34,139,34,1),rgba(34,139,34,0.5)); /*Standard*/
 }
 
 .green-color {
@@ -70,7 +78,11 @@ header {
 
 .orange-circle {
     /*border-color: rgb(255, 125, 0)!important;*/
-    color: rgb(255, 125, 0)!important;
+    background: rgb(255, 125, 0); /* For browsers that do not support gradients */
+    background: -webkit-radial-gradient(rgba(255,125,0,0.5),rgba(255,125,0,1),rgba(255,125,0,0.5)); /*Safari 5.1-6*/
+    background: -o-radial-gradient(rgba(255,125,0,0.5),rgba(255,125,0,1),rgba(255,125,0,0.5)); /*Opera 11.1-12*/
+    background: -moz-radial-gradient(rgba(255,125,0,0.5),rgba(255,125,0,1),rgba(255,125,0,0.5)); /*Fx 3.6-15*/
+    background: radial-gradient(rgba(255,125,0,0.5),rgba(255,125,0,1),rgba(255,125,0,0.5)); /*Standard*/
 }
 
 .orange-color {
@@ -1132,10 +1144,6 @@ VERY IMPORTANT!!!!
     left: 50%;
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
-}
-
-.half-width {
-    width: 50%;
 }
 
 .simform .submit {
@@ -2670,6 +2678,27 @@ body,
     text-transform: uppercase;
 }
 
+.captionApplyDetails {
+    position: relative;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 1px;
+    top: 5px;
+    text-transform: uppercase;
+}
+
+.applyDetails {
+    font-size: 14px;
+    /* left: 110px; */
+    position: relative;
+    text-transform: uppercase;
+    top: 50px;
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /************************************************
                 DETAILS PAGE
 ************************************************/
@@ -2740,7 +2769,7 @@ div .containerDetails {
 
 .details-description {
     background-color: #f0f0f0;
-    /* height: 100px; */
+    cursor: default;
     font-family: "Andale Mono";
     font-size: 1.4em;
     padding-left: 15%;
@@ -2763,17 +2792,22 @@ div .containerDetails {
     margin-bottom: 75px;
 }
 
+.col-sm-2 {
+    width: 20%;
+}
+
 .practice-info {
     text-transform: uppercase;
-    font-family: "Andale Mono";
+    font-family: SansSerif;
+    font-weight: bold;
     font-size: 1.7em;
-    top: 47px;
+    top: 37px;
     position: relative;
-    color: rgb(0, 0, 0);
+    color: rgb(150, 150, 150);
 }
 
 .info-centered {
-    top: 52px;
+    top: 48px;
 }
 
 .info-small {
@@ -2783,10 +2817,33 @@ div .containerDetails {
 .square-info {
     height: 140px;
     width: 100%;
-    border: 2px solid rgb(0, 0, 0);
+    border: 5px solid rgb(0, 0, 0);
     margin-bottom: 20px;
     cursor: default;
     text-align: center;
+}
+
+.circle-info {
+    height: 150px;
+    width: 150px;
+    border-radius: 85px;
+    margin-bottom: 70px;
+    cursor: default;
+    float: left;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    position: relative;
+}
+
+.circle-fonts {
+    text-transform: uppercase;
+    font-family: SansSerif;
+    font-weight: bold;
+    font-size: 5em;
+    top: 0.345em;
+    position: relative;
+    color: rgb(255, 255, 255);
 }
 
 .blueprint230L {

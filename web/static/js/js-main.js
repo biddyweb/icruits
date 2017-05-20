@@ -259,3 +259,15 @@ function expandMenu() {
 
 $(document).on('load scroll resize', expandMenuEmp);
 $(document).on('load scroll resize', expandMenu);
+
+
+/*=================================================
+            CIRCLE POSITION ON SCREEN
+=================================================*/
+function resizeCircleColumn() {
+    $('#circleColumn').css({
+        'margin-left': ($(window).width() - 510) / 2 + 'px',
+        'width': '540px'
+    });
+}
+$(window).on('resize', resizeCircleColumn);
