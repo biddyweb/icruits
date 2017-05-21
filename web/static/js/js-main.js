@@ -275,3 +275,42 @@ function resizeCircleColumn() {
     });
 }
 $(window).on('resize', resizeCircleColumn);
+
+/*==========================================
+        LOGIN SMOOTH SCROLL
+===========================================*/
+function LoginMain() {
+    (function () {
+        $('html,body').animate({
+            scrollTop: 0
+        }, 900);
+        'use strict';
+        /*====================================
+            Page a Link Smooth Scrolling
+        ======================================*/
+        $('#scrollDown').click(function() {
+            if (location.pathname.replace(/^ \//,'') == this.pathname.replace(/^ \//,'') && location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice( 1) +']');
+                if (target.length) {
+                    $('html,body').css({
+                        'height': 'auto',
+                        'overflow':'auto'
+                    });
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 900);
+                    setTimeout(function () {
+                        $('#imageLogin').css({'display':'none'});
+                        $('a.page-scroll').css({'display':'none'});
+                        $('#imageText').css({'display':'none'});
+                    }, 900);
+                    return false;
+                }
+            }
+        });
+    }());
+}
+LoginMain();
+$('#imageLogin').css({'height':$( window ).height()+'px'});
+$('html, body').css({'overflow':'hidden','height':'100%'});

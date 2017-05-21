@@ -1308,6 +1308,54 @@ VERY IMPORTANT!!!!
     pointer-events: auto;
 }
 
+.textOnImage {
+    position: absolute;
+    z-index: 20;
+    top: 45%;
+    right: 10%;
+    font-size: 2em;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: default;
+}
+
+.down-btn {
+    color: #000;
+    text-align: center;
+    z-index: 100;
+    cursor: cell;
+    -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+    transition: transform 0.3s, opacity 0.3s;
+    -webkit-transform: translateX(-20%);
+    transform: translateX(-20%);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.down-btn:hover {
+    color: rgba(0, 0, 0, 0.8);
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.down-btn::after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: "\f063";
+    font-family: FontAwesome;
+    line-height: 2;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 /* Previous question button */
 .prev-login {
     position: absolute;
@@ -1599,10 +1647,10 @@ input, textarea, select, button, meter, progress {
     color: #000000;
     font-size: 1.825em;
     font-family: "Andale Mono";
-    /*text-shadow: 1px 1px grey;*/
     margin-bottom: 30px;
     z-index: 151515;
     letter-spacing: 0.405em;
+    cursor: default;
 }
 
 .cleaninput {
