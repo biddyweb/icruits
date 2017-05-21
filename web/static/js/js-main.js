@@ -269,5 +269,9 @@ function resizeCircleColumn() {
         'margin-left': ($(window).width() - 510) / 2 + 'px',
         'width': '540px'
     });
+    $('#circleColumnEmp').css({
+        'margin-left': ($(window).width() - 390) / 2 + 'px',
+        'width': '470px'
+    });
 }
 $(window).on('resize', resizeCircleColumn);

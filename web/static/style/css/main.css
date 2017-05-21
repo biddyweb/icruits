@@ -2674,6 +2674,10 @@ body,
     margin-right: auto;
 }
 
+.unapplyDetails {
+    width: 280px!important;
+}
+
 /************************************************
                 DETAILS PAGE
 ************************************************/
@@ -2792,6 +2796,7 @@ div .containerDetails {
 .square-info {
     height: 140px;
     width: 100%;
+    min-width: 150px;
     border: 5px solid rgb(0, 0, 0);
     margin-bottom: 20px;
     cursor: default;

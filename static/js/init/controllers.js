@@ -49,6 +49,8 @@
 
         $scope.reached_max_queue = false;
 
+        $scope.show_unapply_canvas = false;
+
         $scope.published = $scope.blueprint.is_published;
 
         if($scope.published){
@@ -355,9 +357,7 @@
             AppliedBlueprintsRes.delete({ name_slug: $scope.applied_bluprint_name_slug }, function (response) {
                 // body...
                 $scope.has_applied = false;
-                setTimeout(function () {
-                    $window.location.reload();
-                }, 500);
+                $scope.show_unapply_canvas = true;
             }, function (response) {
                 // body...
                 $scope.errors = response.data;
@@ -393,6 +393,10 @@
             }
             if($scope.sent_apply_mail){
                 $scope.sent_apply_mail = false;
+                $window.location.reload();
+            }
+            if($scope.show_unapply_canvas){
+                $scope.show_unapply_canvas = false;
                 $window.location.reload();
             }
         };
@@ -1387,6 +1391,8 @@
 
     function LoginCtrl($scope, $rootScope, $state, LoginRes, JWTTokenRes, CheckUserRes) {
 
+        var progBar = angular.element($('#progressBar'));
+
         $scope.page_1 = true;
         $scope.page_2 = false;
 
@@ -1417,6 +1423,9 @@
                 $scope.error = "Please fill email address";
                 $scope.errors = true;
             } else {
+                progBar.css({
+                    width: 50 + '%'
+                });
                 CheckUserRes.save($scope.log, function (response) {
                     // body...
                     $scope.page_1 = false;
@@ -1454,7 +1463,7 @@
                     setTimeout(function () {
                         $state.go('root.dashboard', {reload: true});
                     }, 500);
-                    $('.progress').css({
+                    progBar.css({
                         width: 100 + '%'
                     });
                 }
@@ -1465,6 +1474,7 @@
                 $scope.logged_in = false;
            }
         };
+
 
         $rootScope.image = '';
     }

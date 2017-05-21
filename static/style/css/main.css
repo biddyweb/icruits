@@ -57,11 +57,6 @@ header {
     background: radial-gradient(rgba(255,0,0,0.5),rgba(255,0,0,1),rgba(255,0,0,0)); /*Standard*/
 }
 
-.red-color {
-    color: rgb(255, 0, 0)!important;
-    display: block;
-}
-
 .green-circle {
     /*border-color: forestgreen!important;*/
     background: forestgreen; /* For browsers that do not support gradients */
@@ -71,11 +66,6 @@ header {
     background: radial-gradient(rgba(34,139,34,0.7),rgba(34,139,34,1),rgba(34,139,34,0.5)); /*Standard*/
 }
 
-.green-color {
-    color: forestgreen!important;
-    display: block;
-}
-
 .orange-circle {
     /*border-color: rgb(255, 125, 0)!important;*/
     background: rgb(255, 125, 0); /* For browsers that do not support gradients */
@@ -83,21 +73,6 @@ header {
     background: -o-radial-gradient(rgba(255,125,0,0.5),rgba(255,125,0,1),rgba(255,125,0,0.5)); /*Opera 11.1-12*/
     background: -moz-radial-gradient(rgba(255,125,0,0.5),rgba(255,125,0,1),rgba(255,125,0,0.5)); /*Fx 3.6-15*/
     background: radial-gradient(rgba(255,125,0,0.5),rgba(255,125,0,1),rgba(255,125,0,0.5)); /*Standard*/
-}
-
-.orange-color {
-    color: rgb(255, 125, 0)!important;
-    display: block;
-}
-
-.blue-circle {
-    /*border-color: #017fb5!important;*/
-    color: #017fb5!important;
-}
-
-.blue-color {
-    color: #017fb5!important;
-    display: block;
 }
 
 .navbar-nav li a:hover, 
@@ -2699,6 +2674,10 @@ body,
     margin-right: auto;
 }
 
+.unapplyDetails {
+    width: 280px!important;
+}
+
 /************************************************
                 DETAILS PAGE
 ************************************************/
@@ -2817,6 +2796,7 @@ div .containerDetails {
 .square-info {
     height: 140px;
     width: 100%;
+    min-width: 150px;
     border: 5px solid rgb(0, 0, 0);
     margin-bottom: 20px;
     cursor: default;

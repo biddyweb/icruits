@@ -1,5 +1,8 @@
 {% load static %}
 <header id="home" ng-controller="LoginCtrl">
+    <div id="loginImage">
+        <img id="imageLogin" class="img-responsive" src="/static/img/login.png">
+    </div>
     <div id="home-slider" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner img-responsive">
             <div class="item active">
@@ -27,15 +30,6 @@
                            placeholder="Email"
                            data-ng-model="log.username"
                            ng-trim="false" custom-validation>
-                    <button class="next-login show" ng-click="checkuser()"></button>
-                    <div class="progress"></div>
-                    <span id="number" class="number">
-                        <span class="number-current" ng-bind="current_page"></span>
-                        <span class="number-total" ng-bind="total_pages"></span>
-                    </span>
-                    <div ng-if="errors">
-                        <span class="error-message show" ng-bind="error"></span>
-                    </div>
                 </div>
                 <div ng-if="page_2" class="questions">
                     <input class="cleaninput"
@@ -49,10 +43,12 @@
                            placeholder="Password"
                            data-ng-model="log.password"
                            ng-trim="false" custom-validation>
+                </div>
                     <div class="controls">
-                        <button class="next-login show" ng-click="login()"></button>
-                        <button class="prev-login show" ng-click="prevPage()"></button>
-                        <div class="progress" style="width: 50%"></div>
+                        <button class="next-login show" ng-click="checkuser()" ng-if="page_1"></button>
+                        <button class="next-login show" ng-click="login()" ng-if="page_2"></button>
+                        <button class="prev-login show" ng-click="prevPage()" ng-if="page_2"></button>
+                        <div id="progressBar" class="progress"></div>
                         <span id="number" class="number">
                             <span class="number-current" ng-bind="current_page"></span>
                             <span class="number-total" ng-bind="total_pages"></span>
@@ -61,8 +57,10 @@
                             <span class="error-message show" ng-bind="error"></span>
                         </div>
                     </div><!-- / controls -->
-                </div>
             </div><!-- /simform-inner -->
         </form><!-- /simform -->
     </div>
 </header>
+<script type="text/javascript">
+    $('#imageLogin').css({'height': $(window).height() + 'px'});
+</script>
