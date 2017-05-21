@@ -294,8 +294,7 @@ function LoginMain() {
                 target = target.length ? target : $('[name=' + this.hash.slice( 1) +']');
                 if (target.length) {
                     $('html,body').css({
-                        'height': 'auto',
-                        'overflow':'auto'
+                        'height': 'auto'
                     });
                     $('html,body').animate({
                         scrollTop: target.offset().top

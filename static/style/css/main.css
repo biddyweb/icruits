@@ -900,15 +900,20 @@ VERY IMPORTANT!!!!
 /***********************************************************************
                           BLUEPRINTS OFFCANVAS
 ***********************************************************************/
+.blueprintImage {
+    position: absolute;
+    width: 100%;
+    height: 260%;
+}
+
 .overlay-offcanvas {
     height: 0;
     width: 100%;
-    position: fixed;
-    z-index: 99999999999999;
+    position: absolute;
+    z-index: 110;
     bottom: 0;
     right: 0;
-    color: rgb(0, 0, 0);
-    background-color: rgb(240, 240, 240);
+    color: rgb(255, 255, 255);
     overflow-x: hidden;
     -webkit-transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
@@ -2131,6 +2136,7 @@ body,
     margin-top: 10%;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
 }
 
 .previewImage {
@@ -2157,6 +2163,7 @@ body,
     margin-left: 10%;
     margin-right: 10%;
     display: inline-block;
+    position: relative;
 }
 
 .blueprintTasksInput {
@@ -2195,6 +2202,7 @@ body,
 .refsFix {
     top: inherit;
     left: inherit;
+    color: rgb(0, 0, 0);
 }
 
 .blueprintLabel {
@@ -2204,6 +2212,41 @@ body,
     text-transform: uppercase;
     width: 150px;
     position: relative;
+}
+
+.blueprintDetailsLabel {
+    display: inline-block;
+    margin-left: 30px;
+    font-family: "Andale Mono";
+    text-transform: uppercase;
+    width: 250px;
+    position: relative;
+}
+
+.blueprintDetailsContainer {
+    width: 650px;
+    margin-top: -10px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.detailsFonts{
+    font-family: SansSerif;
+    font-weight: bold;
+    font-size: 1.4em;
+}
+
+.blueprintDescDetails {
+    width: 100%;
+    font-family: "Andale Mono";
+    font-size: 1em!important;
+    height: 60px;
+}
+
+.blueprintDescDetails:focus, blueprintDescDetails:active {
+    border-color: rgb(0,0,0)!important;
+    transition: box-shadow .45s,border-color .45s ease-in-out;
 }
 
 .blueprintDesc {
@@ -2277,6 +2320,7 @@ body,
     text-transform: uppercase!important;
     font-size: 0.8em!important;
 }
+
 .blueprintTeamID:focus {
     border-color: rgb(0,0,0);
     transition: box-shadow .45s,border-color .45s ease-in-out;
@@ -2287,9 +2331,10 @@ body,
 }
 
 .inputSizeFix {
-    width: 150px!important; 
+    width: 150px !important;
+    /* display: inline-flex!important; */
+    font-size: .8em !important;
     display: inline!important;
-    font-size: 0.8em!important;
 }
 
 .inputSizeFix:focus {
@@ -2306,15 +2351,33 @@ body,
     position: relative;
 }
 
+.blueprintDesc:focus {
+    border-color: rgb(0,0,0);
+    transition: box-shadow .45s,border-color .45s ease-in-out;
+}
+
 .blueprintInput {
     display: inline;
     width: 150px;
     font-family: "Andale Mono";
     text-transform: uppercase;
-    font-size: 0.8em!important;
+    font-size: .8em !important;
+}
+
+.blueprintInputDetails {
+    display: inline;
+    width: 270px;
+    font-family: "Andale Mono";
+    text-transform: uppercase;
+    font-size: .8em !important;
 }
 
 .blueprintInput:focus {
+    border-color: rgb(0,0,0);
+    transition: box-shadow .45s,border-color .45s ease-in-out;
+}
+
+.blueprintInputDetails:focus {
     border-color: rgb(0,0,0);
     transition: box-shadow .45s,border-color .45s ease-in-out;
 }
@@ -2331,6 +2394,7 @@ body,
 }
 
 #apply-btn {
+    z-index: 1;
     border-top: 1px solid rgb(255, 255, 255);
     border-left: 1px solid rgb(255, 255, 255);
     width: 180px;
@@ -3067,6 +3131,8 @@ div .containerDetails {
     text-align: center;
     cursor: pointer;
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
+    background-color: rgb(240, 240, 240);
+    z-index: 1;
 }
 
 #back-btn:hover {

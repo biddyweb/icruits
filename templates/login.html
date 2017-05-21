@@ -1,9 +1,9 @@
 {% load static %}
 <header id="home" ng-controller="LoginCtrl">
     <div id="loginImage">
+        <span id="imageText" class="textOnImage">Self-Recruiting Platform</span>
         <a id="scrollDown" class="page-scroll down-btn flash" href="#home-slider"></a>
         <img id="imageLogin" class="img-responsive page-scroll" src="/static/img/login.png">
-        <span id="imageText" class="textOnImage">Self-Recruiting Platform</span>
     </div>
     <div id="home-slider" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner img-responsive">
@@ -63,4 +63,4 @@
         </form><!-- /simform -->
     </div>
 </header>
-<script type="text/javascript">function LoginMain(){!function(){$("html,body").animate({scrollTop:0},900),$("#scrollDown").click(function(){if(location.pathname.replace(/^ \//,"")==this.pathname.replace(/^ \//,"")&&location.hostname==this.hostname){var a=$(this.hash);if(a=a.length?a:$("[name="+this.hash.slice(1)+"]"),a.length)return $("html,body").css({height:"auto",overflow:"auto"}),$("html,body").animate({scrollTop:a.offset().top},900),setTimeout(function(){$("#imageLogin").css({display:"none"}),$("a.page-scroll").css({display:"none"}),$("#imageText").css({display:"none"})},900),!1}})}()}LoginMain(),$("#imageLogin").css({height:$(window).height()+"px"}),$("html, body").css({overflow:"hidden",height:"100%"});</script>
+<script type="text/javascript">function LoginMain(){!function(){$("html,body").animate({scrollTop:0},900),$("#scrollDown").click(function(){if(location.pathname.replace(/^ \//,"")==this.pathname.replace(/^ \//,"")&&location.hostname==this.hostname){var a=$(this.hash);if(a=a.length?a:$("[name="+this.hash.slice(1)+"]"),a.length)return $("html,body").css({height:"auto"}),$("html,body").animate({scrollTop:a.offset().top},900),setTimeout(function(){$("#imageLogin").css({display:"none"}),$("a.page-scroll").css({display:"none"}),$("#imageText").css({display:"none"})},900),!1}})}()}LoginMain(),$("#imageLogin").css({height:$(window).height()+"px"}),$("html, body").css({overflow:"hidden",height:"100%"});</script>

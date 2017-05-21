@@ -57,16 +57,15 @@
                     </div>
                 </div>
             </div>
-            <div ng-if="!published">
+            <div class="blueprintDetailsContainer" ng-if="!published">
                 <div class="details-description">
-                    <textarea name="description"
+                    <textarea name="description" style="margin-top: 10px;"
                               ng-model="blueprint.description"
-                              class="blueprintDesc" rows="2" cols="70"></textarea>
+                              class="blueprintDescDetails" rows="2" cols="70"></textarea>
                 </div>
-                <div class="practice-info" style="margin-top: 2em;">
-                    <div class="square-info"
-                         style="margin-bottom: 10px;">
-                        <span>Practice limit :  </span>
+                    <div class="row detailsFonts"
+                         style="margin-bottom: 10px; margin-top: 20px;">
+                        <span class="new blueprintDetailsLabel">Practice limit :  </span>
                         <input type="number"
                                name="practice limit"
                                title="practice limit"
@@ -74,11 +73,9 @@
                                ng-model="blueprint.practice_limit"
                                required>
                     </div>
-                </div>
-                <div class="practice-info">
-                    <span>Max Queue :  </span>
-                    <div class="square-info"
+                    <div class="row detailsFonts"
                          style="margin-bottom: 10px;">
+                        <span class="new blueprintDetailsLabel">Max Queue :  </span>
                         <input type="number"
                                name="max queue"
                                title="max queue"
@@ -86,23 +83,19 @@
                                ng-model="blueprint.max_queue"
                                required>
                     </div>
-                </div>
-                <div class="practice-info">
-                    <span>Visa Status :  </span>
-                    <div class="square-info"
-                         style="margin-bottom: 10px;">
-                        <select class="form-control blueprintInput"
+                    <div class="row detailsFonts"
+                         style="margin-bottom: 20px;">
+                        <span class="new blueprintDetailsLabel">Visa Status :  </span>
+                        <select class="form-control blueprintInputDetails"
                                 name="visa status"
                                 ng-model="blueprint.related_visa_status"
                                 ng-options="option.id*1 as option.visa for option in visa_status">
                             <option value="" ng-show="false"></option>
                         </select>
                     </div>
-                </div>
-                <div class="practice-info">
-                    <span>Minimum Education :  </span>
-                    <div class="square-info"
+                    <div class="row detailsFonts"
                          style="margin-bottom: 10px;">
+                        <span class="new blueprintDetailsLabel">Minimum Education :  </span>
                         <input type="text"
                                title="professional qualifications"
                                class="form-control blueprintInput inputSizeFix"
@@ -110,53 +103,46 @@
                                ng-model="blueprint.professional_qualifications"
                                required>
                     </div>
-                </div>
-                <div class="practice-info">
-                    <span>Remote Work :  </span>
-                    <div class="square-info"
+                <div class="row detailsFonts"
                          style="margin-bottom: 10px;">
+                        <span class="new blueprintDetailsLabel">Remote Work :  </span>
                         <input type="text"
                                name="remote work"
                                title="remote work"
                                class="form-control inputSizeFix"
                                ng-model="blueprint.remote_work"
                                required>
-                    </div>
                 </div>
-                <div class="practice-info">
-                    <span>Salary Range :  </span>
-                    <div class="square-info"
-                         style="margin-bottom: 10px;">
-                        <select class="form-control blueprintInput"
+                    <div class="row detailsFonts"
+                         style="margin-bottom: 20px;">
+                        <span class="new blueprintDetailsLabel">Salary Range :  </span>
+                        <select class="form-control blueprintInputDetails"
                                 name="salary range"
                                 ng-model="blueprint.related_salary"
                                 ng-options="option.id*1 as option.sal_range for option in salary">
                             <option value="" ng-show="false"></option>
                         </select>
                     </div>
-                </div>
-                <div class="practice-info">
-                    <span>Job Type :  </span>
-                    <div class="square-info"
-                         style="margin-bottom: 10px;">
-                        <select class="form-control blueprintInput"
+                    <div class="row detailsFonts"
+                         style="margin-bottom: 50px;">
+                        <span class="new blueprintDetailsLabel">Job Type :  </span>
+                        <select class="form-control blueprintInputDetails"
                                 name="job type"
                                 ng-model="blueprint.related_job_type"
                                 ng-options="option.id*1 as option.employment for option in type">
                             <option value="" ng-show="false"></option>
                         </select>
                     </div>
-                </div>
             </div>
             <div id="detailImages" class="half-container-left">
                 <img id="detail-img" class="img-responsive"
-                     src="{{ blueprint.work_enviorment }}">
-                <a href="{{ blueprint.url }}" class="company-url">Visit us</a>
+                     src="{{ blueprint.work_enviorment }}" ng-if="published">
+                <a href="{{ blueprint.url }}" class="company-url" ng-if="published">Visit us</a>
                 <div class="details-description" ng-if="published">
                     <span data-ng-bind="blueprint.description"></span>
                 </div>
                 <img id="detail-img" class="img-responsive no-bottom-marg"
-                     src="{{ blueprint.work_enviorment_2 }}">
+                     src="{{ blueprint.work_enviorment_2 }}" ng-if="published">
             </div>
             <div class="dashFooter">
                 <a id="black-filter-btn" ng-show="!user.profile_type"
@@ -435,4 +421,5 @@
 <script type="text/javascript">
     $('#circleColumn').css({'margin-left': ($(window).width() - 510) / 2 + 'px','width': '540px'});
     $('#circleColumnEmp').css({'margin-left': ($(window).width() - 390) / 2 + 'px','width': '470px'});
+    $('html,body').css({'height': 'auto'});
 </script>

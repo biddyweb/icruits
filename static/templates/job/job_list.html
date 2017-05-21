@@ -441,8 +441,9 @@
             Finish
         </span>
     </a>
+    <img class="blueprintImage" src="/static/img/blueprint.jpg">
     <div class="blueprintContainer">
-        <div class="row" style="background-color: rgb(252, 252, 252); padding-top: 15px;">
+        <div class="row" style="padding-top: 30px;">
             <span class="new blueprintLabel"> Blueprint Name </span>
             <input type="text" 
                    class="form-control blueprintInput blueprintName" 
@@ -452,14 +453,14 @@
                    required>
         </div>
         <!--hr class="hrTopTen"-->
-        <div class="row" style="background-color: rgb(252, 252, 252); padding-top: 10px; padding-bottom: 10px;">
+        <div class="row" style="padding-top: 10px; padding-bottom: 10px;">
             <span class="new blueprintLabel"> Description </span>
             <textarea name="description" 
                    ng-model="make_blueprint.description"
                    class="blueprintDesc" rows="4" cols="50"></textarea>
         </div>
         <!--hr class="hrTopTen"-->
-        <div class="row" style="background-color: rgb(245,245,245); padding-top: 15px;">
+        <div class="row" style="padding-top: 15px;">
             <span class="new blueprintLabel"> Company Name </span>
             <input type="text" 
                    name="company name"
@@ -468,7 +469,7 @@
                    ng-model="make_blueprint.company_name"
                    required>
         </div>
-        <div class="row" style="background-color: rgb(245,245,245);">
+        <div class="row">
             <span class="new blueprintLabel"> Team ID </span>
             <input type="text" 
                    name="team id"
@@ -478,7 +479,7 @@
                    required>
         </div>
         <!--hr class="hrTopTen"-->
-        <div class="row" style="background-color: rgb(245,245,245); padding-bottom: 15px;">
+        <div class="row" style="padding-bottom: 15px;">
             <span class="new blueprintLabel"> Industry </span>
             <select class="form-control blueprintInput" 
                     name="job_industry"
@@ -551,7 +552,7 @@
             </select>
         </div>
         <!--hr class="hrTopTen"-->
-        <div class="row" style="background-color: rgb(235,235,235); padding-top: 15px; padding-bottom: 5px;">
+        <div class="row" style="padding-top: 15px; padding-bottom: 5px;">
             <span class="new blueprintLabel"> Qualification </span>
             <input type="text"
                    title="qualification"
@@ -597,7 +598,7 @@
         </div>
         <!--hr class="hrTopTen"-->
     </div>
-    <div id="TasksBlueprint" class="blueprintTasksContainer" style="background-color: rgb(225,225,225); margin-bottom: 15px; padding-bottom: 10px;">
+    <div id="TasksBlueprint" class="blueprintTasksContainer" style="margin-bottom: 15px; padding-bottom: 10px;">
         <div id="hiddenTasks">
             <div id="tasksContainer">
                 <div id='tasks'>
@@ -641,7 +642,7 @@
 
         </div>
     </div>
-    <div id="TasksBlueprint" class="blueprintTasksContainer" style="background-color: rgb(225,225,225); margin-top: -20px; padding-top: 10px;">
+    <div id="TasksBlueprint" class="blueprintTasksContainer" style="margin-top: -20px; padding-top: 10px;">
         <div add-div-directive style="display: inline;"></div>
         <!--a class="btn add-btn"
            id="addNewRow" ng-click="clickToClone('hiddenTasks', 'clonedTasks')">
@@ -670,7 +671,7 @@
         </a>
     </div>
     <div class="blueprintContainer" style="margin-top: -10px;">
-        <div class="row" style="background-color: rgb(215,215,215); padding-top: 10px;">
+        <div class="row" style="padding-top: 10px;">
             <center>
                 <div class="previewImage">
                     <img ngf-thumbnail="preview">
@@ -693,8 +694,6 @@
                 </a>
             </center>
         </div>
-        <hr class="hrBotTen">
-        <hr class="hrBotTen">
     </div>
 </div>
 <!-- END OF FULLSCREEN CANVAS FOR CREATING BLUEPRINT -->
@@ -1119,3 +1118,4 @@ $( '.dropdown-menu a' ).on( 'click', function( event ) {
         angular.element(document.getElementById('createEmployee')).scope().createDesiredEmployee();
     }
 </script>
+<script type="text/javascript">$('html,body').css({'height': 'auto'});</script>
