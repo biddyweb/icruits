@@ -20,7 +20,7 @@
                            data-ng-model="reg.username"
                            ng-trim="false" custom-validation>
                     <button class="next-login show" ng-click="checkUsername()" style="top: 5.1em;"></button>
-                    <div class="progress"></div>
+                    <div id="progressBar" class="progress"></div>
                     <span id="number" class="number">
                         <span class="number-current" ng-bind="current_page"></span>
                         <span class="number-total" ng-bind="total_pages"></span>

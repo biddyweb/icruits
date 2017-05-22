@@ -2879,8 +2879,8 @@ div .containerDetails {
     letter-spacing: 2px;
     text-align: center;
     cursor: default;
-    margin-top: 150px;
-    margin-bottom: 75px;
+    margin-top: 130px;
+    margin-bottom: 45px;
 }
 
 .col-sm-2 {
@@ -2916,8 +2916,8 @@ div .containerDetails {
 }
 
 .circle-info {
-    height: 150px;
-    width: 150px;
+    height: 140px;
+    width: 140px;
     border-radius: 85px;
     margin-bottom: 70px;
     cursor: default;
@@ -2933,7 +2933,7 @@ div .containerDetails {
     font-family: SansSerif;
     font-weight: bold;
     font-size: 5em;
-    top: 0.345em;
+    top: 0.27em;
     position: relative;
     color: rgb(255, 255, 255);
 }

@@ -1226,7 +1226,7 @@
 
     function RegisterCtrl($scope, $rootScope, $state, AuthRes, metaTags, Pilots, CheckUserRes,
     CheckUserNameRes) {
-
+        
         $scope.$emit('metaTagsChanged', metaTags);
 
         $scope.test_pilots = Pilots;
@@ -1415,6 +1415,9 @@
             if($scope.errors){
                 $scope.errors = false;
             }
+            progBar.css({
+                width: 0 + '%'
+            });
         };
 
         $scope.checkuser = function () {

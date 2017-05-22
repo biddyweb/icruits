@@ -1415,6 +1415,9 @@
             if($scope.errors){
                 $scope.errors = false;
             }
+            progBar.css({
+                width: 0 + '%'
+            });
         };
 
         $scope.checkuser = function () {

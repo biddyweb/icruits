@@ -125,7 +125,7 @@ EMAIL_USE_TLS = False
 EMAIL_HOST_USER = 'alek.rajic@icruits.com'
 DEFAULT_FROM_EMAIL = 'alek.rajic@icruits.com'
 SERVER_EMAIL = 'alek.rajic@icruits.com'
-EMAIL_HOST_PASSWORD = 'Hello123#'
+EMAIL_HOST_PASSWORD = 'Hello1234'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
