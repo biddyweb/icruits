@@ -57,6 +57,33 @@ header {
     background: radial-gradient(rgba(255,0,0,0.5),rgba(255,0,0,0.4),rgba(255,0,0,0.5)); /*Standard*/
 }
 
+.curQueueIcon {
+    width: 40px;
+    height: 40px;
+    cursor: default;
+    margin-left: 22px;
+    position: absolute;
+    background-image: url(/static/img/curQueue.png);
+}
+
+.maxQueueIcon {
+    width: 40px;
+    height: 40px;
+    cursor: default;
+    margin-left: 22px;
+    position: absolute;
+    background-image: url(/static/img/maxQueue.png);
+}
+
+.myQueueIcon {
+    width: 40px;
+    height: 40px;
+    cursor: default;
+    margin-left: 22px;
+    position: absolute;
+    background-image: url(/static/img/myQueue.png);
+}
+
 .green-circle {
     /*border-color: forestgreen!important;*/
     background: forestgreen; /* For browsers that do not support gradients */
@@ -230,7 +257,12 @@ a:hover {
 ******************************************/
 #home-slider {
     position: relative;
-    background-image: url(/static/img/loginInputBackground.jpg)
+    background-image: url(/static/img/loginInputBackground.jpg);
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 #loginImage {

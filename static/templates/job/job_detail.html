@@ -16,10 +16,12 @@
                               ng-if="!blueprint_in_queue">
                             -
                         </span>
+                        <div class="curQueueIcon"></div>
                     </div>
                     <div class="circle-info red-circle">
                         <span class="circle-fonts"
                               data-ng-bind="blueprint.max_queue"></span>
+                        <div class="maxQueueIcon"></div>
                     </div>
                 </div>
                 <div class="container">
@@ -283,6 +285,7 @@
                         <div class="circle-info green-circle">
                             <span class="circle-fonts"
                                   data-ng-bind="current_queue"></span>
+                            <div class="myQueueIcon"></div>
                         </div>
                     </div>
                 </div>
@@ -290,12 +293,14 @@
                     <div class="circle-info orange-circle">
                         <span class="circle-fonts"
                               data-ng-bind="people_in_queue"></span>
+                        <div class="curQueueIcon"></div>
                     </div>
                 </div>
                 <div ng-if="published">
                     <div class="circle-info red-circle">
                         <span class="circle-fonts"
                               data-ng-bind="blueprint.max_queue"></span>
+                        <div class="maxQueueIcon"></div>
                     </div>
                 </div>
             </div>
