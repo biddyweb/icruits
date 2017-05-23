@@ -397,13 +397,13 @@
 <!-- END OF JOBSEEKER BLUEPRINT DETAILS EXPERIENCE -->
 
 <!-- ERROR DISPLAYING HANDLER -->
-<aside ng-if="reached_max_queue || sent_apply_mail || show_unapply_canvas"
+<div ng-if="reached_max_queue || sent_apply_mail || show_unapply_canvas"
        id="errorCanvasDetails" class="displayError">
     <div class="captionErrorDetails" ng-if="reached_max_queue">Error</div>
     <span class="blueprintError" ng-if="reached_max_queue"
           data-ng-bind="reached_max_queue_error"></span>
     <div class="captionApplyDetails" ng-if="sent_apply_mail">Thank you for applying.</div>
-    <div class="applyDetails" ng-if="sent_apply_mail">iCruits team will contact you.</div>
+    <div class="applyDetails" ng-if="sent_apply_mail">Soon you will recieve email with job simulator link.</div>
     <div class="applyDetails unapplyDetails"
          ng-if="show_unapply_canvas">You have successfully unapplied.</div>
     <a id="back-btn" ng-click="closeErrorCanvasDetails()"
@@ -416,10 +416,10 @@
             &times;
         </span>
     </a>
-</aside>
+</div>
 
 <script type="text/javascript">
-    $('#circleColumn').css({'margin-left': ($(window).width() - 510) / 2 + 'px','width': '540px'});
-    $('#circleColumnEmp').css({'margin-left': ($(window).width() - 370) / 2 + 'px','width': '470px'});
+    $('#circleColumn').css({'margin-left': ($(window).width() - 350) / 2 + 'px','width': '440px'});
+    $('#circleColumnEmp').css({'margin-left': ($(window).width() - 250) / 2 + 'px','width': '370px'});
     $('html,body').css({'height': 'auto'});
 </script>

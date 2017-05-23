@@ -1,22 +1,42 @@
 {% load static %}
 <header id="home" ng-controller="LoginCtrl">
-    <div id="loginImage">
-        <span id="imageText" class="textOnImage">Self-Recruiting Platform</span>
+    <div id="loginImage" class="carousel slide" data-ride="carousel">
         <a id="scrollDown" class="page-scroll down-btn flash" href="#home-slider"></a>
-        <img id="imageLogin" class="img-responsive page-scroll" src="/static/img/login.png">
-    </div>
-    <div id="home-slider" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner img-responsive">
+        <div class="carousel-inner">
             <div class="item active">
-                <div class="registerWrapper">
-                    <span class="animated fadeInLeftBig">Welcome to iCruits</span>
+                <img id="imageLogin" class="img-responsive page-scroll" src="/static/img/login.png">
+                <div class="caption">
+                    <h1 class="animated fadeInLeftBig">Hiring without recruiting</h1>
                 </div>
             </div>
             <div class="item">
-                <div class="registerWrapper">
-                    <span class="animated fadeInLeftBig">Say Hello to Your future</span>
+                <img id="imageLogin2" class="img-responsive page-scroll" src="/static/img/jobseekerImage.jpg">
+                <div class="caption">
+                    <span class="animated fadeInRightBig headingText">Why be an iCruit?</span>
+                    <p class="animated fadeInRightBig">
+                        Show what can you do and have any job you want!
+                    </p>
+                    <p class="animated fadeInRightBig paragraphNd">
+                        Community college or an Ivy League university, experienced or not, man or women, old or young, networked or not, it will no longer matter
+                    </p>
+                    <span class="animated fadeInRightBig footingText">Download Job simulator | Show that you can do the job | Go straight to the final interview</span>
                 </div>
             </div>
+            <div class="item active">
+                <img id="imageLogin3" class="img-responsive page-scroll" src="/static/img/jobseekerImage.jpg">
+                <div class="caption">
+                    <span class="animated fadeInRightBig headingText">Why hire an iCruit?</span>
+                    <p class="animated fadeInRightBig">
+                        Assess thousands of applicants in single day and and still recue the cost of hiring to a fraction of what it is today.
+                    </p>
+                    <span class="animated fadeInRightBig footingText">No resume processing | No social analytics | No screening interview</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="home-slider">
+        <div class="registerWrapper">
+            <span class="animated fadeInLeftBig">Welcome to iCruits</span>
         </div>
         <form id="theForm"
               class="simform"
@@ -58,9 +78,43 @@
                         <div ng-if="errors">
                             <span class="error-message show" ng-bind="error"></span>
                         </div>
-                    </div><!-- / controls -->
-            </div><!-- /simform-inner -->
-        </form><!-- /simform -->
+                    </div>
+            </div>
+        </form>
     </div>
 </header>
-<script type="text/javascript">function LoginMain(){!function(){$("html,body").animate({scrollTop:0},900),$("#scrollDown").click(function(){if(location.pathname.replace(/^ \//,"")==this.pathname.replace(/^ \//,"")&&location.hostname==this.hostname){var a=$(this.hash);if(a=a.length?a:$("[name="+this.hash.slice(1)+"]"),a.length)return $("html,body").css({height:"auto"}),$("html,body").animate({scrollTop:a.offset().top},900),setTimeout(function(){$("#imageLogin").css({display:"none"}),$("a.page-scroll").css({display:"none"}),$("#imageText").css({display:"none"})},900),!1}})}()}LoginMain(),$("#imageLogin").css({height:$(window).height()+"px"}),$("html, body").css({overflow:"hidden",height:"100%"});</script>
+<script>
+function LoginMain() {
+    (function () {
+        $('html,body').animate({
+            scrollTop: 0
+        }, 900);
+        'use strict';
+        /*====================================
+            Page a Link Smooth Scrolling
+        ======================================*/
+        $('#scrollDown').click(function() {
+            if (location.pathname.replace(/^ \//,'') == this.pathname.replace(/^ \//,'') && location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice( 1) +']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 900);
+                    setTimeout(function () {
+                        $('#loginImage').css({'display':'none'});
+                        $('a.page-scroll').css({'display':'none'});
+                        $('#imageText').css({'display':'none'});
+                    }, 900);
+                    return false;
+                }
+            }
+        });
+    }());
+}
+LoginMain();
+$('#imageLogin').css({'height':$( window ).height()+'px'});
+$('#home-slider').css({'height':$( window ).height()+'px'});
+$('#imageLogin2').css({'height':$( window ).height()+'px','width':'100%'});
+$('#imageLogin3').css({'height':$( window ).height()+'px','width':'100%'});
+</script>

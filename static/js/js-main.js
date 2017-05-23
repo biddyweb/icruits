@@ -294,7 +294,8 @@ function LoginMain() {
                 target = target.length ? target : $('[name=' + this.hash.slice( 1) +']');
                 if (target.length) {
                     $('html,body').css({
-                        'height': 'auto'
+                        'height': 'auto',
+                        'overflow':'hidden'
                     });
                     $('html,body').animate({
                         scrollTop: target.offset().top
@@ -311,5 +312,5 @@ function LoginMain() {
     }());
 }
 LoginMain();
-$('#imageLogin').css({'height':$( window ).height()+'px'});
+$('#loginImage').css({'height':$( window ).height()+'px'});
 $('html, body').css({'overflow':'hidden','height':'100%'});
