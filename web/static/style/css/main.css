@@ -301,7 +301,7 @@ a:hover {
     top: 20%;
     right: 230px;
     font-size: 2em;
-    text-transform: uppercase;
+    text-transform: none;
     font-weight: bold;
     cursor: default;
     color: rgb(0, 0, 0);
