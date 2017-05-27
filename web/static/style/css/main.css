@@ -266,175 +266,39 @@ a:hover {
 }
 
 #loginImage {
-  overflow: hidden;
-  position: relative;
+    margin-top: 75px;
+    overflow: hidden;
+    position: relative;
 }
 
-#loginImage .caption {
-  /*position: absolute;
-  top: 50%;
-  margin-top: -104px;*/
-  left: 0;
-  right: 0;
-  text-align: center;
-  text-transform: uppercase;
-  z-index: 15;
-  font-size: 18px;
-  font-weight: 300;
-  color: #fff;
-}
-
-#loginImage .caption h1 {
-    position: absolute;
-    z-index: 20;
-    top: 45%;
-    right: 10%;
+.headingCaption {
     font-size: 2em;
-    text-transform: uppercase;
-    font-weight: bold;
+    font-family: futura-lt-w01-light,sans-serif;
     cursor: default;
+    margin-top: 40%;
 }
 
-#loginImage .caption .headingText {
+.headingParagraph {
+    font-family: futura-lt-w01-light,sans-serif;
+    font-size: 1.7em;
+    cursor: default;
+    padding-left: 1.4em;
+    color: rgb(120, 120, 120);
+    padding-top: 0.7em;
+}
+
+.imageText {
     position: absolute;
-    z-index: 20;
     top: 20%;
-    right: 230px;
-    font-size: 2em;
-    text-transform: none;
+    left: 30%;
+    font-family: futura-lt-w01-light,sans-serif;
+    font-size: 1.7em;
+}
+
+.imageText span {
+    display: block;
+    font-size: 2.5em;
     font-weight: bold;
-    cursor: default;
-    color: rgb(0, 0, 0);
-}
-
-#loginImage .caption p {
-    position: absolute;
-    color: rgb(0, 0, 0);
-    z-index: 21;
-    top: 37%;
-    right: 80px;
-    font-size: .8em;
-    text-transform: uppercase;
-    cursor: default;
-    width: 650px;
-    text-align: left;
-}
-
-.paragraphNd {
-    top: 48%!important;
-}
-
-#loginImage .caption .footingText {
-    position: absolute;
-    color: black;
-    bottom: 10px;
-    right: 10px;
-    font-size: 0.9em;
-}
-
-.caption .btn-start {
-  color: #fff;
-  font-size: 14px;
-  font-weight: 600;
-  padding:14px 40px;
-  border: 1px solid #6e6d6c;
-  border-radius: 4px;
-  margin-top: 40px;
-}
-
-.caption .btn-start:hover {
-  color: #fff
-}
-
-.carousel-fade .carousel-inner .item {
-  opacity: 0;
-  -webkit-transition-property: opacity;
-  transition-property: opacity;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 2037px;
-}
-
-.carousel-fade .carousel-inner .item:after {
-  content: " ";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0,0,0,.7);
-}
-
-.carousel-fade .carousel-inner .active {
-  opacity: 1;
-}
-.carousel-fade .carousel-inner .active.left,
-.carousel-fade .carousel-inner .active.right {
-  left: 0;
-  opacity: 0;
-  z-index: 1;
-}
-.carousel-fade .carousel-inner .next.left,
-.carousel-fade .carousel-inner .prev.right {
-  opacity: 1;
-}
-.carousel-fade .carousel-control {
-  z-index: 2;
-}
-
-.left-control, .right-control {
-  position: absolute;
-  top: 50%;
-  height: 51px;
-  width: 51px;
-  line-height: 48px;
-  border-radius: 50%;
-  border:1px solid #fff;  
-  z-index: 20;
-  font-size: 24px;
-  color: #fff;
-  text-align: center;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -ms-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
-
-.left-control {
-  left: -51px
-} 
-
-.right-control {
-  right: -51px;
-}
-
-.left-control:hover, 
-.right-control:hover {
-  color: #fff;
-}
-
-#loginImage:hover .left-control {
-  left:30px
-} 
-
-#loginImage:hover .right-control {
-  right:30px
-}
-
-#loginImage .fa-angle-down {
-  position: absolute;
-  left: 50%;
-  bottom: 50px;
-  color: #fff;
-  display: inline-block;
-  width: 24px;
-  margin-left: -12px;
-  font-size: 24px;
-  line-height: 24px;
-  z-index: 999;
-  -webkit-animation: bounce 3000ms infinite;
-  animation: bounce 3000ms infinite;
 }
 
 .navbar-right li a {

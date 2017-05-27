@@ -1,35 +1,22 @@
 {% load static %}
 <header id="home" ng-controller="LoginCtrl">
-    <div id="loginImage" class="carousel slide" data-ride="carousel">
-        <a id="scrollDown" class="page-scroll down-btn flash" href="#home-slider"></a>
-        <div class="carousel-inner">
-            <div class="item active">
+    <nav class="dashHeader text-center fixed top"></nav>
+    <div id="loginImage">
+        <!--a id="scrollDown" class="page-scroll down-btn flash" href="#home-slider"></a-->
+        <div class="row">
+            <div class="col-sm-8">
                 <img id="imageLogin" class="img-responsive page-scroll" src="/static/img/login.png">
-                <div class="caption">
-                    <h1 class="animated fadeInLeftBig">Hiring without recruiting</h1>
-                </div>
+                <span class="imageText">I AM <span>iCruit</span></span>
             </div>
-            <div class="item">
-                <img id="imageLogin2" class="img-responsive page-scroll" src="/static/img/jobseekerImage.jpg">
-                <div class="caption">
-                    <span class="animated fadeInRightBig headingText">Why Be An iCruit?</span>
-                    <p class="animated fadeInRightBig">
-                        Show what can you do and have any job you want!
+            <div class="col-sm-4">
+                <div class="row">
+                    <h1 class="animated fadeInLeftBig headingCaption">Hired without recruiting</h1>
+                    <p class="animated fadeInLeftBig headingParagraph">
+                        No Resume <br>
+                        No Screening interview <br>
+                        No Social analytics <br>
+                        No References
                     </p>
-                    <p class="animated fadeInRightBig paragraphNd">
-                        Community college or an Ivy League university, experienced or not, man or women, old or young, networked or not, it will no longer matter
-                    </p>
-                    <span class="animated fadeInRightBig footingText">Download Job simulator | Show that you can do the job | Go straight to the final interview</span>
-                </div>
-            </div>
-            <div class="item active">
-                <img id="imageLogin3" class="img-responsive page-scroll" src="/static/img/jobseekerImage.jpg">
-                <div class="caption">
-                    <span class="animated fadeInRightBig headingText">Why Hire An iCruit?</span>
-                    <p class="animated fadeInRightBig">
-                        Assess thousands of applicants in single day and and still recue the cost of hiring to a fraction of what it is today.
-                    </p>
-                    <span class="animated fadeInRightBig footingText">No resume processing | No social analytics | No screening interview</span>
                 </div>
             </div>
         </div>
@@ -113,8 +100,8 @@ function LoginMain() {
     }());
 }
 LoginMain();
-$('#imageLogin').css({'height':$( window ).height()+'px'});
-$('#home-slider').css({'height':$( window ).height()+'px'});
+$('#imageLogin').css({'height':($( window ).height() - 75 )+'px'});
+/*$('#home-slider').css({'height':$( window ).height()+'px'});
 $('#imageLogin2').css({'height':$( window ).height()+'px','width':'100%'});
-$('#imageLogin3').css({'height':$( window ).height()+'px','width':'100%'});
+$('#imageLogin3').css({'height':$( window ).height()+'px','width':'100%'});*/
 </script>
