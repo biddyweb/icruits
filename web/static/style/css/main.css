@@ -275,7 +275,7 @@ a:hover {
     font-size: 2em;
     font-family: futura-lt-w01-light,sans-serif;
     cursor: default;
-    margin-top: 40%;
+    margin-top: 20%;
 }
 
 .headingParagraph {
@@ -287,12 +287,112 @@ a:hover {
     padding-top: 0.7em;
 }
 
+#loginBnt {
+    background-color: rgb(0, 0, 0);
+    width: 180px;
+    height: 50px;
+    text-decoration: none;
+    letter-spacing: .25rem;
+    margin-top: 100px;
+    position: absolute;
+    margin-left: calc(50% - 112px);
+    font-size: 1.1em;
+    text-align: center;
+    cursor: pointer;
+    transition: all .35s cubic-bezier(.455,.03,.515,.955);
+}
+
+#loginBnt:hover {
+    background-color: rgb(230,230,230);
+    letter-spacing:.25rem;
+}
+
+#loginBnt span {
+    pointer-events: none;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: all .35s cubic-bezier(.455,.03,.515,.955);
+    top: 1.850em;
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+    font-family: "Andale Mono";
+    font-size: 0.66em;
+}
+
+#loginBnt span.hover {
+    top: 100%;
+    visibility: hidden;
+    opacity: 0;
+}
+
+#loginBnt:not(.disabled):not([disabled]):not(.active):hover>span {
+    top: -1.150em;
+    visibility: hidden;
+    opacity: 0;
+}
+
+#loginBnt:not(.disabled):not([disabled]):not(.active):hover>span.hover{
+    top: 1.850em;
+    visibility: visible;
+    opacity: 1;
+    letter-spacing: .35rem;
+    color: rgb(0, 0, 0);
+}
+
+.displayLogin {
+    margin-left: -275px;
+    height: 290px;
+    left: 50%;
+    width: 550px;
+    position: absolute;
+    z-index: 124141241241241;
+    top: 205px;
+    background-color: #f0f0f0;
+    overflow: hidden;
+    transition: all .35s cubic-bezier(.455,.03,.515,.955);
+    padding-top: 15px;
+    border: 1px solid white;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.displayLogin .spanInfo {
+    position: absolute;
+    top: 2em;
+    margin-left: 2em;
+    font-size: 1.2em;
+    margin-right: 2em;
+}
+
+.closeLogin {
+    color: rgb(0, 0, 0);
+    font-size: 2em;
+    position: absolute;
+    right: 0.5em;
+    top: -0.01em;
+}
+
+.closeLogin:hover {
+    color: rgb(120, 120, 120);
+}
+
+.knowMore {
+    color: rgb(150, 150, 150);
+    width: 150px;
+    margin-left: calc(50% - 100px);
+    position: absolute;
+    margin-top: 20px;
+}
+
 .imageText {
     position: absolute;
     top: 20%;
     left: 30%;
     font-family: futura-lt-w01-light,sans-serif;
     font-size: 1.7em;
+    cursor: default;
 }
 
 .imageText span {
@@ -1055,14 +1155,14 @@ VERY IMPORTANT!!!!
                         LOGIN FORM
 **************************************************************/
 .simform {
-    margin-top: 60px;
+    margin-top: 5px;
     padding: 2em 0;
     max-width: 400px;
     width: 100%;
     text-align: left;
     font-size: 2.5em;
     position: absolute;
-    top: 8.50em;
+    top: 4.80em;
     left: 50%;
     /* bring your own prefixes */
     transform: translate(-50%, -50%);

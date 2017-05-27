@@ -1,9 +1,7 @@
 {% load static %}
 <header id="home" ng-controller="LoginCtrl">
     <div class="container">
-        <nav class="dashHeader text-center fixed top"></nav>
         <div id="loginImage">
-            <!--a id="scrollDown" class="page-scroll down-btn flash" href="#home-slider"></a-->
             <div class="row">
                 <div class="col-sm-8">
                     <img id="imageLogin" class="img-responsive page-scroll" src="/static/img/login.png">
@@ -11,99 +9,91 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="row">
-                        <h1 class="animated fadeInLeftBig headingCaption">Hired without recruiting</h1>
+                        <h1 class="animated fadeInLeftBig headingCaption">I self-recruited to my job</h1>
                         <p class="animated fadeInLeftBig headingParagraph">
                             No Resume <br>
                             No Screening interview <br>
                             No Social analytics <br>
                             No References
                         </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="home-slider">
-            <div class="registerWrapper">
-                <span class="animated fadeInLeftBig">Welcome to iCruits</span>
-            </div>
-            <form id="theForm"
-                  class="simform"
-                  autocomplete="off"
-                  role="form"
-                  accept-charset="UTF-8">
-                <div class="simform-inner">
-                    <div ng-if="page_1" class="questions">
-                        <input id="username"
-                               class="cleaninput"
-                               name="q1"
-                               type="email"
-                               placeholder="Email"
-                               data-ng-model="log.username"
-                               ng-trim="false" custom-validation>
-                    </div>
-                    <div ng-if="page_2" class="questions">
-                        <input class="cleaninput"
-                               type="text"
-                               title="username"
-                               data-ng-model="log.username"
-                               readonly>
-                        <input name="q2"
-                               class="cleaninput"
-                               type="password"
-                               placeholder="Password"
-                               data-ng-model="log.password"
-                               ng-trim="false" custom-validation>
-                    </div>
-                        <div class="controls">
-                            <button class="next-login show" ng-click="checkuser()" ng-if="page_1"></button>
-                            <button class="next-login show" ng-click="login()" ng-if="page_2"></button>
-                            <button class="prev-login show" ng-click="prevPage()" ng-if="page_2"></button>
-                            <div id="progressBar" class="progress"></div>
-                            <span id="number" class="number">
-                                <span class="number-current" ng-bind="current_page"></span>
-                                <span class="number-total" ng-bind="total_pages"></span>
+                        <a class="btn knowMore">Know More</a>
+                        <a id="loginBnt"
+                           onclick="openLogin()">
+                            <span id="advanced-span" class="show-button">
+                                Join
                             </span>
-                            <div ng-if="errors">
-                                <span class="error-message show" ng-bind="error"></span>
-                            </div>
-                        </div>
+                            <span id="advanced-span-2" class="hover show-button">
+                                Join
+                            </span>
+                        </a>
+                    </div>
                 </div>
-            </form>
+            </div>
         </div>
+    </div>
+    <div class="displayLogin">
+        <a href="javascript:void(0)" class="closeLogin" onclick="closeLogin()">&times;</a>
+        <span class="spanInfo">We currently running limited scale implementations, so please log in and we will invite you to the world of iCruits.</span>
+        <form id="theForm"
+              class="simform"
+              autocomplete="off"
+              role="form"
+              accept-charset="UTF-8">
+            <div class="simform-inner">
+                <div ng-if="page_1" class="questions">
+                    <input id="username"
+                           class="cleaninput"
+                           name="q1"
+                           type="email"
+                           placeholder="Email"
+                           data-ng-model="log.username"
+                           ng-trim="false" custom-validation>
+                </div>
+                <div ng-if="page_2" class="questions">
+                    <input class="cleaninput"
+                           type="text"
+                           title="username"
+                           data-ng-model="log.username"
+                           readonly>
+                    <input name="q2"
+                           class="cleaninput"
+                           type="password"
+                           placeholder="Password"
+                           data-ng-model="log.password"
+                           ng-trim="false" custom-validation>
+                </div>
+                <div class="controls">
+                    <button class="next-login show" ng-click="checkuser()" ng-if="page_1"></button>
+                    <button class="next-login show" ng-click="login()" ng-if="page_2"></button>
+                    <button class="prev-login show" ng-click="prevPage()" ng-if="page_2"></button>
+                    <div id="progressBar" class="progress"></div>
+                    <span id="number" class="number">
+                        <span class="number-current" ng-bind="current_page"></span>
+                        <span class="number-total" ng-bind="total_pages"></span>
+                    </span>
+                    <div ng-if="errors">
+                        <span class="error-message show" ng-bind="error"></span>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </header>
 <script>
-function LoginMain() {
-    (function () {
-        $('html,body').animate({
-            scrollTop: 0
-        }, 900);
-        'use strict';
-        /*====================================
-            Page a Link Smooth Scrolling
-        ======================================*/
-        $('#scrollDown').click(function() {
-            if (location.pathname.replace(/^ \//,'') == this.pathname.replace(/^ \//,'') && location.hostname == this.hostname) {
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice( 1) +']');
-                if (target.length) {
-                    $('html,body').animate({
-                        scrollTop: target.offset().top
-                    }, 900);
-                    setTimeout(function () {
-                        $('#loginImage').css({'display':'none'});
-                        $('a.page-scroll').css({'display':'none'});
-                        $('#imageText').css({'display':'none'});
-                    }, 900);
-                    return false;
-                }
-            }
+    function openLogin() {
+        var loginPage = $('.displayLogin');
+        loginPage.css({
+            'visibility': 'visible',
+            'opacity': '1'
         });
-    }());
-}
-LoginMain();
-$('#imageLogin').css({'height':($( window ).height() - 75 )+'px'});
-/*$('#home-slider').css({'height':$( window ).height()+'px'});
-$('#imageLogin2').css({'height':$( window ).height()+'px','width':'100%'});
-$('#imageLogin3').css({'height':$( window ).height()+'px','width':'100%'});*/
+    }
+</script>
+<script>
+    function closeLogin() {
+        var loginPage = $('.displayLogin');
+        loginPage.css({
+            'visibility': 'hidden',
+            'opacity': '0'
+        });
+    }
 </script>
