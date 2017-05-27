@@ -289,10 +289,16 @@ a:hover {
 
 .imageText {
     position: absolute;
-    top: 40%;
-    right: 50%;
+    top: 20%;
+    left: 30%;
     font-family: futura-lt-w01-light,sans-serif;
     font-size: 1.7em;
+}
+
+.imageText span {
+    display: block;
+    font-size: 2.5em;
+    font-weight: bold;
 }
 
 .navbar-right li a {
