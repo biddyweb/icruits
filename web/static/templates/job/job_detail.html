@@ -5,213 +5,286 @@
         <!-- NEW JOB EMPLOYER VIEW EXPERIENCE -->
         <div ng-if="!sent_mail">
             <div ng-if="published">
-                <div class="blueprint-name" data-ng-bind="blueprint.name"></div>
-                <div id="circleColumnEmp" class="container">
-                    <div class="circle-info orange-circle">
-                        <span class="circle-fonts"
-                              data-ng-bind="current_queue"
-                              ng-if="blueprint_in_queue && blueprint.has_simulator && !blueprint.is_closed">
-                        </span>
-                        <span class="circle-fonts"
-                              ng-if="!blueprint_in_queue">
-                            -
-                        </span>
-                        <div class="curQueueIcon"></div>
+                <div class="row" style="margin-left: 0; margin-right: 0">
+                    <div class="queueBox">
+                        <div class="row">
+                        <div class="col-sm-3" style="margin-bottom: 10px;">
+                            <span class="queueDetailSpan">Queue Details </span>
+                        </div>
                     </div>
-                    <div class="circle-info red-circle">
-                        <span class="circle-fonts"
-                              data-ng-bind="blueprint.max_queue"></span>
-                        <div class="maxQueueIcon"></div>
+                        <div class="row">
+                        <div class="col-sm-3">
+                            <span class="queueInfoSpan">Current: <span data-ng-bind="current_queue"></span></span>
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-sm-3">
+                            <span class="queueInfoSpan">Max: <span data-ng-bind="blueprint.max_queue"></span></span>
+                        </div>
+                        </div>
                     </div>
                 </div>
-                <div class="container">
+                <img class="blueprintImageDetailsPublished" src="/static/img/blueprint.jpg">
+                <div class="blueprintContainer">
                     <div class="row">
-                        <div class="col-sm-2">
-                            <div class="square-info">
-                                <span class="practice-info info-centered"
-                                      data-ng-bind="visa_status_info.visa"></span>
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="square-info">
-                                <span class="practice-info info-centered"
-                                      data-ng-bind="blueprint.professional_qualifications"></span>
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="square-info">
-                                <span class="practice-info info-centered"
-                                      data-ng-bind="blueprint.remote_work"></span>
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="square-info">
-                                <span class="practice-info info-centered"
-                                      data-ng-bind="job_type.employment"></span>
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="square-info">
-                                <span class="practice-info info-centered"
-                                      data-ng-bind="job_salary.sal_range"></span>
-                            </div>
-                        </div>
+                        <div class="blueprint-name-employer" style="margin-top: 35px;" data-ng-bind="blueprint.name"></div>
+                    </div>
+                    <div class="row" style="padding-top: 15px; padding-bottom: 15px;">
+                        <span class="new blueprintLabel"> Company Name </span>
+                        <span class="form-control blueprintInput blueprintCompany"
+                              data-ng-bind="blueprint.company_name"></span>
+                    </div>
+                    <div class="row" style="padding-bottom: 15px;">
+                        <span class="new blueprintLabel" style="margin-bottom: 20px;"> Team ID </span>
+                        <span class="form-control blueprintTeamID"
+                              data-ng-bind="blueprint.team_id"></span>
+                    </div>
+                    <!--hr class="hrTopTen"-->
+                    <div class="row" style="padding-bottom: 15px;">
+                        <span class="new blueprintLabel"> Industry </span>
+                        <select disabled
+                                class="form-control blueprintInput"
+                                name="job_industry"
+                                ng-model="blueprint.related_industry"
+                                ng-options="option.id*1 as option.type_industry for option in industy">
+                            <option value="" ng-show="false"></option>
+                        </select>
+                        <span class="new blueprintLabel"> Employer Size </span>
+                        <select disabled class="form-control blueprintInput"
+                                name="employer_size"
+                                ng-model="blueprint.related_company_type"
+                                ng-options="option.id*1 as option.types_of_company for option in companyType">
+                            <option value="" ng-show="false"></option>
+                        </select>
+                        <span class="new blueprintLabel marginBlueprint" style="margin-bottom: 20px;"> Job Function </span>
+                        <span class="form-control inputSizeFix" style="margin-right: 73px;"
+                              data-ng-bind="blueprint.function"></span>
+                        <span class="new blueprintLabel"> Experience </span>
+                        <select disabled class="form-control blueprintInput"
+                                name="experience info"
+                                ng-model="blueprint.related_experience"
+                                ng-options="option.id*1 as option.experience_level for option in experienceLevel">
+                            <option value="" ng-show="false"></option>
+                        </select>
+                        <span class="new blueprintLabel"> Location </span>
+                        <select disabled class="form-control blueprintInput"
+                                name="location info"
+                                ng-model="blueprint.related_location"
+                                ng-options="option.id*1 as option.location for option in locationInfo">
+                                <option value="" ng-show="false"></option>
+                        </select>
+                        <span class="new blueprintLabel"> Job Type </span>
+                        <select disabled class="form-control blueprintInput"
+                                name="job type"
+                                ng-model="blueprint.related_job_type"
+                                ng-options="option.id*1 as option.employment for option in type">
+                            <option value="" ng-show="false"></option>
+                        </select>
+                        <span class="new blueprintLabel"> Wait Interval </span>
+                        <select disabled class="form-control blueprintInput"
+                                name="wait interval"
+                                ng-model="blueprint.related_wait_interval"
+                                ng-options="option.id*1 as option.response_time for option in waitInterval">
+                            <option value="" ng-show="false"></option>
+                        </select>
+                        <span class="new blueprintLabel marginBlueprint"> On Success </span>
+                        <select disabled class="form-control blueprintInput"
+                                name="On success"
+                                ng-model="blueprint.related_on_success"
+                                ng-options="option.id*1 as option.success for option in onJobSuccess">
+                        <option value="" ng-show="false"></option>
+                        </select>
+                        <span class="new blueprintLabel marginBlueprint"> Job Duration </span>
+                        <select disabled class="form-control blueprintInput"
+                                name="job duration"
+                                ng-model="blueprint.related_job_duration"
+                                ng-options="option.id*1 as option.job_duration for option in JobDuration">
+                            <option value="" ng-show="false"></option>
+                        </select>
+                        <span class="new blueprintLabel"> Salary Range </span>
+                        <select disabled class="form-control blueprintInput"
+                                name="salary range"
+                                ng-model="blueprint.related_salary"
+                                ng-options="option.id*1 as option.sal_range for option in salary">
+                            <option value="" ng-show="false"></option>
+                        </select>
+                    </div>
+                    <!--hr class="hrTopTen"-->
+                    <div class="row" style="padding-top: 15px; padding-bottom: 5px;">
+                        <span class="new blueprintLabel" style="margin-bottom: 10px;"> Qualification </span>
+                        <span class="form-control blueprintInput inputSizeFix" style="margin-right: 64px;"
+                              data-ng-bind="blueprint.professional_qualifications"></span>
+                        <span class="new blueprintLabel"> Practice Limit </span>
+                        <span class="form-control inputSizeFix"
+                              data-ng-bind="blueprint.practice_limit"></span>
+                        <span class="new blueprintLabel" style="margin-bottom: 15px;"> Remote Work </span>
+                        <span class="form-control inputSizeFix" style="margin-right: 106px;"
+                              data-ng-bind="blueprint.remote_work"></span>
+                        <span class="new blueprintLabel"> Visa Status </span>
+                        <select disabled class="form-control blueprintInput"
+                                name="visa status"
+                                ng-model="blueprint.related_visa_status"
+                                ng-options="option.id*1 as option.visa for option in visa_status">
+                            <option value="" ng-show="false"></option>
+                        </select>
+                        <span class="new blueprintLabel"> Company Url </span>
+                        <span class="form-control inputSizeFix"
+                              data-ng-bind="blueprint.url"></span>
                     </div>
                 </div>
             </div>
             <div class="blueprintDetailsContainer" ng-if="!published">
-    <img class="blueprintImageDetails" src="/static/img/blueprint.jpg">
-    <div class="blueprintContainer">
-        <div class="row">
+                <img class="blueprintImageDetails" src="/static/img/blueprint.jpg">
+                <div class="blueprintContainer">
+                    <div class="row">
                         <div class="blueprint-name-employer" data-ng-bind="blueprint.name"></div>
-
-        </div>
-        <div class="row" style="padding-top: 10px; padding-bottom: 10px;">
-            <span class="new blueprintLabel"> Description </span>
-            <textarea name="description"
-                   ng-model="blueprint.description"
-                   class="blueprintDesc" rows="4" cols="50"></textarea>
-        </div>
-        <!--hr class="hrTopTen"-->
-        <div class="row" style="padding-top: 15px;">
-            <span class="new blueprintLabel"> Company Name </span>
-            <input type="text"
-                   name="company name"
-                   title="company name"
-                   class="form-control blueprintInput blueprintCompany"
-                   ng-model="blueprint.company_name"
-                   required>
-        </div>
-        <div class="row">
-            <span class="new blueprintLabel"> Team ID </span>
-            <input type="text"
-                   name="team id"
-                   title="team id"
-                   class="form-control blueprintTeamID"
-                   ng-model="blueprint.team_id"
-                   required>
-        </div>
-        <!--hr class="hrTopTen"-->
-        <div class="row" style="padding-bottom: 15px;">
-            <span class="new blueprintLabel"> Industry </span>
-            <select class="form-control blueprintInput"
-                    name="job_industry"
-                    ng-model="blueprint.related_industry"
-                    ng-options="option.id*1 as option.type_industry for option in industy">
-                <option value="" ng-show="false"></option>
-            </select>
-            <span class="new blueprintLabel"> Employer Size </span>
-            <select class="form-control blueprintInput"
-                    name="employer_size"
-                    ng-model="blueprint.related_company_type"
-                    ng-options="option.id*1 as option.types_of_company for option in companyType">
-                <option value="" ng-show="false"></option>
-            </select>
-            <span class="new blueprintLabel marginBlueprint"> Job Function </span>
-            <input type="text"
-                   name="job function"
-                   title="job function"
-                   class="form-control inputSizeFix"
-                   ng-model="blueprint.function"
-                   required>
-            <span class="new blueprintLabel"> Experience </span>
-            <select class="form-control blueprintInput"
-                    name="experience info"
-                    ng-model="blueprint.related_experience"
-                    ng-options="option.id*1 as option.experience_level for option in experienceLevel">
-                <option value="" ng-show="false"></option>
-            </select>
-            <span class="new blueprintLabel"> Location </span>
-            <select class="form-control blueprintInput"
-                    name="location info"
-                    ng-model="blueprint.related_location"
-                    ng-options="option.id*1 as option.location for option in locationInfo">
-                    <option value="" ng-show="false"></option>
-            </select>
-            <span class="new blueprintLabel"> Job Type </span>
-            <select class="form-control blueprintInput"
-                    name="job type"
-                    ng-model="blueprint.related_job_type"
-                    ng-options="option.id*1 as option.employment for option in type">
-                <option value="" ng-show="false"></option>
-            </select>
-            <span class="new blueprintLabel"> Wait Interval </span>
-            <select class="form-control blueprintInput"
-                    name="wait interval"
-                    ng-model="blueprint.related_wait_interval"
-                    ng-options="option.id*1 as option.response_time for option in waitInterval">
-                <option value="" ng-show="false"></option>
-            </select>
-            <span class="new blueprintLabel marginBlueprint"> On Success </span>
-            <select class="form-control blueprintInput"
-                    name="On success"
-                    ng-model="blueprint.related_on_success"
-                    ng-options="option.id*1 as option.success for option in onJobSuccess">
-            <option value="" ng-show="false"></option>
-            </select>
-            <span class="new blueprintLabel marginBlueprint"> Job Duration </span>
-            <select class="form-control blueprintInput"
-                    name="job duration"
-                    ng-model="blueprint.related_job_duration"
-                    ng-options="option.id*1 as option.job_duration for option in JobDuration">
-                <option value="" ng-show="false"></option>
-            </select>
-            <span class="new blueprintLabel"> Salary Range </span>
-            <select class="form-control blueprintInput"
-                    name="salary range"
-                    ng-model="blueprint.related_salary"
-                    ng-options="option.id*1 as option.sal_range for option in salary">
-                <option value="" ng-show="false"></option>
-            </select>
-        </div>
-        <!--hr class="hrTopTen"-->
-        <div class="row" style="padding-top: 15px; padding-bottom: 5px;">
-            <span class="new blueprintLabel"> Qualification </span>
-            <input type="text"
-                   title="qualification"
-                   class="form-control blueprintInput inputSizeFix"
-                   name="professional qualifications"
-                   ng-model="blueprint.professional_qualifications"
-                   required>
-            <span class="new blueprintLabel"> Practice Limit </span>
-            <input type="number"
-                   title="practice limit"
-                   name="practice limit"
-                   class="form-control inputSizeFix"
-                   ng-model="blueprint.practice_limit"
-                   required>
-            <span class="new blueprintLabel"> Remote Work </span>
-            <input type="text"
-                   name="remote work"
-                   title="remote work"
-                   class="form-control inputSizeFix"
-                   ng-model="blueprint.remote_work"
-                   required>
-            <span class="new blueprintLabel"> Visa Status </span>
-            <select class="form-control blueprintInput"
-                    name="visa status"
-                    ng-model="blueprint.related_visa_status"
-                    ng-options="option.id*1 as option.visa for option in visa_status">
-                <option value="" ng-show="false"></option>
-            </select>
-            <span class="new blueprintLabel"> Max Queue </span>
-            <input type="number"
-                   name="max queue"
-                   title="max queue"
-                   class="form-control inputSizeFix"
-                   ng-model="blueprint.max_queue"
-                   required>
-            <span class="new blueprintLabel"> Company Url </span>
-            <input type="text"
-                   title="interview url"
-                   name="interview url"
-                   class="form-control inputSizeFix"
-                   ng-model="blueprint.url"
-                   required>
-        </div>
-
+                    </div>
+                    <div class="row" style="padding-top: 10px; padding-bottom: 10px;">
+                        <span class="new blueprintLabel"> Description </span>
+                        <textarea name="description"
+                               ng-model="blueprint.description"
+                               class="blueprintDesc" rows="4" cols="50"></textarea>
+                    </div>
+                    <!--hr class="hrTopTen"-->
+                    <div class="row" style="padding-top: 15px;">
+                        <span class="new blueprintLabel"> Company Name </span>
+                        <input type="text"
+                               name="company name"
+                               title="company name"
+                               class="form-control blueprintInput blueprintCompany"
+                               ng-model="blueprint.company_name"
+                               required>
+                    </div>
+                    <div class="row">
+                        <span class="new blueprintLabel"> Team ID </span>
+                        <input type="text"
+                               name="team id"
+                               title="team id"
+                               class="form-control blueprintTeamID"
+                               ng-model="blueprint.team_id"
+                               required>
+                    </div>
+                    <!--hr class="hrTopTen"-->
+                    <div class="row" style="padding-bottom: 15px;">
+                        <span class="new blueprintLabel"> Industry </span>
+                        <select class="form-control blueprintInput"
+                                name="job_industry"
+                                ng-model="blueprint.related_industry"
+                                ng-options="option.id*1 as option.type_industry for option in industy">
+                            <option value="" ng-show="false"></option>
+                        </select>
+                        <span class="new blueprintLabel"> Employer Size </span>
+                        <select class="form-control blueprintInput"
+                                name="employer_size"
+                                ng-model="blueprint.related_company_type"
+                                ng-options="option.id*1 as option.types_of_company for option in companyType">
+                            <option value="" ng-show="false"></option>
+                        </select>
+                        <span class="new blueprintLabel marginBlueprint"> Job Function </span>
+                        <input type="text"
+                               name="job function"
+                               title="job function"
+                               class="form-control inputSizeFix"
+                               ng-model="blueprint.function"
+                               required>
+                        <span class="new blueprintLabel"> Experience </span>
+                        <select class="form-control blueprintInput"
+                                name="experience info"
+                                ng-model="blueprint.related_experience"
+                                ng-options="option.id*1 as option.experience_level for option in experienceLevel">
+                            <option value="" ng-show="false"></option>
+                        </select>
+                        <span class="new blueprintLabel"> Location </span>
+                        <select class="form-control blueprintInput"
+                                name="location info"
+                                ng-model="blueprint.related_location"
+                                ng-options="option.id*1 as option.location for option in locationInfo">
+                                <option value="" ng-show="false"></option>
+                        </select>
+                        <span class="new blueprintLabel"> Job Type </span>
+                        <select class="form-control blueprintInput"
+                                name="job type"
+                                ng-model="blueprint.related_job_type"
+                                ng-options="option.id*1 as option.employment for option in type">
+                            <option value="" ng-show="false"></option>
+                        </select>
+                        <span class="new blueprintLabel"> Wait Interval </span>
+                        <select class="form-control blueprintInput"
+                                name="wait interval"
+                                ng-model="blueprint.related_wait_interval"
+                                ng-options="option.id*1 as option.response_time for option in waitInterval">
+                            <option value="" ng-show="false"></option>
+                        </select>
+                        <span class="new blueprintLabel marginBlueprint"> On Success </span>
+                        <select class="form-control blueprintInput"
+                                name="On success"
+                                ng-model="blueprint.related_on_success"
+                                ng-options="option.id*1 as option.success for option in onJobSuccess">
+                        <option value="" ng-show="false"></option>
+                        </select>
+                        <span class="new blueprintLabel marginBlueprint"> Job Duration </span>
+                        <select class="form-control blueprintInput"
+                                name="job duration"
+                                ng-model="blueprint.related_job_duration"
+                                ng-options="option.id*1 as option.job_duration for option in JobDuration">
+                            <option value="" ng-show="false"></option>
+                        </select>
+                        <span class="new blueprintLabel"> Salary Range </span>
+                        <select class="form-control blueprintInput"
+                                name="salary range"
+                                ng-model="blueprint.related_salary"
+                                ng-options="option.id*1 as option.sal_range for option in salary">
+                            <option value="" ng-show="false"></option>
+                        </select>
+                    </div>
+                    <!--hr class="hrTopTen"-->
+                    <div class="row" style="padding-top: 15px; padding-bottom: 5px;">
+                        <span class="new blueprintLabel"> Qualification </span>
+                        <input type="text"
+                               title="qualification"
+                               class="form-control blueprintInput inputSizeFix"
+                               name="professional qualifications"
+                               ng-model="blueprint.professional_qualifications"
+                               required>
+                        <span class="new blueprintLabel"> Practice Limit </span>
+                        <input type="number"
+                               title="practice limit"
+                               name="practice limit"
+                               class="form-control inputSizeFix"
+                               ng-model="blueprint.practice_limit"
+                               required>
+                        <span class="new blueprintLabel"> Remote Work </span>
+                        <input type="text"
+                               name="remote work"
+                               title="remote work"
+                               class="form-control inputSizeFix"
+                               ng-model="blueprint.remote_work"
+                               required>
+                        <span class="new blueprintLabel"> Visa Status </span>
+                        <select class="form-control blueprintInput"
+                                name="visa status"
+                                ng-model="blueprint.related_visa_status"
+                                ng-options="option.id*1 as option.visa for option in visa_status">
+                            <option value="" ng-show="false"></option>
+                        </select>
+                        <span class="new blueprintLabel"> Max Queue </span>
+                        <input type="number"
+                               name="max queue"
+                               title="max queue"
+                               class="form-control inputSizeFix"
+                               ng-model="blueprint.max_queue"
+                               required>
+                        <span class="new blueprintLabel"> Company Url </span>
+                        <input type="text"
+                               title="interview url"
+                               name="interview url"
+                               class="form-control inputSizeFix"
+                               ng-model="blueprint.url"
+                               required>
+                    </div>
+                </div>
             </div>
-            <div id="detailImages" class="half-container-left">
+            <div id="detailImages" class="half-container-left-employer">
                 <img id="detail-img" class="img-responsive"
                      src="{{ blueprint.work_enviorment }}" ng-if="published">
                 <a href="{{ blueprint.url }}" class="company-url" ng-if="published">Visit us</a>
@@ -280,7 +353,7 @@
                         Publish Blueprint
                     </span>
                 </a>
-                <a id="blueprint-btn" ng-show="!user.profile_type"
+                <!--a id="blueprint-btn" ng-show="!user.profile_type"
                    ng-click="previewBlueprint()" ng-if="!published && editable"
                    class="preview50L">
                     <span id="advanced-span" class="show-button">
@@ -294,14 +367,14 @@
                    ng-click="editBlueprint()" ng-if="published && editable" style="left: 50px;">
                     <span id="advanced-span" class="show-button">
                         Edit Blueprint
-                    </span>
+                    </span> blueprint230L
                     <span id="advanced-span-2" class="hover show-button">
                         Edit Blueprint
                     </span>
-                </a>
+                </a-->
                 <a id="blueprint-btn" ng-show="!user.profile_type"
                    ng-click="deleteBlueprint()" ng-if="!published && editable"
-                   class="blueprint230L">
+                   class="preview50L">
                     <span id="advanced-span" class="show-button">
                         Delete Blueprint
                     </span>
@@ -354,7 +427,7 @@
         <!-- NEW JOB VIEW EXPERIENCE -->
         <div ng-if="!sent_mail">
             <div class="blueprint-name" data-ng-bind="blueprint.name"></div>
-            <div id="circleColumn" class="container">
+            <!--div id="circleColumn" class="container">
                 <div class="center-block" ng-if="published">
                     <div ng-if="!has_applied && is_icruited || !has_applied && has_interview">
                         <div class="circle-info green-circle">
@@ -378,7 +451,7 @@
                         <div class="maxQueueIcon"></div>
                     </div>
                 </div>
-            </div>
+            </div-->
             <div class="container">
                 <div class="row">
                     <div class="col-sm-2" ng-if="published">
@@ -499,7 +572,7 @@
 </div>
 
 <script type="text/javascript">
-    $('#circleColumn').css({'margin-left': ($(window).width() - 350) / 2 + 'px','width': '440px'});
-    $('#circleColumnEmp').css({'margin-left': ($(window).width() - 250) / 2 + 'px','width': '370px'});
+    //$('#circleColumn').css({'margin-left': ($(window).width() - 350) / 2 + 'px','width': '440px'});
+    //$('#circleColumnEmp').css({'margin-left': ($(window).width() - 250) / 2 + 'px','width': '370px'});
     $('html,body').css({'height': 'auto'});
 </script>

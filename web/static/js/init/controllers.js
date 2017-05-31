@@ -283,11 +283,11 @@
 
         $scope.previewBlueprint = function () {
             // body...
-            $scope.published = true;
+            $scope.user.profile_type = true;
         };
         $scope.editBlueprint = function () {
             // body...
-            $scope.published = false;
+            $scope.user.profile_type = false;
         };
 
         $scope.hireEmployee = function () {
