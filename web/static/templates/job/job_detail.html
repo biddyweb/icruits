@@ -7,20 +7,19 @@
             <div ng-if="published">
                 <div class="row" style="margin-left: 0; margin-right: 0">
                     <div class="queueBox">
-                        <div class="row">
-                            <div class="col-sm-3" style="margin-bottom: 10px;">
-                                <span class="queueDetailSpan">Queue Details </span>
-                            </div>
+                        <div class="row" style="margin-bottom: 15px;">
+                                <span class="queueDetailSpan">Queue </span>
                         </div>
                         <div class="row">
-                            <div class="col-sm-3">
-                                <span class="queueInfoSpan">Current: <span data-ng-bind="current_queue"></span></span>
-                            </div>
+                                <span class="queueInfoSpan">Current Queue</span>
+                            <span data-ng-bind="current_queue"
+                                  style="margin-left: 20px; font-size: 2.2em; position: relative; top: 3px;"></span>
                         </div>
                         <div class="row">
-                            <div class="col-sm-3">
-                                <span class="queueInfoSpan">Max: <span data-ng-bind="blueprint.max_queue"></span></span>
-                            </div>
+                                <span class="queueInfoSpan">Max Queue Size
+                                    <span data-ng-bind="blueprint.max_queue"
+                                          style="margin-left: 24px;font-size: 1.5em; position: relative; top: 2px;"></span>
+                                </span>
                         </div>
                     </div>
                 </div>
@@ -452,6 +451,25 @@
                     </div>
                 </div>
             </div-->
+                <div class="row" style="margin-left: 0; margin-right: 0">
+                    <div class="queueBox">
+                        <div class="row">
+                            <div class="col-sm-3" style="margin-bottom: 10px;">
+                                <span class="queueDetailSpan">Queue Details </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <span class="queueInfoSpan">Current: <span data-ng-bind="current_queue"></span></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <span class="queueInfoSpan">Max: <span data-ng-bind="blueprint.max_queue"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <div class="container">
                 <div class="row">
                     <div class="col-sm-2" ng-if="published">
