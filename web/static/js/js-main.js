@@ -313,4 +313,4 @@ function LoginMain() {
 }
 LoginMain();
 $('#loginImage').css({'height':$( window ).height()+'px'});
-$('html, body').css({'overflow':'hidden','height':'100%'});
+$('html, body').css({'height':'100%'});

@@ -156,6 +156,34 @@
                 },
                 PrehiredEmpInfo: function (PrehiredEmpRes) {
                     return PrehiredEmpRes.query().$promise;
+                },
+                IndustryInfoRes: function (IndustryRes) {
+                    // body...
+                    return IndustryRes.query().$promise;
+                },
+                LocationInfoRes: function (LocationRes) {
+                    // body...
+                    return LocationRes.query().$promise;
+                },
+                CompanyTypeInfo: function (CompanyTypeRes) {
+                    // body...
+                    return CompanyTypeRes.query().$promise;
+                },
+                ExperienceLevelInfo: function (ExperienceLevelRes) {
+                    // body...
+                    return ExperienceLevelRes.query().$promise;
+                },
+                WaitIntervalInfo: function (WaitIntervalRes) {
+                    // body...
+                    return WaitIntervalRes.query().$promise;
+                },
+                OnJobSuccessInfo: function (OnJobSuccessRes) {
+                    // body...
+                    return OnJobSuccessRes.query().$promise;
+                },
+                JobDurationInfo: function (JobDurationRes) {
+                    // body...
+                    return JobDurationRes.query().$promise;
                 }
             }
         }).state('root.help', {

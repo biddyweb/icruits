@@ -267,7 +267,7 @@ a:hover {
 
 #loginImage {
     margin-top: 75px;
-    overflow: hidden;
+    /*overflow: hidden;*/
     position: relative;
 }
 
@@ -946,6 +946,14 @@ VERY IMPORTANT!!!!
     position: absolute;
     width: 100%;
     height: 260%;
+}
+
+.blueprintImageDetails {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
 }
 
 .overlay-offcanvas {
@@ -2177,7 +2185,7 @@ body,
 
 .blueprintContainer {
     width: 650px;
-    margin-top: 10%;
+    margin-top: 80px;
     margin-left: auto;
     margin-right: auto;
     position: relative;
@@ -2256,6 +2264,7 @@ body,
     text-transform: uppercase;
     width: 150px;
     position: relative;
+    color: rgb(255,255,255);
 }
 
 .blueprintDetailsLabel {
@@ -2268,7 +2277,7 @@ body,
 }
 
 .blueprintDetailsContainer {
-    width: 650px;
+    /*width: 650px;*/
     margin-top: -10px;
     margin-left: auto;
     margin-right: auto;

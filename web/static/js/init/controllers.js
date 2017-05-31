@@ -6,12 +6,14 @@
     BluprintDetailsCtrl.$inject = ['$scope', '$rootScope', '$cookies', '$state', '$window', 'JobFeed', 'UserInfoRes', 
     'SalaryInfo', 'JobType', 'VisaStatusInfo', 'JobFeedsRes', 'QueueRes', 'QueueInfo', 'UserInfo', 'QueueStackInfo', 
     'AppliedBlueprintsInfo', 'AppliedBlueprintsRes', 'QueueStackRes', 'ReviewResultsRes', 'PrehiredEmpRes',
-    'PrehiredEmpInfo', 'HiredEmpRes'];
+    'PrehiredEmpInfo', 'HiredEmpRes', 'IndustryInfoRes', 'CompanyTypeInfo', 'ExperienceLevelInfo', 'LocationInfoRes',
+    'WaitIntervalInfo', 'OnJobSuccessInfo', 'JobDurationInfo'];
 
     function BluprintDetailsCtrl ($scope, $rootScope, $cookies, $state, $window, JobFeed, UserInfoRes, 
         SalaryInfo, JobType, VisaStatusInfo, JobFeedsRes, QueueRes, QueueInfo, UserInfo, QueueStackInfo,
         AppliedBlueprintsInfo, AppliedBlueprintsRes, QueueStackRes, ReviewResultsRes, PrehiredEmpRes,
-        PrehiredEmpInfo, HiredEmpRes) {
+        PrehiredEmpInfo, HiredEmpRes, IndustryInfoRes, CompanyTypeInfo, ExperienceLevelInfo, LocationInfoRes,
+        WaitIntervalInfo, OnJobSuccessInfo, JobDurationInfo) {
 
         $scope.queue_resource = QueueInfo;
 
@@ -29,7 +31,21 @@
 
         $scope.type = JobType;
 
+        $scope.industy = IndustryInfoRes;
+
         $scope.visa_status = VisaStatusInfo;
+
+        $scope.companyType = CompanyTypeInfo;
+
+        $scope.experienceLevel = ExperienceLevelInfo;
+
+        $scope.locationInfo = LocationInfoRes;
+
+        $scope.waitInterval = WaitIntervalInfo;
+
+        $scope.onJobSuccess = OnJobSuccessInfo;
+
+        $scope.JobDuration = JobDurationInfo;
 
         $scope.sent_mail = false;
 
