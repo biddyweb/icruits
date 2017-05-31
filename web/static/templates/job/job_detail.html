@@ -4,8 +4,8 @@
     <section id="dashboard">
         <!-- NEW JOB EMPLOYER VIEW EXPERIENCE -->
         <div ng-if="!sent_mail">
-            <div class="blueprint-name" data-ng-bind="blueprint.name"></div>
             <div ng-if="published">
+                <div class="blueprint-name" data-ng-bind="blueprint.name"></div>
                 <div id="circleColumnEmp" class="container">
                     <div class="circle-info orange-circle">
                         <span class="circle-fonts"
@@ -60,8 +60,12 @@
                 </div>
             </div>
             <div class="blueprintDetailsContainer" ng-if="!published">
-    <img class="blueprintImage" src="/static/img/blueprint.jpg">
+    <img class="blueprintImageDetails" src="/static/img/blueprint.jpg">
     <div class="blueprintContainer">
+        <div class="row">
+                        <div class="blueprint-name-employer" data-ng-bind="blueprint.name"></div>
+
+        </div>
         <div class="row" style="padding-top: 10px; padding-bottom: 10px;">
             <span class="new blueprintLabel"> Description </span>
             <textarea name="description"

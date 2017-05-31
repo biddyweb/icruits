@@ -951,9 +951,10 @@ VERY IMPORTANT!!!!
 .blueprintImageDetails {
     position: absolute;
     width: 100%;
-    height: auto;
-    filter: gray; /* IE6-9 */
-    -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
+    height: 900px;
+    filter: gray;
+    margin-bottom: 50px;
+    -webkit-filter: grayscale(100%);
 }
 
 .overlay-offcanvas {
@@ -2278,7 +2279,7 @@ body,
 
 .blueprintDetailsContainer {
     /*width: 650px;*/
-    margin-top: -10px;
+    margin-top: -5px;
     margin-left: auto;
     margin-right: auto;
     position: relative;
@@ -2933,6 +2934,18 @@ div .containerDetails {
     text-align: center;
     cursor: default;
     margin-top: 130px;
+    margin-bottom: 45px;
+}
+
+.blueprint-name-employer {
+    font-family: "Andale Mono";
+    font-size: 3em;
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+    letter-spacing: 2px;
+    text-align: center;
+    cursor: default;
+    margin-top: 115px;
     margin-bottom: 45px;
 }
 
