@@ -246,6 +246,10 @@
             }, function (response) {
                 // body...
                 $scope.errors = response.data;
+                setTimeout(function () {
+                    $state.go('root.dashboard', { reload: true });
+                    $window.location.reload();
+                }, 500);
             });
         };
         $scope.publishBlueprint = function () {
