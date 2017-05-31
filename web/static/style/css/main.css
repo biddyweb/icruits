@@ -2870,6 +2870,8 @@ div .containerDetails {
     margin-left: 50px;
     margin-top: 50px;
     margin-bottom: 50px;
+    background-color: rgb(230,230,230);
+    height: 105px;
 }
 
 .half-container-left {
@@ -2890,10 +2892,11 @@ div .containerDetails {
 .queueDetailSpan {
     font-family: "Andele Mono";
     font-size: 2em;
+    margin-left: 15px;
 }
 
 .queueInfoSpan {
-    margin-left: 20px;
+    margin-left: 40px;
     font-size: 1.2em;
 }
 

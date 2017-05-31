@@ -312,5 +312,5 @@ function LoginMain() {
     }());
 }
 LoginMain();
-$('#loginImage').css({'height':$( window ).height()+'px'});
+//$('#loginImage').css({'height':$( window ).height()+'px'});
 $('html, body').css({'height':'100%'});
