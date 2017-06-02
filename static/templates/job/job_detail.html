@@ -484,6 +484,14 @@
                     </div>
                 </div>
             </div>
+
+            <hr class="topLine">
+
+            <div class="details-description">
+                <span data-ng-bind="blueprint.description"></span>
+            </div>
+            <a class="btn officeEnvBtn" id="scrollDown" href="detailImagesSeeker">Look at office environment</a>
+
             <div id="detailImagesSeeker" class="half-container-left">
                 <img id="detail-img" class="img-responsive"
                      src="{{ blueprint.work_enviorment }}">
@@ -623,4 +631,26 @@
     //$('#circleColumn').css({'margin-left': ($(window).width() - 350) / 2 + 'px','width': '440px'});
     //$('#circleColumnEmp').css({'margin-left': ($(window).width() - 250) / 2 + 'px','width': '370px'});
     $('html,body').css({'height': 'auto'});
+</script>
+
+<script type="text/javascript">
+        $('html,body').animate({
+            scrollTop: 0
+        }, 900);
+        'use strict';
+        /*====================================
+            Page a Link Smooth Scrolling
+        ======================================*/
+        $('#scrollDown').click(function() {
+            if (location.pathname.replace(/^ \//,'') == this.pathname.replace(/^ \//,'') && location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice( 1) +']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 900);
+                    return false;
+                }
+            }
+        });
 </script>

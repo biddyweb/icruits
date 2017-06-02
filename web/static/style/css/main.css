@@ -2834,9 +2834,13 @@ body,
     left: -105px;
 }
 
+.topLine {
+    margin-top: 50px;
+    border-top-color: black;
+}
+
 .applyParagraph {
     margin-top: 200px;
-    /* position: relative; */
     margin-left: 20px;
     margin-right: 20px;
 }
@@ -3262,6 +3266,14 @@ div .containerDetails {
     visibility: visible;
     opacity: 1;
     letter-spacing: .35rem;
+}
+
+.officeEnvBtn {
+    margin-top: 20px;
+    margin-left: calc(50% - 100px);
+    color: black;
+    border: 1px solid black;
+    width: 200px;
 }
 
 #back-btn {

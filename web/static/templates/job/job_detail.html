@@ -7,18 +7,15 @@
             <div ng-if="published">
                 <div class="row" style="margin-left: 0; margin-right: 0">
                     <div class="queueBox">
-                        <div class="row" style="margin-bottom: 5px;">
-                                <span class="queueDetailSpan">Queue </span>
-                        </div>
                         <div class="row">
-                                <span class="queueInfoSpan">Current Queue</span>
+                            <span class="queueInfoSpan">Current Queue</span>
                             <span data-ng-bind="current_queue"
                                   style="margin-left: 20px; font-size: 2.2em; position: relative; top: 5px;"></span>
                         </div>
                         <div class="row">
-                                <span class="queueInfoSpan">Max Queue Size</span>
-                                    <span data-ng-bind="blueprint.max_queue"
-                                          style="margin-left: 24px;font-size: 2.2em; position: relative; top: 6px;"></span>
+                            <span class="queueInfoSpan">Max Queue Size</span>
+                            <span data-ng-bind="blueprint.max_queue"
+                                  style="margin-left: 24px;font-size: 2.2em; position: relative; top: 6px;"></span>
                         </div>
                     </div>
                 </div>
@@ -484,6 +481,14 @@
                     </div>
                 </div>
             </div>
+
+            <hr class="topLine">
+
+            <div class="details-description">
+                <span data-ng-bind="blueprint.description"></span>
+            </div>
+            <a class="btn officeEnvBtn" id="scrollDown" href="#detailImagesSeeker">Look at office environment</a>
+
             <div id="detailImagesSeeker" class="half-container-left">
                 <img id="detail-img" class="img-responsive"
                      src="{{ blueprint.work_enviorment }}">
@@ -623,4 +628,26 @@
     //$('#circleColumn').css({'margin-left': ($(window).width() - 350) / 2 + 'px','width': '440px'});
     //$('#circleColumnEmp').css({'margin-left': ($(window).width() - 250) / 2 + 'px','width': '370px'});
     $('html,body').css({'height': 'auto'});
+</script>
+
+<script type="text/javascript">
+        $('html,body').animate({
+            scrollTop: 0
+        }, 900);
+        'use strict';
+        /*====================================
+            Page a Link Smooth Scrolling
+        ======================================*/
+        $('#scrollDown').click(function() {
+            if (location.pathname.replace(/^ \//,'') == this.pathname.replace(/^ \//,'') && location.hostname == this.hostname) {
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice( 1) +']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 900);
+                    return false;
+                }
+            }
+        });
 </script>
