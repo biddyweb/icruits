@@ -357,19 +357,28 @@
 
         $scope.applyForBlueprint = function () {
             // body...
+            $scope.sent_apply_mail = true;
+        };
+
+        $scope.confirmApply = function () {
             $scope.apply_for_blueprint_data = {
                 related_candidate: $scope.user.id,
                 related_blueprint: $scope.blueprint.id
             };
             AppliedBlueprintsRes.save($scope.apply_for_blueprint_data, function (response) {
                 // body...
-                $scope.sent_apply_mail = true;
+                $scope.sent_apply_mail = false;
+                setTimeout(function () {
+                    $state.go('root.dashboard', {reload:true});
+                }, 400);
+                $window.location.reload();
             }, function (response) {
                 // body...
                 $scope.errors = response.data;
                 $scope.reached_max_queue_error = $scope.errors.error;
                 $scope.reached_max_queue = true;
             });
+
         };
 
         $scope.unapplyFromBlueprint = function () {
@@ -413,14 +422,12 @@
             }
             if($scope.sent_apply_mail){
                 $scope.sent_apply_mail = false;
-                $window.location.reload();
             }
             if($scope.show_unapply_canvas){
                 $scope.show_unapply_canvas = false;
                 $window.location.reload();
             }
         };
-
     }
 })();
 

@@ -548,13 +548,11 @@
 <!-- END OF JOBSEEKER BLUEPRINT DETAILS EXPERIENCE -->
 
 <!-- ERROR DISPLAYING HANDLER -->
-<div ng-if="reached_max_queue || sent_apply_mail || show_unapply_canvas"
+<div ng-if="reached_max_queue || show_unapply_canvas"
        id="errorCanvasDetails" class="displayError">
     <div class="captionErrorDetails" ng-if="reached_max_queue">Error</div>
     <span class="blueprintError" ng-if="reached_max_queue"
           data-ng-bind="reached_max_queue_error"></span>
-    <div class="captionApplyDetails" ng-if="sent_apply_mail">Thank you for applying.</div>
-    <div class="applyDetails" ng-if="sent_apply_mail">Soon you will recieve email with job simulator link.</div>
     <div class="applyDetails unapplyDetails"
          ng-if="show_unapply_canvas">You have successfully unapplied.</div>
     <a id="back-btn" ng-click="closeErrorCanvasDetails()"
@@ -565,6 +563,58 @@
         </span>
         <span id="advanced-span-2" class="hover show-button">
             &times;
+        </span>
+    </a>
+</div>
+
+<!-- APPLY FOR BLUEPRINT CANVAS -->
+<div id="applyBlueprint" class="applyForBlueprint" ng-if="sent_apply_mail">
+    <div class="applyContent">
+        <div class="circle-info">
+            <span class="circle-fonts" data-ng-bind="people_in_queue"></span>
+        </div>
+        <span class="spanText">Queue Size</span>
+    </div>
+    <div class="applyContent">
+        <div class="circle-info">
+            <span class="circle-fonts" data-ng-bind="blueprint.max_queue"></span>
+        </div>
+        <span class="spanText">Available Queue</span>
+    </div>
+    <div class="applyContent">
+        <div class="circle-info">
+            <span class="circle-fonts">4</span>
+        </div>
+        <span class="spanText">Average attempts of successfull candidate</span>
+    </div>
+    <div class="applyContent">
+        <div class="circle-info">
+            <span class="circle-fonts">3</span>
+        </div>
+        <span class="spanText">Average time for successfull candidate</span>
+    </div>
+    <p class="applyParagraph">
+        You can only apply for 3 job simulations at time. Please make sure that you have met all the requirements for job before confirming application.
+        After confirmation you will recieve email with link to the job simulation.
+    </p>
+    <!--div class="captionApplyDetails" ng-if="sent_apply_mail">Thank you for applying.</div>
+    <div class="applyDetails" ng-if="sent_apply_mail">Soon you will recieve email with job simulator link.</div-->
+    <a id="black-filter-btn" ng-show="user.profile_type"
+       style="position: absolute; bottom: 50px; right: 40px;"
+       ng-click="confirmApply()">
+        <span id="advanced-span" class="show-button">
+            Confirm
+        </span>
+        <span id="advanced-span-2" class="hover show-button">
+            Confirm
+        </span>
+    </a>
+    <a id="black-filter-btn" ng-click="closeErrorCanvasDetails()" style="position: absolute;left: 40px;bottom: 50px;">
+        <span id="advanced-span" class="show-button">
+            Cancel
+        </span>
+        <span id="advanced-span-2" class="hover show-button">
+            Cancel
         </span>
     </a>
 </div>
