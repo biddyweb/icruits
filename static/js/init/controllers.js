@@ -378,7 +378,6 @@
                 $scope.reached_max_queue_error = $scope.errors.error;
                 $scope.reached_max_queue = true;
             });
-
         };
 
         $scope.unapplyFromBlueprint = function () {

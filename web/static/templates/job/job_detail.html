@@ -5,18 +5,30 @@
         <!-- NEW JOB EMPLOYER VIEW EXPERIENCE -->
         <div ng-if="!sent_mail">
             <div ng-if="published">
-                <div class="row" style="margin-left: 0; margin-right: 0">
-                    <div class="queueBox">
-                        <div class="row">
-                            <span class="queueInfoSpan">Current Queue</span>
-                            <span data-ng-bind="current_queue"
-                                  style="margin-left: 20px; font-size: 2.2em; position: relative; top: 5px;"></span>
+                <div class="employerCircles">
+                    <div class="applyContent">
+                        <div class="circle-info">
+                            <span class="circle-fonts" data-ng-bind="current_queue"></span>
                         </div>
-                        <div class="row">
-                            <span class="queueInfoSpan">Max Queue Size</span>
-                            <span data-ng-bind="blueprint.max_queue"
-                                  style="margin-left: 24px;font-size: 2.2em; position: relative; top: 6px;"></span>
+                        <span class="spanText">Queue Size</span>
+                    </div>
+                    <div class="applyContent">
+                        <div class="circle-info">
+                            <span class="circle-fonts" data-ng-bind="blueprint.max_queue"></span>
                         </div>
+                        <span class="spanText">Available Queue</span>
+                    </div>
+                    <div class="applyContent">
+                        <div class="circle-info">
+                            <span class="circle-fonts">4</span>
+                        </div>
+                        <span class="spanText">Average attempts of successfull candidate</span>
+                    </div>
+                    <div class="applyContent">
+                        <div class="circle-info">
+                            <span class="circle-fonts">3</span>
+                        </div>
+                        <span class="spanText">Average time for successfull candidate</span>
                     </div>
                 </div>
                 <img class="blueprintImageDetailsPublished" src="/static/img/blueprint.jpg">
@@ -578,25 +590,25 @@
         <div class="circle-info">
             <span class="circle-fonts" data-ng-bind="people_in_queue"></span>
         </div>
-        <span class="spanText">Queue Size</span>
+        <span class="spanTextApply">Queue Size</span>
     </div>
     <div class="applyContent">
         <div class="circle-info">
             <span class="circle-fonts" data-ng-bind="blueprint.max_queue"></span>
         </div>
-        <span class="spanText">Available Queue</span>
+        <span class="spanTextApply">Available Queue</span>
     </div>
     <div class="applyContent">
         <div class="circle-info">
             <span class="circle-fonts">4</span>
         </div>
-        <span class="spanText">Average attempts of successfull candidate</span>
+        <span class="spanTextApply">Average attempts of successfull candidate</span>
     </div>
     <div class="applyContent">
         <div class="circle-info">
             <span class="circle-fonts">3</span>
         </div>
-        <span class="spanText">Average time for successfull candidate</span>
+        <span class="spanTextApply">Average time for successfull candidate</span>
     </div>
     <p class="applyParagraph">
         You can only apply for 3 job simulations at time. Please make sure that you have met all the requirements for job before confirming application.
