@@ -2140,6 +2140,14 @@ body,
     right: 360px !important;
 }
 
+.filter540R {
+    right: 540px !important;
+}
+
+.filter0L {
+    left: 0 !important;
+}
+
 #filter-btn {
     background: rgb(243,243,245);
     border-top: 1px solid #FFF;
@@ -2818,7 +2826,7 @@ body,
     height: 420px;
     left: 50%;
     width: 450px;
-    position: absolute;
+    position: fixed;
     z-index: 124141241241241;
     top: 100px;
     background-color: #f0f0f0;
@@ -2839,7 +2847,7 @@ body,
     display: block;
     top: -2em;
     text-align: center;
-    left: 6.2em;
+    left: calc(50% - 150px);
 }
 
 .applyContent .spanTextApply {

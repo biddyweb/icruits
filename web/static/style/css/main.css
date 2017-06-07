@@ -2140,6 +2140,14 @@ body,
     right: 360px !important;
 }
 
+.filter540R {
+    right: 540px !important;
+}
+
+.filter0L {
+    left: 0 !important;
+}
+
 #filter-btn {
     background: rgb(243,243,245);
     border-top: 1px solid #FFF;

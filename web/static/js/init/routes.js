@@ -277,6 +277,24 @@
                     }).$promise;
                 }
             }
+        }).state('root.status', {
+            url: '/applied-status/',
+            controller: 'AppliedStatusCtrl',
+            templateUrl: '/static/templates/status/status.html',
+            resolve: {
+                metaTags: function (metaTagsRes) {
+                    return metaTagsRes.get({
+                        page_name: 'status'
+                    }).$promise;
+                },
+                AppliedInfo: function (AppliedBlueprintsRes) {
+                    return AppliedBlueprintsRes.query().$promise;
+                },
+                UserInfo: function (UserInfoRes) {
+                    // body...
+                    return UserInfoRes.query().$promise;
+                }
+           }
         });
     }
 })();

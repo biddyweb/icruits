@@ -1681,3 +1681,27 @@
         $rootScope.image = '';
     }
 })();
+
+(function () {
+    "use strict";
+
+    angular.module('app').controller('AppliedStatusCtrl', AppliedStatusCtrl);
+
+    AppliedStatusCtrl.$inject = ['$scope', '$rootScope', 'metaTags', 'AppliedInfo', 'UserInfo'];
+
+    function AppliedStatusCtrl($scope, $rootScope, metaTags, AppliedInfo, UserInfo) {
+        $scope.$emit('metaTagsChanged', metaTags);
+
+        $scope.user = UserInfo;
+
+        var AppliedBlueprintsInfo = AppliedInfo;
+        $scope.myAppliedStatus = [];
+        angular.forEach(AppliedBlueprintsInfo, function (value, key) {
+            if(value.candidate === $scope.user.id){
+                $scope.myAppliedStatus.push(value);
+            }
+        });
+
+        $rootScope.image = '';
+    }
+})();
