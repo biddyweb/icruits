@@ -3113,6 +3113,30 @@ div .containerDetails {
     color: rgb(0,0,0);
 }
 
+.circle-info-status {
+    border: 3px solid;
+    height: 80px;
+    width: 80px;
+    border-radius: 85px;
+    cursor: default;
+    float: left;
+    text-align: center;
+    margin-left: calc(50% - 40px);
+    position: relative;
+    display: block;
+    margin-bottom: 40px;
+    margin-top: 40%;
+    padding-top: calc(30% - 63px);
+    font-size: 2em;
+}
+
+.taskId {
+    bottom: 0;
+    position: absolute;
+    left: calc(50% - 5px);
+    font-size: 20px;
+}
+
 .blueprint230L {
     left: 230px!important;
 }
@@ -3554,7 +3578,7 @@ div .containerDetails {
 }
 
 .profileContainer {
-    margin-top: 60px;
+    margin-top: 15%;
     /*width: 450px;*/
     margin-left: auto;
     margin-right: auto;

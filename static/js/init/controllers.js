@@ -1687,19 +1687,64 @@
 
     angular.module('app').controller('AppliedStatusCtrl', AppliedStatusCtrl);
 
-    AppliedStatusCtrl.$inject = ['$scope', '$rootScope', 'metaTags', 'AppliedInfo', 'UserInfo'];
+    AppliedStatusCtrl.$inject = ['$scope', '$rootScope', 'metaTags', 'AppliedInfo', 'UserInfo', 'BluePrints',
+    'LocationInfo', 'SalaryInfo'];
 
-    function AppliedStatusCtrl($scope, $rootScope, metaTags, AppliedInfo, UserInfo) {
+    function AppliedStatusCtrl($scope, $rootScope, metaTags, AppliedInfo, UserInfo, BluePrints, LocationInfo,
+    SalaryInfo) {
         $scope.$emit('metaTagsChanged', metaTags);
 
         $scope.user = UserInfo;
 
         var AppliedBlueprintsInfo = AppliedInfo;
+
         $scope.myAppliedStatus = [];
+
+        $scope.blueprints = BluePrints;
+
+        $scope.location_info = LocationInfo;
+
+        $scope.salary_info = SalaryInfo;
+
         angular.forEach(AppliedBlueprintsInfo, function (value, key) {
             if(value.candidate === $scope.user.id){
                 $scope.myAppliedStatus.push(value);
             }
+        });
+
+        angular.forEach($scope.myAppliedStatus, function (value, key) {
+            $scope.myAppliedStatus[key].blueprint_data = {};
+            $scope.myAppliedStatus[key].blueprint_data.current_location = {};
+            $scope.myAppliedStatus[key].blueprint_data.salary_range = {};
+
+            angular.forEach($scope.blueprints, function (blueprint_val, blueprint_id) {
+                if(value.blueprint === blueprint_val.id){
+                    $scope.myAppliedStatus[key].blueprint_data = blueprint_val
+                }
+            });
+
+            angular.forEach($scope.location_info, function (loc_value, loc_key) {
+                if($scope.myAppliedStatus[key].blueprint_data.related_location === loc_value.id){
+                    $scope.myAppliedStatus[key].blueprint_data.current_location = loc_value.location;
+                }
+            });
+
+            angular.forEach($scope.salary_info, function (sal_value, sal_key) {
+                if($scope.myAppliedStatus[key].blueprint_data.related_salary === sal_value.id){
+                    $scope.myAppliedStatus[key].blueprint_data.salary_range = sal_value.sal_range;
+                }
+            });
+        });
+        
+        angular.forEach($scope.myAppliedStatus, function (value, key) {
+            $scope.myAppliedStatus[key].numberOfTasks = [];
+            $scope.myAppliedStatus[key].index = 0;
+
+            angular.forEach(value.blueprint_data.related_tasks, function (tasks_value, tasks_id) {
+                $scope.myAppliedStatus[key].index += 1;
+            });
+
+            $scope.myAppliedStatus[key].numberOfTasks.push($scope.myAppliedStatus[key].index);
         });
 
         $rootScope.image = '';

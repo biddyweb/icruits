@@ -293,8 +293,20 @@
                 UserInfo: function (UserInfoRes) {
                     // body...
                     return UserInfoRes.query().$promise;
+                },
+                BluePrints: function (JobFeedsRes) {
+                    // body...
+                    return JobFeedsRes.query().$promise;
+                },
+                LocationInfo: function (LocationRes) {
+                    // body...
+                    return LocationRes.query().$promise;
+                },
+                SalaryInfo: function (SalaryRangeRes) {
+                    // body...
+                    return SalaryRangeRes.query().$promise;
                 }
-           }
+            }
         });
     }
 })();

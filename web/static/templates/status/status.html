@@ -1,4 +1,29 @@
 <nav class="dashHeader text-center fixed top"><span>ICRUITS</span></nav>
+<div class="container" style="margin-top: 75px;">
+    <div class="row" ng-repeat="status in myAppliedStatus">
+        <div class="col-sm-3">
+            <div class="dashboardItem text-center blueprintItem" >
+                <div class="inner">
+                    <span class="nohover center-block blueprintTitle"
+                          data-ng-bind="status.blueprint_data.name">
+                    </span>
+                    <span style="color: rgb(100, 100, 100)">@ <span class="dashboardCompanyName" data-ng-bind="status.blueprint_data.company_name"></span></span>
+                    <div class="row">
+                        <span class="dashboardLocation" data-ng-bind="status.blueprint_data.current_location"></span>
+                        <span class="dashboardSalary" data-ng-bind="status.blueprint_data.salary_range"></span>
+                    </div>
+                    <img class="img-responsive" src="{{ status.blueprint_data.video_png }}">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3" ng-repeat="tasks in status.numberOfTasks">
+            <span class="circle-info-status">
+                <span>50<span>%</span></span>
+            </span>
+            <p class="taskId" data-ng-bind="tasks"></p>
+        </div>
+    </div>
+</div>
 <a id="black-back-btn" data-ui-sref="root.dashboard"
    class="" style="font-size: 1em;">
     <span id="advanced-span" class="show-button">

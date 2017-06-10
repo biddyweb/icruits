@@ -63,19 +63,11 @@ class JobDurationAdmin(admin.ModelAdmin):
 	pass
 
 
-class BlueprintAdmin(admin.ModelAdmin):
-    pass
-
-
 class ExperienceLevelAdmin(admin.ModelAdmin):
 	pass
 
 
 class QueueAdmin(admin.ModelAdmin):
-	pass
-
-
-class BlueprintTasksAdmin(admin.ModelAdmin):
 	pass
 
 
@@ -96,6 +88,14 @@ class ProfileTypeAdmin(admin.ModelAdmin):
 
 class LocationAdmin(admin.ModelAdmin):
     pass
+
+
+class BlueprintAdmin(admin.ModelAdmin):
+    pass
+
+
+class BlueprintTasksAdmin(admin.ModelAdmin):
+	pass
 
 
 admin.site.register(user, UserAdmin)
