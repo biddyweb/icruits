@@ -10,7 +10,7 @@
             scope: true,
             template: `<a ng-show='enable_add' class='btn add-btn' id='addNewRow' ng-click="clickToClone('hiddenTasks', 'clonedTasks')">
                        <span id='apply-span'>Add Task</span><span id='apply-span-2' class='hover hide-button'>Add Task</span></a>
-<a ng-show='!enable_add' class='btn add-btn' id='assignTask' onclick="assignTasks()" ng-click="switchBtns()"><span id='apply-span'>Assign Task</span><span id='apply-span-2' class='hover hide-button'>Assign Task</span></a>`,
+<a ng-show='!enable_add' class='btn add-btn' id='assignTask' onclick="assignTasks(this.text)" ng-click="switchBtns()"><span id='apply-span'>Assign Task</span><span id='apply-span-2' class='hover hide-button'>Assign Task</span></a>`,
             controller: function ($scope, $element, $compile) {
                 $scope.clicked = 0;
                 /*$scope.addNewTaskClick = function () {

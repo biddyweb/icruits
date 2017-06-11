@@ -630,10 +630,10 @@
                         <div ng-repeat="employee in desired_employees_info">
                             <label>
                                 <input type='checkbox'
-                                       id="employee.id"
+                                       id="{{ employee.id }}"
                                        style="margin-left: 10px;"
                                        class='faChkSqr small'
-                                       ng-click="addEmployeeId(employee.id)">
+                                       onclick="assignEmployee(this)">
                                 <span style="cursor: pointer;" data-ng-bind="employee.email"></span></br/>
                             </label>
                         </div>
@@ -654,16 +654,16 @@
         </div>
     </div>
     <div id="TasksBlueprint" class="blueprintTasksContainer" style="margin-top: -20px; padding-top: 10px;">
-        <div add-div-directive style="display: inline;"></div>
-        <!--a class="btn add-btn"
-           id="addNewRow" ng-click="clickToClone('hiddenTasks', 'clonedTasks')">
+        <!--div add-div-directive style="display: inline;"></div-->
+        <a class="btn add-btn"
+           id="addNewRow">
             <span id="apply-span">
                 Add Task
             </span>
             <span id="apply-span-2" class="hover hide-button">
                 Add Task
             </span>
-        </a-->
+        </a>
         <a class="btn add-btn" onclick="openCreateTasks()">
             <span id="apply-span">
                 Create Task
@@ -1033,8 +1033,8 @@ $(document).ready(checkSize);
     }
 
 </script>
-<!--script>
-$("#addNewRow").click(function(){
+<script>
+$("#addNewRow").click(function() {
     //var taskId = $('#selectTask').val().replace('number:', '');
     //var taskName = $('#selectTask option:selected').text();
     //var expertEmail = $('#expId').text();
@@ -1053,26 +1053,27 @@ $("#addNewRow").click(function(){
 
     // method to push objects into make_blueprint_tasks
     // call angular addTask
-</script-->
+});
+</script>
 <!--script>
     $("#selectTask").click(function () {
         var task = $('#selectTask option:selected').text();
         angular.element(document.getElementById('selectTask')).scope().addNewTask(task);
     });
 </script-->
-<script>
-    function assignTasks() {
+<!--script>
+    function assignTasks(selectedTask) {
         // body...
+        console.log(selectedTask);
         var task = $('#selectTask:last option:selected').text();
         angular.element(document.getElementById('selectTask')).scope().addTask(task);
     }
 </script>
 <script>
-    function assignEmployee(id) {
-        console.log('hey');
-        angular.element(document.getElementById('selectTask')).scope().addEmployeeId(id);
+    function assignEmployee(clickedCheckbox) {
+        angular.element(document.getElementById('selectTask')).scope().addEmployeeId(clickedCheckbox.id);
     }
-</script>
+</script-->
 <script>
 $("#TasksBlueprint").on('click','.rem-btn',function(){
     var taskId = $(this).parent().parent('tr').find('td:eq(1)').find('input[type=hidden]').val();

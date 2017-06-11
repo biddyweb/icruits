@@ -630,10 +630,10 @@
                         <div ng-repeat="employee in desired_employees_info">
                             <label>
                                 <input type='checkbox'
-                                       id="employee.id"
+                                       id="{{ employee.id }}"
                                        style="margin-left: 10px;"
                                        class='faChkSqr small'
-                                       ng-click="addEmployeeId(employee.id)">
+                                       onclick="assignEmployee(this)">
                                 <span style="cursor: pointer;" data-ng-bind="employee.email"></span></br/>
                             </label>
                         </div>
@@ -1061,16 +1061,16 @@ $("#addNewRow").click(function(){
     });
 </script-->
 <script>
-    function assignTasks() {
+    function assignTasks(selectedTask) {
         // body...
+        console.log(selectedTask);
         var task = $('#selectTask:last option:selected').text();
         angular.element(document.getElementById('selectTask')).scope().addTask(task);
     }
 </script>
 <script>
-    function assignEmployee(id) {
-        console.log('hey');
-        angular.element(document.getElementById('selectTask')).scope().addEmployeeId(id);
+    function assignEmployee(clickedCheckbox) {
+        angular.element(document.getElementById('selectTask')).scope().addEmployeeId(clickedCheckbox.id);
     }
 </script>
 <script>
