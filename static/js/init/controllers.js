@@ -1636,9 +1636,9 @@
 
     angular.module('app').controller('IntroCtrl', IntroCtrl);
 
-    IntroCtrl.$inject = ['$scope', '$rootScope', 'JobFeed'];
+    IntroCtrl.$inject = ['$scope', '$rootScope', '$sce', 'JobFeed'];
 
-    function IntroCtrl($scope, $rootScope, JobFeed) {
+    function IntroCtrl($scope, $rootScope, $sce, JobFeed) {
         $scope.$emit('metaTagsChanged', {
             title: JobFeed.name,
             description: 'Preview employer video intro'

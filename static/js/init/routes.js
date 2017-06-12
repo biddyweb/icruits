@@ -2,14 +2,15 @@
     "use strict";
     angular.module('app').config(Routes);
 
-    Routes.$inject = ['$resourceProvider', '$routeProvider', '$locationProvider', '$stateProvider'];
+    Routes.$inject = ['$resourceProvider', '$routeProvider', '$locationProvider', '$stateProvider', '$sceProvider'];
 
-    function Routes($resourceProvider, $routeProvider, $locationProvider, $stateProvider) {
+    function Routes($resourceProvider, $routeProvider, $locationProvider, $stateProvider, $sceProvider) {
         $routeProvider.otherwise('/');
         $locationProvider.html5Mode({
             enabled: true,
             requireBase: false
         });
+        $sceProvider.enabled(false);
         $resourceProvider.defaults.stripTrailingSlashed = false;
         $stateProvider.state('root', {
             abstract: true,
