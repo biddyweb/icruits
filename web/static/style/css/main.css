@@ -389,7 +389,7 @@ a:hover {
 .imageText {
     position: absolute;
     top: 20%;
-    left: 30%;
+    left: 10%;
     font-family: futura-lt-w01-light,sans-serif;
     font-size: 1.7em;
     cursor: default;
@@ -3151,7 +3151,7 @@ div .containerDetails {
 .taskId {
     bottom: -15px;
     position: absolute;
-    left: calc(50% - 12px);
+    left: calc(50% - 30px);
     font-size: 20px;
 }
 
