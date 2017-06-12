@@ -349,11 +349,11 @@ a:hover {
     position: absolute;
     z-index: 124141241241241;
     top: 205px;
-    background-color: #f0f0f0;
+    background-color: rgb(255, 255, 255);
     overflow: hidden;
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
     padding-top: 15px;
-    border: 1px solid white;
+    border: 2px solid rgb(0,0,0);
     visibility: hidden;
     opacity: 0;
 }
@@ -2857,6 +2857,7 @@ body,
     top: 3.5em;
     text-align: center;
     left: -7.65em;
+    color: #449445;
 }
 
 .topLine {
@@ -2868,6 +2869,7 @@ body,
     margin-top: 200px;
     margin-left: 20px;
     margin-right: 20px;
+    color: #449445;
 }
 
 .blueprintError {
@@ -3033,6 +3035,18 @@ div .containerDetails {
     padding-bottom: 20px;
 }
 
+.details-description-upper {
+    cursor: default;
+    font-family: "Andale Mono";
+    font-size: 1.4em;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding-bottom: 20px;
+}
+
 .blueprint-name {
     font-family: "Andale Mono";
     font-size: 3em;
@@ -3068,7 +3082,7 @@ div .containerDetails {
     font-size: 1.7em;
     top: 37px;
     position: relative;
-    color: rgb(150, 150, 150);
+    color: #337ab7;
 }
 
 .info-centered {
@@ -3110,7 +3124,7 @@ div .containerDetails {
     font-size: 2.5em;
     top: -0.15em;
     position: relative;
-    color: rgb(0,0,0);
+    color: #449445;
 }
 
 .circle-info-status {
@@ -3130,10 +3144,14 @@ div .containerDetails {
     font-size: 2em;
 }
 
+.circle-info-status span {
+    color: #449445;
+}
+
 .taskId {
-    bottom: 0;
+    bottom: -15px;
     position: absolute;
-    left: calc(50% - 5px);
+    left: calc(50% - 12px);
     font-size: 20px;
 }
 
@@ -3320,9 +3338,15 @@ div .containerDetails {
 .officeEnvBtn {
     margin-top: 20px;
     margin-left: calc(50% - 100px);
-    color: black;
+    color: rgb(255,255,255);
     border: 1px solid black;
     width: 200px;
+    background-color: rgb(0,0,0);
+}
+
+.officeEnvBtn:hover {
+    background-color: rgb(50, 50, 50);
+    color: rgb(255, 255, 255)
 }
 
 #back-btn {
