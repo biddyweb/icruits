@@ -5,71 +5,43 @@
         <title>Blueprint Created</title>
     </head>
     <body>
-        <nav style="position: fixed;
-             top: 0;
-             left: 0;
-             width: 100%;
-             height: 75px;
-             background-color: rgb(245, 245, 245);
-             color: rgb(0, 0, 0);
-             margin: 0 auto;
-             z-index: 10; text-align: center;">
-            <span style="margin-top: 38px;
-                         font-family: Roboto Condensed;
-                         font-size: 1.525em;
-                         text-shadow: 1px 1px grey;
-                         top: 1em;
-                         position: relative;
-                         letter-spacing: 0.325em;">
-                ICRUITS
-            </span>
-        </nav>
-        <section id="pages" style="margin-top: 75px;">
-            <div style="margin-top: 150px;
-                        width: 450px;
-                        /*margin-top: 10%;*/
-                        margin-left: auto;
-                        margin-right: auto;
-                        background-color: rgb(250,250,250);
-                        border: 1px solid rgb(252,252,252);">
-                <span style="position: absolute;
-                             left: 0;
-                             right: 0;
-                             margin-left: auto;
-                             margin-right: auto;
-                             font-family: Roboto Condensed;
-                             font-size: 1.2em;
-                             text-transform: uppercase;
-                             width: 480px;
-                             top: 20%;">
-                    {{ username }}, you have applied to Blueprint, {{ blueprint }}. <br>
+        <div>
+            <div style="margin-top: 0;width: 100%;height: 500px;background-color: rgb(240,240,240);">
+                <span style="position: absolute;left: 0;right: 0;margin-left: auto;margin-right: auto;font-size: 1em;width: 550px;top: 150px;background-color: white;padding-top: 30px;padding-left: 20px;padding-right: 20px;padding-bottom: 30px;">
+                    <img style="z-index: 2;position: absolute;right: 0;top: -64px;" src="https://icruits.herokuapp.com/static/img/new-logo-64.png">
+                    Hi {{ username }}, <br>
+                    Thank you for applying to Blueprint, {{ blueprint }}. <br>
                     Please use one of following links to download job simulator <br>
                     for your desired platform.
-                    <hr>
                     Job Simulator App <br>
-                    <p>
-                        - https://www.dropbox.com/s/qj12qdkth2z4tyo/iCruitsVR.apk?dl=0
+                    <p style="margin-top: 20px;">
+                        https://www.dropbox.com/s/qj12qdkth2z4tyo/iCruitsVR.apk?dl=0
                     </p>
                     <!--br>For MacOS: <br>
                     <p>
-                        - {{ simulator_url_mac }}. <br>
+                        {{ simulator_url_mac }}. <br>
                     </p>
                     For iOS: <br>
                     <p>
-                        - {{ simulator_url_ios }}. <br>
+                        {{ simulator_url_ios }}. <br>
                     </p>
                     For Windows: <br>
                     <p>
-                        - {{ simulator_url_win }}. <br>
+                        {{ simulator_url_win }}. <br>
                     </p>
                     For Android: <br>
                     <p>
-                        - {{ simulator_url_android }}. <br>
+                        {{ simulator_url_android }}. <br>
                     </p-->
-                    <p>
-                        - https://www.dropbox.com/s/6atxf3zuln9re49/IcruitsLogin.apk?dl=0
+                    <p style="margin-bottom: 20px;">
+                        https://www.dropbox.com/s/6atxf3zuln9re49/IcruitsLogin.apk?dl=0
                     </p>
-                    <hr>
+                    <p>
+                        See you soon on iCruits.
+                    </p>
+                    <p>
+                        iCruits Care Team
+                    </p>
                 </span>
                 <!--a id="blueprint-btn" href="https://polar-wave-49918.herokuapp.com/">
                     <span id="advanced-span" class="show-button">
@@ -80,6 +52,6 @@
                     </span>
                 </a-->
             </div>
-        </section>
+        </div>
     </body>
 </html>
