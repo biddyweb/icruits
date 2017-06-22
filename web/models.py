@@ -303,7 +303,7 @@ class user(AbstractUser):
     updated_at = models.DateTimeField(auto_now=True)
     # false profile type is employeer and true is jobseeker
     profile_type = models.BooleanField(default=False)
-    preference_filter = models.TextField(_('Preference Filter Search'), blank=True, null=True)
+    preference_filter = models.CharField(_('Preference Filter Search'), max_length=255, blank=True)
 
     objects = UserManager()
 

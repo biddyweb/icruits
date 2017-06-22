@@ -5,57 +5,40 @@
         <title>Blueprint Created</title>
     </head>
     <body>
-        <nav style="position: fixed;
-             top: 0;
-             left: 0;
-             width: 100%;
-             height: 75px;
-             background-color: rgb(245, 245, 245);
-             color: rgb(0, 0, 0);
-             margin: 0 auto;
-             z-index: 10; text-align: center;">
-            <span style="margin-top: 38px;
-                         font-family: Roboto Condensed;
-                         font-size: 1.525em;
-                         text-shadow: 1px 1px grey;
-                         top: 1em;
-                         position: relative;
-                         letter-spacing: 0.325em;">
-                ICRUITS
-            </span>
-        </nav>
-        <section id="pages" style="margin-top: 75px;">
-            <div style="margin-top: 150px;
-                        width: 450px;
-                        /*margin-top: 10%;*/
-                        margin-left: auto;
-                        margin-right: auto;
-                        background-color: rgb(250,250,250);
-                        border: 1px solid rgb(252,252,252);">
-                <span style="position: absolute;
-                             left: 0;
-                             right: 0;
-                             margin-left: auto;
-                             margin-right: auto;
-                             font-family: Roboto Condensed;
-                             font-size: 1.2em;
-                             text-transform: uppercase;
-                             width: 480px;
-                             top: 20%;">
-                    {{ username }}, {{ blueprint }} job has reached maximum number of queue. <br>
-                    You are places in waiting list until first available spot. <br>
-                    We will inform you via email once you enter queue. <br>
-                    Best of luck, <br> Your iCruits team.
-                </span>
-                <!--a id="blueprint-btn" href="https://polar-wave-49918.herokuapp.com/">
-                    <span id="advanced-span" class="show-button">
-                        To iCruits
-                    </span>
-                    <span id="advanced-span-2" class="hover show-button">
-                        To iCruits
-                    </span>
-                </a-->
+        <div style="margin: 0;">
+            <div style="background: #f2f2f2;margin: 0 auto;max-width: 640px;padding: 0 20px;">
+                <table align="center" border="0" cellpadding="0" cellspacing="0">
+                    <tbody>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="width: 96%;margin: auto;padding: 5px 0 0px 0; margin-bottom: 80px;">
+                                <img style="float: right" src="https://icruits.herokuapp.com/static/img/new-logo-64.png">
+                                <img style="float: left; height: 50px;" src="https://icruits.herokuapp.com/static/img/icruits.png">
+                            </div>
+                            <div style="background: #fff;color: #5b5b5b;border-radius: 4px;font-family: arial;font-size: 13px;padding: 10px 20px;width: 90%;margin: 20px auto;line-height: 17px;border: 1px #ddd solid;border-top: 0;clear: both;">
+                                <p>
+                                    Hi {{ username }}!
+                                </p>
+                                <p>
+                                    {{ blueprint }} job has reached maximum number of queue. <br>
+                                </p>
+                                You are placed in waiting list until first available spot. <br>
+                                We will inform you via email once you enter queue. <br>
+                                <p>
+                                    See you soon on <a href="https://icruits.herokuapp.com">iCruits</a>.
+                                </p>
+                                <p>
+                                    iCruits Care Team
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-        </section>
+        </div>
     </body>
 </html>

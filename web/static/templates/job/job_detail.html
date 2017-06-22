@@ -322,7 +322,7 @@
                     </span>
                 </a>
                 <a id="accept-interview-btn" ng-show="!user.profile_type"
-                   ng-click="hireEmployee()" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && has_interview">
+                   ng-click="setHire()" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && has_interview">
                     <span id="advanced-span" class="show-button">
                         Hire
                     </span>
@@ -578,6 +578,34 @@
         </span>
         <span id="advanced-span-2" class="hover show-button">
             &times;
+        </span>
+    </a>
+</div>
+
+<!-- HIRE STAGE EMPLOYEE -->
+<div id="applyBlueprint" class="applyForBlueprint" style="height: 240px" ng-if="employee_hired">
+    <p class="applyParagraph" style="margin-top: 0px">
+        Congratulations, you are about to certify application made on iCruits with employee that is well suited for your job position.
+        After confirmation your employment will begin. <br>
+        <br>
+        Thank you for using iCruits platform.
+    </p>
+    <a id="black-filter-btn"
+       style="position: absolute; bottom: 50px; right: 40px;"
+       ng-click="hireEmployee()">
+        <span id="advanced-span" class="show-button">
+            Confirm
+        </span>
+        <span id="advanced-span-2" class="hover show-button">
+            Confirm
+        </span>
+    </a>
+    <a id="black-filter-btn" ng-click="closeHire()" style="position: absolute;left: 40px;bottom: 50px;">
+        <span id="advanced-span" class="show-button">
+            Cancel
+        </span>
+        <span id="advanced-span-2" class="hover show-button">
+            Cancel
         </span>
     </a>
 </div>

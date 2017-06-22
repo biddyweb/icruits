@@ -294,6 +294,16 @@
             $scope.user.profile_type = false;
         };
 
+        $scope.employee_hired = false;
+
+        $scope.setHire = function () {
+            $scope.employee_hired = true;
+        };
+
+        $scope.closeHire = function () {
+            $scope.employee_hired = false;
+        };
+
         $scope.hireEmployee = function () {
             HiredEmpRes.save({blueprint: $scope.blueprint.id,
                 employee: $scope.current_candidate}, function (response) {
@@ -1557,6 +1567,9 @@
         $scope.$emit('metaTagsChanged', metaTags);
 
         $scope.user_info = UserInfo;
+
+        // just a bad fix for update error
+        $scope.user_info.preference_filter = '';
 
         $scope.updateProfile = function () {
             // body...
