@@ -1071,6 +1071,8 @@ $("#addNewRow").click(function(){
 <script>
     function assignEmployee(clickedCheckbox) {
         angular.element(document.getElementById('selectTask')).scope().addEmployeeId(clickedCheckbox.id);
+        console.log($(this).parent().parent().parent().parent());
+        $(this).parent().parent().parent().parent().innerHTML = clickedCheckbox.value;
     }
 </script>
 <script>
