@@ -435,7 +435,7 @@ VERY IMPORTANT!!!!
                 NEW DASHBOARD ITEM
 *******************************************************/
 .dashboardCompanyName {
-    color: forestgreen;
+    color: #337ab7;
 }
 
 .dashboardItem {
@@ -2833,7 +2833,7 @@ body,
     overflow-x: hidden;
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
     padding-top: 15px;
-    border: 1px solid white;
+    border: 2px solid #337ab7;
 }
 
 .applyContent {
@@ -2857,7 +2857,7 @@ body,
     top: 3.5em;
     text-align: center;
     left: -7.65em;
-    color: #449445;
+    color: rgb(0, 0, 0);
 }
 
 .topLine {
@@ -2869,7 +2869,7 @@ body,
     margin-top: 200px;
     margin-left: 20px;
     margin-right: 20px;
-    color: #449445;
+    color: rgb(0, 0, 0);
 }
 
 .blueprintError {
@@ -3097,7 +3097,8 @@ div .containerDetails {
     height: 140px;
     width: 100%;
     min-width: 150px;
-    border: 5px solid rgb(0, 0, 0);
+    border: 5px solid rgba(0,0,0,0.8);
+    border-radius: 20px;
     margin-bottom: 20px;
     cursor: default;
     text-align: center;
@@ -3124,7 +3125,7 @@ div .containerDetails {
     font-size: 2.5em;
     top: -0.15em;
     position: relative;
-    color: #449445;
+    color: #337ab7;
 }
 
 .circle-info-status {
