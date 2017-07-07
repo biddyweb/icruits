@@ -624,7 +624,7 @@
                     <div></div>
                 </div>
                 <div id='refs'>
-                    <span class="tasksLabel" style="/*padding-right: 25%;*/"> Employee </span>
+                    <div class="tasksLabel" style="/*padding-right: 25%;*/"> Employee </div>
                     <span class='form-control blueprintRefsInput' data-toggle='dropdown'>Select</span>
                     <ul class='dropdown-menu refsFix'>
                         <div ng-repeat="employee in desired_employees_info">
@@ -633,7 +633,8 @@
                                        id="{{ employee.id }}"
                                        style="margin-left: 10px;"
                                        class='faChkSqr small'
-                                       onclick="assignEmployee(this)">
+                                       onclick="assignEmployee(this)"
+                                       emailName ="{{employee.email}}">
                                 <span style="cursor: pointer;" data-ng-bind="employee.email"></span></br/>
                             </label>
                         </div>
@@ -1070,9 +1071,15 @@ $("#addNewRow").click(function(){
 </script>
 <script>
     function assignEmployee(clickedCheckbox) {
+        if (clickedCheckbox.checked) {
+            if (clickedCheckbox.parentNode.parentNode.parentNode.parentNode.children[1].innerText === 'SELECT'){
+                clickedCheckbox.parentNode.parentNode.parentNode.parentNode.children[1].innerText = clickedCheckbox.getAttribute("emailName");
+            } else {
+                var tmp = clickedCheckbox.parentNode.parentNode.parentNode.parentNode.children[1].innerText;
+                clickedCheckbox.parentNode.parentNode.parentNode.parentNode.children[1].innerText = tmp + ", " + clickedCheckbox.getAttribute("emailName");
+            }
+        }
         angular.element(document.getElementById('selectTask')).scope().addEmployeeId(clickedCheckbox.id);
-        console.log($(this).parent().parent('ul').find('span').val());
-        document.getElementById(clickedCheckbox.id).parentNode.innerHTML = clickedCheckbox.value;
     }
 </script>
 <script>
