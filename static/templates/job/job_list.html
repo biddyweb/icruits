@@ -1075,7 +1075,7 @@ $("#addNewRow").click(function(){
             desiredEmp = clickedCheckbox.getAttribute("emailName"),
             temp = tmp.split(', ');
         if (clickedCheckbox.checked) {
-            if (clickedCheckbox.parentNode.parentNode.parentNode.parentNode.children[1].innerText === 'SELECT'){
+            if (tmp === 'SELECT'){
                 clickedCheckbox.parentNode.parentNode.parentNode.parentNode.children[1].innerText = clickedCheckbox.getAttribute("emailName");
             } else {
                 clickedCheckbox.parentNode.parentNode.parentNode.parentNode.children[1].innerText = tmp + ", " + clickedCheckbox.getAttribute("emailName");
