@@ -1071,12 +1071,24 @@ $("#addNewRow").click(function(){
 </script>
 <script>
     function assignEmployee(clickedCheckbox) {
+        var tmp = clickedCheckbox.parentNode.parentNode.parentNode.parentNode.children[1].innerText,
+            desiredEmp = clickedCheckbox.getAttribute("emailName"),
+            temp = tmp.split(', ');
         if (clickedCheckbox.checked) {
             if (clickedCheckbox.parentNode.parentNode.parentNode.parentNode.children[1].innerText === 'SELECT'){
                 clickedCheckbox.parentNode.parentNode.parentNode.parentNode.children[1].innerText = clickedCheckbox.getAttribute("emailName");
             } else {
-                var tmp = clickedCheckbox.parentNode.parentNode.parentNode.parentNode.children[1].innerText;
                 clickedCheckbox.parentNode.parentNode.parentNode.parentNode.children[1].innerText = tmp + ", " + clickedCheckbox.getAttribute("emailName");
+            }
+        } else {
+            if(typeof temp[1] === 'undefined'){
+                clickedCheckbox.parentNode.parentNode.parentNode.parentNode.children[1].innerText = 'SELECT'
+            } else {
+                for (var i = 0; i < temp.length; i++) {
+                    if (temp[i].toLowerCase() !== desiredEmp) {
+                        clickedCheckbox.parentNode.parentNode.parentNode.parentNode.children[1].innerText = temp[i].toUpperCase();
+                    }
+                }
             }
         }
         angular.element(document.getElementById('selectTask')).scope().addEmployeeId(clickedCheckbox.id);
