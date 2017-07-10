@@ -2829,7 +2829,7 @@ body,
     position: fixed;
     z-index: 124141241241241;
     top: 100px;
-    background-color: #f0f0f0;
+    background-color: rgb(255, 255, 255);
     overflow-x: hidden;
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
     padding-top: 15px;
@@ -3146,7 +3146,7 @@ div .containerDetails {
 }
 
 .circle-info-status span {
-    color: #449445;
+    color: #337ab7;
 }
 
 .taskId {

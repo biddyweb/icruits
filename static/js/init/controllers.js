@@ -879,6 +879,28 @@
 
         $scope.make_blueprint = {related_user: $scope.user.id};
 
+        /* DEFAULT VALUES FOR NEW BLUEPRINT */
+        $scope.make_blueprint.name = 'Sales Manager';
+        $scope.make_blueprint.description = 'Track and report results and ensure deliverable deadlines are met. Manage and communicate as needed, all Apple Vendor Compliance requirements to assigned vendor offices. Keep informed regarding industry information, new product information, and technology to continuously improve knowledge and performance of sales teams. Handle customer escalations and resolution of complex customer issues. Execute action plans to position sales for maximum revenue growth, and market penetration.';
+        $scope.make_blueprint.company_name = 'Apple';
+        $scope.make_blueprint.team_id = 'Apple';
+        $scope.make_blueprint.related_industry = 2;
+        $scope.make_blueprint.related_company_type = 2;
+        $scope.make_blueprint.function = 'Sales Manager';
+        $scope.make_blueprint.professional_qualifications = 'Bachelor';
+        $scope.make_blueprint.practice_limit = 4;
+        $scope.make_blueprint.remote_work = 'No remote';
+        $scope.make_blueprint.related_visa_status = 2;
+        $scope.make_blueprint.max_queue = 5;
+        $scope.make_blueprint.url = "https://www.apple.com/";
+        $scope.make_blueprint.related_experience = 2;
+        $scope.make_blueprint.related_location = 1;
+        $scope.make_blueprint.related_job_type = 2;
+        $scope.make_blueprint.related_wait_interval = 1;
+        $scope.make_blueprint.related_on_success = 1;
+        $scope.make_blueprint.related_job_duration = 3;
+        $scope.make_blueprint.related_salary = 2;
+
         $scope.user_list = [];
 
         angular.forEach($scope.user_list_info, function (value, key) {
@@ -1003,12 +1025,12 @@
 
         /* END OF FILTER PART */
 
-        if (!$cookies.get('token')) {
+        /*if (!$cookies.get('token')) {
             console.log('not found');
             setTimeout(function() {
                 $state.go('root.home', { reload: true });
             }, 600);
-        }
+        }*/
 
         $scope.$emit('metaTagsChanged', metaTags);
 

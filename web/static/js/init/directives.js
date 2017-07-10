@@ -18,22 +18,24 @@
                         console.log($scope.new_employee);
                         $('#TasksBlueprint:last button:last').css({
                             display: 'inline'
-                        });
+                        }); lastElementChild.childNodes[3].childNodes[3]
                         $('#selectTask:last').find("option").val("");
                         var task = {name: $('#selectTask option:selected').text(), expert: $scope.new_employee, task_status: "Active"};
                         $scope.addTask(task);
                 }*/
                 $scope.clickToClone = function (sourceId, cloneId) {
-                    var sourceHtml = angular.element(document.getElementById(sourceId)).html();
+                    var sourceHtml = angular.element(document.getElementById(sourceId)).html(),
+                        element = angular.element(document.getElementById(cloneId));
                     angular.element(document.getElementById(cloneId)).append(sourceHtml);
                     $('#TasksBlueprint:last button:last').css({
                         display: 'inline'
                     });
                     $scope.enable_add = false;
+                    element[0].childNodes[element[0].childNodes.length - 2].childNodes[3].childNodes[3].innerText = 'SELECT';
                 };
                 $scope.switchBtns = function () {
                     if(!$scope.no_employee_task_errors){
-                        console.log('oke');
+                        $scope.enable_add = true;
                     }
                 };
             }

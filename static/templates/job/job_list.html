@@ -459,14 +459,14 @@
             <input type="text" 
                    class="form-control blueprintInput blueprintName" 
                    name="name"
-                   title="blueprint name"
+                   title="Blueprint Name"
                    ng-model="make_blueprint.name"
                    required>
         </div>
         <!--hr class="hrTopTen"-->
         <div class="row" style="padding-top: 10px; padding-bottom: 10px;">
             <span class="new blueprintLabel"> Description </span>
-            <textarea name="description" 
+            <textarea name="Blueprint Description"
                    ng-model="make_blueprint.description"
                    class="blueprintDesc" rows="4" cols="50"></textarea>
         </div>
@@ -475,7 +475,7 @@
             <span class="new blueprintLabel"> Company Name </span>
             <input type="text" 
                    name="company name"
-                   title="company name"
+                   title="Company Name"
                    class="form-control blueprintInput blueprintCompany"
                    ng-model="make_blueprint.company_name"
                    required>
@@ -484,7 +484,7 @@
             <span class="new blueprintLabel"> Team ID </span>
             <input type="text" 
                    name="team id"
-                   title="team id"
+                   title="Team ID"
                    class="form-control blueprintTeamID"
                    ng-model="make_blueprint.team_id" 
                    required>
@@ -492,14 +492,16 @@
         <!--hr class="hrTopTen"-->
         <div class="row" style="padding-bottom: 15px;">
             <span class="new blueprintLabel"> Industry </span>
-            <select class="form-control blueprintInput" 
+            <select class="form-control blueprintInput"
+                    title="Select Industry of Your Company"
                     name="job_industry"
                     ng-model="make_blueprint.related_industry"
                     ng-options="option.id*1 as option.type_industry for option in industry_info">
                 <option value="" ng-show="false"></option>
             </select>
             <span class="new blueprintLabel"> Employer Size </span>
-            <select class="form-control blueprintInput" 
+            <select class="form-control blueprintInput"
+                    title="Select Your Company Type"
                     name="employer_size"
                     ng-model="make_blueprint.related_company_type"
                     ng-options="option.id*1 as option.types_of_company for option in company_type_info">
@@ -508,26 +510,30 @@
             <span class="new blueprintLabel marginBlueprint"> Job Function </span>
             <input type="text" 
                    name="job function"
-                   title="job function"
+                   title="Job Function"
                    class="form-control inputSizeFix"
-                   ng-model="make_blueprint.function" 
+                   ng-model="make_blueprint.function"
+                   style="text-transform: uppercase;"
                    required>
             <span class="new blueprintLabel"> Experience </span>
-            <select class="form-control blueprintInput" 
+            <select class="form-control blueprintInput"
+                    title="Select Desired Job Experience"
                     name="experience info"
                     ng-model="make_blueprint.related_experience"
                     ng-options="option.id*1 as option.experience_level for option in experience_info">
                 <option value="" ng-show="false"></option>
             </select>
             <span class="new blueprintLabel"> Location </span>
-            <select class="form-control blueprintInput" 
+            <select class="form-control blueprintInput"
+                    title="Select Job Location"
                     name="location info"
                     ng-model="make_blueprint.related_location"
                     ng-options="option.id*1 as option.location for option in location_info">
                     <option value="" ng-show="false"></option>
             </select>
             <span class="new blueprintLabel"> Job Type </span>
-            <select class="form-control blueprintInput" 
+            <select class="form-control blueprintInput"
+                    title="Select Job Type"
                     name="job type"
                     ng-model="make_blueprint.related_job_type"
                     ng-options="option.id*1 as option.employment for option in job_type_info">
@@ -536,26 +542,30 @@
             <span class="new blueprintLabel"> Wait Interval </span>
             <select class="form-control blueprintInput" 
                     name="wait interval"
+                    title="Select Wait Interval"
                     ng-model="make_blueprint.related_wait_interval"
                     ng-options="option.id*1 as option.response_time for option in wait_interval_info">
                 <option value="" ng-show="false"></option>
             </select>
             <span class="new blueprintLabel marginBlueprint"> On Success </span>
-            <select class="form-control blueprintInput" 
+            <select class="form-control blueprintInput"
+                    title="Select On Job Success"
                     name="On success"
                     ng-model="make_blueprint.related_on_success"
                     ng-options="option.id*1 as option.success for option in on_job_success_info">
             <option value="" ng-show="false"></option>
             </select>
             <span class="new blueprintLabel marginBlueprint"> Job Duration </span>
-            <select class="form-control blueprintInput" 
+            <select class="form-control blueprintInput"
+                    title="Select Job Duration"
                     name="job duration"
                     ng-model="make_blueprint.related_job_duration"
                     ng-options="option.id*1 as option.job_duration for option in job_duration_info">
                 <option value="" ng-show="false"></option>
             </select>
             <span class="new blueprintLabel"> Salary Range </span>
-            <select class="form-control blueprintInput" 
+            <select class="form-control blueprintInput"
+                    title="Select Salary Range"
                     name="salary range"
                     ng-model="make_blueprint.related_salary"
                     ng-options="option.id*1 as option.sal_range for option in salary_info">
@@ -566,14 +576,14 @@
         <div class="row" style="padding-top: 15px; padding-bottom: 5px;">
             <span class="new blueprintLabel"> Qualification </span>
             <input type="text"
-                   title="qualification"
+                   title="Qualification"
                    class="form-control blueprintInput inputSizeFix"
                    name="professional qualifications"
                    ng-model="make_blueprint.professional_qualifications"
                    required>
             <span class="new blueprintLabel"> Practice Limit </span>
             <input type="number"
-                   title="practice limit"
+                   title="Practice Limit"
                    name="practice limit"
                    class="form-control inputSizeFix"
                    ng-model="make_blueprint.practice_limit" 
@@ -581,12 +591,14 @@
             <span class="new blueprintLabel"> Remote Work </span>
             <input type="text" 
                    name="remote work"
-                   title="remote work"
+                   title="Remote Work"
+                   style="text-transform: uppercase;"
                    class="form-control inputSizeFix"
                    ng-model="make_blueprint.remote_work" 
                    required>
             <span class="new blueprintLabel"> Visa Status </span>
-            <select class="form-control blueprintInput" 
+            <select class="form-control blueprintInput"
+                    title="Select Required Visa"
                     name="visa status"
                     ng-model="make_blueprint.related_visa_status"
                     ng-options="option.id*1 as option.visa for option in visa_status_info">
@@ -595,14 +607,15 @@
             <span class="new blueprintLabel"> Max Queue </span>
             <input type="number" 
                    name="max queue"
-                   title="max queue"
+                   title="Max Queue"
                    class="form-control inputSizeFix"
                    ng-model="make_blueprint.max_queue" 
                    required>
             <span class="new blueprintLabel"> Company Url </span>
             <input type="text"
-                   title="interview url"
+                   title="Company Url"
                    name="interview url"
+                   style="text-transform: uppercase;"
                    class="form-control inputSizeFix"
                    ng-model="make_blueprint.url" 
                    required>
@@ -615,6 +628,7 @@
                 <div id='tasks'>
                     <span class="tasksLabel"> Blueprint Task </span>
                     <select class='form-control blueprintTasksInput'
+                            title="Select Blueprint Task"
                             id='selectTask'
                             name='blueprint tasks'
                             ng-model='make_blueprint_tasks'
@@ -1073,7 +1087,8 @@ $("#addNewRow").click(function(){
     function assignEmployee(clickedCheckbox) {
         var tmp = clickedCheckbox.parentNode.parentNode.parentNode.parentNode.children[1].innerText,
             desiredEmp = clickedCheckbox.getAttribute("emailName"),
-            temp = tmp.split(', ');
+            temp = tmp.split(', '),
+            final = '';
         if (clickedCheckbox.checked) {
             if (tmp === 'SELECT'){
                 clickedCheckbox.parentNode.parentNode.parentNode.parentNode.children[1].innerText = clickedCheckbox.getAttribute("emailName");
@@ -1084,10 +1099,19 @@ $("#addNewRow").click(function(){
             if(typeof temp[1] === 'undefined'){
                 clickedCheckbox.parentNode.parentNode.parentNode.parentNode.children[1].innerText = 'SELECT'
             } else {
-                for (var i = 0; i < temp.length; i++) {
-                    if (temp[i].toLowerCase() !== desiredEmp) {
-                        clickedCheckbox.parentNode.parentNode.parentNode.parentNode.children[1].innerText = temp[i].toUpperCase();
+                if(typeof temp[2] === 'undefined') {
+                    for (var i = 0; i < temp.length; i++) {
+                        if (temp[i].toLowerCase() !== desiredEmp) {
+                            clickedCheckbox.parentNode.parentNode.parentNode.parentNode.children[1].innerText = temp[i].toUpperCase();
+                        }
                     }
+                } else {
+                    for (var j = 0; j < temp.length; j++){
+                        if (temp[j].toLowerCase() !== desiredEmp){
+                            final += ', ' + temp[j].toUpperCase();
+                        }
+                    }
+                    clickedCheckbox.parentNode.parentNode.parentNode.parentNode.children[1].innerText = tmp + final;
                 }
             }
         }
