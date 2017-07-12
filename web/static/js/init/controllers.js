@@ -110,15 +110,15 @@
                         $scope.queue_resource[que_key].stacks.push(que_stack_value);
                     }
                 });
-                if(!$scope.user.profile_type){
-                    $scope.current_queue = $scope.queue_resource[que_key].stacks[$scope.queue_resource[que_key].stacks.length - 1 ].candidate_position;
-                }
             });
             if(value.blueprint === $scope.blueprint.id){
                 $scope.blueprint_queue.push(value);
                 $scope.blueprint_in_queue = true;
             }
         });
+        if(!$scope.user.profile_type){
+            $scope.current_queue = $scope.blueprint_queue[0].stacks[$scope.blueprint_queue[0].stacks.length - 1 ].candidate_position;
+        }
 
         /*
         if ($cookies.get('token')) {
