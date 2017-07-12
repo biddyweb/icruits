@@ -308,6 +308,7 @@
             HiredEmpRes.save({blueprint: $scope.blueprint.id,
                 employee: $scope.current_candidate}, function (response) {
                 $scope.data = response.data;
+                $scope.employee_hired = false;
             }, function (response) {
                 $scope.errors = response.data;
             });
@@ -706,12 +707,12 @@
             $scope.hired_blueprints = [];
             $scope.old_res = $scope.queue_resource;
             if(angular.isUndefined($scope.hired_employee_info[0])){
-                angular.forEach($scope.queue_resource, function (value, key) {
+                angular.forEach($scope.old_res, function (value, key) {
                      $scope.blueprints.push(value);
                 });
             } else {
-                angular.forEach($scope.queue_resource, function (value, key) {
-                    angular.forEach($scope.hired_employee_info, function (hired_val, hired_key) {
+                angular.forEach($scope.hired_employee_info, function (hired_val, hired_key) {
+                    angular.forEach($scope.old_res, function (value, key) {
                         if(value.blueprint === hired_val.blueprint && hired_val.employee === $scope.user.id){
                             $scope.hired_blueprints.push(value);
                         } else {
@@ -720,10 +721,17 @@
                     });
                 });
             }
+            angular.forEach($scope.blueprints, function (value, key) {
+                angular.forEach($scope.blueprints, function (check_val, check_key) {
+                    if(value.blueprint === check_val.blueprint){
+                        $scope.blueprints.splice(value, 1);
+                    }
+                });
+            });
             $scope.queue_resource = $scope.blueprints;
             if(!$scope.user.preference_filter){
                 $scope.user.preference_filter = [];
-            } else {
+            }/* else {
                 if(angular.isUndefined($scope.user.preference_filter.industryIncludes)) {
                     $scope.user.preference_filter.industryIncludes = [];
                 }
@@ -756,7 +764,7 @@
                         $scope.FilterExperience(value);
                     });
                 }
-            }
+            }*/
         }
 
         $scope.tupleAppliedJobs = function () {

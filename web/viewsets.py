@@ -669,6 +669,7 @@ class QueueStackViewSet(viewsets.ModelViewSet):
         try:
             instance = self.get_object()
             blueprint_instance = Queue.objects.get(stack=instance.id).blueprint.id
+            blueprint_selected = Queue.objects.get(stack=instance.id)
             blueprint_name = Queue.objects.get(stack=instance.id).blueprint.name
             username = instance.candidate.username
             name_trim = ''.join(e for e in username if e.isalnum())
@@ -698,7 +699,7 @@ class QueueStackViewSet(viewsets.ModelViewSet):
                       recipient_list=[user_email, ],
                       html_message=html_email)
 
-            max_queue = blueprint_instance.max_queue
+            max_queue = blueprint_selected.blueprint.max_queue
             waiting_list = WaitingListToEnterStack.objects.filter(blueprint=blueprint_instance)
             print waiting_list
 
