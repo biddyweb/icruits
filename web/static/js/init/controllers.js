@@ -116,7 +116,7 @@
                 $scope.blueprint_in_queue = true;
             }
         });
-        if(!$scope.user.profile_type){
+        if(!$scope.user.profile_type && !angular.isUndefined($scope.blueprint_queue[0])){
             $scope.current_queue = $scope.blueprint_queue[0].stacks[$scope.blueprint_queue[0].stacks.length - 1 ].candidate_position;
         }
 

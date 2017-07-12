@@ -71,7 +71,7 @@
                             <option value="" ng-show="false"></option>
                         </select>
                         <span class="new blueprintLabel marginBlueprint" style="margin-bottom: 20px;"> Job Function </span>
-                        <span class="form-control inputSizeFix"
+                        <span class="form-control inputSizeFix" style="text-transform: uppercase;"
                               data-ng-bind="blueprint.function"></span>
                         <span class="new blueprintLabel"> Location </span>
                         <select disabled class="form-control blueprintInput"
@@ -132,10 +132,10 @@
                             <option value="" ng-show="false"></option>
                         </select>
                         <span class="new blueprintLabel" style="margin-bottom: 15px;"> Remote Work </span>
-                        <span class="form-control inputSizeFix"
+                        <span class="form-control inputSizeFix" style="text-transform: uppercase;"
                               data-ng-bind="blueprint.remote_work"></span>
                         <span class="new blueprintLabel"> Company Url </span>
-                        <span class="form-control inputSizeFix"
+                        <span class="form-control inputSizeFix" style="text-transform: uppercase;"
                               data-ng-bind="blueprint.url"></span>
                     </div>
                 </div>
@@ -193,6 +193,7 @@
                                title="job function"
                                class="form-control inputSizeFix"
                                ng-model="blueprint.function"
+                               style="text-transform: uppercase;"
                                required>
                         <span class="new blueprintLabel"> Experience </span>
                         <select class="form-control blueprintInput"
@@ -266,6 +267,7 @@
                                title="remote work"
                                class="form-control inputSizeFix"
                                ng-model="blueprint.remote_work"
+                               style="text-transform: uppercase;"
                                required>
                         <span class="new blueprintLabel"> Visa Status </span>
                         <select class="form-control blueprintInput"
@@ -287,6 +289,7 @@
                                name="interview url"
                                class="form-control inputSizeFix"
                                ng-model="blueprint.url"
+                               style="text-transform: uppercase;"
                                required>
                     </div>
                 </div>
