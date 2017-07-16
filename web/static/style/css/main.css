@@ -1771,6 +1771,17 @@ input, textarea, select, button, meter, progress {
     border-top: 1px solid rgba(0, 0, 0, 0.3)
 }
 
+.dashFooterEmp {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 3;
+    height: 52px;
+    background-color: rgba(255, 255, 255, 1);
+    border-top: 1px solid rgba(0, 0, 0, 0.3)
+}
+
 /*clearfixes*/
 
 .cf:before,

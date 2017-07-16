@@ -238,10 +238,42 @@
         display: inline-block;
     }
 }
-@media (max-width: 767px) {
+@media (max-width: 768px) {
 	body {
 		font-size: 14px;
 	}
+	.dashboardItem .inner .blueprintTitle {
+		font-size: 1.35em;
+		padding-top: 0;
+		margin-bottom: 10px;
+	}
+	.dashboardLocation {
+		margin-left: 5%;
+	}
+	.dashboardSalary {
+		margin-right: 5%;
+	}
+    .profileContainer {
+        margin-top: 5%;
+    }
+    .userTypeFont {
+        margin-left: 25%;
+    }
+    .userFields {
+        width: 33%;
+    }
+    .headingCaption {
+        margin-left: 15%;
+    }
+    .headingParagraph {
+        margin-left: 15%;
+    }
+    .knowMore {
+        margin-left: calc(50% - 75px);
+    }
+    #loginBnt {
+        margin-left: calc(50% - 90px);
+    }
 	#home-slider .caption h1 {
 		font-size: 40px;
 	}
@@ -611,7 +643,81 @@
 		width:100%;
 		float: none;
 	}
+    .blueprintLabel {
+        display: block;
+    }
+    .blueprintDesc {
+        margin-left: 40px;
+        width: 75%;
+    }
+    .blueprintTeamID {
+        margin-left: 40px!important;
+    }
+    .inputSizeFix {
+        margin-left: 40px!important;
+    }
+    .blueprintInput {
+        width: 75%!important;
+        margin-left: 40px!important;
+    }
+    .blueprintName{
+        width: 75%!important;
+    }
+    .userTypeFont {
+        margin-left: 2%;
+    }
+	#loginImage {
+		margin: 40px auto;
+	}
 
+	.row {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	.displayLogin {
+		margin-left: -200px;
+		height: 320px;
+		width: 400px;
+	}
+
+	.headingCaption {
+		margin: 0 auto;
+		margin-top: 30px;
+    	margin-left: 20px;
+	}
+
+	.headingParagraph {
+		padding-left: 3em;
+        margin-left: 0;
+	}
+
+	.imageText {
+		font-size: 1.5em;
+	}
+	.imageText span {
+		font-size: 2em;
+	}
+    .dashFooter {
+        height: 102px;
+    }
+    #filter-btn {
+        width: 49.9%;
+    }
+    .dashboardItem .inner .blueprintTitle {
+        font-size: 1.85em;
+        padding-top: .165em;
+        margin-bottom: 0;
+    }
+    .dashboardLocation {
+        margin-left: 20%;
+    }
+    .dashboardSalary {
+        margin-right: 20%;
+    }
+    .menu-white {
+        left: 0;
+    }
     h3 {
         font-size: 12px;
     }
@@ -718,15 +824,20 @@
         padding-left: 55px;
     }
     .profileContainer {
-        margin-top: 0;
+        margin-top: -15px;
         width: 100%;
+    }
+    .userTypeFont input {
+        width: 75%!important;
     }
     .user-menu {
         right: 0;
     }
     .userFields {
-        display: block;
+        display: block!important;
         margin-left: 10%;
+        margin-bottom: 10px;
+        width: 50%;
     }
     .bigUserInput {
         margin-left: 10%!important;
@@ -735,7 +846,7 @@
         margin-left: 10%;
     }
 }
-@media only screen and (max-width: 360px){
+@media only screen and (max-width: 375px){
     h1 {
         font-size: 36px;
     }
@@ -745,6 +856,11 @@
     hover-bg .hover-text {
         padding: 25% 0px;
     }
+	.displayLogin {
+		margin-left: calc(100% - 555px);
+		height: 320px;
+		width: 360px;
+	}
     .pull-left,
     .pull-right {
         float: none !important;
@@ -753,6 +869,31 @@
     .simform {
     	max-width: 240px;
     }
+	.imageText {
+		font-size: 1.4em;
+		left: 18px;
+	}
+	#loginImage {
+    	margin: 20px auto;
+	}
+	.imageText span {
+		font-size: 1.8em;
+	}
+	.headingCaption {
+		margin: 0 auto;
+		margin-top: 20px;
+		font-size: 1.8em;
+		margin-left: 5%;
+	}
+	.headingParagraph {
+		font-size: 1.4em;
+		padding-left: 0;
+		margin-left: 15%;
+	}
+	.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+		padding-right: 0;
+    	padding-left: 0;
+	}
     .inputHolder {
     	width: 100%;
     	display: inherit;
@@ -803,6 +944,17 @@
     .add-btn {
         margin-left: 25%;
     }
+	#loginBnt {
+		margin-left: calc(50% - 93px);
+	}
+	.knowMore {
+		margin-left: calc(50% - 80px);
+	}
+}
+@media only screen and (max-width: 360px) {
+	.displayLogin {
+		margin-left: calc(100% - 540px);
+	}
 }
 @media (max-width: 330px) {
     .blueprintLabel {
@@ -810,30 +962,34 @@
     }
     .blueprintName {
         width: 90%!important;
-        margin-left: 6%!important;
+        margin-left: 10%!important;
     }
     .blueprintDesc {
         width: 90%!important;
-        margin-left: 6%!important;
+        margin-left: 10%!important;
     }
     .blueprintCompany {
         width: 70%!important;
-        margin-left: 6%!important;
+        margin-left: 10%!important;
     }
     .blueprintTeamID {
         width: 45%!important;
-        margin-left: 6%!important;
+        margin-left: 10%!important;
     }
     .blueprintInput {
-        width: 50%!important;
-        margin-left: 6%!important;
+        width: 75%!important;
+        margin-left: 10%!important;
     }
     .inputSizeFix {
-        margin-left: 6%!important;
+        margin-left: 10%!important;
     }
     .simform {
         max-width: 200px;
     }
+	.displayLogin {
+		margin-left: calc(100% - 475px);
+		width: 310px;
+	}
 }
 @media only screen and (max-width: 320px){
     h1 {
