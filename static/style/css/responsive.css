@@ -242,6 +242,9 @@
 	body {
 		font-size: 14px;
 	}
+	.body-content {
+		margin-top: 20px;
+	}
 	.dashboardItem .inner .blueprintTitle {
 		font-size: 1.35em;
 		padding-top: 0;

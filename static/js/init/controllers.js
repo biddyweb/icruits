@@ -586,6 +586,12 @@
 
         $scope.experienceIncludes = [];
 
+        $scope.companyTypeIncludes = [];
+
+        $scope.jobTypeIncludes = [];
+
+        $scope.jobDurationIncludes = [];
+
         $scope.openFacebookPage = function () {
             $window.open('https://www.facebook.com/pages/iCruits/1548586008772579');
         };
@@ -1061,6 +1067,81 @@
                         return;
                 }
                 return blueprints;                
+            }
+        };
+
+        $scope.FilterCompanyType = function (filter) {
+            var i = $.inArray(filter, $scope.companyTypeIncludes);
+            if(i > -1 ){
+                $scope.companyTypeIncludes.splice(i, 1);
+            } else {
+                $scope.companyTypeIncludes.push(filter);
+            }
+        };
+
+        $scope.companyTypeFilter = function (blueprints) {
+            if(!$scope.user.profile_type) {
+                if($scope.companyTypeIncludes.length > 0) {
+                    if($.inArray(blueprints.related_company_type, $scope.companyTypeIncludes) < 0)
+                        return;
+                }
+                return blueprints;
+            } else {
+                if($scope.companyTypeIncludes.length > 0) {
+                    if($.inArray(blueprints.blueprints.related_company_type, $scope.companyTypeIncludes) < 0)
+                        return;
+                }
+                return blueprints;
+            }
+        };
+
+        $scope.FilterJobType = function (filter) {
+            var i = $.inArray(filter, $scope.jobTypeIncludes);
+            if(i > -1 ) {
+                $scope.jobTypeIncludes.splice(i, 1);
+            } else {
+                $scope.jobTypeIncludes.push(filter);
+            }
+        };
+
+        $scope.jobTypeFilter = function (blueprints) {
+            if(!$scope.user.profile_type) {
+                if($scope.jobTypeIncludes.length > 0) {
+                    if($.inArray(blueprints.related_job_type, $scope.jobTypeIncludes) < 0)
+                        return;
+                }
+                return blueprints;
+            } else {
+                if($scope.jobTypeIncludes.length > 0) {
+                    if($.inArray(blueprints.blueprints.related_job_type, $scope.jobTypeIncludes) < 0)
+                        return;
+                }
+                return blueprints;
+            }
+        };
+
+        $scope.FilterJobDuration = function (filter) {
+            var i = $.inArray(filter, $scope.jobDurationIncludes);
+            if( i > -1 ) {
+                $scope.jobDurationIncludes.splice(i, 1);
+            } else {
+                $scope.jobDurationIncludes.push(filter);
+            }
+        };
+
+        $scope.jobDurationFilter = function (blueprints) {
+            if(!$scope.user.profile_type) {
+                if($scope.jobDurationIncludes.length > 0) {
+                    if($.inArray(blueprints.related_job_duration, $scope.jobDurationIncludes) < 0)
+                        return;
+                }
+                return blueprints;
+            } else {
+                if($scope.jobDurationIncludes.length > 0) {
+                    if($.inArray(blueprints.blueprints.related_job_duration, $scope.jobDurationIncludes) < 0)
+                        return;
+                }
+                return blueprints;
             }
         };
 

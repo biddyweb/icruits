@@ -299,7 +299,7 @@
                      src="{{ blueprint.work_enviorment }}" ng-if="published">
                 <a href="{{ blueprint.url }}" class="company-url" ng-if="published">Visit us</a>
                 <div class="details-description" ng-if="published">
-                    <span data-ng-bind="blueprint.description"></span>
+                    <span data-ng-bind="blueprint.description" class="text-justify"></span>
                 </div>
                 <img id="detail-img" class="img-responsive no-bottom-marg"
                      src="{{ blueprint.work_enviorment_2 }}" ng-if="published">
@@ -498,7 +498,7 @@
             </div>
 
             <div class="details-description-upper">
-                <span data-ng-bind="blueprint.description"></span>
+                <span data-ng-bind="blueprint.description" class="text-justify"></span>
             </div>
             <a class="btn officeEnvBtn" id="scrollDown" href="#detailImagesSeeker">Your Workplace</a>
 
@@ -507,7 +507,7 @@
                      src="{{ blueprint.work_enviorment }}">
                 <a href="{{ blueprint.url }}" class="company-url">Visit us</a>
                 <div class="details-description">
-                    <span data-ng-bind="blueprint.description"></span>
+                    <span data-ng-bind="blueprint.description" class="text-justify"></span>
                 </div>
                 <img id="detail-img" class="img-responsive no-bottom-marg"
                      src="{{ blueprint.work_enviorment_2 }}">
@@ -702,25 +702,25 @@
 
 <!-- APPLY FOR BLUEPRINT CANVAS -->
 <div id="applyBlueprint" class="applyForBlueprint" ng-if="sent_apply_mail">
-    <div class="applyContent">
+    <div class="applyContent" style="width: 50%;">
         <div class="circle-info">
             <span class="circle-fonts" data-ng-bind="people_in_queue"></span>
         </div>
         <span class="spanTextApply">Queue Size</span>
     </div>
-    <div class="applyContent">
+    <div class="applyContent" style="width: 50%;">
         <div class="circle-info">
             <span class="circle-fonts" data-ng-bind="blueprint.max_queue"></span>
         </div>
         <span class="spanTextApply">Available Queue</span>
     </div>
-    <div class="applyContent">
+    <div class="applyContent" style="width: 50%;">
         <div class="circle-info">
             <span class="circle-fonts">4</span>
         </div>
         <span class="spanTextApply">Average attempts of successfull candidate</span>
     </div>
-    <div class="applyContent">
+    <div class="applyContent" style="width: 50%;">
         <div class="circle-info">
             <span class="circle-fonts">3</span>
         </div>

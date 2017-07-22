@@ -853,6 +853,10 @@ VERY IMPORTANT!!!!
     display: none;
 }
 
+#pages {
+    margin-top: 75px;
+}
+
 #pcDisplay {
     display: none;
     height: 120px;
@@ -2018,7 +2022,7 @@ body,
 }
 
 .icon-list {
-    width: 292px;
+    width: 284px;
     max-height: 90%;
     height: 70%;
     overflow-y: auto;
@@ -2054,13 +2058,13 @@ body,
     display: inline-block;
     height: 50px;
     width: 149px;
-    border: 1px solid rgb(55,55,55);
+    border: 1px solid rgb(55, 55, 55);
     padding-left: 65px;
     padding-top: 7px;
     font-size: 1.5em;
-    color: rgb(215,215,215);
+    color: rgb(215, 215, 215);
     float: left;
-    transition: all 750ms cubic-bezier(.25,.46,.45,.94);
+    transition: all 750ms cubic-bezier(.25, .46, .45, .94);
 }
 
 .social-twitter:hover {
@@ -3703,7 +3707,7 @@ body,
 }
 
 .icon-list-emp {
-    width: 280px;
+    width: 284px;
     max-height: 70%;
     height: 70%;
     overflow-y: auto;
@@ -3838,8 +3842,42 @@ body,
 
 .copyrightStyle {
     position: fixed;
-    bottom: 0;
+    bottom: 10px;
     margin-left: 78px;
     color: rgb(255, 255, 255);
     font-size: 1.075em;
+}
+
+.cookieStyle {
+    color: rgb(255, 255, 255);
+    position: fixed;
+    bottom: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 0.895em;
+}
+
+.cookieStyle span {
+    color: #337ab7;
+}
+
+.cookieStyle span:hover {
+    cursor: pointer;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.cookie-h1 {
+    font-weight: 400;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 3.25em;
+    text-transform: uppercase;
+}
+
+.body-content p+h3, .body-content ul+h3, .body-content ol+h3 {
+    margin-top: 3.65rem;
+    text-transform: uppercase;
 }
