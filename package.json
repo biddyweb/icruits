@@ -5,6 +5,8 @@
   "license": "ISC",
   "dependencies": {
     "clean-css": "^4.1.0",
+    "jquery": "^1.11.0",
+    "datetimepicker": "^0.1.38",
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.1.0",
     "grunt-contrib-concat": "^1.0.1",

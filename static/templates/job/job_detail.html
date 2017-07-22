@@ -316,7 +316,7 @@
                     </span>
                 </a>
                 <a id="accept-interview-btn" ng-show="!user.profile_type"
-                   ng-click="inviteToInterview()" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && is_icruited && !has_applied && !has_interview">
+                   ng-click="inviteCanvas()" ng-if="published && blueprint.has_simulator && !blueprint.is_closed && is_icruited && !has_applied && !has_interview">
                     <span id="advanced-span" class="show-button">
                         Invite to Interview
                     </span>
@@ -612,6 +612,93 @@
         </span>
     </a>
 </div>
+
+<!-- INVITE TO INTERVIEW STAGE EMPLOYER -->
+<div id="applyBlueprint" class="applyForBlueprint" style="height: 430px;width: 500px;margin-left: -250px;" ng-if="show_interview_canvas">
+    <p class="applyParagraph" style="margin-top: 0">
+        Setting up interview between You and Employee. <br>
+        <br>
+        Please fill out short form for incoming interview. <br>
+        <br>
+    </p>
+    <span class="userFields" style="text-transform: none;top: 0!important;font-size: 1.125em;margin-left: 20px;">Date & Time </span>
+    <input id="datetimeBox"
+           type="text"
+           name="Date & Time"
+           title="Date & Time"
+           class="cleaninput bigUserInput"
+           style="font-size: 1em!important;width: 50%!important;"
+           data-field="datetime"
+           ng-model="datestring"
+           placeholder="Click here to select Date & Time..."
+           ng-change="setDateTimeValue()" readonly required>
+    <br>
+    <span class="userFields" style="text-transform: none;top: 0!important;font-size: 1.125em;margin-left: 20px;">Location </span>
+    <input type="text"
+           name="Company Location"
+           title="Company Location"
+           class="cleaninput bigUserInput"
+           style="font-size: 1em!important;width: 50%!important;"
+           ng-model="interview_location"
+           ng-change="setLocationValue()"
+           id="interview_location" required>
+    <br>
+    <span class="userFields" style="text-transform: none;top: -30px!important;font-size: 1.125em;margin-left: 20px;">Letter </span>
+    <textarea name="Letter"
+              title="Letter"
+              id="letter"
+              ng-model="interview_letter"
+              ng-change="setLetterValue()"
+              style="display: inline-block;width: 70%;height: 60px;"
+              rows="3"
+              required>
+
+    </textarea>
+    <div id="dtBox"></div>
+    <p style="margin-left: 20px;font-size: 15px;">
+        <br>
+        These informations will be emailed to employee. <br>
+    </p>
+    <a id="black-filter-btn"
+       style="position: absolute; bottom: 50px; right: 40px;"
+       ng-click="inviteToInterview()">
+        <span id="advanced-span" class="show-button">
+            Confirm
+        </span>
+        <span id="advanced-span-2" class="hover show-button">
+            Confirm
+        </span>
+    </a>
+    <a id="black-filter-btn" ng-click="inviteCanvas()" style="position: absolute;left: 40px;bottom: 50px;">
+        <span id="advanced-span" class="show-button">
+            Cancel
+        </span>
+        <span id="advanced-span-2" class="hover show-button">
+            Cancel
+        </span>
+    </a>
+    <script type="text/javascript">
+        var dDate1;
+        $(document).ready(function() {
+            $("#dtBox").DateTimePicker({
+                settingValueOfElement: function(sValue, dValue, oInputElement) {
+                    dDate1 = dValue;
+                }
+            });
+        });
+    </script>
+    <script>
+        function initialize() {
+            autocomplete = new google.maps.places.Autocomplete(document.getElementById('interview_location'),{
+              types : [ 'geocode' ]
+            });
+          }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+</div>
+
 
 <!-- APPLY FOR BLUEPRINT CANVAS -->
 <div id="applyBlueprint" class="applyForBlueprint" ng-if="sent_apply_mail">

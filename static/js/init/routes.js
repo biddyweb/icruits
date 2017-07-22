@@ -308,6 +308,17 @@
                     return SalaryRangeRes.query().$promise;
                 }
             }
+        }).state('root.cookie_policy', {
+            url: '/legal/cookie-policy/',
+            controller: 'CookiePolicyCtrl',
+            templateUrl: '/static/templates/legal/cookie_policy.html',
+            resolve: {
+                metaTags: function (metaTagsRes) {
+                    return metaTagsRes.get({
+                        page_name: 'cookie_policy'
+                    }).$promise;
+                }
+            }
         });
     }
 })();

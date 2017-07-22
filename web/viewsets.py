@@ -483,7 +483,7 @@ class WorkEnviorment2ViewSet(viewsets.ModelViewSet):
         image = request.data['file']
 
         serializer = WorkEnviorment2Serializer(data={'image': image,
-                                                    'session': request.session.session_key})
+                                                     'session': request.session.session_key})
 
         if serializer.is_valid():
 
@@ -609,8 +609,8 @@ class CreateBlueprintViewSet(viewsets.ModelViewSet):
             _headers = self.get_success_headers(serializer.data)
 
             email_context = {
-                'bluprint_name': nam,
-                'company_name': comapny_n,
+                'bluprint_name': str(nam).capitalize(),
+                'company_name': str(comapny_n).capitalize(),
                 'practice_limit': prac_lim,
                 'description': desc
             }
@@ -688,8 +688,8 @@ class QueueStackViewSet(viewsets.ModelViewSet):
             self.perform_destroy(instance)
 
             email_html_context = {
-                'username': username,
-                'blueprint': blueprint_name
+                'username': str(username).capitalize(),
+                'blueprint': str(blueprint_name).capitalize()
             }
             html_email = render_to_string('email_templates/left_queue.html', email_html_context)
 
@@ -702,6 +702,33 @@ class QueueStackViewSet(viewsets.ModelViewSet):
             max_queue = blueprint_selected.blueprint.max_queue
             waiting_list = WaitingListToEnterStack.objects.filter(blueprint=blueprint_instance)
             print waiting_list
+            if waiting_list:
+                for people in waiting_list:
+                    print people
+                    if max_queue > pos:
+                        user_obj = user.objects.filter(id=people.employee.id).first()
+                        que_obj = Queue.objects.filter(blueprint=people.blueprint.id).first()
+                        last_position = que_obj.stack.last().candidate_position
+                        last_position += 1
+                        new_stack = QueueStack(candidate=user_obj,
+                                               candidate_position=last_position,
+                                               has_applied=True)
+                        new_stack.save()
+
+                        que_obj.stack.add(new_stack)
+
+                        info_context = {
+                            'username': str(user_obj.username).capitalize(),
+                            'blueprint': str(blueprint_name).capitalize()
+                        }
+                        html_email_info = render_to_string('email_templates/enter_que_from_waitlist.html', info_context)
+                        send_mail(subject='You have entered Queue',
+                                  message='',
+                                  from_email='alek.rajic@icruits.com',
+                                  recipient_list=[user_obj.email, ],
+                                  html_message=html_email_info)
+                        people.delete()
+                        pos += 1
 
         except Http404:
             pass
@@ -749,7 +776,7 @@ class AppliedBlueprintsViewSet(viewsets.ModelViewSet):
 
             email_context = {
                 'username': str(user_obj.username).capitalize(),
-                'blueprint': blueprint.name,
+                'blueprint': str(blueprint.name).capitalize(),
                 'simulator_url_mac': blueprint.simulator_url_mac,
                 'simulator_url_ios': blueprint.simulator_url_ios,
                 'simulator_url_win': blueprint.simulator_url_win,
@@ -777,8 +804,8 @@ class AppliedBlueprintsViewSet(viewsets.ModelViewSet):
             candidate = instance.candidate.username
             blueprint = instance.blueprint.name
             email_context = {
-                'username': candidate.capitalize(),
-                'blueprint': blueprint
+                'username': str(candidate).capitalize(),
+                'blueprint': str(blueprint).capitalize()
             }
             html_email_context = render_to_string('email_templates/unapplied_from_blueprint.html', email_context)
             self.perform_destroy(instance)
@@ -898,9 +925,9 @@ class ReviewResultsViewSet(views.APIView):
         queue_stack_obj.save()
         send_to = user_obj.email
         email_html_context = {
-            'username': user_obj.username,
-            'blueprint': blueprint_obj.name,
-            'company': blueprint_obj.company_name
+            'username': str(user_obj.username).capitalize(),
+            'blueprint': str(blueprint_obj.name).capitalize(),
+            'company': str(blueprint_obj.company_name).capitalize()
         }
         email_html = render_to_string('email_templates/reviewing_results.html', email_html_context)
         send_mail(subject='Reviewing Your Simulation Results',
@@ -923,6 +950,9 @@ class PrehiredEmployeeViewSet(viewsets.ModelViewSet):
         que_stack = request.data['que_stack']
         user_id = request.data['user_id']
         blueprint_id = request.data['blueprint_id']
+        selected_datatime = request.data['datetime']
+        interview_location = request.data['location']
+        interview_letter = request.data['letter']
 
         print blueprint_id
 
@@ -943,13 +973,13 @@ class PrehiredEmployeeViewSet(viewsets.ModelViewSet):
             stack_obj.save()
             self.perform_create(serializer)
             email_html_context = {
-                'company': blueprint_obj.company_name,
-                'blueprint': blueprint_obj.name,
-                'username': user_obj.username
+                'company': str(blueprint_obj.company_name).capitalize(),
+                'blueprint': str(blueprint_obj.name).capitalize(),
+                'username': str(user_obj.username).capitalize()
             }
             email_html_context_employer = {
-                'username': user_obj.username,
-                'email': user_obj.email
+                'username': str(user_obj.username).capitalize(),
+                'email': str(user_obj.email).capitalize()
             }
             email_html = render_to_string('email_templates/accept_interview.html', email_html_context)
             employer_email_html = render_to_string('email_templates/employer_accept_interview.html',

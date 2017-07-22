@@ -198,6 +198,28 @@
             }
         };
 
+        $scope.datestring = '';
+        $scope.interview_location = '';
+        $scope.interview_letter = '';
+
+        $scope.setDateTimeValue = function() {
+            $scope.datestring = angular.element($('#datetimeBox'))[0].value;
+        };
+
+        $scope.setLocationValue = function () {
+            $scope.interview_location = angular.element($('#interview_location'))[0].value;
+        };
+
+        $scope.setLetterValue = function () {
+            $scope.interview_letter = angular.element($('#letter'))[0].value;
+        };
+
+        $scope.show_interview_canvas = false;
+
+        $scope.inviteCanvas = function () {
+            $scope.show_interview_canvas ? $scope.show_interview_canvas = false : $scope.show_interview_canvas = true;
+        };
+
         $scope.inviteToInterview = function () {
             var check_person_in_queue = angular.isUndefined($scope.blueprint_queue[0].stacks[1]);
 
@@ -208,7 +230,10 @@
                     request = {
                         que_stack: que_stack,
                         blueprint_id: blueprint_id,
-                        user_id: user_id
+                        user_id: user_id,
+                        datetime: $scope.datestring,
+                        location: $scope.interview_location,
+                        letter: $scope.interview_letter
                     };
                 PrehiredEmpRes.save(request, function (response) {
                     $scope.data = response.data;
@@ -560,6 +585,14 @@
         $scope.salaryIncludes = [];
 
         $scope.experienceIncludes = [];
+
+        $scope.openFacebookPage = function () {
+            $window.open('https://www.facebook.com/pages/iCruits/1548586008772579');
+        };
+
+        $scope.openTwitterPage = function () {
+            $window.open('https://twitter.com/icruits?lang=en');
+        };
 
         // tuple show closed/opened jobs logic
         $scope.tupleJobsState = function () {
@@ -1789,6 +1822,20 @@
 
             $scope.myAppliedStatus[key].numberOfTasks.push($scope.myAppliedStatus[key].index);
         });
+
+        $rootScope.image = '';
+    }
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('app').controller('CookiePolicyCtrl', CookiePolicyCtrl);
+
+    CookiePolicyCtrl.$inject = ['$rootScope', '$scope', 'metaTags'];
+
+    function CookiePolicyCtrl($rootScope, $scope, metaTags) {
+        $scope.$emit('metaTagsChanged', metaTags);
 
         $rootScope.image = '';
     }

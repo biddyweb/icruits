@@ -314,3 +314,22 @@ function LoginMain() {
 LoginMain();
 //$('#loginImage').css({'height':$( window ).height()+'px'});
 $('html, body').css({'height':'100%'});
+
+
+/*==============================================
+        LOGIN OFF SCREEN CANVAS CONTROL
+==============================================*/
+function openLogin() {
+    var loginPage = $('.displayLogin');
+    loginPage.css({
+        'visibility': 'visible',
+        'opacity': '1'
+    });
+}
+function closeLogin() {
+    var loginPage = $('.displayLogin');
+    loginPage.css({
+        'visibility': 'hidden',
+        'opacity': '0'
+    });
+}
