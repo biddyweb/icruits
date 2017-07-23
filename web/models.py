@@ -524,9 +524,23 @@ class WorkEnviorment2(models.Model):
         verbose_name = 'Work Environment'
 
 
+class InterviewDateAndTime(models.Model):
+    for_blueprint = models.ForeignKey(Blueprint, related_name='related_time_and_date_for_blueprint')
+    date_and_time = models.CharField(_('Date & Time'), max_length=255)
+
+    def __unicode__(self):
+        return self.date_and_time
+
+    class Meta:
+        verbose_name = 'Interview Date & Time'
+
+
 class PrehiredEmployee(models.Model):
     blueprint = models.ForeignKey(Blueprint, related_name="related_blueprint_id")
     employee = models.ForeignKey(user, related_name='related_user_id')
+    datetime = models.ManyToManyField(InterviewDateAndTime, related_name='related_timedate', blank=True)
+    location = models.CharField(_('Interview Location'), max_length=255, blank=True)
+    letter = models.CharField(_('Interview Letter'), max_length=511, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

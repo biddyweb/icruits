@@ -150,3 +150,23 @@
     </div>
 </section>
 <script type="text/javascript">$('html,body').css({'height': 'auto'});</script>
+<script>
+    var element = $('#RegisterForm'),
+        elementH = element.height(),
+        windowW = $(window).width(),
+        windowH = $(window).height();
+
+    function laptopSize() {
+        element.css({
+            'margin-top': windowH / 2 - elementH / 3
+        });
+    }
+
+    function mobileSize() {
+        element.css({
+            'margin-top': windowH / 2 - elementH / 2
+        });
+    }
+
+    windowW < 480 ? mobileSize() : laptopSize();
+</script>

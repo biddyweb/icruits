@@ -1461,7 +1461,7 @@
         $scope.checkUsername = function () {
             if(!$scope.reg.username){
                 $scope.errors = true;
-                $scope.error = "Please fill username";
+                $scope.error = "Please fill username.";
             } else {
                 CheckUserNameRes.save($scope.reg, function (response) {
                     $scope.errors = true;
@@ -1478,22 +1478,37 @@
         $scope.checkEmail = function () {
             // body...
             if(!$scope.reg.email){
-                $scope.error = "Please fill email address";
+                $scope.error = "Please fill email address.";
                 $scope.errors = true;
             } else {
-                $scope.log = {};
-                $scope.log.username = $scope.reg.email;
-                CheckUserRes.save($scope.log, function (response) {
-                    // body...
+                $scope.email_has_monkey = false;
+                $scope.email_has_dot = false;
+                for(var i = 0; i < $scope.reg.email.length; i++){
+                    if($scope.reg.email[i] === '@'){
+                        $scope.email_has_monkey = true;
+                    }
+                    if($scope.reg.email[i] === '.'){
+                        $scope.email_has_dot = true;
+                    }
+                }
+                if($scope.email_has_monkey && $scope.email_has_dot) {
+                    $scope.log = {};
+                    $scope.log.username = $scope.reg.email;
+                    CheckUserRes.save($scope.log, function (response) {
+                        // body...
+                        $scope.errors = true;
+                        $scope.error = "User with this email address already exists.";
+                    }, function (response) {
+                        // body...
+                        $scope.errors = false;
+                        $scope.page_2 = false;
+                        $scope.page_3 = true;
+                        $scope.current_page = '3';
+                    });
+                } else {
+                    $scope.error = "Please enter valid email address.";
                     $scope.errors = true;
-                    $scope.error = "User with this email address already exists.";
-                }, function (response) {
-                    // body...
-                    $scope.errors = false;
-                    $scope.page_2 = false;
-                    $scope.page_3 = true;
-                    $scope.current_page = '3';
-                });
+                }
             }
         };
 
@@ -1603,33 +1618,48 @@
         $scope.checkuser = function () {
             // body...
             if(!$scope.log.username){
-                $scope.error = "Please fill email address";
+                $scope.error = "Please fill email address.";
                 $scope.errors = true;
             } else {
-                progBar.css({
-                    width: 50 + '%'
-                });
-                CheckUserRes.save($scope.log, function (response) {
-                    // body...
-                    $scope.page_1 = false;
-                    $scope.page_2 = true;
-                    $scope.current_page = '2';
-                    if($scope.errors){
-                        $scope.errors = false;
+                $scope.username_has_monkey = false;
+                $scope.username_has_dot = false;
+                for(var i = 0; i < $scope.log.username.length; i++){
+                    if($scope.log.username[i] === '.'){
+                        $scope.username_has_dot = true;
                     }
-                }, function (response) {
-                    // body...
-                    if (response.status === 400) {
-                        setTimeout(function () {
-                            $state.go('root.register', {reload: true});
-                        }, 600);
-                    } else {
-                        setTimeout(function () {
-                            // body...
-                            $state.go('root.dashboard', {reload: true});
-                        }, 600)
+                    if($scope.log.username[i] === '@'){
+                        $scope.username_has_monkey = true;
                     }
-                });
+                }
+                if($scope.username_has_dot && $scope.username_has_monkey) {
+                    progBar.css({
+                        width: 50 + '%'
+                    });
+                    CheckUserRes.save($scope.log, function (response) {
+                        // body...
+                        $scope.page_1 = false;
+                        $scope.page_2 = true;
+                        $scope.current_page = '2';
+                        if ($scope.errors) {
+                            $scope.errors = false;
+                        }
+                    }, function (response) {
+                        // body...
+                        if (response.status === 400) {
+                            setTimeout(function () {
+                                $state.go('root.register', {reload: true});
+                            }, 600);
+                        } else {
+                            setTimeout(function () {
+                                // body...
+                                $state.go('root.dashboard', {reload: true});
+                            }, 600)
+                        }
+                    });
+                } else {
+                    $scope.error = "Please enter valid email address.";
+                    $scope.errors = true;
+                }
             }
         };
 

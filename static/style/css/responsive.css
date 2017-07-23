@@ -998,9 +998,12 @@
     h1 {
         font-size: 30px;
     }
-    hover-bg .hover-text {
+    .hover-bg .hover-text {
         padding: 30% 0px;
     }
+	.sentEmail {
+		width: 300px;
+	}
 }
 /*
 @media only screen and (max-width:43.688em) {

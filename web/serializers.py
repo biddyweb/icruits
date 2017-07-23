@@ -22,7 +22,8 @@ from web.models import (
     PrehiredEmployee,
     HiredEmployee,
     WorkEnviorment2,
-    WaitingListToEnterStack
+    WaitingListToEnterStack,
+    InterviewDateAndTime
 )
 from rest_framework import serializers
 from libs.djoser.serializers import UserSerializer
@@ -180,7 +181,7 @@ class HelpSerializer(serializers.ModelSerializer):
 
 class QueueStackSerializer(serializers.ModelSerializer):
 
-    candidate_name  = UserSerializer(many=False, read_only=True)
+    candidate_name = UserSerializer(many=False, read_only=True)
 
     class Meta:
         model = QueueStack
@@ -219,9 +220,18 @@ class AppliedBlueprintsSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class InterviewDateTimeSerializer(serializers.ModelSerializer):
+    related_time_and_date_for_blueprint = BlueprintSerializer(many=False, read_only=True)
+
+    class Meta:
+        model = InterviewDateAndTime
+        fields = '__all__'
+
+
 class PrehiredEmployeeSerializer(serializers.ModelSerializer):
     related_blueprint_id = BlueprintSerializer(many=False, read_only=True)
     related_user_id = UserSerializer(many=False, read_only=True)
+    related_timedate = InterviewDateTimeSerializer(many=True, read_only=True)
 
     class Meta:
         model = PrehiredEmployee

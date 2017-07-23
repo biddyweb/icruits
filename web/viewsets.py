@@ -23,6 +23,7 @@ from web.models import (
     HiredEmployee,
     WorkEnviorment2,
     WaitingListToEnterStack,
+    InterviewDateAndTime,
 )
 from web.serializers import (
     BlueprintSerializer,
@@ -48,6 +49,7 @@ from web.serializers import (
     HiredEmployeeSerializer,
     WorkEnviorment2Serializer,
     WaitingListToEnterStackSerializer,
+    InterviewDateTimeSerializer,
 )
 from rest_framework import (
     viewsets,
@@ -915,7 +917,7 @@ class ReviewResultsViewSet(views.APIView):
             user_id = request.data['user']
             stack_id = request.data['stack']
         except:
-            return response.Response(status=status.HTTP_404_NOT_FOUND)
+            return response.Response(status=status.HTTP_400_BAD_REQUEST)
 
         user_obj = user.objects.filter(id=user_id).first()
         blueprint_obj = Blueprint.objects.filter(id=blueprint_id).first()
@@ -964,7 +966,9 @@ class PrehiredEmployeeViewSet(viewsets.ModelViewSet):
         company_email = blueprint_obj.related_user.email
 
         serializer = PrehiredEmployeeSerializer(data={'blueprint': blueprint_id,
-                                                      'employee': candidate})
+                                                      'employee': candidate,
+                                                      'location': interview_location,
+                                                      'letter': interview_letter})
 
         if serializer.is_valid():
             stack_obj.has_interview = True
