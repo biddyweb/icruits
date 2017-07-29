@@ -297,7 +297,7 @@
             <div id="detailImages" class="half-container-left-employer">
                 <img id="detail-img" class="img-responsive"
                      src="{{ blueprint.work_enviorment }}" ng-if="published">
-                <a href="{{ blueprint.url }}" class="company-url" ng-if="published">Visit us</a>
+                <!--a href="{{ blueprint.url }}" class="company-url" ng-if="published">Visit us</a-->
                 <div class="details-description" ng-if="published">
                     <span data-ng-bind="blueprint.description" class="text-justify"></span>
                 </div>
@@ -500,12 +500,12 @@
             <div class="details-description-upper">
                 <span data-ng-bind="blueprint.description" class="text-justify"></span>
             </div>
-            <a class="btn officeEnvBtn" id="scrollDown" href="#detailImagesSeeker">Your Workplace</a>
+            <a class="btn officeEnvBtn" data-scroll href="#detailImagesSeeker">Your Workplace</a>
 
             <div id="detailImagesSeeker" class="half-container-left">
                 <img id="detail-img" class="img-responsive"
                      src="{{ blueprint.work_enviorment }}">
-                <a href="{{ blueprint.url }}" class="company-url">Visit us</a>
+                <!--a href="{{ blueprint.url }}" class="company-url">Visit us</a-->
                 <div class="details-description">
                     <span data-ng-bind="blueprint.description" class="text-justify"></span>
                 </div>
@@ -758,24 +758,6 @@
     $('html,body').css({'height': 'auto'});
 </script>
 
-<script type="text/javascript">
-        $('html,body').animate({
-            scrollTop: 0
-        }, 900);
-        'use strict';
-        /*====================================
-            Page a Link Smooth Scrolling
-        ======================================*/
-        $('#scrollDown').click(function() {
-            if (location.pathname.replace(/^ \//,'') == this.pathname.replace(/^ \//,'') && location.hostname == this.hostname) {
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice( 1) +']');
-                if (target.length) {
-                    $('html,body').animate({
-                        scrollTop: target.offset().top
-                    }, 900);
-                    return false;
-                }
-            }
-        });
+<script>
+	var scroll = new SmoothScroll('a[href*="#"]');
 </script>

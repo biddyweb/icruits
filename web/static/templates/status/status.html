@@ -1,6 +1,6 @@
 <nav class="dashHeader text-center fixed top"><span>ICRUITS</span></nav>
 <div class="container" style="margin-top: 75px; margin-bottom: 100px;">
-    <div class="row" ng-repeat="status in myAppliedStatus" style="border: 2px solid #337ab7;margin-top: 10px;padding-bottom: 20px;">
+    <div class="row" ng-repeat="status in myAppliedStatus" style="border-bottom: 2px solid #337ab7;margin-top: 10px;padding-bottom: 20px;">
         <div class="col-sm-3">
             <div class="dashboardItem text-center blueprintItem" >
                 <div class="inner">
@@ -22,19 +22,19 @@
             </span>
             <p class="taskId" data-ng-bind="tasks"></p>
         </div-->
-        <div class="col-sm-3">
+        <div id="lvl1" class="col-sm-3">
             <span class="circle-info-status">
                 <span>2<span>%</span></span>
             </span>
             <p class="taskId">Level I</p>
         </div>
-        <div class="col-sm-3">
+        <div id="lvl2" class="col-sm-3">
             <span class="circle-info-status">
                 <span>0<span>%</span></span>
             </span>
             <p class="taskId">Level II</p>
         </div>
-        <div class="col-sm-3">
+        <div id="lvl3" class="col-sm-3">
             <span class="circle-info-status">
                 <span>0<span>%</span></span>
             </span>

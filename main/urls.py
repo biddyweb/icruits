@@ -32,6 +32,9 @@ from main.sitemaps import (
     RegisterSitemap,
     ActivateSitemap,
     NotPilotSitemap,
+    CookiePolicy,
+    UserAgreementSitemap,
+    TermsOfUseSitemap,
 )
 from web.viewsets import RobotsView
 
@@ -44,6 +47,9 @@ sitemaps = {
     #'help': HelpSitemap,
     'dashboard': DashboardSitemap,
     'jobs': BlueprintSitemap,
+    'cookie_policy': CookiePolicy,
+    'user_agreement': UserAgreementSitemap,
+    'terms_of_use': TermsOfUseSitemap,
 }
 
 admin.autodiscover()

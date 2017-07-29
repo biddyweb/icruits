@@ -319,6 +319,28 @@
                     }).$promise;
                 }
             }
+        }).state('root.terms_of_agreement', {
+            url: '/legal/user-agreement/',
+            controller: 'TOACtrl',
+            templateUrl: '/static/templates/legal/terms_of_agreement.html',
+            resolve: {
+                metaTags: function (metaTagsRes) {
+                    return metaTagsRes.get({
+                        page_name: 'terms_of_agreement'
+                    }).$promise;
+                }
+            }
+        }).state('root.terms_of_use', {
+            url: '/legal/terms-of-use/',
+            controller: 'TOUCtrl',
+            templateUrl: '/static/templates/legal/terms_of_use.html',
+            resolve: {
+                metaTags: function (metaTagsRes) {
+                    return metaTagsRes.get({
+                        page_name: 'terms_of_use'
+                    }).$promise;
+                }
+            }
         });
     }
 })();

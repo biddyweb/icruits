@@ -592,6 +592,32 @@
 
         $scope.jobDurationIncludes = [];
 
+        $scope.user.wants_explanation ? $scope.show_explanation = true : $scope.show_explanation = false;
+
+        $scope.user.preference_filter = '';
+
+        $scope.closeExplanationCanvas = function () {
+            $scope.user.wants_explanation ? $scope.show_explanation = false : $scope.show_explanation = true;
+        };
+
+        $scope.dontOrShowExplanationAgain = function () {
+            if($scope.user.wants_explanation){
+                $scope.user.wants_explanation = false;
+                UserInfoRes.update($scope.user, function (response) {
+                    $scope.show_explanation = false;
+                }, function (response) {
+                    $scope.errors = response.data;
+                });
+            } else {
+                $scope.user.wants_explanation = true;
+                UserInfoRes.update($scope.user, function (response) {
+                    $scope.show_explanation = true;
+                }, function (response) {
+                    $scope.errors = response.data;
+                });
+            }
+        };
+
         $scope.openFacebookPage = function () {
             $window.open('https://www.facebook.com/pages/iCruits/1548586008772579');
         };
@@ -1745,6 +1771,8 @@
         // just a bad fix for update error
         $scope.user_info.preference_filter = '';
 
+        $scope.explanation_choices = [{explanation_choice: true, label: 'Yes'}, {explanation_choice: false, label: 'No'}];
+
         $scope.updateProfile = function () {
             // body...
             UserInfoRes.update($scope.user_info, function (response) {
@@ -1946,6 +1974,34 @@
     CookiePolicyCtrl.$inject = ['$rootScope', '$scope', 'metaTags'];
 
     function CookiePolicyCtrl($rootScope, $scope, metaTags) {
+        $scope.$emit('metaTagsChanged', metaTags);
+
+        $rootScope.image = '';
+    }
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('app').controller('TOACtrl', TOACtrl);
+
+    TOACtrl.$inject = ['$rootScope', '$scope', 'metaTags'];
+
+    function TOACtrl($rootScope, $scope, metaTags) {
+        $scope.$emit('metaTagsChanged', metaTags);
+
+        $rootScope.image = '';
+    }
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('app').controller('TOUCtrl', TOUCtrl);
+
+    TOUCtrl.$inject = ['$rootScope', '$scope', 'metaTags'];
+
+    function TOUCtrl($rootScope, $scope, metaTags) {
         $scope.$emit('metaTagsChanged', metaTags);
 
         $rootScope.image = '';

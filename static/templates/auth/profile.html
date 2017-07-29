@@ -51,6 +51,21 @@
                    ng-model="user_info.address"
                    id="address">
         </div>
+        <div class="userTypeFont questions" style="margin-top: -10px; margin-bottom: 10px;">
+            <span class="userFields">Help Tips </span>
+            <div class="inputHolder"
+                 style="width: 16.5%;bottom: 0;" ng-repeat="exChoice in explanation_choices">
+                <label id="q3" style="font-weight: normal;">
+                    <input class="register-radio" type="radio"
+                           id="q3"
+                           name="q3"
+                           ng-value="exChoice.explanation_choice"
+                           ng-model="user_info.wants_explanation"
+                           checked/>
+                    {{ exChoice.label }}
+                </label>
+            </div>
+        </div>
         <a id="black-filter-btn" ng-click="updateProfile()">
             <span>
                 Update
@@ -71,7 +86,7 @@
 </section>
 
 
-<script type="text/javascript">         
+<script type="text/javascript">
     function initialize() {
         autocomplete = new google.maps.places.Autocomplete(document.getElementById('address'),{
           types : [ 'geocode' ]

@@ -154,6 +154,7 @@ class HelpViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [
         permissions.AllowAny,
     ]
+    lookup_field = 'purpose'
 
 
 class LogoutViewSet(views.APIView):
@@ -965,10 +966,17 @@ class PrehiredEmployeeViewSet(viewsets.ModelViewSet):
         blueprint_obj = Blueprint.objects.filter(id=blueprint_id).first()
         company_email = blueprint_obj.related_user.email
 
+        related_time_date = InterviewDateAndTime(for_blueprint=blueprint_id,
+                                                 date_and_time=selected_datatime)
+        related_time_date.save()
+
+        print related_time_date
+
         serializer = PrehiredEmployeeSerializer(data={'blueprint': blueprint_id,
                                                       'employee': candidate,
                                                       'location': interview_location,
-                                                      'letter': interview_letter})
+                                                      'letter': interview_letter,
+                                                      'datetime': related_time_date.id})
 
         if serializer.is_valid():
             stack_obj.has_interview = True

@@ -111,7 +111,7 @@
                                         <span class="nohover center-block blueprintTitle"
                                               data-ng-bind="JobFeed.blueprints.name">
                                         </span>
-                                        <span style="color: rgb(100, 100, 100)">@ <span class="dashboardCompanyName"
+                                        <span style="color: rgb(51, 122, 183);font-family: iCruitsAndaleMono;font-size: 1.05em;">@ <span class="dashboardCompanyName"
                                                       data-ng-bind="JobFeed.blueprints.company_name"></span></span>
                                         <div class="row">
                                             <span class="dashboardLocation" data-ng-bind="JobFeed.blueprints.current_location"></span>
@@ -374,7 +374,7 @@
                                         <span class="nohover center-block blueprintTitle"
                                               data-ng-bind="JobFeed.name">
                                         </span>
-                                        <span style="color: rgb(100, 100, 100)">@ <span class="dashboardCompanyName"
+                                        <span style="color: rgb(51, 122, 183);font-family: iCruitsAndaleMono;font-size: 1.05em;">@ <span class="dashboardCompanyName"
                                                       data-ng-bind="JobFeed.company_name"></span></span>
                                         <div class="row">
                                             <span class="dashboardLocation" data-ng-bind="JobFeed.current_location"></span>
@@ -666,14 +666,16 @@
                    class="form-control inputSizeFix"
                    ng-model="make_blueprint.max_queue" 
                    required>
-            <span class="new blueprintLabel"> Company Url </span>
-            <input type="text"
-                   title="Company Url"
-                   name="interview url"
-                   style="text-transform: uppercase;"
-                   class="form-control inputSizeFix blueprintName"
-                   ng-model="make_blueprint.url" 
-                   required>
+            <div class="row" style="margin-left: 20px;">
+                <span class="new blueprintLabel" style="margin-left: 0"> Company Url </span>
+                <input type="text"
+                       title="Company Url"
+                       name="interview url"
+                       style="text-transform: uppercase;"
+                       class="form-control inputSizeFix blueprintName"
+                       ng-model="make_blueprint.url"
+                       required>
+                </div>
         </div>
         <!--hr class="hrTopTen"-->
     </div>
@@ -695,7 +697,7 @@
                 <div id='refs'>
                     <div class="tasksLabel" style="/*padding-right: 25%;*/"> Employee </div>
                     <span class='form-control blueprintRefsInput' data-toggle='dropdown'>Select</span>
-                    <ul class='dropdown-menu refsFix'>
+                    <ul class='dropdown-menu refsFix' style="min-width: 20em;">
                         <div ng-repeat="employee in desired_employees_info">
                             <label>
                                 <input type='checkbox'
@@ -931,6 +933,18 @@
     <span class="copyrightStyle">© 2017 iCruits</span>
 </aside>
 <!-- END OF SMALL CANVAS MENU -->
+
+<div class="applyForBlueprint" ng-if="show_explanation">
+    <a href="javascript:void(0)"
+       class="closebtn closenav"
+       style="top: -1px;font-size: 1.7em;right: 10px;position: absolute;color: black;"
+       ng-click="closeExplanationCanvas()">&times;</a>
+    <span class="label-close" style="top: 0.76em;right: 28px;">CLOSE</span>
+
+
+</div>
+
+
 <script type="text/javascript">
 /*=================================================
                 Check display size

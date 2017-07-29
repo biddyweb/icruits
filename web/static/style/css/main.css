@@ -4,11 +4,15 @@
 ********************************************************/
 
 @charset "UTF-8";
+@font-face {
+    font-family: 'iCruitsAndaleMone';
+    src: url('../fonts/Andale-Mono.ttf') format('truetype');
+}
 menu {
     display: block
 }
 html {
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     -ms-text-size-adjust:100%;
     -webkit-text-size-adjust:100%;
     /*text-shadow: 1px 1px grey;*/
@@ -18,6 +22,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 body {
     background-color: rgb(255, 255, 255);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 h2 {
     font-size: 30px;
@@ -160,7 +165,7 @@ input.faChkSqr:after {
 }
 
 .checkbox-label {
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     font-size: 0.85em;
     bottom: 0.2em;
     text-transform: uppercase;
@@ -199,7 +204,7 @@ input.faChkSqr:after span.checkbox-label {
 
 #refs > ul > div > label > span {
     cursor: pointer;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     font-weight: lighter;
     margin-left: 10px;
 }
@@ -273,13 +278,13 @@ a:hover {
 
 .headingCaption {
     font-size: 2em;
-    font-family: futura-lt-w01-light,sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     cursor: default;
     margin-top: 20%;
 }
 
 .headingParagraph {
-    font-family: futura-lt-w01-light,sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     font-size: 1.7em;
     cursor: default;
     padding-left: 1.4em;
@@ -317,7 +322,7 @@ a:hover {
     top: 1.850em;
     color: rgb(255, 255, 255);
     text-transform: uppercase;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     font-size: 0.66em;
 }
 
@@ -390,7 +395,7 @@ a:hover {
     position: absolute;
     top: 20%;
     left: 10%;
-    font-family: futura-lt-w01-light,sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     font-size: 1.7em;
     cursor: default;
 }
@@ -435,7 +440,9 @@ VERY IMPORTANT!!!!
                 NEW DASHBOARD ITEM
 *******************************************************/
 .dashboardCompanyName {
+    font-size: 1.05em;
     color: #337ab7;
+    font-family: iCruitsAndaleMone;
 }
 
 .dashboardItem {
@@ -556,13 +563,12 @@ VERY IMPORTANT!!!!
     width: 20%;
     padding-right: 0;
     text-align: right;
-    font-family: "Andale Mono";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     color: rgb(0,0,0);
 }
 
 .dashboardItem .inner .blueprintTitle {
-    /*background-color: rgb(250, 250, 250);*/
-    color: rgb(0, 0, 0);
+    color: rgb(39, 140, 35);
     height: 42px;
     font-size: 1.55em;
     padding-top: 0.165em;
@@ -571,26 +577,30 @@ VERY IMPORTANT!!!!
     -ms-transition: opacity 0.5s ease;
     -o-transition: opacity 0.5s ease;
     transition: opacity 0.5s ease;
-    font-family: "Andale Mono";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     font-weight: 100;
 }
 
 .dashboardLocation {
+    font-size: 1.05em;
     display: inline;
     position: absolute;
     left: 0;
     margin-top: 1em;
     margin-left: 15%;
     color: rgb(100, 100, 100);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
 .dashboardSalary {
+    font-size: 1.05em;
     display: inline;
     position: absolute;
     right: 0;
     margin-top: 1em;
     margin-right: 15%;
     color: rgb(100, 100, 100);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
 #dashboard {
@@ -616,7 +626,7 @@ VERY IMPORTANT!!!!
     display: table;
     height: 100%;
     width: 100%;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     border: 1px solid rgb(240, 240, 240);
 }
 
@@ -726,7 +736,7 @@ VERY IMPORTANT!!!!
     font-weight: normal;
     display: block;
     position: absolute;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     text-transform: uppercase;
     letter-spacing: .1875rem;
     text-indent: 0;
@@ -747,7 +757,7 @@ VERY IMPORTANT!!!!
     font-weight: normal;
     display: block;
     position: absolute;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     text-transform: uppercase;
     letter-spacing: .1875rem;
     text-indent: 0;
@@ -828,7 +838,7 @@ VERY IMPORTANT!!!!
 }
 
 .sidenav a {
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     text-transform: uppercase;
     position: relative;
     color: rgb(180, 180, 180);
@@ -930,7 +940,7 @@ VERY IMPORTANT!!!!
 }
 
 #sidenav h3 {
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     text-transform: uppercase;
     font-size: 1.6125rem;
     color: rgb(255, 255, 255);
@@ -1018,7 +1028,7 @@ select:disabled {
     display: block;
     position: absolute;
     font-size: 0.8em;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     /*text-shadow: 1px 1px grey;*/
     text-transform: uppercase;
     letter-spacing: .1875rem;
@@ -1128,7 +1138,7 @@ select:disabled {
 .nav-tab {
     color: #028fcc;
     font-size: 16px;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     /*text-shadow: 1px 1px grey;*/
     line-height: 45px;
     position: absolute;
@@ -1286,7 +1296,7 @@ select:disabled {
     padding-right: 80px;
     display: inline-block;
     position: relative;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     font-size: .725rem;
     letter-spacing: .125rem;
     background: 0 0;
@@ -1581,7 +1591,7 @@ select:disabled {
     color: rgb(0, 0, 0);
     font-style: italic;
     font-size: 0.3em;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     left: 1.45em;
     text-shadow: 1px 1px grey;
 }
@@ -1640,7 +1650,7 @@ select:disabled {
 .inputHolder {
     width: 50%;
     font-size: 12px;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     display: inline-block;
     text-transform: uppercase;
     bottom: 1em;
@@ -1674,7 +1684,7 @@ input[type=search], textarea {
     -webkit-appearance: none;
     -webkit-border-radius: 0;
     background-color: #FFF;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     border: 1px solid #ccc;
     box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
     color: rgba(0,0,0,.75);
@@ -1729,7 +1739,7 @@ input, textarea, select, button, meter, progress {
     text-transform: uppercase;
     color: #000000;
     font-size: 1.825em;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     margin-bottom: 30px;
     z-index: 151515;
     letter-spacing: 0.405em;
@@ -1756,7 +1766,7 @@ input, textarea, select, button, meter, progress {
 
 .dashHeader span {
     margin-top: 38px;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     font-size: 1.525em;
     /*text-shadow: 1px 1px grey;*/
     top: 1em;
@@ -1916,7 +1926,7 @@ input, textarea, select, button, meter, progress {
 }
 
 .lead {
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     color: rgb(0,0,0);
     font-size: 2em;
 }
@@ -1940,7 +1950,7 @@ body,
 
 /* Close Button */
 #sidemenu a {
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     text-transform: uppercase;
     position: relative;
     color: rgb(180, 180, 180);
@@ -1973,7 +1983,7 @@ body,
 }
 
 #sidemenu-emp a {
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     text-transform: uppercase;
     position: relative;
     color: rgb(180, 180, 180);
@@ -2106,7 +2116,7 @@ body,
 }
 
 #sidemenu h3 {
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     text-transform: uppercase;
     font-size: 1.6125rem;
     color: rgb(255, 255, 255);
@@ -2116,7 +2126,7 @@ body,
 }
 
 .menu-wrap a {
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     text-transform: uppercase;
     position: relative;
     color: rgb(180, 180, 180);
@@ -2194,7 +2204,7 @@ body,
     top: 2.150em;
     color: rgb(0, 0, 0);
     text-transform: uppercase;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     font-size: 0.66em;
 }
 #filter-btn span.hover {
@@ -2232,7 +2242,7 @@ body,
 
 .blueprintContainer {
     width: 650px;
-    margin-top: 80px;
+    margin-top: 120px;
     margin-left: auto;
     margin-right: auto;
     position: relative;
@@ -2252,7 +2262,7 @@ body,
     margin-top: 10px;
     display: inline;
     width: 260px;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     text-transform: uppercase;
     margin-top: 10px;
 }
@@ -2268,7 +2278,7 @@ body,
 .blueprintTasksInput {
     display: inline;
     width: 100%;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     text-transform: uppercase;
     font-size: 0.8em!important;
     margin-top: 7px;
@@ -2283,7 +2293,7 @@ body,
 .blueprintRefsInput {
     display: inherit;
     width: 100%;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     text-transform: uppercase;
     font-size: 0.8em!important;
     margin-top: 9px;
@@ -2307,7 +2317,7 @@ body,
 .blueprintLabel {
     display: inline-block;
     margin-left: 20px;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     text-transform: uppercase;
     width: 150px;
     position: relative;
@@ -2317,7 +2327,7 @@ body,
 .blueprintDetailsLabel {
     display: inline-block;
     margin-left: 30px;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     text-transform: uppercase;
     width: 250px;
     position: relative;
@@ -2339,7 +2349,7 @@ body,
 
 .blueprintDescDetails {
     width: 100%;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     font-size: 1em!important;
     height: 60px;
 }
@@ -2351,7 +2361,7 @@ body,
 
 .blueprintDesc {
     width: 70%;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     font-size: 1em!important;
     height: 60px;
 }
@@ -2369,7 +2379,7 @@ body,
 .blueprintRefFix {
     display: inline;
     width: 100%;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     text-transform: uppercase;
     font-size: 0.8em!important;
     margin-top: 10px;
@@ -2377,7 +2387,7 @@ body,
 
 .blueprintHiddenFix {
     display: inline!important;
-    font-family: "Andale Mono"!important;
+    font-family: iCruitsAndaleMone!important;
     text-transform: uppercase;
     font-size: 0.8em!important;
     background-color: rgb(255,255,255)!important;
@@ -2391,7 +2401,7 @@ body,
 .hiddenRefFix {
     display: inline!important;
     width: 100%!important;
-    font-family: "Andale Mono"!important;
+    font-family: iCruitsAndaleMone!important;
     text-transform: uppercase;
     font-size: 0.8em!important;
     margin-top: 2.5px!important;
@@ -2416,7 +2426,7 @@ body,
 .blueprintTeamID {
     width: 100px!important; 
     display: inline!important;
-    font-family: "Andale Mono"!important;
+    font-family: iCruitsAndaleMone!important;
     text-transform: uppercase!important;
     font-size: 0.8em!important;
 }
@@ -2445,7 +2455,7 @@ body,
 .blueprintDescription {
     display: inline-block;
     margin-left: 20px;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     text-transform: uppercase;
     width: 150px;
     position: relative;
@@ -2459,7 +2469,7 @@ body,
 .blueprintInput {
     display: inline;
     width: 150px;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     text-transform: uppercase;
     font-size: .8em !important;
 }
@@ -2467,7 +2477,7 @@ body,
 .blueprintInputDetails {
     display: inline;
     width: 270px;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     text-transform: uppercase;
     font-size: .8em !important;
 }
@@ -2484,7 +2494,7 @@ body,
 
 .blueprintRadioLabel {
     font-weight: normal;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     text-transform: uppercase;
 }
 
@@ -2525,7 +2535,7 @@ body,
     top: 2.150em;
     color: rgb(0, 0, 0);
     text-transform: uppercase;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     font-size: 0.66em;
 }
 
@@ -2576,7 +2586,7 @@ body,
     top: 1.150em;
     color: rgb(0, 0, 0);
     text-transform: uppercase;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     font-size: 0.66em;
 }
 .advanced-btn span.hover {
@@ -2629,7 +2639,7 @@ body,
     top: 0.650em;
     color: rgb(0, 0, 0);
     text-transform: uppercase;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     font-size: 0.66em;
 }
 .add-btn span.hover {
@@ -2683,7 +2693,7 @@ body,
     top: 0.650em;
     color: rgb(255, 255, 255);
     text-transform: uppercase;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     font-size: 0.66em;
 }
 
@@ -2723,7 +2733,7 @@ body,
     width: 25%;
     max-width: 25%;
     display: inline-block;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     font-size: x-small;
     margin-left: auto;
     margin-right: 10%;
@@ -2731,7 +2741,7 @@ body,
 }
 
 .filter-label {
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     color: white;
     text-transform: uppercase;
     position: relative;
@@ -2757,7 +2767,7 @@ body,
 .tasksLabel {
     margin-left: auto;
     margin-right: auto;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     text-transform: uppercase;
     width: 1008px;
     text-align: center;
@@ -2800,7 +2810,7 @@ body,
 .createTaskInput {
     display: inline;
     width: 90%;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     text-transform: uppercase;
     font-size: 0.8em!important;
     margin-top: 10px;
@@ -2871,6 +2881,7 @@ body,
 }
 
 .applyContent .spanTextApply {
+    font-size: 0.975em;
     position: relative;
     width: 300px;
     display: block;
@@ -2886,6 +2897,7 @@ body,
 }
 
 .applyParagraph {
+    font-family: SansSerif;
     margin-top: 200px;
     margin-left: 20px;
     margin-right: 20px;
@@ -3045,8 +3057,8 @@ div .containerDetails {
 .details-description {
     background-color: #f0f0f0;
     cursor: default;
-    font-family: "Andale Mono";
-    font-size: 1.4em;
+    font-family: SansSerif;
+    font-size: 1.2em;
     padding-left: 15%;
     padding-right: 15%;
     padding-top: 20px;
@@ -3057,8 +3069,8 @@ div .containerDetails {
 
 .details-description-upper {
     cursor: default;
-    font-family: "Andale Mono";
-    font-size: 1.4em;
+    font-family: SansSerif;
+    font-size: 1.2em;
     padding-left: 15%;
     padding-right: 15%;
     padding-top: 20px;
@@ -3068,7 +3080,7 @@ div .containerDetails {
 }
 
 .blueprint-name {
-    font-family: "Andale Mono";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     font-size: 3em;
     text-transform: uppercase;
     color: rgb(0, 0, 0);
@@ -3080,7 +3092,7 @@ div .containerDetails {
 }
 
 .blueprint-name-employer {
-    font-family: "Andale Mono";
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     font-size: 3em;
     text-transform: uppercase;
     color: rgb(255, 255, 255);
@@ -3098,8 +3110,7 @@ div .containerDetails {
 .practice-info {
     text-transform: uppercase;
     font-family: SansSerif;
-    font-weight: bold;
-    font-size: 1.7em;
+    font-size: 1.725em;
     top: 37px;
     position: relative;
     color: #337ab7;
@@ -3120,6 +3131,8 @@ div .containerDetails {
     border: 5px solid rgba(0,0,0,0.8);
     border-radius: 20px;
     margin-bottom: 20px;
+    border-left: 0;
+    border-right: 0;
     cursor: default;
     text-align: center;
 }
@@ -3170,6 +3183,7 @@ div .containerDetails {
 }
 
 .taskId {
+    color: rgb(39, 140, 35);
     bottom: -15px;
     position: absolute;
     left: calc(50% - 30px);
@@ -3220,7 +3234,7 @@ div .containerDetails {
     top: 2.5em;
     color: rgb(0, 0, 0);
     text-transform: uppercase;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     font-size: 0.66em;
 }
 
@@ -3276,7 +3290,7 @@ div .containerDetails {
     top: 2.5em;
     color: rgb(0, 0, 0);
     text-transform: uppercase;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     font-size: 0.66em;
 }
 
@@ -3332,7 +3346,7 @@ div .containerDetails {
     top: 2.5em;
     color: rgb(0, 0, 0);
     text-transform: uppercase;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     font-size: 0.66em;
 }
 
@@ -3402,7 +3416,7 @@ div .containerDetails {
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
     color: rgb(0, 0, 0);
     text-transform: uppercase;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     font-size: 1.5em;
     top: 0.45em;
 }
@@ -3457,7 +3471,7 @@ div .containerDetails {
     transition: all .35s cubic-bezier(.455,.03,.515,.955);
     color: rgb(255, 255, 255);
     text-transform: uppercase;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     font-size: 1.6em;
     top: 0.45em;
 }
@@ -3513,7 +3527,7 @@ div .containerDetails {
     top: 1.850em;
     color: rgb(255, 255, 255);
     text-transform: uppercase;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     font-size: 0.66em;
 }
 
@@ -3545,7 +3559,7 @@ div .containerDetails {
     margin-right: auto;
     max-height: 150px;
     overflow-y: auto;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     font-size: 1.0em;
     padding-left: 18.4em;
 }
@@ -3556,7 +3570,7 @@ div .containerDetails {
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     font-size: 1.5em;
     text-transform: uppercase;
     width: 480px;
@@ -3574,7 +3588,7 @@ div .containerDetails {
 }
 
 .userpageFonts {
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     font-size: 1.2em;
     text-transform: uppercase;
 }
@@ -3617,7 +3631,7 @@ div .containerDetails {
     display: inline-block !important;
     width: 20%;
     text-transform: uppercase;
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     top: 0.5em!important;
     position: relative;
 }
@@ -3791,7 +3805,7 @@ body,
 }
 
 #sidemenu-emp h3 {
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     text-transform: uppercase;
     font-size: 1.6125rem;
     color: rgb(255, 255, 255);
@@ -3801,7 +3815,7 @@ body,
 }
 
 .menu-wrap-emp a {
-    font-family: "Andale Mono";
+    font-family: iCruitsAndaleMone;
     text-transform: uppercase;
     position: relative;
     color: rgb(180, 180, 180);

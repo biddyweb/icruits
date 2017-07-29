@@ -90,3 +90,35 @@ class NotPilotSitemap(Sitemap):
     def location(self, page):
         return '/' + page
 
+
+class CookiePolicy(Sitemap):
+    priority = half
+    changefreq = 'never'
+
+    def items(self):
+        return ['cookie-policy']
+
+    def location(self, page):
+        return '/legal/' + page + '/'
+
+
+class UserAgreementSitemap(Sitemap):
+    priority = half
+    changefreq = 'never'
+
+    def items(self):
+        return ['user-agreement']
+
+    def location(self, page):
+        return '/legal/' + page + '/'
+
+
+class TermsOfUseSitemap(Sitemap):
+    priority = half
+    changefreq = 'never'
+
+    def items(self):
+        return ['terms-of-use']
+
+    def location(self, page):
+        return '/legal/' + page + '/'

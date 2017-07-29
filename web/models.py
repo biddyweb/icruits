@@ -207,6 +207,8 @@ class Help(models.Model):
     title = models.CharField(_('Help'), max_length=255)
     description = models.CharField(_('Description'), max_length=255)
     content = models.TextField()
+    purpose = models.SlugField(_('Purpose of this Help page'), max_length=255,
+                               help_text=_('Describe what this help page is going to contain as help material'))
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -295,6 +297,16 @@ class user(AbstractUser):
             'Designates whether this user should be treated as active. '
             'Unselect this instead of deleting accounts.'
         ),
+    )
+    is_subscribed = models.BooleanField(
+        _('Subscribed to New Job Feed'),
+        default=False,
+        help_text=_('Designates whether this user should recieve email about new jobs posted on iCruits.')
+    )
+    wants_explanation = models.BooleanField(
+        _('Want to see explanation window'),
+        default=True,
+        help_text=_('Designates whether tis user should be displayed with explanation popup.')
     )
     address = models.CharField(max_length=255, blank=True)
     mobile_number = models.CharField(max_length=255, blank=True, validators=[number_validator])
