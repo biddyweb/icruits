@@ -543,7 +543,7 @@
                     </span>
                 </a>
                  <a id="blueprint-btn" ng-show="user.profile_type" class="blackFilter180R"
-                    ng-if="has_interview" ng-click="onInterview()">
+                    ng-if="has_interview" ng-click="inviteInterviewEmployeeCanvas()">
                     <span id="advanced-span" class="show-button">
                         Interview
                     </span>
@@ -615,13 +615,12 @@
 
 <!-- INVITE TO INTERVIEW STAGE EMPLOYER -->
 <div id="applyBlueprint" class="applyForBlueprint" style="height: 430px;width: 500px;margin-left: -250px;" ng-if="show_interview_canvas">
-    <p class="applyParagraph" style="margin-top: 0">
+    <p class="applyParagraph" style="margin-top: 0;font-size: 1.155em;">
         Setting up interview between You and Employee. <br>
-        <br>
         Please fill out short form for incoming interview. <br>
         <br>
     </p>
-    <span class="userFields" style="text-transform: none;top: 0!important;font-size: 1.125em;margin-left: 20px;">Date & Time </span>
+    <span class="userFields" style="width:25%;text-transform: none;top: 0!important;font-size: 1.125em;margin-left: 20px;">Date & Time </span>
     <input id="datetimeBox"
            type="text"
            name="Date & Time"
@@ -630,10 +629,10 @@
            style="font-size: 1em!important;width: 50%!important;"
            data-field="datetime"
            ng-model="datestring"
-           placeholder="Click here to select Date & Time..."
+           placeholder="Click to select Date & Time..."
            ng-change="setDateTimeValue()" readonly required>
     <br>
-    <span class="userFields" style="text-transform: none;top: 0!important;font-size: 1.125em;margin-left: 20px;">Location </span>
+    <span class="userFields" style="width:25%;text-transform: none;top: 0!important;font-size: 1.125em;margin-left: 20px;">Location </span>
     <input type="text"
            name="Company Location"
            title="Company Location"
@@ -643,13 +642,13 @@
            ng-change="setLocationValue()"
            id="interview_location" required>
     <br>
-    <span class="userFields" style="text-transform: none;top: -30px!important;font-size: 1.125em;margin-left: 20px;">Letter </span>
+    <span class="userFields" style="width:25%;text-transform: none;top: -30px!important;font-size: 1.125em;margin-left: 20px;">Letter </span>
     <textarea name="Letter"
               title="Letter"
               id="letter"
               ng-model="interview_letter"
               ng-change="setLetterValue()"
-              style="display: inline-block;width: 70%;height: 60px;"
+              style="display: inline-block;width: 65%;height: 60px;"
               rows="3"
               required>
 
@@ -697,6 +696,35 @@
         google.maps.event.addDomListener(window, 'load', initialize);
 
     </script>
+</div>
+
+<div id="applyBlueprint" class="applyForBlueprint" style="height: 360px;width: 500px;margin-left: -250px;" ng-if="show_interview_canvas_employee">
+    <p class="applyParagraph" style="margin-top: 0;font-size: 1.055em;">
+        Congratulations {{ user.username }}, you have been invited to interview! <br>
+        Please review informations about interview bellow. <br>
+        <br>
+    </p>
+    <span class="userFields" style="width:25%;text-transform: none;top: 0!important;font-size: 1.125em;margin-left: 20px;margin-bottom: 2px;">Date & Time</span>
+    <span style="margin-left: -5px; margin-bottom: 2px;">2 August 2017; 14:00</span>
+    <br>
+    <span class="userFields" style="width:25%;text-transform: none;top: 0!important;font-size: 1.125em;margin-left: 20px;margin-bottom: 2px;margin-top: 2px">Location</span>
+    <span style="margin-left: -5px;margin-bottom: 2px;margin-top: 2px">230 Park Ave #2800, New York</span>
+    <br>
+    <span class="userFields" style="width:25%;text-transform: none;top: 0!important;font-size: 1.125em;margin-left: 20px;margin-bottom: 2px;margin-top: 2px">Letter </span>
+    <span style="position: absolute;margin-right: 30px;margin-bottom: 2px;margin-top: 2px">
+        We're glad to inviting you to meeting interview.
+        You have already proved your skills and value which our company is seeking for. Now we're happy to be able to meet You in person.
+    </span>
+    <a id="black-filter-btn"
+       style="position: absolute; bottom: 50px; right: calc(50% - 90px);"
+       ng-click="inviteInterviewEmployeeCanvas()">
+        <span id="advanced-span" class="show-button">
+            Close
+        </span>
+        <span id="advanced-span-2" class="hover show-button">
+            Close
+        </span>
+    </a>
 </div>
 
 

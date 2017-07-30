@@ -515,7 +515,7 @@ class Queue(models.Model):
 
 
 class WorkEnviorment(models.Model):
-    image = ResizedImageField(size=[300, 600], crop=['middle', 'center'], upload_to='img/work-enviorment/temp/1/')
+    image = ResizedImageField(size=[800, 600], crop=['middle', 'center'], upload_to='img/work-enviorment/temp/1/')
     session = models.CharField(max_length=511)
 
     def __unicode__(self):
@@ -526,7 +526,7 @@ class WorkEnviorment(models.Model):
 
 
 class WorkEnviorment2(models.Model):
-    image = ResizedImageField(size=[300, 600], crop=['middle', 'center'], upload_to='img/work-enviorment/temp/2/')
+    image = ResizedImageField(size=[800, 600], crop=['middle', 'center'], upload_to='img/work-enviorment/temp/2/')
     session = models.CharField(max_length=511)
 
     def __unicode__(self):

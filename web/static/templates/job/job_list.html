@@ -913,7 +913,15 @@
         <h3 data-ng-bind="user.username"></h3>
     </div>
     <!--a data-ui-sref="root.dashboard">Dashboard</a-->
-    <a data-ui-sref="root.profile" data-ng-class="{active: state.includes('root.profile')}" class="menu-item" style="padding-top: 40px;">Profile</a>
+    <a data-ui-sref="root.profile"
+       data-ng-class="{active: state.includes('root.profile')}" class="menu-item" style="padding-top: 40px;">Profile</a>
+    <a class="menu-item" data-toggle="collapse" data-target="#legalLinks">Legal</a>
+    <div id="legalLinks" class="collapse dropdown-fix">
+        <a data-ui-sref="root.terms_of_agreement" class="legalLinks"
+           data-ng-class="{active: state.includes('root.terms_of_agreement')}">User Agreement</a>
+        <a data-ui-sref="root.terms_of_use" class="legalLinks"
+           data-ng-class="{active: state.includes('root.terms_of_use')}">Terms of Use</a>
+    </div>
     <a class="menu-item" data-toggle="collapse" data-target="#toggleViews">Display</a>
     <div id="toggleViews" class="collapse dropdown-fix">
         <span id="mobilePlatform">Mobile Display</span>
@@ -934,14 +942,79 @@
 </aside>
 <!-- END OF SMALL CANVAS MENU -->
 
-<div class="applyForBlueprint" ng-if="show_explanation">
+<div class="applyForBlueprint" ng-if="show_explanation" style="margin-left: -410px;height: 480px;width: 820px;">
     <a href="javascript:void(0)"
        class="closebtn closenav"
        style="top: -1px;font-size: 1.7em;right: 10px;position: absolute;color: black;"
        ng-click="closeExplanationCanvas()">&times;</a>
     <span class="label-close" style="top: 0.76em;right: 28px;">CLOSE</span>
-
-
+    <div ng-if="!user.profile_type">
+        <div id="home-slider" class="carousel slide carousel-fade" data-ride="carousel" style="top: 20px;">
+            <div class="carousel-inner">
+                <div class="item active" style="background-image: url(/static/img/explanation-screen/employer-ex-1.png)">
+                    <div class="caption">
+                        <p class="animated fadeInRightBig" style="margin-top: -86px;">Create your job Blueprint.</p>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(/static/img/explanation-screen/employer-ex-2.png)">
+                    <div class="caption">
+                        <p class="animated fadeInRightBig" style="margin-top: 80px;">Fill out Blueprint Form.</p>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(/static/img/explanation-screen/employer-ex-3.png)">
+                    <div class="caption">
+                        <p class="animated fadeInRightBig" style="margin-top: -86px;">Easily recognize newly created Blueprint.</p>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(/static/img/explanation-screen/employer-ex-4.png)">
+                    <div class="caption">
+                        <p class="animated fadeInRightBig" style="margin-top: -86px;">Publish Blueprint to become active job.</p>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(/static/img/explanation-screen/employer-ex-5.png)">
+                    <div class="caption">
+                        <p class="animated fadeInRightBig" style="margin-top: -86px;">iCruit your new employees.</p>
+                    </div>
+                </div>
+            </div>
+            <a class="left-control" href="#home-slider" data-slide="prev"><i class="fa fa-angle-left"></i></a>
+            <a class="right-control" href="#home-slider" data-slide="next"><i class="fa fa-angle-right"></i></a>
+        </div>
+    </div>
+    <div ng-if="user.profile_type">
+        <div id="home-slider" class="carousel slide carousel-fade" data-ride="carousel" style="top: 20px;">
+            <div class="carousel-inner">
+                <div class="item active" style="background-image: url(/static/img/explanation-screen/employee-ex-1.png)">
+                    <div class="caption">
+                        <p class="animated fadeInRightBig" style="margin-top: -86px;">Search for your future job.</p>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(/static/img/explanation-screen/employee-ex-2.png)">
+                    <div class="caption">
+                        <p class="animated fadeInRightBig" style="margin-top: -86px;">Use filter to match your experience criteria.</p>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(/static/img/explanation-screen/employee-ex-3.png)">
+                    <div class="caption">
+                        <p class="animated fadeInRightBig" style="margin-top: -86px;">Apply for your new job.</p>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(/static/img/explanation-screen/employee-ex-4.png)">
+                    <div class="caption">
+                        <p class="animated fadeInRightBig" style="margin-top: -86px;">Confirm and dive into job simulator.</p>
+                    </div>
+                </div>
+            </div>
+            <a class="left-control" href="#home-slider" data-slide="prev"><i class="fa fa-angle-left"></i></a>
+            <a class="right-control" href="#home-slider" data-slide="next"><i class="fa fa-angle-right"></i></a>
+        </div>
+    </div>
+    <span class="explanationSpan">
+        Show this screen on next login? <input type="checkbox"
+                                               class="faChkSqr"
+                                               ng-model="user.wants_explanation"
+                                               ng-click="explanationCheckBoxClicked()" \>
+    </span>
 </div>
 
 
@@ -986,6 +1059,7 @@ $(document).ready(checkSize);
         seekBtn6 = document.getElementById('dashboardBtn6'),
         seekBtn7 = document.getElementById('dashboardBtn7'),
         seekBtn8 = document.getElementById('dashboardBtn8'),
+        seekBtn9 = document.getElementById('dashboardBtn9'),
         dashEmp = document.getElementById('dashIcruitsEmp');
 
     function init() {
@@ -1029,6 +1103,7 @@ $(document).ready(checkSize);
             classie.remove( seekBtn6, 'hide-button' );
             classie.remove( seekBtn7, 'hide-button' );
             classie.remove( seekBtn8, 'hide-button' );
+            classie.remove( seekBtn9, 'hide-button' );
             $('body').css({
                 'overflow-y': 'auto',
                 'overflow-x': 'auto'
@@ -1050,6 +1125,7 @@ $(document).ready(checkSize);
             classie.add( seekBtn6, 'hide-button' );
             classie.add( seekBtn7, 'hide-button' );
             classie.add( seekBtn8, 'hide-button' );
+            classie.add( seekBtn9, 'hide-button' );
             $('body').css({
                 'overflow-y': 'auto',
                 'overflow-x': 'hidden'

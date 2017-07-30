@@ -577,6 +577,9 @@ class CreateBlueprintViewSet(viewsets.ModelViewSet):
         rel_user = request_data['related_user']
         desc = request_data['description']
 
+        if 'https://' or 'http://' not in blue_url.lower():
+            blue_url = 'http://' + str(blue_url)
+
         # add description!!
         serializer = BlueprintSerializer(data={'name': nam,
                                                'description': desc,

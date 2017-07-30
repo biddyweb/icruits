@@ -261,6 +261,130 @@ a:hover {
                 Home CSS
 ******************************************/
 #home-slider {
+  overflow: hidden;
+  position: relative;
+}
+
+#home-slider .caption {
+  position: absolute;
+  top: 50%;
+  margin-top: -104px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  text-transform: uppercase;
+  z-index: 15;
+  font-size: 18px;
+  font-weight: 300;
+  color: #fff;
+}
+
+#home-slider .caption h1 {
+  color: #fff;
+  font-size: 60px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.caption .btn-start {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding:14px 40px;
+  border: 1px solid #6e6d6c;
+  border-radius: 4px;
+  margin-top: 40px;
+}
+
+.caption .btn-start:hover {
+  color: #fff
+}
+
+.carousel-fade .carousel-inner .item {
+  opacity: 0;
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 400px;
+}
+
+.carousel-fade .carousel-inner .item:after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,.7);
+}
+
+.carousel-fade .carousel-inner .active {
+  opacity: 1;
+}
+.carousel-fade .carousel-inner .active.left,
+.carousel-fade .carousel-inner .active.right {
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+}
+.carousel-fade .carousel-inner .next.left,
+.carousel-fade .carousel-inner .prev.right {
+  opacity: 1;
+}
+.carousel-fade .carousel-control {
+  z-index: 2;
+}
+
+.left-control, .right-control {
+  position: absolute;
+  top: 50%;
+  height: 51px;
+  width: 51px;
+  line-height: 48px;
+  border-radius: 50%;
+  border:1px solid #fff;
+  z-index: 20;
+  font-size: 24px;
+  color: #fff;
+  text-align: center;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.left-control {
+  left: -51px
+}
+
+.right-control {
+  right: -51px;
+}
+
+.left-control:hover,
+.right-control:hover {
+  color: #fff;
+}
+
+#home-slider:hover .left-control {
+  left:30px
+}
+
+#home-slider:hover .right-control {
+  right:30px
+}
+
+.explanationSpan {
+    text-transform: uppercase;
+    bottom: 10px;
+    position: absolute;
+    width: 260px;
+    margin-left: 275px;
+}
+
+#home-slider {
     position: relative;
     background-image: url(/static/img/loginInputBackground.jpg);
     background-repeat: no-repeat;
@@ -310,6 +434,7 @@ a:hover {
 #loginBnt:hover {
     background-color: rgb(230,230,230);
     letter-spacing:.25rem;
+    border: 1px solid rgb(39, 140, 35);
 }
 
 #loginBnt span {
@@ -855,6 +980,10 @@ VERY IMPORTANT!!!!
     color: rgb(255, 255, 255);
     transition: all 750ms cubic-bezier(.25,.46,.45,.94);
     margin-left: 24px;
+}
+
+.legalLinks:hover, .legalLinks:focus {
+    margin-left: 0!important;
 }
 
 #pcDisplayEmp {
@@ -2192,7 +2321,8 @@ body,
 }
 #filter-btn:hover {
     background-color:#FFF;
-    letter-spacing:.25rem
+    letter-spacing:.25rem;
+    border: 1px solid rgb(39, 140, 35);
 }
 #filter-btn span { 
     pointer-events: none;
@@ -2522,7 +2652,8 @@ body,
 
 #apply-btn:hover {
     background-color: rgb(255, 255, 255);
-    letter-spacing: 0.25rem
+    letter-spacing: 0.25rem;
+    border: 1px solid rgb(39, 140, 35);
 }
 
 #apply-btn span { 
@@ -2574,7 +2705,8 @@ body,
 }
 .advanced-btn:hover {
     background-color:#fff;
-    letter-spacing:.25rem
+    letter-spacing:.25rem;
+    border: 1px solid rgb(39, 140, 35);
 }
 .advanced-btn span { 
     pointer-events: none;
@@ -2627,7 +2759,8 @@ body,
 }
 .add-btn:hover {
     background-color:#fff;
-    letter-spacing:.25rem
+    letter-spacing:.25rem;
+    border: 1px solid rgb(39, 140, 35);
 }
 .add-btn span { 
     pointer-events: none;
@@ -2678,7 +2811,8 @@ body,
 
 .rem-btn:hover {
     background-color:#fff;
-    letter-spacing:.25rem
+    letter-spacing:.25rem;
+    border: 1px solid rgb(39, 140, 35);
 }
 
 .rem-btn span { 
@@ -2897,7 +3031,7 @@ body,
 }
 
 .applyParagraph {
-    font-family: SansSerif;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
     margin-top: 200px;
     margin-left: 20px;
     margin-right: 20px;
@@ -3372,7 +3506,7 @@ div .containerDetails {
 
 .officeEnvBtn {
     margin-top: 20px;
-    margin-left: calc(50% - 100px);
+    margin-left: calc(50% - 95px);
     color: rgb(255,255,255);
     border: 1px solid black;
     width: 200px;
@@ -3405,6 +3539,7 @@ div .containerDetails {
     background-color: rgb(255,255,255);
     letter-spacing:.25rem;
     color: rgb(0,0,0);
+    border: 1px solid rgb(39, 140, 35);
 }
 
 #back-btn span { 
@@ -3460,6 +3595,7 @@ div .containerDetails {
 #black-back-btn:hover {
     background-color: rgb(230, 230, 230);
     letter-spacing:.25rem;
+    border: 1px solid rgb(39, 140, 35);
 }
 
 #black-back-btn span {
@@ -3515,6 +3651,7 @@ div .containerDetails {
 #black-filter-btn:hover {
     background-color: rgb(230,230,230);
     letter-spacing:.25rem;
+    border: 1px solid rgb(39, 140, 35);
 }
 
 #black-filter-btn span {
@@ -3631,7 +3768,7 @@ div .containerDetails {
     display: inline-block !important;
     width: 20%;
     text-transform: uppercase;
-    font-family: iCruitsAndaleMone;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;;
     top: 0.5em!important;
     position: relative;
 }

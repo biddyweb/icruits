@@ -214,10 +214,25 @@
             $scope.interview_letter = angular.element($('#letter'))[0].value;
         };
 
+        $scope.invited_to_interview_resource = [];
+
+        /* Sorting interview data table to match current logged in user and selected blueprint */
+        angular.forEach($scope.prehired_employee_info, function (value, index) {
+            if(value.blueprint === $scope.blueprint.id && value.employee === $scope.user.id) {
+                $scope.invited_to_interview_resource.push(value);
+            }
+        });
+
         $scope.show_interview_canvas = false;
+
+        $scope.show_interview_canvas_employee = true;
 
         $scope.inviteCanvas = function () {
             $scope.show_interview_canvas ? $scope.show_interview_canvas = false : $scope.show_interview_canvas = true;
+        };
+
+        $scope.inviteInterviewEmployeeCanvas = function () {
+            $scope.show_interview_canvas_employee ? $scope.show_interview_canvas_employee = false : $scope.show_interview_canvas_employee = true;
         };
 
         $scope.inviteToInterview = function () {
@@ -441,10 +456,6 @@
             });
         };
 
-        $scope.onInterview = function () {
-            $window.open('https://www.google.com', '_blank');
-        };
-
         $scope.$emit('metaTagsChanged', {
             title: $scope.blueprint.name,
             description: $scope.blueprint.description
@@ -598,6 +609,14 @@
 
         $scope.closeExplanationCanvas = function () {
             $scope.user.wants_explanation ? $scope.show_explanation = false : $scope.show_explanation = true;
+        };
+
+        $scope.explanationCheckBoxClicked = function () {
+            UserInfoRes.update($scope.user, function (response) {
+                $scope.CheckBoxData = response.data;
+            }, function (response) {
+                $scope.errors = response.data;
+            });
         };
 
         $scope.dontOrShowExplanationAgain = function () {
