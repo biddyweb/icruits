@@ -960,7 +960,7 @@ class PrehiredEmployeeViewSet(viewsets.ModelViewSet):
         interview_location = request.data['location']
         interview_letter = request.data['letter']
 
-        print blueprint_id
+        print interview_location
 
         stack_obj = QueueStack.objects.filter(id=que_stack).first()
         candidate = stack_obj.candidate.id
@@ -969,17 +969,17 @@ class PrehiredEmployeeViewSet(viewsets.ModelViewSet):
         blueprint_obj = Blueprint.objects.filter(id=blueprint_id).first()
         company_email = blueprint_obj.related_user.email
 
-        related_time_date = InterviewDateAndTime(for_blueprint=blueprint_id,
+        related_time_date = InterviewDateAndTime(for_blueprint=blueprint_obj,
                                                  date_and_time=selected_datatime)
         related_time_date.save()
 
         print related_time_date
 
-        serializer = PrehiredEmployeeSerializer(data={'blueprint': blueprint_id,
+        serializer = PrehiredEmployeeSerializer(data={'blueprint': blueprint_obj.id,
                                                       'employee': candidate,
                                                       'location': interview_location,
                                                       'letter': interview_letter,
-                                                      'datetime': related_time_date.id})
+                                                      'datetime': [related_time_date.id]})
 
         if serializer.is_valid():
             stack_obj.has_interview = True

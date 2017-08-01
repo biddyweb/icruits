@@ -697,6 +697,7 @@
 
 	.imageText {
 		font-size: 1.5em;
+		left: 20%;
 	}
 	.imageText span {
 		font-size: 2em;
@@ -874,7 +875,6 @@
     }
 	.imageText {
 		font-size: 1.4em;
-		left: 18px;
 	}
 	#loginImage {
     	margin: 20px auto;

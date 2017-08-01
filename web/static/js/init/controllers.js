@@ -225,7 +225,7 @@
 
         $scope.show_interview_canvas = false;
 
-        $scope.show_interview_canvas_employee = true;
+        $scope.show_interview_canvas_employee = false;
 
         $scope.inviteCanvas = function () {
             $scope.show_interview_canvas ? $scope.show_interview_canvas = false : $scope.show_interview_canvas = true;
@@ -425,6 +425,7 @@
                 $window.location.reload();
             }, function (response) {
                 // body...
+                $scope.sent_apply_mail = false;
                 $scope.errors = response.data;
                 $scope.reached_max_queue_error = $scope.errors.error;
                 $scope.reached_max_queue = true;
