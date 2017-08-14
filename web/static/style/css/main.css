@@ -3021,7 +3021,7 @@ body,
     position: relative;
     width: 300px;
     display: block;
-    top: 3.5em;
+    top: 4.2em;
     text-align: center;
     left: -7.65em;
     color: rgb(0, 0, 0);
@@ -3275,8 +3275,8 @@ div .containerDetails {
 
 .circle-info {
     border: 3px solid;
-    height: 45px;
-    width: 45px;
+    height: 55px;
+    width: 55px;
     border-radius: 85px;
     cursor: default;
     float: left;
@@ -3288,11 +3288,10 @@ div .containerDetails {
 }
 
 .circle-fonts {
-    text-transform: uppercase;
     font-family: SansSerif;
     font-weight: bold;
     font-size: 2.5em;
-    top: -0.15em;
+    top: -0.02em;
     position: relative;
     color: #337ab7;
 }
