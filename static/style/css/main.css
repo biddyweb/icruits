@@ -4,26 +4,37 @@
 ********************************************************/
 
 @charset "UTF-8";
+
+/*@font-face {*/
+    /*font-family: 'iCruitsAndaleMone';*/
+    /*src: url('../fonts/Andale-Mono.ttf') format('truetype');*/
+/*}*/
+
 @font-face {
     font-family: 'iCruitsAndaleMone';
-    src: url('../fonts/Andale-Mono.ttf') format('truetype');
+    src: url('../fonts/Roboto-Medium.ttf') format('truetype');
 }
+
 menu {
     display: block
 }
+
 html {
     font-family: iCruitsAndaleMone;
     -ms-text-size-adjust:100%;
     -webkit-text-size-adjust:100%;
     /*text-shadow: 1px 1px grey;*/
 }
+
 h1, h2, h3, h4, h5, h6 {
   color: #333;
 }
+
 body {
     background-color: rgb(255, 255, 255);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 }
+
 h2 {
     font-size: 30px;
     margin-bottom: 20px;
@@ -400,6 +411,7 @@ a:hover {
     margin-top: 75px;
     /*overflow: hidden;*/
     position: relative;
+    width: 100%;
 }
 
 .headingCaption {

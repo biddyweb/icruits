@@ -1,9 +1,14 @@
 {% load static %}
 <header id="home" ng-controller="LoginCtrl">
-    <div class="container">
+    <nav class="dashHeader text-center fixed top"><span>ICRUITS</span></nav>
+    <div>
         <div id="loginImage">
-            <div class="row">
-                <div class="col-sm-8">
+            <div class="">
+                <video id="videoIntro" width="100%" autoplay>
+                  <source src="https://video.wixstatic.com/video/016a1b_489f914b4f984d7a9d9a945221398281/360p/mp4/file.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+                <!--div class="col-sm-8">
                     <img id="imageLogin" class="img-responsive page-scroll" src="/static/img/login-fixed.png" style="height: 600px">
                     <span class="imageText">I AM <span>iCruit</span></span>
                 </div>
@@ -27,7 +32,7 @@
                             </span>
                         </a>
                     </div>
-                </div>
+                </div-->
             </div>
         </div>
     </div>
@@ -79,3 +84,11 @@
         </form>
     </div>
 </header>
+
+<script>
+    var cont = $('#loginImage'), video = $('#videoIntro');
+
+    video.css({
+        'width': cont.width() + 'px'
+    });
+</script>
