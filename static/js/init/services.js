@@ -707,6 +707,18 @@
 (function () {
     'use strict';
 
+    angular.module('app').factory('SubscribedRes', SubscribedRes);
+
+    SubscribedRes.$inject = ['$resource'];
+
+    function SubscribedRes($resource) {
+        return $resource('/api/subscribed/ ');
+    }
+})();
+
+(function () {
+    'use strict';
+
     angular.module('app').factory('HiredEmpRes', HiredEmpRes);
 
     HiredEmpRes.$inject = ['$resource'];

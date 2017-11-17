@@ -18,7 +18,8 @@ from web.models import (
     Location,
     Visa,
     TestPilots,
-    DesiredEmployee
+    DesiredEmployee,
+    Subscribed
 )
 
 
@@ -36,39 +37,39 @@ class VisaAdmin(admin.ModelAdmin):
 
 
 class IndustryAdmin(admin.ModelAdmin):
-	pass
+    pass
 
 
 class CompanyTypeAdmin(admin.ModelAdmin):
-	pass
+    pass
 
 
 class SalaryRangeAdmin(admin.ModelAdmin):
-	pass
+    pass
 
 
 class WaitIntervalAdmin(admin.ModelAdmin):
-	pass
+    pass
 
 
 class OnJobSuccessAdmin(admin.ModelAdmin):
-	pass
+    pass
 
 
 class JobTypeAdmin(admin.ModelAdmin):
-	pass
+    pass
 
 
 class JobDurationAdmin(admin.ModelAdmin):
-	pass
+    pass
 
 
 class ExperienceLevelAdmin(admin.ModelAdmin):
-	pass
+    pass
 
 
 class QueueAdmin(admin.ModelAdmin):
-	pass
+    pass
 
 
 class QuestionAnswerInline(admin.StackedInline):
@@ -81,6 +82,7 @@ class HelpAdmin(admin.ModelAdmin):
 
 class UserAdmin(admin.ModelAdmin):
     pass
+
 
 class ProfileTypeAdmin(admin.ModelAdmin):
     pass
@@ -95,7 +97,11 @@ class BlueprintAdmin(admin.ModelAdmin):
 
 
 class BlueprintTasksAdmin(admin.ModelAdmin):
-	pass
+    pass
+
+
+class SubscribedAdmin(admin.ModelAdmin):
+    pass
 
 
 admin.site.register(user, UserAdmin)
@@ -116,3 +122,4 @@ admin.site.register(Location, LocationAdmin)
 admin.site.register(Visa, VisaAdmin)
 admin.site.register(TestPilots, TestPilotsAdmin)
 admin.site.register(DesiredEmployee, DesiredEmployeeAdmin)
+admin.site.register(Subscribed, SubscribedAdmin)

@@ -577,3 +577,16 @@ class WaitingListToEnterStack(models.Model):
 
     class Meta:
         verbose_name = 'Waiting List'
+
+
+class Subscribed(models.Model):
+    email = models.CharField(max_length=256)
+
+    def __unicode__(self):
+        return self.email
+
+    def __str__(self):
+        return self.email
+
+    class Meta:
+        verbose_name_plural = 'Subscribed'

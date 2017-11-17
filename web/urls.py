@@ -37,6 +37,7 @@ from web.viewsets import (
     HiredEmployeeViewSet,
     CheckUsernameViewSet,
     WorkEnviorment2ViewSet,
+    SubscribedViewSet
 )
 from libs.djoser.views import (
     RegistrationView,
@@ -77,6 +78,7 @@ router.register(r'queue-stack', QueueStackViewSet, base_name='queue-stack')
 router.register(r'applied-blueprints', AppliedBlueprintsViewSet, base_name='applied-blueprints')
 router.register(r'prehired-employee', PrehiredEmployeeViewSet, base_name='prehired-employee')
 router.register(r'hired-employee', HiredEmployeeViewSet, base_name='hired-employee')
+router.register(r'subscribed', SubscribedViewSet, base_name='subscribed')
 
 base_urlpatterns = (
     url(r'^auth/register/$', RegistrationView.as_view(), name='register'),

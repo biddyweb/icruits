@@ -24,6 +24,7 @@ from web.models import (
     WorkEnviorment2,
     WaitingListToEnterStack,
     InterviewDateAndTime,
+    Subscribed
 )
 from web.serializers import (
     BlueprintSerializer,
@@ -50,6 +51,7 @@ from web.serializers import (
     WorkEnviorment2Serializer,
     WaitingListToEnterStackSerializer,
     InterviewDateTimeSerializer,
+    SubscribedSerializer
 )
 from rest_framework import (
     viewsets,
@@ -101,6 +103,14 @@ class JobFeedViewSet(viewsets.ModelViewSet):
         #permissions.AllowAny,
     ]
     lookup_field = 'name_slug'
+
+
+class SubscribedViewSet(viewsets.ModelViewSet):
+    queryset = Subscribed.objects.all()
+    serializer_class = SubscribedSerializer
+    permission_classes = [
+        permissions.AllowAny,
+    ]
 
 
 class QueueViewSet(viewsets.ModelViewSet):

@@ -23,11 +23,19 @@ from web.models import (
     HiredEmployee,
     WorkEnviorment2,
     WaitingListToEnterStack,
-    InterviewDateAndTime
+    InterviewDateAndTime,
+    Subscribed
 )
 from rest_framework import serializers
 from libs.djoser.serializers import UserSerializer
 from libs.image_thumbnailer import get_responsive_image_url
+
+
+class SubscribedSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Subscribed
+        fields = '__all__'
 
 
 class VisaSerializer(serializers.ModelSerializer):

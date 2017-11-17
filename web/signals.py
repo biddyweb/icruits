@@ -8,7 +8,8 @@ from django.db.models.signals import (
 from web.models import (
     WorkEnviorment,
     WorkEnviorment2,
-    Blueprint
+    Blueprint,
+    Subscribed
 )
 
 
@@ -26,3 +27,6 @@ def delete_workenvironment2_temp(sender, instance, **kwargs):
         return
     storage, path = instance.image.storage, instance.image.path
     storage.delete(path)
+
+# @receiver(post_save, sender=Subscribed)
+# def send_subsribed

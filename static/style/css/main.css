@@ -408,7 +408,7 @@ a:hover {
 }
 
 #loginImage {
-    margin-top: 75px;
+    /*margin-top: 75px;*/
     /*overflow: hidden;*/
     position: relative;
     width: 100%;
@@ -428,6 +428,55 @@ a:hover {
     padding-left: 1.4em;
     color: rgb(120, 120, 120);
     padding-top: 0.7em;
+}
+
+.subscribe-Btn {
+    background-color: rgba(14,46,71,1) !important;
+    border-color: #0E2E47;
+    border-width: style.linesSliderpx;
+    color: rgba(255,255,255,1);
+    padding: 0.7em 1.2em;
+    font-size: 1.1em;
+    margin-left: 20px;
+}
+
+.subscribe-Btn:hover, .subscribe-Btn:focus {
+    color: rgba(255,255,255,1)!important;
+}
+
+.subscribe-email {
+    font-size: 1.1em!important;
+    padding: 0.7em 0.9em;
+    height: auto!important;
+    width: 350px!important;
+    display: inline!important;
+    margin-top: 2em!important;
+}
+
+.subscribe-email:focus {
+    outline: none;
+}
+
+.toTop, .toBottom {
+    display: block;
+    font-size: 1.5em;
+    color: black;
+    width: 51px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid;
+    padding: 1em 0;
+    margin-top: 4em;
+}
+
+.toTop:hover {
+    color: black;
+    border-color: black;
+    cursor: pointer;
+}
+
+.toBottom:hover {
+    cursor: pointer;
 }
 
 #navBtn {
@@ -469,6 +518,7 @@ a:hover {
     top: 100%;
     visibility: hidden;
     opacity: 0;
+    margin-top: 0;
 }
 
 #navBtn:not(.disabled):not([disabled]):not(.active):hover>span {
@@ -478,7 +528,7 @@ a:hover {
 }
 
 #navBtn:not(.disabled):not([disabled]):not(.active):hover>span.hover{
-    top: -1.70em;
+    top: 1.1em;
     visibility: visible;
     opacity: 1;
     letter-spacing: .35rem;
@@ -1972,13 +2022,13 @@ input, textarea, select, button, meter, progress {
 
 .dashHeader span {
     margin-top: 38px;
-    color: rgba(78, 154, 220, 1);
+    color: white;
     font-family: iCruitsAndaleMone;
-    font-size: 2.125em;
+    font-size: 1.825em;
     /* text-shadow: 1px 1px grey; */
-    top: 0.5em;
+    top: 1em;
     position: relative;
-    letter-spacing: 0.225em;
+    letter-spacing: 0.125em;
     margin-left: 1.7em;
 }
 

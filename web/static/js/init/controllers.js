@@ -1628,14 +1628,16 @@
 
     angular.module('app').controller('LoginCtrl', LoginCtrl);
 
-    LoginCtrl.$inject = ['$scope', '$rootScope', '$state', 'LoginRes', 'JWTTokenRes', 'CheckUserRes'];
+    LoginCtrl.$inject = ['$scope', '$rootScope', '$state', 'LoginRes', 'JWTTokenRes', 'CheckUserRes', 'SubscribedRes'];
 
-    function LoginCtrl($scope, $rootScope, $state, LoginRes, JWTTokenRes, CheckUserRes) {
+    function LoginCtrl($scope, $rootScope, $state, LoginRes, JWTTokenRes, CheckUserRes, SubscribedRes) {
 
         var progBar = angular.element($('#progressBar'));
 
         $scope.page_1 = true;
         $scope.page_2 = false;
+
+        $scope.subscribeUser = {};
 
         if($scope.page_1){
             $scope.current_page = '1';
@@ -1648,6 +1650,16 @@
         $scope.log = {};
 
         $scope.errors = false;
+        $scope.subscribeSent = true;
+
+        $scope.subscribeMe = function () {
+            SubscribedRes.save($scope.subscribeUser, function (response) {
+                $scope.subscribeSent = true;
+            }, function (response) {
+                $scope.subscribeSent = false;
+                $scope.err = response.data;
+            });
+        };
 
         $scope.prevPage = function () {
             $scope.page_1 = true;

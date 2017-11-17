@@ -2,30 +2,71 @@
 <header id="home" ng-controller="LoginCtrl">
     <nav class="dashHeader fixed top">
         <span>ICRUITS</span>
-        <a id="navBtn">
+        <a id="navBtn" class="subscribeBtn">
             <span id="advanced-span" class="show-button">
-                Employee
+                Subscribe
             </span>
             <span id="advanced-span-2" class="hover show-button">
-                Employee
+                Subscribe
             </span>
         </a>
-        <a id="navBtn">
+        <a id="navBtn" class="homeBtn">
             <span id="advanced-span" class="show-button">
-                Employer
+                Home
             </span>
             <span id="advanced-span-2" class="hover show-button">
-                Employer
+                Home
             </span>
         </a>
     </nav>
     <div>
         <div id="loginImage">
             <div class="">
-                <video id="videoIntro" width="100%" autoplay>
-                  <source src="https://video.wixstatic.com/video/016a1b_489f914b4f984d7a9d9a945221398281/360p/mp4/file.mp4" type="video/mp4">
+                <video preload="auto" id="videoIntro" width="100%" style="position: fixed;" autoplay loop>
+                  <source src="https://video.wixstatic.com/video/016a1b_1a5d47b6b5a946a0a5aba8f970b720c4/1080p/mp4/file.mp4" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
+                <div style="position: absolute;margin-top: calc(25% - 160px);margin-left: calc(50% - 252px);margin-right: auto;">
+                    <div style="font-size: 6em;color: white;text-align: center;margin-bottom: -0.4em;">
+                        GOODBYE
+                    </div>
+                    <div style="font-size: 6em;color: white;text-align: center;">
+                        RECRUITING
+                    </div>
+                    <div style="font-size: 1.2em;color: lightgrey;text-align: center;letter-spacing: 0.2em;margin-top: 1em;">
+                        New Hiring platform that will enable applicants
+                    </div>
+                    <div style="font-size: 1.2em;color: lightgrey;text-align: center;letter-spacing: 0.2em;">
+                        to self-recruit and bypass tradition recruiting.
+                    </div>
+                    <a class="fa fa-arrow-down toBottom" style="color: white;padding-left: 0.6em;width: 50px;"></a>
+                </div>
+                <div id="containerInfo" style="width: 100%;position: relative;">
+                    <img src="https://static.wixstatic.com/media/1e47b2_5933ee74ead1423ea0746d23c30f1b4e~mv2.png/v1/fill/w_1221,h_1080,al_t/1e47b2_5933ee74ead1423ea0746d23c30f1b4e~mv2.png"
+                         style="width: 100%; height: 1200px; object-fit: cover;">
+                    <div style="position: relative;margin-top: -600px;" class="text-center">
+                        <h2 class="text-center text-uppercase" style="letter-spacing: 0.2em;">
+                            About
+                        </h2>
+                        <p style="width: 33.33333%;margin-left: 33.33333%;margin-top: 2em;margin-bottom: 2em;">
+                            Give me info to place it here, so this field can also be filled.
+                        </p>
+                        <h3 style="margin-top: 4em;margin-bottom: 2em;">
+                            Subscribe to be the first to know about our launch
+                        </h3>
+                        <input class="subscribe-email"
+                               type="text"
+                               title="Email"
+                               placeholder="Email Address"
+                               ng-model="subscribeUser.email"
+                               required>
+                        <button class="btn subscribe-Btn" style="display: inline" ng-click="subscribeMe()">Subscribe Now</button>
+                        <div ng-if="!subscribeSent" ng-repeat="e in err.email">
+                            <p ng-bind="e"></p>
+                        </div>
+                        <a class="fa fa-arrow-up toTop"></a>
+                    </div>
+                </div>
                 <!--div class="col-sm-8">
                     <img id="imageLogin" class="img-responsive page-scroll" src="/static/img/login-fixed.png" style="height: 600px">
                     <span class="imageText">I AM <span>iCruit</span></span>
@@ -106,7 +147,34 @@
 <script>
     var cont = $('#loginImage'), video = $('#videoIntro');
 
+    $('#containerInfo').css({
+        'top': video.height()
+    });
     video.css({
         'width': cont.width() + 'px'
+    });
+
+    $('.homeBtn').click(function () {
+        $('body, html').animate({
+            scrollTop: 0
+        }, 'slow');
+    });
+
+    $('.toTop').click(function () {
+        $('body, html').animate({
+            scrollTop: 0
+        }, 'slow');
+    });
+
+    $('.toBottom').click(function () {
+        $('body, html').animate({
+            scrollTop: $('.subscribe-email').offset().top
+        }, 'slow');
+    });
+
+    $('.subscribeBtn').click(function () {
+        $('body, html').animate({
+            scrollTop: $('.subscribe-email').offset().top
+        }, 'slow');
     });
 </script>
