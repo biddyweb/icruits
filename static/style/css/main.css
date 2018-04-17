@@ -409,21 +409,15 @@ a:hover {
 
 #loginImage {
     margin-top: 125px;
-    margin-left: 50px;
+    margin-left: 100px;
+    height: 1500px;
     /*overflow: hidden;*/
-    position: relative;
+    position: absolute;
     /*width: 100%;*/
 }
 
-#imageLogin {
-    margin-top: 225px;
-    height: 1200px;
-    /*overflow: hidden;*/
-    position: absolute;
-}
-
 .headingCaption {
-    font-size: 2em;
+    font-size: 9em;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     cursor: default;
     margin-top: 20%;
@@ -431,7 +425,7 @@ a:hover {
 
 .headingParagraph {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    font-size: 6.2em;
+    font-size: 9.2em;
     font-weight: bolder;
     cursor: default;
     padding-left: 1.4em;
