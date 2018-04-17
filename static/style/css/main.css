@@ -415,7 +415,12 @@ a:hover {
     /*width: 100%;*/
 }
 
-
+#imageLogin {
+    margin-top: 225px;
+    height: 1200px;
+    /*overflow: hidden;*/
+    position: absolute;
+}
 
 .headingCaption {
     font-size: 2em;
