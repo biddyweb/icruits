@@ -194,7 +194,7 @@ class Migration(migrations.Migration):
             name='ProfileType',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('account_type', models.CharField(choices=[('JobSeeker', 'JobSeeker'), ('Employer', 'Employer')], max_length=122)),
+                ('account_type', models.CharField(choices=[('JobSeeker', 'JobSeeker'), ('Employee', 'Employee')], max_length=122)),
             ],
             options={
                 'verbose_name': 'Profile Type',

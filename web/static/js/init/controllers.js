@@ -1474,7 +1474,7 @@
             $scope.current_page = '1';
         }
 
-        $scope.profile_types = [{profile_type: true, label: 'JobSeeker'}, {profile_type: false, label: 'Employer'}];
+        $scope.profile_types = [{profile_type: true, label: 'JobSeeker'}, {profile_type: false, label: 'Employee'}];
 
         $scope.prevPage = function () {
             if($scope.page_2){
