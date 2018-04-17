@@ -417,8 +417,9 @@ a:hover {
 
 #imageLogin {
     margin-top: 225px;
+    height: 1200px;
     /*overflow: hidden;*/
-    position: relative;
+    /*position: relative;*/
 }
 
 .headingCaption {
