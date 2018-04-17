@@ -415,6 +415,12 @@ a:hover {
     /*width: 100%;*/
 }
 
+#imageLogin {
+    margin-top: 225px;
+    /*overflow: hidden;*/
+    position: relative;
+}
+
 .headingCaption {
     font-size: 2em;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
