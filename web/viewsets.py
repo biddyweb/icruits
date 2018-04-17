@@ -644,7 +644,7 @@ class CreateBlueprintViewSet(viewsets.ModelViewSet):
 
                     send_mail(subject='New Blueprint Created',
                               message='',
-                              from_email='alek.rajic@icruits.com',
+                              from_email='manohar.paul@icruits.com',
                               recipient_list=[str(user_obj.email), ],
                               html_message=html_email_content)
 
@@ -652,11 +652,10 @@ class CreateBlueprintViewSet(viewsets.ModelViewSet):
 
             send_mail(subject='New Blueprint Created',
                       message='',
-                      from_email='alek.rajic@icruits.com',
-                      recipient_list=['lekhaj123btmn@gmail.com',
-                                      'paulmanohar5@gmail.com',
+                      from_email='manohar.paul@icruits.com',
+                      recipient_list=['paulmanohar5@gmail.com',
                                       'manishbhan@icruits.com',
-                                      'alek.rajic@icruits.com', ],
+                                      'manohar.paul@icruits.com', ],
                       html_message=html_email_content)
 
             return response.Response(serializer.data, status=status.HTTP_201_CREATED, headers=_headers)
@@ -711,7 +710,7 @@ class QueueStackViewSet(viewsets.ModelViewSet):
 
             send_mail(subject='Left Blueprints Queue',
                       message='',
-                      from_email='alek.rajic@icruits.com',
+                      from_email='manohar.paul@icruits.com',
                       recipient_list=[user_email, ],
                       html_message=html_email)
 
@@ -740,7 +739,7 @@ class QueueStackViewSet(viewsets.ModelViewSet):
                         html_email_info = render_to_string('email_templates/enter_que_from_waitlist.html', info_context)
                         send_mail(subject='You have entered Queue',
                                   message='',
-                                  from_email='alek.rajic@icruits.com',
+                                  from_email='manohar.paul@icruits.com',
                                   recipient_list=[user_obj.email, ],
                                   html_message=html_email_info)
                         people.delete()
@@ -803,7 +802,7 @@ class AppliedBlueprintsViewSet(viewsets.ModelViewSet):
 
             send_mail(subject='Applied to Job',
                       message='',
-                      from_email='alek.rajic@icruits.com',
+                      from_email='manohar.paul@icruits.com',
                       recipient_list=[str(user_obj.email), ],
                       html_message=html_email_content)
 
@@ -827,7 +826,7 @@ class AppliedBlueprintsViewSet(viewsets.ModelViewSet):
             self.perform_destroy(instance)
             send_mail(subject='Unapplied from Job',
                       message='',
-                      from_email='alek.rajic@icruits.com',
+                      from_email='manohar.paul@icruits.com',
                       recipient_list=[str(addr,), ],
                       html_message=html_email_context)
 
@@ -893,7 +892,7 @@ class AppliedBlueprintsViewSet(viewsets.ModelViewSet):
                     candidate_wishlist.save()
                     send_mail(subject="Maximum Queue Reached",
                               message='',
-                              from_email='alek.rajic@icruits.com',
+                              from_email='manohar.paul@icruits.com',
                               recipient_list=[user_email, ],
                               html_message=html_message)
                     return response.Response(data={'error': 'Maximum queue number reached. '
@@ -948,7 +947,7 @@ class ReviewResultsViewSet(views.APIView):
         email_html = render_to_string('email_templates/reviewing_results.html', email_html_context)
         send_mail(subject='Reviewing Your Simulation Results',
                   message='',
-                  from_email='alek.rajic@icruits.com',
+                  from_email='manohar.paul@icruits.com',
                   recipient_list=[send_to, ],
                   html_message=email_html)
 
@@ -1011,12 +1010,12 @@ class PrehiredEmployeeViewSet(viewsets.ModelViewSet):
                                                    email_html_context_employer)
             send_mail(subject='Incoming Interview',
                       message='',
-                      from_email='alek.rajic@icruits.com',
+                      from_email='manohar.paul@icruits.com',
                       recipient_list=[user_obj.email, ],
                       html_message=email_html)
             send_mail(subject='Set up Interview',
                       message='',
-                      from_email='alek.rajic@icruits.com',
+                      from_email='manohar.paul@icruits.com',
                       recipient_list=[company_email, ],
                       html_message=employer_email_html)
             return response.Response(data=serializer.data, status=status.HTTP_201_CREATED)

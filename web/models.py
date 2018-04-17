@@ -85,7 +85,7 @@ class ExperienceLevel(models.Model):
 
 
 PROFILE_TYPE = (('JobSeeker', 'JobSeeker'),
-                ('Employer', 'Employer'))
+                ('Employee', 'Employee'))
 
 
 class ProfileType(models.Model):
