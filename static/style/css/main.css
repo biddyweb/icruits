@@ -552,9 +552,9 @@ nav.dashHeader > a:last-of-type {
     display: flex;
     align-items: center;
     
-    background-color: rgb(0, 0, 0);
-    width: 180px;
-    height: 50px;
+    background-color: rgb(0, 0, 255);
+    width: 160px;
+    height: 40px;
     text-decoration: none;
     letter-spacing: .25rem;
     margin-top: 100px;
@@ -568,7 +568,7 @@ nav.dashHeader > a:last-of-type {
 }
 
 #loginBnt:hover {
-    background-color: rgb(230,230,230);
+    background-color: rgb(240,240,240);
     letter-spacing:.25rem;
     border: 1px solid rgb(39, 140, 35);
 }
