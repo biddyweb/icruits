@@ -421,7 +421,7 @@ a:hover {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     cursor: default;
     text-align: 'center';
-    margin-top: 20%;
+    margin-top: 10%;
 }
 
 .headingParagraph {
@@ -549,12 +549,16 @@ nav.dashHeader > a:last-of-type {
 }
 
 #loginBnt {
+    display: flex;
+    align-items: center;
+    
     background-color: rgb(0, 0, 0);
     width: 180px;
     height: 50px;
     text-decoration: none;
     letter-spacing: .25rem;
     margin-top: 100px;
+    padding-right: 100px;
     position: absolute;
     margin-left: calc(50% - 112px);
     font-size: 1.1em;
@@ -661,6 +665,13 @@ nav.dashHeader > a:last-of-type {
     display: block;
     font-size: 2.5em;
     font-weight: bold;
+}
+
+.center {
+    margin: auto;
+    width: 60%;
+    border: 3px solid #73AD21;
+    padding: 10px;
 }
 
 .navbar-right li a {
